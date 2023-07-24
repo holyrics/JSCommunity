@@ -1,24 +1,29 @@
 obs_v5 = {
     op6: function (d) {
-        return {'op': 6, 'd': d};
+        return {op: 6, d: d};
     },
     //
     request: function (receptorID, requestType, requestData) {
-        var d = {'requestType': requestType};
+        jsc.err.safeNullOrEmpty(receptorID, 'receptorID');
+        var d = {requestType: requestType};
         if (requestData != null) {
             d.requestData = requestData;
         }
-        return h.apiRequest(receptorID, {'op': 6, 'd': d});
-        
+        var json = h.apiRequest(receptorID, {op: 6, d: d});
+        if (json == null) {
+            throw h.getApiRequestLastError();
+        }
+        var response = JSON.parse(json);
+        if (response.d.requestStatus.result) {
+            return response.d.responseData;
+        }
+        throw JSON.stringify(response.d.requestStatus);
     },
     //
     getSceneList: function (receptorID) {
         var response = jsc.obs_v5.request(receptorID, 'GetSceneList', null);
-        if (response == null) {
-            throw h.getApiRequestLastError();
-        }
         h.log('jsc.obs_v5', 'getSceneList response: {}', response);
-        var scenes = JSON.parse(response).d.responseData.scenes;
+        var scenes = response.scenes;
         if (scenes.length == 0) {
             return [];
         }
@@ -34,13 +39,10 @@ obs_v5 = {
     //
     getSceneItemList: function (receptorID, sceneName) {
         var response = jsc.obs_v5.request(receptorID, 'GetSceneItemList', {
-            'sceneName': sceneName
+            sceneName: sceneName
         });
-        if (response == null) {
-            throw h.getApiRequestLastError();
-        }
         h.log('jsc.obs_v5', 'getSceneItemList response: {}', response);
-        var items = JSON.parse(response).d.responseData.sceneItems;
+        var items = response.sceneItems;
         if (items.length == 0) {
             return [];
         }
@@ -58,43 +60,44 @@ obs_v5 = {
         var cache = h.getGlobal(keyCache);
         if (cache == null) {
             var response = jsc.obs_v5.request(receptorID, 'GetSceneItemList', {
-                'sceneName': sceneName
+                sceneName: sceneName
             });
-            if (response == null) {
-                throw h.getApiRequestLastError();
-            }
             cache = {};
             h.log('jsc.obs_v5', 'getSceneItemIDByName response: {}', response);
-            var items = JSON.parse(response).d.responseData.sceneItems;
+            var items = response.sceneItems;
             for (var i = 0; i < items.length; i++) {
                 cache[items[i].sourceName.toLowerCase()] = items[i].sceneItemId;
             }
             h.setGlobal(keyCache, cache);
         }
         h.log('jsc.obs_v5', 'getSceneItemIDByName cache: {}', cache);
-        return cache[sceneItemName.toLowerCase()];
+        var n = cache[sceneItemName.toLowerCase()];
+        if (typeof n === 'undefined') {
+            throw 'Scene item not found';
+        }
+        return n;
     },
     //
     getSceneItemEnabled: function (receptorID, sceneName, sceneItemNameOrID) {
-        if (isNaN(sceneItemNameOrID)) {
+        if (sceneItemNameOrID == '' || isNaN(sceneItemNameOrID)) {
             sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receptorID, sceneName, sceneItemNameOrID);
         }
         var response = jsc.obs_v5.request(receptorID, 'GetSceneItemEnabled', {
-            'sceneName': sceneName,
-            'sceneItemId': parseInt(sceneItemNameOrID)
+            sceneName: sceneName,
+            sceneItemId: parseInt(sceneItemNameOrID)
         });
         h.log('jsc.obs_v5', 'getSceneItemEnabled response: {}', response);
-        return JSON.parse(response).d.responseData.sceneItemEnabled;
+        return response.sceneItemEnabled;
     },
     //
     setSceneItemEnabled: function (receptorID, sceneName, sceneItemNameOrID, enabled) {
-        if (isNaN(sceneItemNameOrID)) {
+        if (sceneItemNameOrID == '' || isNaN(sceneItemNameOrID)) {
             sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receptorID, sceneName, sceneItemNameOrID);
         }
         var response = jsc.obs_v5.request(receptorID, 'SetSceneItemEnabled', {
-            'sceneName': sceneName,
-            'sceneItemId': parseInt(sceneItemNameOrID),
-            'sceneItemEnabled': enabled
+            sceneName: sceneName,
+            sceneItemId: parseInt(sceneItemNameOrID),
+            sceneItemEnabled: enabled
         });
         h.log('jsc.obs_v5', 'setSceneItemEnabled response: {}', response);
         return response;
