@@ -1,0 +1,14 @@
+[
+    {
+        "key": "utils",
+        "": "Utils",
+        "pt": "Utilitários"
+    }, {
+        "key": "obs_v5",
+        "": "OBS Studio (WebSocket v5)"
+    }, {
+        "key": "playlist",
+        "": "Playlist",
+        "pt": "Lista de reprodução"
+    }
+]

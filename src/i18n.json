@@ -1,0 +1,47 @@
+[
+    {
+        "key": "Scene name",
+        "en": "Scene name",
+        "pt": "Nome da cena"
+    }, {
+        "key": "Item name",
+        "en": "Item name",
+        "pt": "Nome do item"
+    }, {
+        "key": "Item not found",
+        "en": "Item not found",
+        "pt": "Item não encontrado"
+    }, {
+        "key": "Error",
+        "en": "Error",
+        "pt": "Erro"
+    }, {
+        "key": "Item",
+        "en": "Item",
+        "pt": "Item"
+    }, {
+        "key": "Multiple items found",
+        "en": "Multiple items found",
+        "pt": "Múltiplos itens encontrados"
+    }, {
+        "key": "Clear playlist",
+        "en": "Clear playlist",
+        "pt": "Limpar lista de reprodução"
+    }, {
+        "key": "Playlist",
+        "en": "Playlist",
+        "pt": "Lista de reprodução"
+    }, {
+        "key": "Lyrics",
+        "en": "Lyrics",
+        "pt": "Letras"
+    }, {
+        "key": "Medias",
+        "en": "Medias",
+        "pt": "Mídias"
+    }, {
+        "key": "Both",
+        "en": "Both",
+        "pt": "Ambos"
+    }
+]
