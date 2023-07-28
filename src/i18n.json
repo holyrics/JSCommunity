@@ -2,46 +2,57 @@
     {
         "key": "Scene name",
         "en": "Scene name",
-        "pt": "Nome da cena"
+        "pt": "Nome da cena",
+        "ru": "Имя сцены"
     }, {
         "key": "Item name",
         "en": "Item name",
-        "pt": "Nome do item"
+        "pt": "Nome do item",
+        "ru": "Имя элемента"
     }, {
         "key": "Item not found",
         "en": "Item not found",
-        "pt": "Item não encontrado"
+        "pt": "Item não encontrado",
+        "ru": "Элемент не найден"
     }, {
         "key": "Error",
         "en": "Error",
-        "pt": "Erro"
+        "pt": "Erro",
+        "ru": "Ошибка"
     }, {
         "key": "Item",
         "en": "Item",
-        "pt": "Item"
+        "pt": "Item",
+        "ru": "Элемент"
     }, {
         "key": "Multiple items found",
         "en": "Multiple items found",
-        "pt": "Múltiplos itens encontrados"
+        "pt": "Múltiplos itens encontrados",
+        "ru": "Найдено несколько элементов"
     }, {
         "key": "Clear playlist",
         "en": "Clear playlist",
-        "pt": "Limpar lista de reprodução"
+        "pt": "Limpar lista de reprodução",
+        "ru": "Очистить список"
     }, {
         "key": "Playlist",
         "en": "Playlist",
-        "pt": "Lista de reprodução"
+        "pt": "Lista de reprodução",
+        "ru": "Плейлист"
     }, {
         "key": "Lyrics",
         "en": "Lyrics",
-        "pt": "Letras"
+        "pt": "Letras",
+        "ru": "Песни"
     }, {
         "key": "Medias",
         "en": "Medias",
-        "pt": "Mídias"
+        "pt": "Mídias",
+        "ru": "Медиа"
     }, {
         "key": "Both",
         "en": "Both",
-        "pt": "Ambos"
+        "pt": "Ambos",
+        "ru": "Оба"
     }
 ]

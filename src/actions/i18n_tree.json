@@ -2,13 +2,15 @@
     {
         "key": "utils",
         "": "Utils",
-        "pt": "Utilitários"
+        "pt": "Utilitários",
+        "ru": "Утилиты"
     }, {
         "key": "obs_v5",
         "": "OBS Studio (WebSocket v5)"
     }, {
         "key": "playlist",
         "": "Playlist",
-        "pt": "Lista de reprodução"
+        "pt": "Lista de reprodução",
+        "ru": "Работа с плейлистом через буффер обмена"
     }
 ]
