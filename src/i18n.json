@@ -54,5 +54,25 @@
         "en": "Both",
         "pt": "Ambos",
         "ru": "Оба"
+    }, {
+        "key": "Action",
+        "en": "Action",
+        "pt": "Ação",
+        "ru": "Действие"
+    }, {
+        "key": "Toggle",
+        "en": "Toggle",
+        "pt": "Alternar",
+        "ru": ""
+    }, {
+        "key": "Enable",
+        "en": "Enable",
+        "pt": "Ativar",
+        "ru": ""
+    }, {
+        "key": "Disable",
+        "en": "Disable",
+        "pt": "Desativar",
+        "ru": ""
     }
 ]

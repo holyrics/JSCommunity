@@ -33,6 +33,16 @@ function hGetItemInputParams() {
             suggested_values: function(obj) {
                 return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
             }
+        }, {
+            id: 'state_action',
+            name: jsc.i18n('Action'),
+            description: '',
+            type: 'string',
+            allowed_values: [
+                {value: 'toggle', label: jsc.i18n('Toggle')},
+                {value: 'enable', label: jsc.i18n('Enable')},
+                {value: 'disable', label: jsc.i18n('Disable')}
+            ]
         }
     ];
 }
