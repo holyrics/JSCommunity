@@ -12,5 +12,8 @@
         "": "Playlist",
         "pt": "Lista de reprodução",
         "ru": "Работа с плейлистом через буффер обмена"
+    }, {
+        "key": "lumikit",
+        "": "Lumikit"
     }
 ]

@@ -58,7 +58,7 @@ obs_v5 = {
     getSceneItemIDByName: function (receptorID, sceneName, sceneItemName) {
         var keyCache = "obs_v5#getSceneItemIDByName#" + receptorID + "#" + sceneName;
         var cache = h.getGlobal(keyCache);
-        if (cache == null) {
+        if (cache == null || typeof cache[sceneItemName.toLowerCase()] === 'undefined') {
             var response = jsc.obs_v5.request(receptorID, 'GetSceneItemList', {
                 sceneName: sceneName
             });

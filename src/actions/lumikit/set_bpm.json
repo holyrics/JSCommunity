@@ -1,0 +1,13 @@
+{
+    "id": "lumikit_set_bpm",
+    "name": "Lumikit - Change Master BPM",
+    "description": "Change Master BPM",
+    "i18n": {
+        "name": {
+            "pt": "Lumikit - Alterar o BPM Master"
+        },
+        "description": {
+            "pt": "Alterar o BPM Master"
+        }
+    }
+}
