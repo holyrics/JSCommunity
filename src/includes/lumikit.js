@@ -32,6 +32,7 @@ var jsc = {
         },
         setStrobo: function (receiverID, value) {
             jsc.lumikit.requestUDP(receiverID, 'XF31', value);
+		},
         setR: function (receiverID, value) {
             jsc.lumikit.requestUDP(receiverID, 'XF32', value);
         },
