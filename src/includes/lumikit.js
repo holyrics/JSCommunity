@@ -27,6 +27,9 @@ var jsc = {
             var relative_Value = Math.round(value / 127 * 255);
             jsc.lumikit.requestUDP(receiverID, 'MS03', parseInt(relative_Value).toFixed(0));
         },
+        resetSelection: function (receiverID) {
+            jsc.lumikit.requestUDP(receiverID, 'MS15', 255);
+        },
         setDimmer: function (receiverID, value) {
             jsc.lumikit.requestUDP(receiverID, 'XF07', value);
         },
