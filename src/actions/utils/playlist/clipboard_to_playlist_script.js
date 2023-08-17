@@ -11,7 +11,7 @@ var clipboard = h.getClipboard();
 var arr = clipboard.split("\n");
 for (var k in arr) {
     var text = arr[k];
-    if (text.trim() == '') { //ignore empty
+    if (text.trim() == '' || text.trim().startsWith('//')) { //ignore empty or comment
         continue;
     }
     if (text.indexOf('==') == 0) {

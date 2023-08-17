@@ -22,5 +22,29 @@ utils = {
             }
         }
         return references;
+    },
+    //
+    format: function (msg, arr) {
+        try {
+            if (arr == null || arr.length == null || arr.length == 0 || typeof arr === 'string') {
+                return msg;
+            }
+            var placeHolder = "{}";
+            var r = "";
+            for (var current = 0, argIndex = 0; current < msg.length(); ) {
+                var token = msg.indexOf(placeHolder, current);
+                if (token > -1) {
+                    r += msg.substring(current, token);
+                    r += arr[argIndex++];
+                    current = token + placeHolder.length();
+                } else {
+                    r += msg.substring(current);
+                    break;
+                }
+            }
+            return r;
+        } catch (e) {
+            return msg;
+        }
     }
 };

@@ -102,37 +102,37 @@ obs_v5 = {
         h.log('jsc.obs_v5', 'setSceneItemEnabled response: {}', response);
         return response;
     },
-	// Mute or unmute an input
-    inputMute: function (receiverID, inputName, state) {
+    // Mute or unmute an input
+    setInputMute: function (receiverID, inputName, state) {
         var response = jsc.obs_v5.request(receiverID, 'SetInputMute', {
-			inputName: inputName,
- 	        inputMuted: state
-		});
-		h.log('jsc.obs_v5', 'setInputMute response: {}', response);
-		return response;
-	},
-	// Start streaming
-    startStream: function (receiverID) {
-        var response = jsc.obs_v5.request(receiverID, 'StartStream');
-		h.log('jsc.obs_v5', 'startStream response: {}', response);
+            inputName: inputName,
+            inputMuted: state
+        });
+        h.log('jsc.obs_v5', 'setInputMute response: {}', response);
         return response;
     },
-	// Stop streaming
+    // Start streaming
+    startStream: function (receiverID) {
+        var response = jsc.obs_v5.request(receiverID, 'StartStream');
+        h.log('jsc.obs_v5', 'startStream response: {}', response);
+        return response;
+    },
+    // Stop streaming
     stopStream: function (receiverID) {
         var response = jsc.obs_v5.request(receiverID, 'StopStream');
-		h.log('jsc.obs_v5', 'stopStream response: {}', response);
+        h.log('jsc.obs_v5', 'stopStream response: {}', response);
         return response;
     },
     // Start recording
     startRecord: function (receiverID) {
         var response = jsc.obs_v5.request(receiverID, 'StartRecord');
-		h.log('jsc.obs_v5', 'startRecord response: {}', response);
+        h.log('jsc.obs_v5', 'startRecord response: {}', response);
         return response;
     },
     // Stop recording
     stopRecord: function (receiverID) {
-        var response = jsc.obs_v5.request(receiverID, ''StopRecord'');
-		h.log('jsc.obs_v5', 'stopRecord response: {}', response);
+        var response = jsc.obs_v5.request(receiverID, 'StopRecord');
+        h.log('jsc.obs_v5', 'stopRecord response: {}', response);
         return response;
-    }	
+    }
 };
