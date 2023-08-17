@@ -19,13 +19,13 @@ lumikit = {
     },
     //
     selectFixtureGroup: function (receiverID, value) {
-        var relativeValue = Math.round((value - 1) / 127 * 255);
-        jsc.lumikit.requestUDP(receiverID, 'MS02', parseInt(relativeValue).toFixed(0));
+        var relative_value = Math.round((value - 1) / 127 * 255);
+        jsc.lumikit.requestUDP(receiverID, 'MS02', parseInt(relative_value).toFixed(0));
     },
     //
     selectFixture: function (receiverID, value) {
-        var relativeValue = Math.round(value / 127 * 255);
-        jsc.lumikit.requestUDP(receiverID, 'MS03', parseInt(relativeValue).toFixed(0));
+        var relative_value = Math.round(value / 127 * 255);
+        jsc.lumikit.requestUDP(receiverID, 'MS03', parseInt(relative_value).toFixed(0));
     },
     //
     resetSelection: function (receiverID) {
