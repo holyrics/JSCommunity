@@ -37,7 +37,7 @@ function resetSelection(receiverID) {
 }
 
 // Selects a scene within a specific page on the specified receiver.
-function selectScene(receiverID, page, scene) {
+function setActiveScene(receiverID, page, scene) {
     var sceneID = scene < 10 ? '0' + scene : scene;
     var pageID = Math.round((page - 1) / 127 * 255);
     jsc.lumikit.requestUDP(receiverID, 'MF03', pageID);
