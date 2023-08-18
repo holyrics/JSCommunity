@@ -33,7 +33,7 @@ var jsc.lumikit = {
         jsc.lumikit.requestUDP(receiverID, 'MS15', 255);
     },
     // Selects a scene within a specific page on the specified receiver.
-    selectScene: function(receiverID, page, scene) {
+    setActiveScene: function(receiverID, page, scene) {
         var sceneID = scene < 10 ? '0' + scene : scene;
         var pageID = Math.round(( page -1) / 127 * 255);
         jsc.lumikit.requestUDP(receiverID, 'MF03', pageID);
