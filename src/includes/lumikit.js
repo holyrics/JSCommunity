@@ -79,5 +79,4 @@ var jsc.lumikit = {
         jsc.lumikit.setW(receiverID, W);
         jsc.lumikit.setA(receiverID, A);
         jsc.lumikit.setU(receiverID, U);
-    }
-};
+}
