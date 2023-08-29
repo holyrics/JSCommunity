@@ -1,7 +1,6 @@
-// Gatilho: Ao iniciar - Música (qualquer item) - JavaScript
+// Gatilho: Ao iniciar - Música (qualquer item)
 //seta a velocidade do ritmo / luzes caso esteja preenchido o BPM na música
-var receiverID = 'Lumikit';
-if (obj.bpm > 29 ) { 
+if (obj.bpm > 29) { 
     h.hly('SetBpm', {bpm: obj.bpm});
-    jsc.lumikit.setBPM(receiverID,obj.bpm);
-    }
+    jsc.lumikit.setBPM(obj.input.receiver_id, obj.bpm);
+}
