@@ -1,0 +1,13 @@
+{
+    "id": "lumikit_random_scene",
+    "name": "Lumikit - Random Scene by Slide",
+    "description": "Random Scene by Slide",
+    "i18n": {
+        "name": {
+            "pt": "Lumikit - Cena aleatória por slide"
+        },
+        "description": {
+            "pt": "Cena aleatória por slide"
+        }
+    }
+}
