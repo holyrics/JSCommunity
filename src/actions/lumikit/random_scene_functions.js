@@ -1,5 +1,5 @@
 function desvendaLuz(marcador) {
-  var slide_type = obj.slide_type+obj.slide_description;  
+  var slide_type = obj.slide_type + obj.slide_description;  
   return (slide_type.indexOf(marcador) > -1) && (obj.bpm > 0);
 }
 
@@ -44,4 +44,3 @@ function hGetItemInputParams() {
          }
     ];
 }
-
