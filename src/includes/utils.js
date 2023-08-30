@@ -43,3 +43,34 @@ function format(msg, arr) {
         return msg;
     }
 }
+
+function isSlideDescription(key, val) {
+    var data = slideDescriptionMap[key];
+    if (data === undefined) {
+        return false;
+    }
+    if (val.slide_description !== undefined) {
+        val = val.slide_description;
+    }
+    val = h.normalize(val).toLowerCase();
+   for (i in data) {
+    if (val.startsWith(data[i])) return true;
+      }
+    
+    return false;
+}
+
+//
+function isVerse(val) {
+    return isSlideDescription('verse', val);
+}
+
+//
+function isChorus(val) {
+    return isSlideDescription('chorus', val);
+}
+
+//
+function isInstrumental(val) {
+    return isSlideDescription('instrumental', val);
+}

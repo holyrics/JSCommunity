@@ -80,3 +80,9 @@ var booksAliases = {
         "3 João": ["3Jn"]
     }
 };
+
+var slideDescriptionMap = {
+    verse: ['verse', 'verso', 'стих', 'versetto'],
+    chorus: ['chorus', 'coro', 'refrao', 'припев', 'coro'],
+    instrumental: ['instrumental', 'инструментальный', 'strumentale']
+};
