@@ -45,7 +45,7 @@ function format(msg, arr) {
 }
 
 function isSlideDescription(key, val) {
-    var data = slideDescriptionMap[key];
+    var data = jsc.data.slideDescriptionMap[key];
     if (data === undefined) {
         return false;
     }
@@ -53,10 +53,9 @@ function isSlideDescription(key, val) {
         val = val.slide_description;
     }
     val = h.normalize(val).toLowerCase();
-   for (i in data) {
-    if (val.startsWith(data[i])) return true;
-      }
-    
+    for (i in data) {
+        if (val.startsWith(data[i])) return true;
+    }
     return false;
 }
 

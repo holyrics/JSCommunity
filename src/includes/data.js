@@ -84,5 +84,5 @@ var booksAliases = {
 var slideDescriptionMap = {
     verse: ['verse', 'verso', 'стих', 'versetto'],
     chorus: ['chorus', 'coro', 'refrao', 'припев', 'coro'],
-    instrumental: ['instrumental', 'инструментальный', 'strumentale']
+    instrumental: ['instrumental', 'инструментальныи', 'strumentale']
 };
