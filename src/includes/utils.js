@@ -61,15 +61,15 @@ function isSlideDescription(key, val) {
 
 //
 function isVerse(val) {
-    return isSlideDescription('verse', val);
+    return jsc.utils.isSlideDescription('verse', val);
 }
 
 //
 function isChorus(val) {
-    return isSlideDescription('chorus', val);
+    return jsc.utils.isSlideDescription('chorus', val);
 }
 
 //
 function isInstrumental(val) {
-    return isSlideDescription('instrumental', val);
+    return jsc.utils.isSlideDescription('instrumental', val);
 }
