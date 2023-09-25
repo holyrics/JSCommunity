@@ -46,9 +46,6 @@ function setActiveScene(receptorID, sceneName) {
  
 	h.log('jsc.obs_v5', 'SetCurrentProgramScene response: {}', response);
     return response;
-
-  };
-  h.apiRequest('OBS WEB', parametros);
 }
 
 // Get a list of items within a scene
