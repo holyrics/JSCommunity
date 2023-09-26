@@ -4,13 +4,13 @@ function op6(d) {
 }
 
 //
-function request(receptorID, requestType, requestData) {
-    jsc.err.safeNullOrEmpty(receptorID, 'receptorID');
+function request(receiverID, requestType, requestData) {
+    jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     var d = {requestType: requestType};
     if (requestData != null) {
         d.requestData = requestData;
     }
-    var json = h.apiRequest(receptorID, {op: 6, d: d});
+    var json = h.apiRequest(receiverID, {op: 6, d: d});
     if (json == null) {
         throw h.getApiRequestLastError();
     }
@@ -22,8 +22,8 @@ function request(receptorID, requestType, requestData) {
 }
 
 // Get a list of available scenes
-function getSceneList(receptorID) {
-    var response = jsc.obs_v5.request(receptorID, 'GetSceneList', null);
+function getSceneList(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetSceneList', null);
     h.log('jsc.obs_v5', 'getSceneList response: {}', response);
     var scenes = response.scenes;
     if (scenes.length == 0) {
@@ -39,18 +39,17 @@ function getSceneList(receptorID) {
     return names;
 }
 
-function setActiveScene(receptorID, sceneName) {
+function setActiveScene(receiverID, sceneName) {
     var response = jsc.obs_v5.request(receiverID, 'SetCurrentProgramScene', {
-		sceneName: sceneName
-	});
- 
-	h.log('jsc.obs_v5', 'SetCurrentProgramScene response: {}', response);
+        sceneName: sceneName
+    });
+    h.log('jsc.obs_v5', 'SetCurrentProgramScene response: {}', response);
     return response;
 }
 
 // Get a list of items within a scene
-function getSceneItemList(receptorID, sceneName) {
-    var response = jsc.obs_v5.request(receptorID, 'GetSceneItemList', {
+function getSceneItemList(receiverID, sceneName) {
+    var response = jsc.obs_v5.request(receiverID, 'GetSceneItemList', {
         sceneName: sceneName
     });
     h.log('jsc.obs_v5', 'getSceneItemList response: {}', response);
@@ -68,11 +67,11 @@ function getSceneItemList(receptorID, sceneName) {
 }
 
 // Get the ID of a scene item by its name
-function getSceneItemIDByName(receptorID, sceneName, sceneItemName) {
-    var keyCache = "obs_v5#getSceneItemIDByName#" + receptorID + "#" + sceneName;
+function getSceneItemIDByName(receiverID, sceneName, sceneItemName) {
+    var keyCache = "obs_v5#getSceneItemIDByName#" + receiverID + "#" + sceneName;
     var cache = h.getGlobal(keyCache);
     if (cache == null || typeof cache[sceneItemName.toLowerCase()] === 'undefined') {
-        var response = jsc.obs_v5.request(receptorID, 'GetSceneItemList', {
+        var response = jsc.obs_v5.request(receiverID, 'GetSceneItemList', {
             sceneName: sceneName
         });
         cache = {};
@@ -92,11 +91,11 @@ function getSceneItemIDByName(receptorID, sceneName, sceneItemName) {
 }
 
 // Get the enabled/disabled status of a scene item
-function getSceneItemEnabled(receptorID, sceneName, sceneItemNameOrID) {
+function getSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID) {
     if (sceneItemNameOrID == '' || isNaN(sceneItemNameOrID)) {
-        sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receptorID, sceneName, sceneItemNameOrID);
+        sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemNameOrID);
     }
-    var response = jsc.obs_v5.request(receptorID, 'GetSceneItemEnabled', {
+    var response = jsc.obs_v5.request(receiverID, 'GetSceneItemEnabled', {
         sceneName: sceneName,
         sceneItemId: parseInt(sceneItemNameOrID)
     });
@@ -105,11 +104,11 @@ function getSceneItemEnabled(receptorID, sceneName, sceneItemNameOrID) {
 }
 
 // Set the enabled/disabled status of a scene item
-function setSceneItemEnabled(receptorID, sceneName, sceneItemNameOrID, enabled) {
+function setSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, enabled) {
     if (sceneItemNameOrID == '' || isNaN(sceneItemNameOrID)) {
-        sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receptorID, sceneName, sceneItemNameOrID);
+        sceneItemNameOrID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemNameOrID);
     }
-    var response = jsc.obs_v5.request(receptorID, 'SetSceneItemEnabled', {
+    var response = jsc.obs_v5.request(receiverID, 'SetSceneItemEnabled', {
         sceneName: sceneName,
         sceneItemId: parseInt(sceneItemNameOrID),
         sceneItemEnabled: enabled
