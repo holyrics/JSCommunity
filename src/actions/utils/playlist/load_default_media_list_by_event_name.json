@@ -9,5 +9,6 @@
         "description": {
             "pt": "<p>Acelera o processo de montagem da liturgia do culto carregando listas previamente salvas de acordo com o nome do evento.</p> <p><strong>Funcionamento:</strong> Ao entrar na lista de mídia de uma programação agendada da igreja, irá aguardar o sistema de sincronismo ficar 100% carregado e se a lista estiver vazia, irá carregar a lista salva. Para que o recurso funcione, os eventos devem ter seus nomes cadastrados na agenda do holyrics, bem como deve existir lista com o nome exatamente igual ao do evento. Você pode ver este script em ação neste vídeo: <a href=\"https://youtu.be/y8fy0JaWE4I\">https://youtu.be/y8fy0JaWE4I</a></p> <p><strong><u>Configuração:</u></strong></p> <ul> <li><strong>Gatilho:</strong> Ao alterar</li> <li><strong>Ação:</strong> Lista de reprodução selecionada</li> <li><strong>Receptor:</strong> Community</li> </ul>"
         }
-    }
+    },
+    "script_filter": " obj.type == 'action' || (obj.type == 'trigger' && obj.action == 'change' && obj.item == 'playlist') "
 }

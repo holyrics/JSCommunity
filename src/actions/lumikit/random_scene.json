@@ -9,5 +9,6 @@
         "description": {
             "pt": "Funciona como gatilho: Ao exibir - Slide (música) - (qualquer item)<br>Assista https://www.youtube.com/watch?v=Jana_IszBfo para entender o funcionamento.<br>Coloque <b>{{&lt;slide_type=*&gt;}}</b> como comentário no início de um parágrafo para customizar, exemplo:<br><p style='font-family:monospaced'>//{{&lt;slide_type=*&gt;}}<br>Canta minh'alma, canta ao Senhor<br>Rende-lhe sempre ardente louvor<br></p><br>Asterisco * no nome da parte aciona a luz ritmo.<br>Esclamação ! no nome da parte aciona cenas ritmicas no início da música até o slide 3.<br>se a parte da música contiver \"Instrumental\" ou \"Refrão\" também será luz ritmo automaticamente"
         }
-    }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.item == 'any_song_slide' "
 }

@@ -9,5 +9,6 @@
         "description": {
             "pt": "Altera o BPM Master por trigger usando o valor BPM da música"
         }
-    }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.action == 'displaying' && obj.item == 'any_song' "
 }
