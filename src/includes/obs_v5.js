@@ -154,3 +154,12 @@ function stopRecord(receiverID) {
     h.log('jsc.obs_v5', 'stopRecord response: {}', response);
     return response;
 }
+
+// Trigger Hotkey by name
+function triggerHotkeyByName(receiverID, keyName) {
+    var response = jsc.obs_v5.request(receiverID, 'TriggerHotkeyByName', {
+        hotkeyName: keyName
+    });
+    h.log('jsc.obs_v5', 'triggerHotkeyByName response: {}', response);
+    return response;
+}
