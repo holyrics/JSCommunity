@@ -142,5 +142,15 @@
         "ru": "Момент добавлен",
         "es": "Momento añadido",
         "it": "Momento aggiunto"
+    },
+    {
+        "key": "Source name",
+        "en": "Source name",
+        "pt": "Nome da fonte"
+    },
+    {
+        "key": "Filter name",
+        "en": "Filter name",
+        "pt": "Nome do filtro"
     }
 ]

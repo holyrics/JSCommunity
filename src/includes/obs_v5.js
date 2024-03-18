@@ -163,3 +163,56 @@ function triggerHotkeyByName(receiverID, keyName) {
     h.log('jsc.obs_v5', 'triggerHotkeyByName response: {}', response);
     return response;
 }
+
+// 
+function getSourceList(receiverID) {
+    var sources = [];
+    var scenes = jsc.obs_v5.getSceneList(receiverID);
+    for (var i = 0; i < scenes.length; i++) {
+        var sceneSources = jsc.obs_v5.getSceneItemList(receiverID, scenes[i]);
+        sources = sources.concat(sceneSources);
+    }
+    jsc.utils.array.distinct(sources);
+    jsc.utils.array.sort(sources);
+    h.log('jsc.obs_v5', 'getSourceList response: {}', sources);
+    return sources;
+}
+
+// 
+function getSourceFilterList(receiverID, sourceName) {
+    var response = jsc.obs_v5.request(receiverID, 'GetSourceFilterList', {
+        sourceName: sourceName
+    });
+    h.log('jsc.obs_v5', 'GetSourceFilterList response: {}', response);
+    var items = response.filters;
+    if (items.length == 0) {
+        return [];
+    }
+    var names = [];
+    for (var i = 0; i < items.length; i++) {
+        names.push(items[i].filterName);
+    }
+    h.log('jsc.obs_v5', 'getSourceFilterList names: {}', [names]);
+    return names;
+}
+
+// 
+function getSourceFilterEnabled(receiverID, sourceName, filterName) {    
+    var response = jsc.obs_v5.request(receiverID, 'GetSourceFilter', {
+        sourceName: sourceName,
+        filterName: filterName
+    });
+    h.log('jsc.obs_v5', 'getSourceFilterEnabled response: {}', response);    
+    return response.filterEnabled;
+}
+
+// 
+function setSourceFilterEnabled(receiverID, sourceName, filterName, enabled) {
+    var response = jsc.obs_v5.request(receiverID, 'SetSourceFilterEnabled', {
+        sourceName: sourceName,
+        filterName: filterName,
+        filterEnabled: enabled
+    });
+    h.log('jsc.obs_v5', 'setSourceFilterEnabled response: {}', response);
+    return response;
+}
