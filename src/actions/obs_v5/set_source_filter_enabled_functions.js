@@ -19,11 +19,13 @@ function hGetItemInputParams() {
             receiver: 'obs_v5'
         }, {
             id: 'source_name',
-            name: jsc.i18n('Source name'),
+            name: jsc.i18n('Source or scene name'),
             description: '',
             type: 'string',
             suggested_values: function(obj) {
-                return jsc.obs_v5.getSourceList(obj.input.receiver_id);
+                var scenes = jsc.obs_v5.getSceneList(obj.input.receiver_id);
+                var sources = jsc.obs_v5.getSourceList(obj.input.receiver_id);
+                return scenes.concat(sources);
             }
         }, {
             id: 'source_filter_name',

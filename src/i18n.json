@@ -144,9 +144,9 @@
         "it": "Momento aggiunto"
     },
     {
-        "key": "Source name",
-        "en": "Source name",
-        "pt": "Nome da fonte"
+        "key": "Source or scene name",
+        "en": "Source or scene name",
+        "pt": "Nome da fonte ou cena"
     },
     {
         "key": "Filter name",
