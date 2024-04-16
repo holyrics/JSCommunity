@@ -73,3 +73,27 @@ function isChorus(val) {
 function isInstrumental(val) {
     return jsc.utils.isSlideDescription('instrumental', val);
 }
+
+//
+function nX(n, x) {
+  n = parseInt(n).toFixed(0);
+  while (n.length() < x) {
+    n = "0" + n;
+  }
+  return n;
+}
+
+//
+function n2(n) {
+  return jsc.utils.nX(n, 2);
+}
+
+//
+function n3(n) {
+  return jsc.utils.nX(n, 3);
+}
+
+//
+function n4(n) {
+  return jsc.utils.nX(n, 4);
+}
