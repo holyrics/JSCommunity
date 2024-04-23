@@ -1,4 +1,4 @@
-//teste
+//
 function request(receiverID, oscCommand) {
     var r = h.apiRequest(receiverID, {
         data: oscCommand,

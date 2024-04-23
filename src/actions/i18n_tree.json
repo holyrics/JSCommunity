@@ -15,5 +15,8 @@
     }, {
         "key": "lumikit",
         "": "Lumikit"
+    }, {
+        "key": "x32",
+        "": "Behringer (OSC Protocol)"
     }
 ]

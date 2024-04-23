@@ -1,10 +1,10 @@
 {
-    "id": "x32_toggle_mute_channel",
-    "name": "X32 - Enable/disable mute of channel",
+    "id": "osc_toggle_mute_channel",
+    "name": "Enable/disable mute of channel",
     "description": "Change the current state of mute channel button",
     "i18n": {
         "name": {
-            "pt": "X32 - Inverte o estado de mudo de um canal"
+            "pt": "Ativar/desativar mudo de um canal"
         },
         "description": {
             "pt": "Inverter o estado atual do botão mudo de um canal específico da Digital Mixer Behringer"

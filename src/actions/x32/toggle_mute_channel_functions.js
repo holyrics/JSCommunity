@@ -17,7 +17,7 @@ function hGetItemInputParams() {
             name: 'Receptor OSC',
             description: '',
             type: 'receiver',
-            receiver: 'osc_digital_mixer'
+            receiver: 'osc'
         }, {
             id: 'channel',
             name: jsc.i18n('Número do canal'),
