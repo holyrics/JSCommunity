@@ -156,19 +156,17 @@ function toggleGroupMute(receiverID, group) {
 // Sets the volume level of a specific channel on a digital mixer receiver identified by its ID, smoothly transitioning to the target volume.
 function setSmoothChannelVolume(receiverID, channel, targetVolume, speed) {
     var currentVolume = jsc.x32.getChannelVolume(receiverID, channel);
-    var step = 0.05; 
+    var step = 0.01; 
     if (currentVolume < targetVolume) {
         for (var newVolume = currentVolume; newVolume <= targetVolume; newVolume += step) {
             jsc.x32.setChannelVolume(receiverID, channel, newVolume);
-            h.sleep(20*(10-speed)); 
-            h.log(newVolume);
-        }
+            h.sleep(5*(10-speed)); 
+                    }
     } else if (currentVolume > targetVolume) {
         for (var newVolume = currentVolume; newVolume >= targetVolume; newVolume -= step) {
             jsc.x32.setChannelVolume(receiverID, channel, newVolume);
-            h.sleep(20*(10-speed)); 
-            h.log(newVolume);
-        }
+            h.sleep(5*(10-speed)); 
+		}
     }
     jsc.x32.setChannelVolume(receiverID, channel, targetVolume);
 }
