@@ -17,12 +17,21 @@ function hGetItemInputParams() {
             name: 'Receptor OSC',
             description: '',
             type: 'receiver',
-            receiver: 'osc'
+            receiver: 'OSC'
         }, {
             id: 'channel',
             name: jsc.i18n('Número do canal'),
             description: '',
-            type: 'number'
+            type: 'number',
+            min: 1,
+            max: 50,
+            default_value: 1
+        }
+        , {
+            id: 'muted',
+            name: jsc.i18n('Mute'),
+            description: '',
+            type: 'Boolean'
         }
    ];
 }
