@@ -128,6 +128,12 @@ function setChannelVolume(receiverID, channel, volume) {
     return volume.toFixed(1) === v.toFixed(1);
 }
 
+// Sets the volume level of a specific channel on a digital mixer receiver identified by its ID but does not wait for a response.
+function setChannelVolumeAsync(receiverID, channel, volume) {
+    var osc = jsc.x32.createCmdChannelVolumeSet(channel, volume);
+    jsc.x32.requestAsync(receiverID, osc.toBytes());
+}
+
 // Checks if a group on a digital mixer receiver identified by its ID is muted.
 function isGroupMute(receiverID, group) {
     var osc = jsc.x32.createCmdGroupMute(group);
@@ -154,19 +160,29 @@ function toggleGroupMute(receiverID, group) {
 }
 
 // Sets the volume level of a specific channel on a digital mixer receiver identified by its ID, smoothly transitioning to the target volume.
-function setSmoothChannelVolume(receiverID, channel, targetVolume, speed) {
-    var currentVolume = jsc.x32.getChannelVolume(receiverID, channel);
-    var step = 0.01; 
-    if (currentVolume < targetVolume) {
-        for (var newVolume = currentVolume; newVolume <= targetVolume; newVolume += step) {
-            jsc.x32.setChannelVolume(receiverID, channel, newVolume);
-            h.sleep(5*(10-speed)); 
-                    }
-    } else if (currentVolume > targetVolume) {
-        for (var newVolume = currentVolume; newVolume >= targetVolume; newVolume -= step) {
-            jsc.x32.setChannelVolume(receiverID, channel, newVolume);
-            h.sleep(5*(10-speed)); 
-		}
+
+function setSmoothChannelVolume(receiverID, channel, targetVolume, step) {
+    var currentAction = 'jsc.setSmoothChannelVolume'+channel+'#action';
+    var id = h.getGlobal(currentAction);
+    if (id != null) {
+        h.clearInterval(id);
     }
-    jsc.x32.setChannelVolume(receiverID, channel, targetVolume);
+    channel = jsc.utils.range(channel || 1, 1, 50);
+    targetVolume = jsc.utils.range(targetVolume || 0, 0, 1); 
+    step = jsc.utils.range(step || 0.001, 0.001, 0.1);
+    var delay = 10;
+    var currentVolume = jsc.x32.getChannelVolume(receiverID, channel);
+    var negative = targetVolume < currentVolume;
+    step *= negative ? -1 : 1;
+    var newVolume = currentVolume;
+    var intervalID = h.setInterval(function() {
+        newVolume += step;
+        if (negative ? newVolume < targetVolume : newVolume > targetVolume) {
+            h.clearInterval(intervalID);
+            jsc.x32.setChannelVolumeAsync(receiverID, channel, targetVolume);
+            return;
+        }
+        jsc.x32.setChannelVolumeAsync(receiverID, channel, newVolume);
+    }, delay);
+    h.setGlobal(currentAction, intervalID); 
 }
