@@ -152,31 +152,5 @@
         "key": "Filter name",
         "en": "Filter name",
         "pt": "Nome do filtro"
-    },
-	{
-		"key": "Channel",
-		"en": "Channel",
-		"pt": "Canal",
-		"ru": "Канал",
-		"es": "Canal",
-		"it": "Canale"
-    },
-	{
-		"key": "Group",
-		"en": "Group",
-		"pt": "Grupo",
-		"ru": "Группа",
-		"es": "Grupo",
-		"it": "Gruppo"
-	},
-    {
-		"key": "Mute",
-		"en": "Mute",
-		"pt": "Mudo",
-		"ru": "Отключить звук",
-		"es": "Silenciar",
-		"it": "Silenzia"
-	}	
-	
-	
+    }
 ]
