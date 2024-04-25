@@ -1,0 +1,13 @@
+{
+    "id": "osc_toggle_channel_mute",
+    "name": "Toggle Channel Mute",
+    "description": "Change the current state of the channel mute button.",
+    "i18n": {
+        "name": {
+            "pt": "Alterna o estado de mute de um canal"
+        },
+        "description": {
+            "pt": "Alterna o estado do botão mute de um canal específico da Digital Mixer Behringer"
+        }
+    }
+}
