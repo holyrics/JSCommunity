@@ -1,4 +1,4 @@
-{
+{   
     "id": "osc_set_group_mute",
     "name": "Set Group Mute",
     "description": "Changes the mute state of a group of channels on the Behringer Digital Mixer to on/off.",

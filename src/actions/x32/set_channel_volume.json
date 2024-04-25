@@ -1,4 +1,4 @@
-{
+{ 
     "id": "osc_set_channel_volume",
     "name": "Adjust Channel Volume",
     "description": "Adjusts the volume of a specific channel on the Behringer Digital Mixer to the desired value.",

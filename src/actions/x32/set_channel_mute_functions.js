@@ -14,7 +14,7 @@ function hGetItemInputParams() {
     return [
         {
             id: 'receiver_id',
-            name: 'Receptor OSC',
+            name: jsc.i18n('OSC Receiver'),
             description: '',
             type: 'receiver',
             receiver: 'OSC'

@@ -1,4 +1,4 @@
-var p1 = obj.input.receiver_id;
+var p1 = obj.input.receiver_id; 
 var p2 = obj.input.channel;
 var mute;
 if (obj.input.muted == 'toggle') {

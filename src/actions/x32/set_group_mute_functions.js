@@ -1,4 +1,4 @@
-function hGetItemStatusData(obj) {
+function hGetItemStatusData(obj) { 
   if (jsc.x32.isGroupMute(obj.input.receiver_id, obj.input.group)) {
     return {
           active: true,     
@@ -14,7 +14,7 @@ function hGetItemInputParams() {
     return [
         {
             id: 'receiver_id',
-            name: 'Receptor OSC',
+            name: jsc.i18n('OSC Receiver'),
             description: '',
             type: 'receiver',
             receiver: 'OSC'

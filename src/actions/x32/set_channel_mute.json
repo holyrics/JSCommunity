@@ -1,4 +1,4 @@
-{
+{  
     "id": "osc_toggle_channel_mute",
     "name": "Toggle Channel Mute",
     "description": "Change the current state of the channel mute button.",

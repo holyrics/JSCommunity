@@ -2,7 +2,7 @@ function hGetItemStatusData(obj) {
     var muted = jsc.x32.isChannelMute(obj.input.receiver_id, obj.input.channel);
     return {
           active: muted,     
-          description : (jsc.x32.getChannelVolume(obj.input.receiver_id, obj.input.channel).toFixed(3.0) * 100) + "%"        
+          description : (jsc.x32.getChannelVolume(obj.input.receiver_id, obj.input.channel) * 100).toFixed(0) + "%"         
     };
 }
 
@@ -10,13 +10,13 @@ function hGetItemInputParams() {
     return [
         {
             id: 'receiver_id',
-            name: 'Receptor OSC',
+            name: jsc.i18n('OSC Receiver'),
             description: '',
             type: 'receiver',
             receiver: 'OSC'
         }, {
             id: 'channel',
-            name: jsc.i18n('Número do canal'),
+            name: jsc.i18n('Channel number'),
             description: '',
             type: 'number',
             min: 1,
@@ -26,7 +26,7 @@ function hGetItemInputParams() {
         }
         , {
             id: 'volume',
-            name: jsc.i18n('% Volume (0-100)'),
+            name: '% '+jsc.i18n('Volume')+ '(0-100)',
             description: '',
             type: 'number',
             min: 0,
@@ -36,7 +36,7 @@ function hGetItemInputParams() {
        }     
        , {
             id: 'speed',
-            name: jsc.i18n('Velocidade (1-10)'),
+            name: jsc.i18n('Speed')+ ' (1-10),
             description: '',
             type: 'number',
             min: 1,
@@ -46,7 +46,7 @@ function hGetItemInputParams() {
        }
        , {
             id: 'unmute',
-            name: jsc.i18n('Liberar Mute'),
+            name: jsc.i18n('Unmute'),
             description: '',
             type: 'Boolean',
             default_value : true
