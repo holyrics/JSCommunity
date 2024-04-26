@@ -43,7 +43,7 @@ function hGetItemInputParams() {
             show_as_combobox : true
        }, {
             id: 'speed',
-            name: jsc.i18n('Speed')+' (1-10)',
+            name: jsc.i18n('Smoothness')+' (1-10)',
             description: '',
             type: 'number',
             min: 1,
