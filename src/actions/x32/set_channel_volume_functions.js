@@ -20,13 +20,13 @@ function hGetItemInputParams() {
             description: '',
             type: 'number',
             min: 1,
-            max: 32,
+            max: 40,
             default_value: 1,
             show_as_combobox : true
         }
         , {
             id: 'volume',
-            name: '% '+jsc.i18n('Volume')+ '(0-100)',
+            name: '% '+jsc.i18n('Volume ')+ '(0-100)',
             description: '',
             type: 'number',
             min: 0,
@@ -36,7 +36,7 @@ function hGetItemInputParams() {
        }     
        , {
             id: 'speed',
-            name: jsc.i18n('Speed')+ ' (1-10),
+            name: jsc.i18n('Smoothness ')+ ' (1-10)',
             description: '',
             type: 'number',
             min: 1,
