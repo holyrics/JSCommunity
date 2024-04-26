@@ -27,8 +27,7 @@ function hGetItemInputParams() {
             max: 8,
             default_value: 1,
             show_as_combobox : true
-        }
-        , {
+        }, {
             id: 'muted',
             name: jsc.i18n('Mute'),
             description: '',
@@ -37,6 +36,5 @@ function hGetItemInputParams() {
                              {value: 'disable' , label: jsc.i18n('Disable')},
                              {value: 'toggle' , label: jsc.i18n('Toggle')}]
         }
-
    ];
 }

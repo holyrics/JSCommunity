@@ -4,7 +4,7 @@
     "description": "Changes the mute state of a group of channels on the Behringer Digital Mixer to on/off.",
     "i18n": {
         "name": {
-            "pt": "Definir o mute do grupo"
+            "pt": "Alterar o mute do grupo"
         },
         "description": {
             "pt": "Altera o estado de mute de um grupo de canais na Digital Mixer Behringer para ligado/desligado."

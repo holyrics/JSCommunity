@@ -98,7 +98,10 @@ function n4(n) {
   return jsc.utils.nX(n, 4);
 }
 
+//
 function range(value, min, max) {
+    if (!value) value = 0;
+    
     if (value < min) return min;
         
     if (value > max) return max;
