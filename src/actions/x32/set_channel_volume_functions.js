@@ -23,8 +23,7 @@ function hGetItemInputParams() {
             max: 40,
             default_value: 1,
             show_as_combobox : true
-        }
-        , {
+        }, {
             id: 'volume',
             name: '% '+jsc.i18n('Volume ')+ '(0-100)',
             description: '',
@@ -33,9 +32,8 @@ function hGetItemInputParams() {
             max: 100,
             default_value: 0,
             show_as_combobox : true
-       }     
-       , {
-            id: 'speed',
+       }, {
+            id: 'smoothness',
             name: jsc.i18n('Smoothness ')+ ' (1-10)',
             description: '',
             type: 'number',
@@ -43,8 +41,7 @@ function hGetItemInputParams() {
             max: 10,
             default_value: 1,
             show_as_combobox : true
-       }
-       , {
+       }, {
             id: 'unmute',
             name: jsc.i18n('Unmute'),
             description: '',

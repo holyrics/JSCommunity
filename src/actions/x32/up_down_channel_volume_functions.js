@@ -42,7 +42,7 @@ function hGetItemInputParams() {
             default_value: 5,
             show_as_combobox : true
        }, {
-            id: 'speed',
+            id: 'smoothness',
             name: jsc.i18n('Smoothness')+' (1-10)',
             description: '',
             type: 'number',
@@ -54,7 +54,7 @@ function hGetItemInputParams() {
             id: 'unmute',
             name: jsc.i18n('Unmute'),
             description: '',
-            type: 'Boolean',
+            type: 'boolean',
             default_value : true
         }
    ]; 
