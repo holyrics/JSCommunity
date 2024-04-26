@@ -100,9 +100,8 @@ function n4(n) {
 
 //
 function range(value, min, max) {
-    if (!value) {
-        return min;
-    }
+    if (!value) value = 0;
+    
     if (value < min) return min;
         
     if (value > max) return max;

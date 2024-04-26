@@ -152,5 +152,99 @@
         "key": "Filter name",
         "en": "Filter name",
         "pt": "Nome do filtro"
+    },
+    {
+        "key": "Channel",
+        "en": "Channel",
+        "pt": "Canal",
+        "ru": "Канал",
+        "es": "Canal",
+        "it": "Canale"
+    },
+    {
+        "key": "Group",
+        "en": "Group",
+        "pt": "Grupo",
+        "ru": "Группа",
+        "es": "Grupo",
+        "it": "Gruppo"
+    },
+    {
+        "key": "Mute",
+        "en": "Mute",
+        "pt": "Mudo",
+        "ru": "Отключить звук",
+        "es": "Silenciar",
+        "it": "Silenzia"
+    },
+    {
+        "key": "OSC Receiver",
+        "en": "OSC Receiver",
+        "pt": "Receptor OSC"
+    },
+    {
+        "key": "Channel number",
+        "en": "Channel number",
+        "pt": "Número do canal"
+    },
+    {
+        "key": "Volume",
+        "en": "Volume",
+        "pt": "Volume"
+    },
+    {
+        "key": "Speed",
+        "en": "Speed",
+        "pt": "Velocidade"
+    },
+    {
+        "key": "Unmute",
+        "en": "Unmute",
+        "pt": "Desmutar"
+    },
+    {
+        "key": "Mute",
+        "en": "Mute",
+        "pt": "Mudo"
+    },
+    {
+        "key": "Enable",
+        "en": "Enable",
+        "pt": "Habilitar"
+    },
+    {
+        "key": "Disable",
+        "en": "Disable",
+        "pt": "Desabilitar"
+    },
+    {
+        "key": "Toggle",
+        "en": "Toggle",
+        "pt": "Alternar"
+    },
+    {
+        "key": "Group",
+        "en": "Group",
+        "pt": "Grupo"
+    },
+    {
+        "key": "Type",
+        "en": "Type",
+        "pt": "Tipo"
+    },
+    {
+        "key": "Increase",
+        "en": "Increase",
+        "pt": "Aumentar"
+    },
+    {
+        "key": "Decrease",
+        "en": "Decrease",
+        "pt": "Diminuir"
+    },
+    {
+        "key": "Level",
+        "en": "Level",
+        "pt": "Nível"
     }
 ]
