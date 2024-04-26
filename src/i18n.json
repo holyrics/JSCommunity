@@ -246,5 +246,12 @@
         "key": "Level",
         "en": "Level",
         "pt": "Nível"
+    },
+    {
+        "key": "Smoothness",
+        "en": "Smoothness",
+        "pt": "Suavidade"
     }
+]
+	
 ]
