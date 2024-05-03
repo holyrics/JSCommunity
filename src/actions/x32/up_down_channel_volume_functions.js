@@ -29,9 +29,10 @@ function hGetItemInputParams() {
             name: jsc.i18n('Type'),
             description: '',
             type: 'string',
-            default_value: jsc.i18n('Increase'),
             allowed_values: [{value: 'inc' , label: jsc.i18n('Increase')},
-                             {value: 'dec' , label: jsc.i18n('Decrease')}]
+                             {value: 'dec' , label: jsc.i18n('Decrease')},
+		                    ],
+			default_value: 'inc'
        }, {
             id: 'volume',
             name: jsc.i18n('Level')+' (1-10)',
