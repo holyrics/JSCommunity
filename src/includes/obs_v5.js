@@ -230,8 +230,8 @@ function getInputSettings(receiverID, sceneName, sceneItemName) {
     });
 }
 
-// Change the media file for an input
-function setMediaFile(receiverID, sceneName, sceneItemName, filePath, fileName, looping, closeWhenInactive) {
+// Change the local file name for an Media Source item
+function setMediaSourceLocalFile(receiverID, sceneName, sceneItemName, filePath, fileName, looping, closeWhenInactive) {
     
     var actualStatus = jsc.obs_v5.getInputSettings(receiverID, sceneName, sceneItemName);
     var sceneItemID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemName);
