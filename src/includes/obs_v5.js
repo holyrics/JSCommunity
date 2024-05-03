@@ -230,26 +230,24 @@ function getInputSettings(receiverID, sceneName, sceneItemName) {
     });
 }
 
-// Change the local file name for an Media Source item
-function setMediaSourceLocalFile(receiverID, sceneName, sceneItemName, filePath, fileName, looping, closeWhenInactive) {
+// set properties local_file, close_when_inactive, and/or looping of the item
+function setInputSettings(receiverID, itemName, settings) {
+/* 
+Usage:
+setInputSettings(receiverID, itemName,
+                                {close_when_inactive : true,
+   			                     looping : true,
+                                 local_file : 'c:/folder/filename.mp4'});
+*/
+    settings = settings || {};
+
+    if (settings.local_file) {
+        settings.local_file = settings.local_file.replace(/\\/g, '/');
+        }
     
-    var actualStatus = jsc.obs_v5.getInputSettings(receiverID, sceneName, sceneItemName);
-    var sceneItemID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemName);
-    closeWhenInactive = closeWhenInactive == null ? actualStatus.inputSettings.close_when_inactive : closeWhenInactive;
-    looping = looping == null ? actualStatus.inputSettings.looping : looping;
-    filePath = (filePath.replace(/\u005C/g, '/')+'/').replace(/\x2F\x2F/g, '/');
-    var localFile = filePath + fileName;
-    jsc.obs_v5.request(receiverID, 'SetInputSettings', {
-        inputUuid: sceneItemID,
-        inputName: sceneItemName, 
-        inputSettings: {
-            close_when_inactive: closeWhenInactive,
-            local_file: localFile,
-            looping: looping
-            }
+    return jsc.obs_v5.request(receiverID, 'SetInputSettings', {
+        inputName: itemName, 
+        inputSettings: settings
         });
 
-    var newStatus = jsc.obs_v5.getInputSettings(receiverID, sceneName, sceneItemName);
-
-    return newStatus && newStatus.inputSettings && newStatus.inputSettings.local_file == localFile;
 }
