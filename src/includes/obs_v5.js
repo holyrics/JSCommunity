@@ -29,6 +29,8 @@ function getSceneList(receiverID) {
     if (scenes.length == 0) {
         return [];
     }
+    // Create an array with only the scene name
+    // (FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
     var names = [];
     for (var i = scenes.length - 1; i >= 0; i--) {
         names.push(scenes[i].sceneName);
@@ -56,6 +58,7 @@ function getSceneItemList(receiverID, sceneName) {
     if (items.length == 0) {
         return [];
     }
+    // (FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
     var names = [];
     for (var i = items.length - 1; i >= 0; i--) {
         names.push(items[i].sourceName);
@@ -164,6 +167,7 @@ function triggerHotkeyByName(receiverID, keyName) {
 
 // Get a list of sources
 function getSourceList(receiverID) {
+    // Get a list of sources from all scenes
     var sources = [];
     var scenes = jsc.obs_v5.getSceneList(receiverID);
     for (var i = 0; i < scenes.length; i++) {
