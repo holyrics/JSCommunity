@@ -231,7 +231,7 @@ function getInputSettings(receiverID, sceneName, sceneItemName) {
 }
 
 // Change the media file for an input
-function setInputSettings(receiverID, sceneName, sceneItemName, filePath, fileName, looping, closeWhenInactive) {
+function setMediaFile(receiverID, sceneName, sceneItemName, filePath, fileName, looping, closeWhenInactive) {
     
     var actualStatus = jsc.obs_v5.getInputSettings(receiverID, sceneName, sceneItemName);
     var sceneItemID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemName);
