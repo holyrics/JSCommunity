@@ -1,11 +1,3 @@
-function hGetItemStatusData(obj) {
-    return {
-             active: false,
-        description: obj.input.file_name.name,
-               icon: 'video:' + obj.input.file_name.name
-    };
-}
-
 function hGetItemInputParams() {
     return [
         {
@@ -31,16 +23,11 @@ function hGetItemInputParams() {
                 return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
             }
         }, {
-            id: 'file_name',
-            name: jsc.i18n('File name'),
-            description: '',
-            type: 'video'
-        }, {
             id: 'path',
-            name: jsc.i18n('Base directory'),
-            description: '',
+            name: jsc.utils.format('{} ({})', [jsc.i18n('Base directory'), jsc.i18n('Optional')]),
+            description: jsc.i18n('Location of the folder with videos on the computer where OBS Studio is open'),
             type: 'string',
-            default_value: "C:/Holyrics/Holyrics/files/media/video/"
+            hint: 'C:/folder/example'
         }, {
             id: 'jump_scene_name',
             name: jsc.i18n('Post-Completion Jump'),

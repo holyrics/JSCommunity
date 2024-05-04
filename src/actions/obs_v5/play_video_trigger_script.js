@@ -7,19 +7,20 @@ if (jumpToScene == '#previous_scene#') {
     jumpToScene = jsc.obs_v5.getActiveScene(p1);
 }
 
-var basePath = obj.input.path.replace(/\\/g, '/');
-if (!basePath.endsWith('/')) basePath += '/';
-
-var mediaName = obj.input.file_name.name;
+var mediaName = obj.file_fullname;
+var localFile = obj.file_path;
+if (obj.input.path) {
+    var basePath = obj.input.path.replace(/\\/g, '/');
+    if (!basePath.endsWith('/'))
+        basePath += '/';
+    
+    localFile = basePath + mediaName;
+}
 
 jsc.obs_v5.setInputSettings(p1, p3, {
     close_when_inactive: true,
                 looping: false,
-             local_file: basePath + mediaName
-});
-
-h.playVideo(mediaName, {
-    repeat: false
+             local_file: localFile
 });
 
 jsc.obs_v5.setActiveScene(p1, p2);

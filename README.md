@@ -31,7 +31,7 @@ O arquivo `*.json` contém as informações do modelo:<br>
             "es": "..."
         }
     },
-    "script_filter": " obj.type == 'trigger' && obj.action == 'displaying' && obj.item == 'image' "
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && obj.item == 'image' "
 }
 ```
 

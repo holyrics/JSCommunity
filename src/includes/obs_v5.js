@@ -40,12 +40,18 @@ function getSceneList(receiverID) {
 }
 
 // Set the active scene
+function getActiveScene(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetCurrentProgramScene');
+    h.log('jsc.obs_v5', 'GetCurrentProgramScene response: {}', response);
+    return response.currentProgramSceneName || response.sceneName;
+}
+
+// Set the active scene
 function setActiveScene(receiverID, sceneName) {
-    var response = jsc.obs_v5.request(receiverID, 'SetCurrentProgramScene', {
+    jsc.obs_v5.request(receiverID, 'SetCurrentProgramScene', {
         sceneName: sceneName
     });
-    h.log('jsc.obs_v5', 'SetCurrentProgramScene response: {}', response);
-    return response;
+    h.log('jsc.obs_v5', 'SetCurrentProgramScene OK');
 }
 
 // Get a list of items within a scene
@@ -220,34 +226,31 @@ function setSourceFilterEnabled(receiverID, sourceName, filterName, enabled) {
 }
 
 // Get the settings for an input
-function getInputSettings(receiverID, sceneName, sceneItemName) {
-
-    var sceneItemID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemName);
-    
-    return  jsc.obs_v5.request(receiverID, 'GetInputSettings', {
-        inputUuid: sceneItemID,
-        inputName: sceneItemName
+function getInputSettings(receiverID, inputName) {
+    var response = jsc.obs_v5.request(receiverID, 'GetInputSettings', {
+        inputName: inputName
     });
+    h.log('jsc.obs_v5', 'getInputSettings response: {}', response);
+    return response;
 }
 
-// set properties local_file, close_when_inactive, and/or looping of the item
-function setInputSettings(receiverID, itemName, settings) {
-/* 
-Usage:
-setInputSettings(receiverID, itemName,
-                                {close_when_inactive : true,
-   			                     looping : true,
-                                 local_file : 'c:/folder/filename.mp4'});
-*/
+// set input settings, example: local_file, close_when_inactive, and/or looping of the item
+function setInputSettings(receiverID, inputName, settings) {
+    /* 
+    Example Media Source:
+    jsc.obs_v5.setInputSettings(receiverID, inputName, {
+        close_when_inactive: true,
+                    looping: true,
+                 local_file: 'c:/folder/filename.mp4'
+    });
+    */
     settings = settings || {};
-
     if (settings.local_file) {
         settings.local_file = settings.local_file.replace(/\\/g, '/');
-        }
+    }
     
     return jsc.obs_v5.request(receiverID, 'SetInputSettings', {
-        inputName: itemName, 
+        inputName: inputName, 
         inputSettings: settings
-        });
-
+    });
 }
