@@ -10,5 +10,5 @@
             "pt": "Executa um vídeo selecionado em uma cena especificada do OBS Studio simultaneamente com o Holyrics e muda para uma cena especificada ao concluir."
         }
     },
-    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'video' || obj.item == 'audio' || obj.item == 'any_video' || obj.item == 'any_audio') "
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'video' || obj.item == 'any_video') "
 }
