@@ -251,5 +251,20 @@
         "key": "Smoothness",
         "en": "Smoothness",
         "pt": "Suavidade"
-    }
+    },
+	{
+		"key": "File name",
+		"en": "File name",
+		"pt": "Nome do arquivo"
+	},
+	{
+		"key": "Base directory",
+		"en": "Base directory",
+		"pt": "Diretório base"
+	},
+	{
+		"key": "Post-Completion Jump",
+		"en": "Post-Completion Jump",
+		"pt": "Cena após vídeo"
+	}	
 ]

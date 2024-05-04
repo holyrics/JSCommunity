@@ -1,9 +1,9 @@
-//
+// Create an object for operation 6
 function op6(d) {
     return {op: 6, d: d};
 }
 
-//
+// Send a request to the OBS WebSocket server
 function request(receiverID, requestType, requestData) {
     jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     var d = {requestType: requestType};
@@ -29,8 +29,8 @@ function getSceneList(receiverID) {
     if (scenes.length == 0) {
         return [];
     }
-    //create an array with only the scene name
-    //(FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
+    // Create an array with only the scene name
+    // (FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
     var names = [];
     for (var i = scenes.length - 1; i >= 0; i--) {
         names.push(scenes[i].sceneName);
@@ -39,6 +39,7 @@ function getSceneList(receiverID) {
     return names;
 }
 
+// Set the active scene
 function setActiveScene(receiverID, sceneName) {
     var response = jsc.obs_v5.request(receiverID, 'SetCurrentProgramScene', {
         sceneName: sceneName
@@ -57,7 +58,7 @@ function getSceneItemList(receiverID, sceneName) {
     if (items.length == 0) {
         return [];
     }
-    //(FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
+    // (FOR gets the array in descending form because the return from the v5 websocket comes in the opposite order displayed in the OBS list)
     var names = [];
     for (var i = items.length - 1; i >= 0; i--) {
         names.push(items[i].sourceName);
@@ -164,8 +165,9 @@ function triggerHotkeyByName(receiverID, keyName) {
     return response;
 }
 
-// 
+// Get a list of sources
 function getSourceList(receiverID) {
+    // Get a list of sources from all scenes
     var sources = [];
     var scenes = jsc.obs_v5.getSceneList(receiverID);
     for (var i = 0; i < scenes.length; i++) {
@@ -178,7 +180,7 @@ function getSourceList(receiverID) {
     return sources;
 }
 
-// 
+// Get a list of filters for a source
 function getSourceFilterList(receiverID, sourceName) {
     var response = jsc.obs_v5.request(receiverID, 'GetSourceFilterList', {
         sourceName: sourceName
@@ -196,7 +198,7 @@ function getSourceFilterList(receiverID, sourceName) {
     return names;
 }
 
-// 
+// Get the enabled/disabled status of a filter for a source
 function getSourceFilterEnabled(receiverID, sourceName, filterName) {    
     var response = jsc.obs_v5.request(receiverID, 'GetSourceFilter', {
         sourceName: sourceName,
@@ -206,7 +208,7 @@ function getSourceFilterEnabled(receiverID, sourceName, filterName) {
     return response.filterEnabled;
 }
 
-// 
+// Set the enabled/disabled status of a filter for a source
 function setSourceFilterEnabled(receiverID, sourceName, filterName, enabled) {
     var response = jsc.obs_v5.request(receiverID, 'SetSourceFilterEnabled', {
         sourceName: sourceName,
@@ -215,4 +217,37 @@ function setSourceFilterEnabled(receiverID, sourceName, filterName, enabled) {
     });
     h.log('jsc.obs_v5', 'setSourceFilterEnabled response: {}', response);
     return response;
+}
+
+// Get the settings for an input
+function getInputSettings(receiverID, sceneName, sceneItemName) {
+
+    var sceneItemID = jsc.obs_v5.getSceneItemIDByName(receiverID, sceneName, sceneItemName);
+    
+    return  jsc.obs_v5.request(receiverID, 'GetInputSettings', {
+        inputUuid: sceneItemID,
+        inputName: sceneItemName
+    });
+}
+
+// set properties local_file, close_when_inactive, and/or looping of the item
+function setInputSettings(receiverID, itemName, settings) {
+/* 
+Usage:
+setInputSettings(receiverID, itemName,
+                                {close_when_inactive : true,
+   			                     looping : true,
+                                 local_file : 'c:/folder/filename.mp4'});
+*/
+    settings = settings || {};
+
+    if (settings.local_file) {
+        settings.local_file = settings.local_file.replace(/\\/g, '/');
+        }
+    
+    return jsc.obs_v5.request(receiverID, 'SetInputSettings', {
+        inputName: itemName, 
+        inputSettings: settings
+        });
+
 }
