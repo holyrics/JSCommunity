@@ -118,6 +118,14 @@ function setSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, enabled) 
     return response;
 }
 
+// Get Mute state for an input
+function getInputMute(receiverID, inputName) {
+    var response = jsc.obs_v5.request(receiverID, 'GetInputMute', {
+        inputName: inputName});
+    h.log('jsc.obs_v5', 'getInputMute response: {}', response);
+    return response.inputMuted;
+}
+
 // Mute or unmute an input
 function setInputMute(receiverID, inputName, state) {
     var response = jsc.obs_v5.request(receiverID, 'SetInputMute', {
@@ -234,7 +242,7 @@ function getInputSettings(receiverID, sceneName, sceneItemName) {
 function setInputSettings(receiverID, itemName, settings) {
 /* 
 Usage:
-setInputSettings(receiverID, itemName,
+jsc.obs_v5.setInputSettings(receiverID, itemName,
                                 {close_when_inactive : true,
    			                     looping : true,
                                  local_file : 'c:/folder/filename.mp4'});
