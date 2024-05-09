@@ -1,7 +1,7 @@
 function hGetItemStatusData(obj) {
 
-var muded = jsc.obs_v5.getInputMute(obj.input.receiver_id, obj.input.scene_item_name)
- return { active: muded
+var muted = jsc.obs_v5.getInputMute(obj.input.receiver_id, obj.input.scene_item_name)
+ return { active: muted
         };
 }
 
