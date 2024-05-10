@@ -1,8 +1,8 @@
 function hGetItemStatusData(obj) {
-
-var muted = jsc.obs_v5.getInputMute(obj.input.receiver_id, obj.input.scene_item_name)
- return { active: muted
-        };
+  var muted = jsc.obs_v5.getInputMute(obj.input.receiver_id, obj.input.scene_item_name);
+  return {
+      active: muted
+  };
 }
 
 function hGetItemInputParams() {
@@ -34,11 +34,11 @@ function hGetItemInputParams() {
             name: jsc.i18n('Mute'),
             description: '',
             type: 'string',
-            allowed_values: [{value: 'enable' , label: jsc.i18n('Enable')},
-                             {value: 'disable' , label: jsc.i18n('Disable')},
-                             {value: 'toggle' , label: jsc.i18n('Toggle')}]
+            allowed_values: [
+                {value: 'enable' , label: jsc.i18n('Enable')},
+                {value: 'disable' , label: jsc.i18n('Disable')},
+                {value: 'toggle' , label: jsc.i18n('Toggle')}
+            ]
         }
-        
-        
     ];
 }
