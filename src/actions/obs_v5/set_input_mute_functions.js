@@ -1,8 +1,14 @@
 function hGetItemStatusData(obj) {
 
-var muted = jsc.obs_v5.getInputMute(obj.input.receiver_id, obj.input.scene_item_name)
- return { active: muted
-        };
+if (getInputMute(obj.input.receiver_id, obj.input.input_name)) {
+    return {
+          active: true,     
+      foreground: 'E6E6E6', 
+      background: 'FF0000', 
+       iconColor: 'E6E6E6'
+    };
+  }
+  return null; 
 }
 
 function hGetItemInputParams() {
@@ -14,20 +20,12 @@ function hGetItemInputParams() {
             type: 'receiver',
             receiver: 'obs_v5'
         }, {
-            id: 'scene_name',
-            name: jsc.i18n('Scene name'),
+            id: 'input_name',
+            name: jsc.i18n('Input name'),
             description: '',
             type: 'string',
             suggested_values: function(obj) {
-                return jsc.obs_v5.getSceneList(obj.input.receiver_id);
-            }
-        }, {
-            id: 'scene_item_name',
-            name: jsc.i18n('Item name'),
-            description: '',
-            type: 'string',
-            suggested_values: function(obj) {
-                return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
+                return jsc.obs_v5.getAudioInputList(obj.input.receiver_id);
             }
         }, {
             id: 'muted',
