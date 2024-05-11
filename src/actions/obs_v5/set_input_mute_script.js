@@ -6,5 +6,3 @@ if (obj.input.muted == 'toggle') {
 } else {
   jsc.obs_v5.setInputMute(p1, p2, obj.input.muted == 'enable');
 }
-
-
