@@ -161,7 +161,8 @@ function setInputMute(receiverID, inputName, state) {
 // Toggle Mute state for an input
 function toggleInputMute(receiverID, inputName) {
     var response = jsc.obs_v5.request(receiverID, 'ToggleInputMute', {
-        inputName: inputName});
+        inputName: inputName
+    });
     h.log('jsc.obs_v5', 'toggleInputMute response: {}', response);
     return response.inputMuted;
 }
@@ -301,7 +302,7 @@ function getAudioInputList(receiverID) {
         });
     }
 
-    var rBatch = requestBatch(receiverID, requests);
+    var rBatch = jsc.obs_v5.requestBatch(receiverID, requests);
     var audioInputList = [];
 
     for (var i = 0; i < rBatch.length; i++) {
@@ -326,12 +327,12 @@ function getAudioInputList(receiverID) {
         });
     }
 
-    var rBatchMute = requestBatch(receiverID, requestsMute);
+    var rBatchMute = jsc.obs_v5.requestBatch(receiverID, requestsMute);
 
     for (var i = 0; i < rBatchMute.length; i++) {
         var response = rBatchMute[i].responseData;
         if (response) {
-            audioInputList.push(inputs[i])
+            audioInputList.push(inputs[i]);
         }
     }
     jsc.utils.array.distinct(audioInputList);

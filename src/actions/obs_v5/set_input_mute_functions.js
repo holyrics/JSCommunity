@@ -1,6 +1,5 @@
 function hGetItemStatusData(obj) {
-
-if (getInputMute(obj.input.receiver_id, obj.input.input_name)) {
+  if (getInputMute(obj.input.receiver_id, obj.input.input_name)) {
     return {
           active: true,     
       foreground: 'E6E6E6', 
@@ -32,11 +31,11 @@ function hGetItemInputParams() {
             name: jsc.i18n('Mute'),
             description: '',
             type: 'string',
-            allowed_values: [{value: 'enable' , label: jsc.i18n('Enable')},
-                             {value: 'disable' , label: jsc.i18n('Disable')},
-                             {value: 'toggle' , label: jsc.i18n('Toggle')}]
+            allowed_values: [
+                {value: 'enable' , label: jsc.i18n('Enable')},
+                {value: 'disable' , label: jsc.i18n('Disable')},
+                {value: 'toggle' , label: jsc.i18n('Toggle')}
+            ]
         }
-        
-        
     ];
 }
