@@ -21,6 +21,21 @@ function request(receiverID, requestType, requestData) {
     throw JSON.stringify(response.d.requestStatus);
 }
 
+// Send a request batch to the OBS WebSocket server
+function requestBatch(receiverID, requests) {
+  jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
+  var d = { "requests": requests };
+  var json = h.apiRequest(receiverID, {op: 8, d: d});
+  if (json == null) {
+    throw h.getApiRequestLastError();
+  }
+  var response = JSON.parse(json);
+  if (response.d.results) {
+    return response.d.results;
+  }
+  throw JSON.stringify('unknown');
+}
+
 // Get a list of available scenes
 function getSceneList(receiverID) {
     var response = jsc.obs_v5.request(receiverID, 'GetSceneList', null);
@@ -143,6 +158,13 @@ function setInputMute(receiverID, inputName, state) {
     return response;
 }
 
+// Toggle Mute state for an input
+function toggleInputMute(receiverID, inputName) {
+    var response = jsc.obs_v5.request(receiverID, 'ToggleInputMute', {
+        inputName: inputName});
+    h.log('jsc.obs_v5', 'toggleInputMute response: {}', response);
+    return response.inputMuted;
+}
 // Start streaming
 function startStream(receiverID) {
     var response = jsc.obs_v5.request(receiverID, 'StartStream');
@@ -262,4 +284,57 @@ function setInputSettings(receiverID, inputName, settings) {
         inputName: inputName, 
         inputSettings: settings
     });
+}
+
+//Retrieves a list of audio inputs available
+function getAudioInputList(receiverID) {
+    var inputs = [];
+    var input_kinds = jsc.obs_v5.request(receiverID, 'GetInputKindList');
+    var requests = [];
+
+    for (var i = 0; i < input_kinds.inputKinds.length; i++) {
+        requests.push({
+            requestType: 'GetInputList',
+            requestData: {
+                inputKind: input_kinds.inputKinds[i]
+            }
+        });
+    }
+
+    var rBatch = requestBatch(receiverID, requests);
+    var audioInputList = [];
+
+    for (var i = 0; i < rBatch.length; i++) {
+        var input_kind = rBatch[i].responseData;
+        
+        if (input_kind && input_kind.inputs && input_kind.inputs.length > 0) {
+            for (var j = 0; j < input_kind.inputs.length; j++) {
+                var inputName = input_kind.inputs[j].inputName;
+                inputs.push(inputName);
+            }
+        }
+    }
+
+    // Create a new requestBatch with the obtained inputs
+    var requestsMute = [];
+    for (var i = 0; i < inputs.length; i++) {
+        requestsMute.push({
+            requestType: 'GetInputMute',
+            requestData: {
+                inputName: inputs[i]
+            }
+        });
+    }
+
+    var rBatchMute = requestBatch(receiverID, requestsMute);
+
+    for (var i = 0; i < rBatchMute.length; i++) {
+        var response = rBatchMute[i].responseData;
+        if (response) {
+            audioInputList.push(inputs[i])
+        }
+    }
+    jsc.utils.array.distinct(audioInputList);
+    jsc.utils.array.sort(audioInputList);
+    return audioInputList;
 }
