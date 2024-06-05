@@ -134,6 +134,7 @@ function setChannelMute(receiverID, channel, state) {
     jsc.x32.requestAsync(receiverID, osc.toBytes());
     return state == jsc.x32.isChannelMute(receiverID, channel);
 }
+
 // Toggles the mute state of a specific channel on a digital mixer receiver identified by its ID.
 function toggleChannelMute(receiverID, channel) {
     var currentState = jsc.x32.isChannelMute(receiverID, channel);
@@ -276,7 +277,7 @@ function setSmoothAuxVolume(receiverID, aux, targetVolume, step) {
     if (id != null) {
         h.clearInterval(id);
     }
-    aux = jsc.utils.range(aux || 1, 1, 8); // Assume 8 aux inputs for range
+    aux = jsc.utils.range(aux || 1, 1, 12); // Assume 12 aux inputs for range
     targetVolume = jsc.utils.range(targetVolume || 0, 0, 1); 
     step = jsc.utils.range(step || 0.001, 0.001, 0.1);
     var delay = 10;

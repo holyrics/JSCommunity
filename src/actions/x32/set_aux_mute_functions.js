@@ -1,5 +1,5 @@
 function hGetItemStatusData(obj) {
-    if (jsc.x32.isAuxMute(obj.input.receiver_id, obj.input.channel)) {
+    if (jsc.x32.isAuxMute(obj.input.receiver_id, obj.input.aux)) {
         return {
             active: true,
             foreground: 'E6E6E6',
