@@ -73,6 +73,38 @@ function createCmdGroupMuteSet(group, state) {
             .putInt(state ? 1 : 0);
 }
 
+// Auxiliary function, used by main functions
+function createCmdAuxMixOn(aux) {
+    return h.createByteBuffer()
+        .putString("/auxin/")
+        .putString(jsc.utils.n2(aux))
+        .putString("/mix/on")
+        .put0(4);
+}
+
+// Auxiliary function, used by main functions
+function createCmdAuxMixOnSet(aux, state) {
+    return jsc.x32.createCmdAuxMixOn(aux)
+        .putStringAndFill(",i", 4)
+        .putInt(state ? 1 : 0);
+}
+
+// Auxiliary function, used by main functions
+function createCmdAuxVolume(aux) {
+    return h.createByteBuffer()
+        .putString("/auxin/")
+        .putString(jsc.utils.n2(aux))
+        .putString("/mix/fader")
+        .put0(1);
+}
+
+// Auxiliary function, used by main functions
+function createCmdAuxVolumeSet(aux, volume) {
+    return jsc.x32.createCmdAuxVolume(aux)
+           .putStringAndFill(",f", 4)
+           .putFloat(volume);
+}
+
 // Retrieves the status information of a digital mixer receiver identified by its ID.
 function getStatus(receiverID) {
     var r = jsc.x32.request(receiverID, "/info");
@@ -134,6 +166,57 @@ function setChannelVolumeAsync(receiverID, channel, volume) {
     jsc.x32.requestAsync(receiverID, osc.toBytes());
 }
 
+// Function to retrieve the status of muting of a specific aux input on a digital mixer receiver identified by its ID.
+function isAuxMute(receiverID, aux) {
+    var osc = jsc.x32.createCmdAuxMixOn(aux);
+    var r = jsc.x32.request(receiverID, osc.toBytes());
+    if (r == null) {
+        throw 'timeout';
+    }
+    var bb = h.createByteBufferToRead(r);
+    bb.readBytes(24); //    /auxin/01/mix/on~~~~,i~~
+    return bb.readInt() == 0;
+}
+
+// Function to set the mute state of a specific aux input on a digital mixer receiver identified by its ID.
+function setAuxMute(receiverID, aux, state) {
+    var osc = jsc.x32.createCmdAuxMixOnSet(aux, state);
+    jsc.x32.requestAsync(receiverID, osc.toBytes());
+    return state == jsc.x32.isAuxMute(receiverID, aux);
+}
+
+// Function to toggle the mute state of a specific aux input on a digital mixer receiver identified by its ID.
+function toggleAuxMute(receiverID, aux) {
+    var currentState = jsc.x32.isAuxMute(receiverID, aux);
+    return jsc.x32.setAuxMute(receiverID, aux, !currentState);
+}
+
+// Function to retrieve the volume level of a specific aux input on a digital mixer receiver identified by its ID.
+function getAuxVolume(receiverID, aux) {
+    var osc = jsc.x32.createCmdAuxVolume(aux);
+    var r = jsc.x32.request(receiverID, osc.toBytes());
+    if (r == null) {
+        throw 'timeout';
+    }
+    var bb = h.createByteBufferToRead(r);
+    bb.readBytes(24); //    /auxin/01/mix/fader~
+    return bb.readFloat();
+}
+
+// Function to set the volume level of a specific aux input on a digital mixer receiver identified by its ID.
+function setAuxVolume(receiverID, aux, volume) {
+    var osc = jsc.x32.createCmdAuxVolumeSet(aux, volume);
+    jsc.x32.requestAsync(receiverID, osc.toBytes());
+    var v = jsc.x32.getAuxVolume(receiverID, aux);
+    return volume.toFixed(1) === v.toFixed(1);
+}
+
+// Function to set the volume level of a specific aux input on a digital mixer receiver identified by its ID but does not wait for a response.
+function setAuxVolumeAsync(receiverID, aux, volume) {
+    var osc = jsc.x32.createCmdAuxVolumeSet(aux, volume);
+    jsc.x32.requestAsync(receiverID, osc.toBytes());
+}
+
 // Checks if a group on a digital mixer receiver identified by its ID is muted.
 function isGroupMute(receiverID, group) {
     var osc = jsc.x32.createCmdGroupMute(group);
@@ -185,3 +268,31 @@ function setSmoothChannelVolume(receiverID, channel, targetVolume, step) {
     }, delay);
     h.setGlobal(currentAction, intervalID); 
 }
+
+// Function to set the volume level of a specific aux input on a digital mixer receiver identified by its ID, smoothly transitioning to the target volume.
+function setSmoothAuxVolume(receiverID, aux, targetVolume, step) {
+    var currentAction = 'jsc.setSmoothAuxVolume' + aux + '#action';
+    var id = h.getGlobal(currentAction);
+    if (id != null) {
+        h.clearInterval(id);
+    }
+    aux = jsc.utils.range(aux || 1, 1, 8); // Assume 8 aux inputs for range
+    targetVolume = jsc.utils.range(targetVolume || 0, 0, 1); 
+    step = jsc.utils.range(step || 0.001, 0.001, 0.1);
+    var delay = 10;
+    var currentVolume = jsc.x32.getAuxVolume(receiverID, aux);
+    var negative = targetVolume < currentVolume;
+    step *= negative ? -1 : 1;
+    var newVolume = currentVolume;
+    var intervalID = h.setInterval(function() {
+        newVolume += step;
+        if (negative ? newVolume < targetVolume : newVolume > targetVolume) {
+            h.clearInterval(intervalID);
+            jsc.x32.setAuxVolumeAsync(receiverID, aux, targetVolume);
+            return;
+        }
+        jsc.x32.setAuxVolumeAsync(receiverID, aux, newVolume);
+    }, delay);
+    h.setGlobal(currentAction, intervalID); 
+}
+

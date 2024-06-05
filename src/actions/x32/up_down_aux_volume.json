@@ -1,0 +1,13 @@
+{ 
+    "id": "osc_up_down_aux_volume",
+    "name": "Inc/Dec Aux Volume Step by Step",
+    "description": "Increase/decrease the volume of a specific aux input on the Behringer Digital Mixer.",
+    "i18n": {
+        "name": {
+            "pt": "+/- o volume do auxiliar"
+        },
+        "description": {
+            "pt": "Aumenta/Diminui o volume de um auxiliar específico da Digital Mixer Behringer."
+        }
+    }
+}
