@@ -181,7 +181,7 @@ function isAuxMute(receiverID, aux) {
 
 // Function to set the mute state of a specific aux input on a digital mixer receiver identified by its ID.
 function setAuxMute(receiverID, aux, state) {
-    var osc = jsc.x32.createCmdAuxMixOnSet(aux, state);
+    var osc = jsc.x32.createCmdAuxMixOnSet(aux, !state);
     jsc.x32.requestAsync(receiverID, osc.toBytes());
     return state == jsc.x32.isAuxMute(receiverID, aux);
 }
