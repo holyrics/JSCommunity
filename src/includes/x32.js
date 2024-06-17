@@ -3,7 +3,7 @@ function request(receiverID, oscCommand) {
     var r = h.apiRequest(receiverID, {
         data: oscCommand,
         wait_for_response: true,
-        timeout: 1000,
+        timeout: 500,
         response_data_type: "base64"
     });
     return r != null ? h.base64Decode(r) : null;
@@ -255,6 +255,9 @@ function setSmoothChannelVolume(receiverID, channel, targetVolume, step) {
     step = jsc.utils.range(step || 0.001, 0.001, 0.1);
     var delay = 10;
     var currentVolume = jsc.x32.getChannelVolume(receiverID, channel);
+    if (isNaN(currentVolume) || isNaN(targetVolume)) {
+        return;
+    }
     var negative = targetVolume < currentVolume;
     step *= negative ? -1 : 1;
     var newVolume = currentVolume;
@@ -294,6 +297,6 @@ function setSmoothAuxVolume(receiverID, aux, targetVolume, step) {
         }
         jsc.x32.setAuxVolumeAsync(receiverID, aux, newVolume);
     }, delay);
-    h.setGlobal(currentAction, intervalID); 
+    h.setGlobal(currentAction, intervalID);
 }
 

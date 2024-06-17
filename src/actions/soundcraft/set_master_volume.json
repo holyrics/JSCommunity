@@ -1,0 +1,15 @@
+{ 
+    "id": "soundcraft_set_master_volume",
+    "name": "Change volume (Master)",
+    "description": "Changes the volume of a specific item on the Soundcraft Ui series to the desired value.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o volume (Master)"
+        },
+        "description": {
+            "pt": "Altera o volume de um item específico da item específico da mesa Soundcraft Ui series para o valor desejado."
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.23.0') "
+}
+

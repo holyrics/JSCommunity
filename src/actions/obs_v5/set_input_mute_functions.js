@@ -1,11 +1,6 @@
 function hGetItemStatusData(obj) {
   if (getInputMute(obj.input.receiver_id, obj.input.input_name)) {
-    return {
-          active: true,     
-      foreground: 'E6E6E6', 
-      background: 'FF0000', 
-       iconColor: 'E6E6E6'
-    };
+    return jsc.utils.ui.item_status.createMute(true);
   }
   return null; 
 }

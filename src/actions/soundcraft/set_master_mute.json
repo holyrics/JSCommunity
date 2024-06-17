@@ -1,0 +1,14 @@
+{  
+    "id": "soundcraft_set_master_mute",
+    "name": "Change mute (Master)",
+    "description": "Change the current state of the mute button",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o mute (Master)"
+        },
+        "description": {
+            "pt": "Altera o estado do botão mute de um item específico da mesa Soundcraft Ui series"
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.23.0') "
+}

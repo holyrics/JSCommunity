@@ -1,0 +1,1 @@
+jsc.soundcraft.setMuteFromInput(obj.input);

@@ -1,11 +1,6 @@
 function hGetItemStatusData(obj) {
     if (jsc.x32.isAuxMute(obj.input.receiver_id, obj.input.aux)) {
-        return {
-            active: true,
-            foreground: 'E6E6E6',
-            background: 'FF0000',
-            iconColor: 'E6E6E6'
-        };
+        return jsc.utils.ui.item_status.createMute(true);
     }
     return null;
 }
@@ -33,9 +28,9 @@ function hGetItemInputParams() {
             description: '',
             type: 'string',
             allowed_values: [
-                { value: 'enable', label: jsc.i18n('Enable') },
+                { value: 'enable',  label: jsc.i18n('Enable') },
                 { value: 'disable', label: jsc.i18n('Disable') },
-                { value: 'toggle', label: jsc.i18n('Toggle') }
+                { value: 'toggle',  label: jsc.i18n('Toggle') }
             ]
         }
    ];
