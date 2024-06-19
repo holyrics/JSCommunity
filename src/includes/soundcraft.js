@@ -51,6 +51,9 @@ function saveStateFromMessage(ws, msg) {
         if (k.endsWith(".mute") || k.endsWith(".solo")) {
             ws.put("SETD^" + k, setd.substring(idxOf + 1) == '1');
         }
+        if (k.endsWith(".stereoIndex")) {
+            ws.put("SETD^" + k, parseInt(setd.substring(idxOf + 1)));
+        }
     }
 }
 
@@ -65,6 +68,19 @@ function request(receiverID, data) {
     jsc.soundcraft.saveStateFromMessage(ws, data);
 }
 
+function batchRequest(receiverID, array) {
+    var ws = jsc.soundcraft.createWebSocket(receiverID);
+    for (var i = 0; i < array.length; i++) {
+        var data = array[i];
+        if (!data.startsWith("3:::")) {
+            data = "3:::" + data;
+        }
+        h.log('jsc.soundcraft', 'send: {} {}', [receiverID, data]);
+        ws.send(data);
+        jsc.soundcraft.saveStateFromMessage(ws, data);
+    }
+}
+
 // 
 function getSettings(receiverID, settingsID) {
     var v = jsc.soundcraft.createWebSocket(receiverID).get(settingsID);
@@ -73,48 +89,137 @@ function getSettings(receiverID, settingsID) {
 }
 
 //
+function createSETD(type, number, subtype, subtype_number, action, value) {
+    var cmd = "";
+    if (!type) {
+        cmd = 'SETD^^' + (action || '');
+        if (value) {
+            cmd += "^" + value;
+        }
+        return cmd;
+    }
+    if (type == 'm' && subtype) {
+        type = subtype;
+        number = subtype_number;
+        subtype = null;
+        subtype_number = null;
+    }
+    if (subtype) {
+        switch (subtype) {
+            case 'i':
+            case 'l':
+            case 'a':
+            case 'f':
+            case 's':
+            case 'p':
+            case 'v':
+                cmd += subtype + "." + parseInt(subtype_number - 1).toFixed(0);
+                break;
+        }
+    }
+    switch (type) {
+        case 'm':
+        case 'i':
+        case 'l':
+        case 'a':
+        case 'f':
+        case 's':
+        case 'p':
+        case 'v':
+            if (cmd != '') {
+                if (type == 'a') {
+                    type = 'aux';
+                }
+                if (type == 'f') {
+                    type = 'fx';
+                }
+                if (action == 'mix') {
+                    action = 'value';
+                }
+            }
+            if (type == 'm') {
+                if (!subtype) {
+                    cmd += 'm';
+                }
+                break;
+            }
+            if (cmd != '') {
+                cmd += '.';
+            }
+            cmd += type + "." + parseInt(number - 1).toFixed(0);
+            break;
+    }
+    cmd = 'SETD^' + cmd + '.' + action;
+    if (value !== null && value !== undefined) {
+        cmd += "^" + value;
+    }
+    return cmd;
+}
+
+//
+function getIndexesWithStereoIndex(receiverID, type, number) {
+    var cmd = jsc.soundcraft.createSETD(type, number, null, null, 'stereoIndex', null);
+    var settings = jsc.soundcraft.getSettings(receiverID, cmd);
+    if (settings === 0) {
+        return [number, number + 1];
+    }
+    if (settings === 1) {
+        return [number, number - 1];
+    }
+    return [number];
+}
+
+//
+function createSETDAndStereoIndex(receiverID, type, number, subtype, subtype_number, action, value) {
+    var linkedTypes = jsc.soundcraft.getIndexesWithStereoIndex(receiverID, type, number);
+    var linkedSubtypes = [];
+    if (subtype) {
+        linkedSubtypes = jsc.soundcraft.getIndexesWithStereoIndex(receiverID, subtype, subtype_number);
+    } else {
+        linkedSubtypes.push(subtype_number);
+    }
+    var cmds = [];
+    for (var x = 0; x < linkedTypes.length; x++) {
+        for (var y = 0; y < linkedSubtypes.length; y++) {
+            cmds.push(jsc.soundcraft.createSETD(type, linkedTypes[x], subtype, linkedSubtypes[y], action, value));
+        }
+    }
+    return cmds;
+}
+
+//
 function conn(receiverID) {
     var sc = jsc.soundcraft;
-    var volume_cmd = 'mix';
-    var cmd = '';
+    var type = null;
+    var number = null;
+    var subtype = null;
+    var subtype_number = null;
     var builder = {
-        cmd: function () {
-            return cmd;
+        setd: function (action, value) {
+            return jsc.soundcraft.createSETD(type, number, subtype, subtype_number, action, value);
         },
-        setd: function () {
-            return 'SETD' + cmd;
+        setdAndStereoIndex: function (action, value) {
+            return jsc.soundcraft.createSETDAndStereoIndex(receiverID, type, number, subtype, subtype_number, action, value);
         },
-        getSettings: function () {
-            return jsc.soundcraft.getSettings(receiverID, builder.setd());
+        getSettings: function (action) {
+            return jsc.soundcraft.getSettings(receiverID, builder.setd(action));
         },
         f: function (n) {
             return jsc.utils.range(n || 0, 0, 1).toFixed(4);
         },
         ci: function (c, i) {
-            if (cmd.startsWith("^a.")) {
-                var cmd_bkp = cmd.substring(2);
-                cmd = '';
-                builder.ci(c, i);
-                cmd += '.aux' + cmd_bkp;
-                volume_cmd = 'value';
+            if (type && type != 'm') {
+                subtype = c;
+                subtype_number = i;
                 return builder;
             }
-            if (cmd.startsWith("^f.")) {
-                var cmd_bkp = cmd.substring(2);
-                cmd = '';
-                builder.ci(c, i);
-                cmd += '.fx' + cmd_bkp;
-                volume_cmd = 'value';
-                return builder;
-            }
-            cmd += "^" + c + "." + parseInt(i - 1).toFixed(0);
+            type = c;
+            number = i;
             return builder;
         },
         //
-        master: function () {
-            cmd += '^m';
-            return builder;
-        },
+        master: function ()  { return builder.ci('m', 0); },
+        
         input:  function (i) { return builder.ci('i', i); },
         
         line:   function (l) { return builder.ci('l', l); },
@@ -131,59 +236,57 @@ function conn(receiverID) {
         
         //
         isMute: function () {
-            cmd += ".mute";
-            return builder.getSettings();
+            return builder.getSettings('mute');
         },
         setMute: function (m) {
-            cmd += ".mute^" + (m ? 1 : 0);
-            return sc.request(receiverID, builder.setd());
+            var cmds = builder.setdAndStereoIndex('mute', (m ? 1 : 0));
+            return sc.batchRequest(receiverID, cmds);
         },
         mute:   function () { return builder.setMute(1); },
         unmute: function () { return builder.setMute(0); },
         
         //
         getVolume: function () {
-            cmd += "." + volume_cmd;
-            return builder.getSettings();
+            return builder.getSettings('mix');
         },
         setVolume: function (v) {
-            cmd += "." + volume_cmd + "^" + builder.f(v);
-            return sc.request(receiverID, builder.setd());
+            var cmds = builder.setdAndStereoIndex('mix', builder.f(v));
+            return sc.batchRequest(receiverID, cmds);
         },
         //
         getPan: function () {
-            cmd += ".pan";
-            return builder.getSettings();
+            return builder.getSettings('pan');
         },
         setPan: function (p) {
-            cmd += ".pan^" + builder.f(p);
-            return sc.request(receiverID, builder.setd());
+            var cmd = builder.setd('pan', builder.f(p));
+            return sc.request(receiverID, cmd);
         },
         //
         isSolo: function () {
-            cmd += ".solo";
-            return builder.getSettings();
+            return builder.getSettings('solo');
         },
         setSolo: function (s) {
-            cmd += ".solo^" + (s ? 1 : 0);
-            return sc.request(receiverID, builder.setd());
+            var cmds = builder.setdAndStereoIndex('solo', (s ? 1 : 0));
+            return sc.batchRequest(receiverID, cmds);
         },
         solo:   function () { return builder.setSolo(1); },
         unsolo: function () { return builder.setSolo(0); },
         //
         setSmoothVolume: function (targetVolume, step) {
-            var cmd_bkp = cmd + "";
+            var cmds = builder.setdAndStereoIndex('mix');
             targetVolume = jsc.utils.range(targetVolume || 0, 0, 1); 
             step = jsc.utils.range(step || 0.001, 0.001, 0.1);
             var delay = 10;
-            var settingsID = "SETD" + cmd_bkp + "." + volume_cmd;
-            var currentVolume = jsc.soundcraft.getSettings(receiverID, settingsID);
+            var currentVolume = jsc.soundcraft.getSettings(receiverID, cmds[0]);
             currentVolume = parseFloat(currentVolume);
             var action = function(newVolume) {
-                var command = cmd_bkp + "." + volume_cmd + "^" + builder.f(newVolume);
-                sc.request(receiverID, 'SETD' + command);
+                var arr = [];
+                for (var i = 0; i < cmds.length; i++) {
+                    arr.push(cmds[i] + "^" + builder.f(newVolume));
+                }
+                sc.batchRequest(receiverID, arr);
             };
-            jsc.utils.thread.generateSetIntervalX2Y(currentVolume, targetVolume, step, delay, action, cmd_bkp);
+            jsc.utils.thread.generateSetIntervalX2Y(currentVolume, targetVolume, step, delay, action, cmds[0]);
         }
     };
     
