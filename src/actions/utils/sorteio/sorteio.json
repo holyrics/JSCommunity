@@ -1,0 +1,14 @@
+{
+    "id": "utils_sorteio",
+    "name": "Sorteio de Brindes",
+    "description": "O script gera uma lista de brindes a serem sorteados com base no diretório definido e no padrao de imagem 'brindeX.entensão' (exemplo: brinde1.jpg). Ao selecionar o brinde é automaticamente apresentado a imagem do brinde, após encerrar a apresentação é solicitado a quantidade de números a serem sorteados, após definir é aberto a tela de sorteio com a quantidade de números desejados.",
+    "i18n": {
+        "name": {
+            "pt": "Sorteio de Brindes"
+        },
+        "description": {
+            "pt": "O script gera uma lista de brindes a serem sorteados com base no diretório definido e no padrao de imagem 'brindeX.entensão' (exemplo: brinde1.jpg). Ao selecionar o brinde é automaticamente apresentado a imagem do brinde, após encerrar a apresentação é solicitado a quantidade de números a serem sorteados, após definir é aberto a tela de sorteio com a quantidade de números desejados."
+        }
+    },
+    "script_filter": " obj.type == 'action' "
+}
