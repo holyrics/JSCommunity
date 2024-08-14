@@ -111,7 +111,11 @@ function activateTrigger(receiverID, entityID) {
 
 //spotify on ha
 // Function to play a specific music track on a Spotify media player
-function spotifyPlayMusic(receiverID, entityID, mediaID) {
+function spotifyPlayMusic(receiverID, entityID, mediaID, source) {
+    if (source) {
+        spotifySetSource(receiverID, entityID, source);
+        h.sleep(500);
+    }
     var urlSuffix = '/api/services/media_player/play_media';
     var data = {
         entity_id: entityID,
