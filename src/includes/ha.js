@@ -107,3 +107,51 @@ function activateTrigger(receiverID, entityID) {
     var urlSuffix = '/api/services/automation/trigger';
     jsc.ha.request(receiverID, urlSuffix, entityID);
 }
+
+
+//spotify on ha
+// Function to play a specific music track on a Spotify media player
+function spotifyPlayMusic(receiverID, entityID, mediaID, source) {
+    if (source) {
+        spotifySetSource(receiverID, entityID, source);
+        h.sleep(500);
+    }
+    var urlSuffix = '/api/services/media_player/play_media';
+    var data = {
+        entity_id: entityID,
+        media_content_id: mediaID,
+        media_content_type: 'music'
+    };
+	h.log('jsc.ha', "spotifyPlayMusic({}, {}, {})", [receiverID, entityID, data]);
+    jsc.ha.request(receiverID, urlSuffix, data);
+}
+
+// Function to start playback on a Spotify media player, optionally setting a source first
+function spotifyPlay(receiverID, entityID, source) {
+    if (source) {
+        spotifySetSource(receiverID, entityID, source);
+        h.sleep(500);
+    }
+    var urlSuffix = '/api/services/media_player/media_play';
+    h.log('jsc.ha', "spotifyPlay({}, {}, {})", [receiverID, entityID, source]);
+    jsc.ha.request(receiverID, urlSuffix, entityID);
+}
+
+// Function to set the source of a Spotify media player
+function spotifySetSource(receiverID, entityID, source) {
+    var urlSuffix = '/api/services/media_player/select_source';
+    h.log('jsc.ha', "spotifySetSource({}, {}, {})", [receiverID, entityID, source]);
+    jsc.ha.request(receiverID, urlSuffix, {entity_id: entityID, source: source});
+}
+
+// Function to pause playback on a Spotify media player, optionally setting a source first
+// Note: Although the 'source' parameter is not mandatory, it is often better to include it 
+// to avoid potential errors that may occur when it is omitted.
+function spotifyPause(receiverID, entityID, source) {
+    if (source) {
+        spotifySetSource(receiverID, entityID, source);
+    }
+    var urlSuffix = '/api/services/media_player/media_pause';
+    h.log('jsc.ha', "spotifyPause({}, {}, {})", [receiverID, entityID, source]);
+    jsc.ha.request(receiverID, urlSuffix, entityID);
+}
