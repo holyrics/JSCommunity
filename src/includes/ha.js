@@ -108,12 +108,11 @@ function activateTrigger(receiverID, entityID) {
     jsc.ha.request(receiverID, urlSuffix, entityID);
 }
 
-
-//spotify on ha
+// spotify on home assistant
 // Function to play a specific music track on a Spotify media player
 function spotifyPlayMusic(receiverID, entityID, mediaID, source) {
     if (source) {
-        spotifySetSource(receiverID, entityID, source);
+        jsc.ha.spotifySetSource(receiverID, entityID, source);
         h.sleep(500);
     }
     var urlSuffix = '/api/services/media_player/play_media';
@@ -122,14 +121,14 @@ function spotifyPlayMusic(receiverID, entityID, mediaID, source) {
         media_content_id: mediaID,
         media_content_type: 'music'
     };
-	h.log('jsc.ha', "spotifyPlayMusic({}, {}, {})", [receiverID, entityID, data]);
+    h.log('jsc.ha', "spotifyPlayMusic({}, {}, {})", [receiverID, entityID, data]);
     jsc.ha.request(receiverID, urlSuffix, data);
 }
 
 // Function to start playback on a Spotify media player, optionally setting a source first
 function spotifyPlay(receiverID, entityID, source) {
     if (source) {
-        spotifySetSource(receiverID, entityID, source);
+        jsc.ha.spotifySetSource(receiverID, entityID, source);
         h.sleep(500);
     }
     var urlSuffix = '/api/services/media_player/media_play';
@@ -149,7 +148,7 @@ function spotifySetSource(receiverID, entityID, source) {
 // to avoid potential errors that may occur when it is omitted.
 function spotifyPause(receiverID, entityID, source) {
     if (source) {
-        spotifySetSource(receiverID, entityID, source);
+        jsc.ha.spotifySetSource(receiverID, entityID, source);
     }
     var urlSuffix = '/api/services/media_player/media_pause';
     h.log('jsc.ha', "spotifyPause({}, {}, {})", [receiverID, entityID, source]);
