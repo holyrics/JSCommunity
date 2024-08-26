@@ -3,7 +3,8 @@
 
 function info() {
     return {
-        name: '@prcris#m3 Slide de Imagem em Apresntações de texto',
+        id: '@prcris#m3',
+        name: 'Slide de Imagem em Apresntações de texto',
         description: '<html>'+
                      '• Permite inserir uma imagem em uma apresentação de texto. <br><br>'+
                      '   Crie um slide de texto em branco na posição desejada da sua apresentação e '+

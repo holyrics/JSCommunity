@@ -2,7 +2,8 @@
 //@prcris#m1
 function info() {
     return {
-        name: '@prcris#m1 Cantores, Volume e Escala por música',
+        id: '@prcris#m1',
+        name: 'Cantores, Volume e Escala por música',
         description: '<html>'+
                      '• Permite associar um cantor escalado a cada música da aba Mídia<br>'+
                      '• Exibe o cantor descalado da música na tela de retorno no slide 1<br>'+

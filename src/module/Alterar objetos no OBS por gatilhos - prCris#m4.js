@@ -3,7 +3,8 @@
 
 function info() {   
     return {  
-        name: '@prcris#m4 Cria gatilhos para Exibir/Ocultar Item em Cena no OBS',           
+        id: '@prcris#m4',
+        name: 'Cria gatilhos para Exibir/Ocultar Item em Cena no OBS',           
         description: '<html>'+
                      '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+
                      '• Compatível com pressionamento de F8/F9/F10/Finalização.<br>'+ 

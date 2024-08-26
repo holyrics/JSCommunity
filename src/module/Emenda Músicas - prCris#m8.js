@@ -3,7 +3,8 @@
 
 function info() {
     return {
-        name: '@prcris#m8 Inicia a próxima música automaticamente',
+        id: '@prcris#m8',
+        name: 'Inicia a próxima música automaticamente',
         description: '<html>'+
                      '• Cria gatilhos para Trocar de Música no último slide seguindo a ordem das músicas dentro de um mesmo título da aba Mídia<br>'+
                      '<hr>Para mais informações sobre automações no holyrics, acesse <br>'+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
