@@ -3,7 +3,8 @@
 
 function info() {
     return {
-        name: '@prcris#m2 Countdown Instrumental',
+        id: '@prcris#m2',
+        name: 'Countdown Instrumental',
         description: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), '+
                      'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>'+
                      '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br><hr>'+

@@ -2,7 +2,8 @@
 //@prcris#m7
 function info() {
     return {
-        name: '@prcris#m7 Cria gatilhos para interagir com cenas/BPM do lumikit e holyrics',
+        id: '@prcris#m7',
+        name: 'Cria gatilhos para interagir com cenas/BPM do lumikit e holyrics',
         description: '<html>'+
                      '• Sorteia cenas cadastradas como em movimento para versos de Refrão e Instrumental<br>'+
                      '• Sorteia cenas estáticas para demais versos<br>'+

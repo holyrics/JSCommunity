@@ -3,7 +3,8 @@
 
 function info() {
     return {
-        name: '@prcris#m10 Añade un vídeo de fondo en el tema de cada diapositiva',
+        id: '@prcris#m10',
+        name: 'Añade un vídeo de fondo en el tema de cada diapositiva',
         description: '<html>'+
                      '• Permite utilizar animaciones en vídeo como fondo de manera automática <br><br>'+
                      '   Cree una carpeta dentro de la carpeta videos con el nombre <u>backmusic</u><br>'+

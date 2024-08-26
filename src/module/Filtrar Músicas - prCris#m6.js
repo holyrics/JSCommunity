@@ -2,7 +2,8 @@
 //@prcris#m6
 function info() {
     return {
-        name: '@prcris#m6 Assistente de Filtragem de Músicas Baseado na Escala',
+        id: '@prcris#m6',
+        name: 'Assistente de Filtragem de Músicas Baseado na Escala',
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+
                      '• Grupos (diversos)<br>'+
