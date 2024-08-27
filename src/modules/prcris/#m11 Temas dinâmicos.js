@@ -134,6 +134,7 @@ function customTheme(module) {
        else if ( h.getGlobal("temaFixo") == 'Dízimos' ) { tema = module.settings.thite.name;}          
        else if ( h.getGlobal("temaFixo") == 'Ceia' ) {   tema = module.settings.supper.name;}
        else if (obj.slide_show_index === -1 ) {          tema = module.settings.title.name;}
+       else if ( obj.tema_fixo ) {                       tema = obj.tema_fixo;}
        else if ( obj.bpm > 110 ) {                       tema = module.settings.fast.name;}
        else {                                            tema = module.settings.slow.name;}
        
@@ -141,7 +142,7 @@ function customTheme(module) {
            h.log('@prcris#m11', 'Fundo selecionado: {}', tema);
        }
        
-       if (!tagExists(tema)) {
+       if (!tagExists(tema) && !obj.tema_fixo) {
            h.log('', 'Você precisa criar uma tag para o tema: {} poder funcionar no modo aleatório.', tema);
        }
         
