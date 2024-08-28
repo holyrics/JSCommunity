@@ -164,3 +164,6 @@ A tradução dos submenus é feita no arquivo [i18n_tree.json](src/actions/i18n_
 ```
 O parâmetro com chave vazia é o valor padrão.
 
+## Licença
+
+Todos os códigos deste repositório, exceto [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules), estão sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/src/LICENSE.txt).<br>
