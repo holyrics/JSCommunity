@@ -22,7 +22,7 @@ O módulo será considerado "desativado" se a execução condicional atual for `
 
 Reservamo-nos o direito de negar a aprovação de qualquer módulo por qualquer motivo, a nosso exclusivo critério.
 
-Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.txt)
+Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.MD)
 
 # Tutorial
 
@@ -115,7 +115,7 @@ Retorna a lista de ações que serão exibidas na janela do programa, no painel 
 
 | Tipo  |
 | :---: |
-| _Array&lt;[ModuleAction](#module-action)&gt;_ | 
+| _Array&lt;[ModuleAction](#moduleaction)&gt;_ | 
 
 
 ---
@@ -134,7 +134,7 @@ Este é o método correspondente de `h.setInterval(function, timeout)`.<br>Cria 
 
 | Tipo  |
 | :---: |
-| _Array&lt;[ModuleLoop](#module-loop)&gt;_ | 
+| _Array&lt;[ModuleLoop](#moduleloop)&gt;_ | 
 
 
 ---
@@ -219,7 +219,7 @@ Este é o método correspondente do `menu ferramentas > diversos > ações 
 
 | Tipo  |
 | :---: |
-| _Array&lt;[ModuleContextAction](#module-context-action)&gt;_ | 
+| _Array&lt;[ModuleContextAction](#modulecontextaction)&gt;_ | 
 
 
 ---
@@ -238,9 +238,9 @@ Este é o método correspondente do `menu arquivo > configurações > diver
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `song` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#module-text-transform-info).<br><br>Deve retornar um objeto: [ModuleTextTransform](#module-text-transform).<br> |
-| `text` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#module-text-transform-info).<br><br>Deve retornar um objeto: [ModuleTextTransform](#module-text-transform).<br> |
-| `extra_slides` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#module-text-transform-info).<br><br>Deve retornar um objeto: [ModuleTextTransform](#module-text-transform).<br> |
+| `song` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#moduletexttransforminfo).<br><br>Deve retornar um objeto: [ModuleTextTransform](#moduletexttransform).<br> |
+| `text` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#moduletexttransforminfo).<br><br>Deve retornar um objeto: [ModuleTextTransform](#moduletexttransform).<br> |
+| `extra_slides` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#moduletexttransforminfo).<br><br>Deve retornar um objeto: [ModuleTextTransform](#moduletexttransform).<br> |
 
 
 ---
@@ -259,9 +259,9 @@ Este é o método correspondente do `Menu Tema > Automatização`.<br>Permite
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `song` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeSongInfo](#module-custom-theme-song-info).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#module-theme-filter) |
-| `text` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeTextInfo](#module-custom-theme-text-info).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#module-theme-filter) |
-| `automatic_presentation` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeSongInfo](#module-custom-theme-song-info).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#module-theme-filter) |
+| `song` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeSongInfo](#modulecustomthemesonginfo).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#modulethemefilter) |
+| `text` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeTextInfo](#modulecustomthemetextinfo).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#modulethemefilter) |
+| `automatic_presentation` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeSongInfo](#modulecustomthemesonginfo).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#modulethemefilter) |
 
 
 ---
@@ -280,7 +280,7 @@ Este é o método correspondente do `Menu Tema > Automatização`.<br>Permite
 
 | Tipo  | Descrição |
 | :---: | ------------|
-| _Function_ | Define uma regra personalizada para quebra de linha automática (quando ativado) para as apresentações no programa (exceto versículos).<br><br>`function(obj) { /* return int; */ }`<br><br>`obj` é do tipo: [ModuleLineBreakRulesInfo](#module-line-break-rules-info)<br><br>Deve retornar um objeto: int<br>Se o número retornado for `zero`, mantém a quebra de linha no local indicado, ou seja, a palavra atual iniciará uma nova linha.<br>Se o número retornado for menor do que `zero`, as últimas palavras em `previousWords` serão movidas para a nova linha, na quantidade indicada no número (positivo) retornado.<br>Se o número retornado for `1`, a palavra atual será mantida na linha atual.<br>Se o número retornado for maior do que `1`, a palavra atual será mantida na linha atual e as primeiras palavras em `nextWords` serão mantidas na linha atual, na quantidade indicada no número-1 retornado. |
+| _Function_ | Define uma regra personalizada para quebra de linha automática (quando ativado) para as apresentações no programa (exceto versículos).<br><br>`function(obj) { /* return int; */ }`<br><br>`obj` é do tipo: [ModuleLineBreakRulesInfo](#modulelinebreakrulesinfo)<br><br>Deve retornar um objeto: int<br>Se o número retornado for `zero`, mantém a quebra de linha no local indicado, ou seja, a palavra atual iniciará uma nova linha.<br>Se o número retornado for menor do que `zero`, as últimas palavras em `previousWords` serão movidas para a nova linha, na quantidade indicada no número (positivo) retornado.<br>Se o número retornado for `1`, a palavra atual será mantida na linha atual.<br>Se o número retornado for maior do que `1`, a palavra atual será mantida na linha atual e as primeiras palavras em `nextWords` serão mantidas na linha atual, na quantidade indicada no número-1 retornado. |
 
 
 ---
@@ -299,7 +299,7 @@ Cria itens do tipo 'Mensagem Personalizada' para exibição no app celular.<br>I
 
 | Tipo  |
 | :---: |
-| _Array&lt;[ModuleCustomMessageInApp](#module-custom-message-in-app)&gt;_ | 
+| _Array&lt;[ModuleCustomMessageInApp](#modulecustommessageinapp)&gt;_ | 
 
 
 ---
@@ -426,7 +426,7 @@ _Método sem retorno_
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
 | `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Será corrigido na atualização `v2.24.0` |
 | `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
-| `popup_menu` | _Array&lt;[ModulePopupMenuItem](#module-popup-menu-item)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#module-popup-menu-item)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
+| `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
 
 ## Trigger Item
 | Nome | Tipo  | Descrição |
@@ -567,7 +567,7 @@ Dados da origem da requisição
 | ---- | :---: | ------------|
 | `name` | _String_ |  |
 | `description` | _String_ |  |
-| `input` | _Array&lt;[ModuleCustomMessageInAppParam](#module-custom-message-in-app-param)&gt;_ |  |
+| `input` | _Array&lt;[ModuleCustomMessageInAppParam](#modulecustommessageinappparam)&gt;_ |  |
 | `action` | _Function_ | Ação executada ao receber uma mensagem do app celular com os valores de cada input.<br>`function(evt) { /*   */ }`<br><br>`evt.input` contém os valores de cada `input` no seu respectivo `id`, exemplo: evt.input.example.<br>`evt.note` contém o campo 'observação' informado pelo usuário. |
 | `require_module_permission` | _Boolean_ | Se `true`, o item será listado no app somente se o celular cadastrado estiver com a permissão `Módulos` liberada nas configurações do programa. |
 
@@ -589,7 +589,7 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 | `label` | _String_ | Nome do item |
 | `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
 | `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`<br>`evt.popup_menu_id` contém o id do respectivo `PopupMenuItem`. |
-| `items` | _Array&lt;[ModulePopupMenuItem](#module-popup-menu-item)&gt; (opcional)_ | Disponível se `type = menu` |
+| `items` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Disponível se `type = menu` |
 | `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
 
 

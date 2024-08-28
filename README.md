@@ -166,4 +166,4 @@ O parâmetro com chave vazia é o valor padrão.
 
 ## Licença
 
-Todos os códigos deste repositório, exceto [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules), estão sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/src/LICENSE.txt).<br>
+Todos os códigos deste repositório, exceto [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules), estão sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/LICENSE.txt).<br>
