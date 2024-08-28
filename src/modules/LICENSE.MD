@@ -1,7 +1,7 @@
 # Licença sobre recursos e códigos disponíveis em [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules)
 
 A licença dos códigos da funcionalidade **Módulos** estão disponíveis no arquivo LICENSE.txt em cada respectiva pasta (ou superior) onde um módulo se encontra.<br>
-Caso não exista um arquivo LICENSE.txt na respeciva pasta, o código estará, por padrão, sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/src/LICENSE.txt).<br>
+Caso não exista um arquivo LICENSE.txt na respeciva pasta, o código estará, por padrão, sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/LICENSE.txt).<br>
 
 Usuários ou organizações são livres para criar e compartilhar módulos neste repositório, desde que sejam para utilizar apenas recursos do programa, ou recursos externos de forma **gratuita**.<br>
 Reservamo-nos o direito de negar a aprovação de qualquer módulo por qualquer motivo, a nosso exclusivo critério.
