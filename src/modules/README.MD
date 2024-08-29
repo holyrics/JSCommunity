@@ -141,7 +141,7 @@ function settings(module) {
 ---
 
 ### actions(module)
-Retorna a lista de ações que serão exibidas na janela do programa, no painel de módulo, abaixo da barra de favoritos.<br>Um item de ação pode executar ações ao clicar, mas também abrir um submenu com outros itens de ação, se comportando como uma pasta.<br>Pode ter `inputs` que serão exibidos ao clicar com o botão direito do mouse no item, opção "editar".<br>E pode ter itens de menu que serão exibidos ao clicar com o botão direito do mouse no item.<br>
+Retorna a lista de ações que serão exibidas na janela do programa, no painel de módulo, abaixo da barra de favoritos.<br>Um item de ação pode executar ações ao clicar, mas também abrir um submenu com outros itens de ação, se comportando como uma pasta.<br>Pode ter `inputs` que serão exibidos ao clicar com o botão direito do mouse no item, opção "editar".<br>E pode ter itens de menu que serão exibidos ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`.
 
 **Parâmetros:**
 
@@ -877,7 +877,7 @@ h.inputSettings('sets_name', null);
 | `icon` | _String (opcional)_ | Ícone padrão do item.<br>Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
 | `icon_color` | _String (opcional)_ | Cor do ícone no formato hexadecimal. |
 | `hint` | _String (opcional)_ | Texto de dica que será exibido ao deixar o mouse parado em cima do item |
-| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`, conforme exemplo a seguir. |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`. |
 | `status` | _Object (opcional)_ | Retornar o estado atual de exibição do item.<br>Define as configurações de visualização do item em tempo de execução, como ícone, cor, etc.<br>Utiliza a sintaxe de [StatusView](https://github.com/holyrics/Scripts/blob/main/StatusView.md). |
 | `action` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar e soltar o item. |
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
