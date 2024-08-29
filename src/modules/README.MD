@@ -2,7 +2,7 @@
 
 Disponível a partir da versão `2.23.0` do programa Holyrics.
 
-A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
+A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
 
 Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib) aumentou.<br>
 Com isso, algumas soluções criadas necessitavam interagir com diferentes recursos do programa, sendo necessário acessar e adicionar/editar códigos JavaScript em vários locais diferentes do programa.<br>
@@ -80,6 +80,22 @@ Retorna as informações do módulo.
 | `min_version` | _String (opcional)_ | Versão mínima requerida do programa |
 
 
+**Exemplo:**
+
+```javascript
+function info() {
+  return {
+    id: 'ID do módulo',
+    name: 'Nome do módulo',
+    description: 'Descrição do <b>módulo</b>',
+    allowed_requests: [
+      'https://www.holyrics.com.br/v1/api_example/'
+    ],
+    min_version: '2.23.0'
+  };
+}
+```
+
 ---
 
 ### settings(module)
@@ -98,6 +114,29 @@ Retorna a lista de configurações do módulo.<br>Exibe na janela de configuraç
 | :---: |
 | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | 
 
+
+**Exemplo:**
+
+```javascript
+function settings(module) {
+  var arr = [];
+  arr.push({
+    id: 'settings_1',
+    name: i18n('Name 1'),
+    type: 'string'
+  });
+  arr.push({
+    id: 'settings_2',
+    name: i18n('Name 2'),
+    type: 'number',
+    min: 1,
+    max: 100,
+    component: 'slider',
+    unit: '%'
+  });
+  return arr;
+}
+```
 
 ---
 
@@ -118,6 +157,110 @@ Retorna a lista de ações que serão exibidas na janela do programa, no painel 
 | _Array&lt;[ModuleAction](#moduleaction)&gt;_ | 
 
 
+**Exemplo:**
+
+```javascript
+function actions(module) {
+  var arr = [];
+
+  var simpleActionFlag = module.id + "#simple_action_enabled";
+  arr.push({
+    id: 'simple_action',
+    name: i18n('Simple Action'),
+    icon: 'play_arrow',
+    action: function (evt) {
+      h.setGlobalNext(simpleActionFlag, [true, false]);
+    },
+    status: function (evt) {
+      if (h.getGlobal(simpleActionFlag)) {
+        return {
+          iconColor: 'green'
+        };
+      }
+      return null;
+    }
+  });
+
+  arr.push({
+    id: 'show_quick_message',
+    name: i18n('Show Quick Message'),
+    icon: 'message',
+    action: function (evt) {
+      if (!evt.input.message) {
+        h.notificationError('empty message', 7);
+        return;
+      }
+      h.hly('ShowQuickPresentation', {
+        text: evt.input.message,
+        automatic: {
+          seconds: evt.input.duration,
+          repeat: false
+        }
+      });
+    },
+    input: [
+      {
+        id: 'message',
+        type: 'string',
+        name: i18n('Message')
+      }, {
+        id: 'duration',
+        type: 'number',
+        name: i18n('Duração'),
+        min: 1,
+        max: 120,
+        default_value: 30
+      }
+    ]
+  });
+
+  arr.push({
+    id: 'folder_example',
+    name: i18n('Folder'),
+    icon: 'folder_open',
+    action: [
+      {
+        id: 'folder_simple_action_1',
+        name: i18n('Simple Action 1'),
+        action: function (evt) {
+          //todo
+        }
+      }, {
+        id: 'folder_simple_action_2',
+        name: i18n('Simple Action 2'),
+        action: function (evt) {
+          //todo
+        }
+      }
+    ]
+  });
+
+  var longPressActionFlag = module.id + "#long_press_flag";
+  arr.push({
+    id: 'long_press_action',
+    label: 'Long Press Action',
+    mouse_pressed: function (evt) {
+      h.setGlobal(longPressActionFlag, true);
+    },
+    mouse_released: function (evt) {
+      h.setGlobal(longPressActionFlag, false);
+    },
+    status: function (evt) {
+      return {
+        active: h.getGlobal(longPressActionFlag)
+      };
+    }
+  });
+  
+  // bug fix v2.23.0
+  jsc.utils.module.fixActions(module, arr);
+  // arr pode ser um array ou um item action individual
+  // jsc.utils.module.fixActions(module, arr[0]);
+
+  return arr;
+}
+```
+
 ---
 
 ### loops(module)
@@ -137,6 +280,29 @@ Este é o método correspondente de `h.setInterval(function, timeout)`.<br>Cria 
 | _Array&lt;[ModuleLoop](#moduleloop)&gt;_ | 
 
 
+**Exemplo:**
+
+```javascript
+function loops(module) {
+  var arr = [];
+  arr.push({
+    name: 'loop 5',
+    delay: 5000,
+    action: function(evt) {
+      // loop action every 5 seconds
+    }
+  });
+  arr.push({
+    name: 'loop 5',
+    delay: '12s',
+    action: function(evt) {
+      // loop action every 12 seconds
+    }
+  });
+  return arr;
+}
+```
+
 ---
 
 ### startup(module)
@@ -151,6 +317,14 @@ Executado sempre na inicialização do módulo.<br>É executado mesmo se o módu
 
 _Método sem retorno_
 
+**Exemplo:**
+
+```javascript
+function startup(module) {
+    //implementation
+}
+```
+
 ---
 
 ### shutdown(module)
@@ -164,6 +338,14 @@ Executado ao encerrar o programa.<br>Será executado somente se o módulo estive
 
 
 _Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+function shutdown(module) {
+    //implementation
+}
+```
 
 ---
 
@@ -184,10 +366,37 @@ Este é o método correspondente de `h.addTriggerListener(input)` e `menu ferra
 | _Array&lt;[TriggerItem](#trigger-item)&gt;_ | 
 
 
+**Exemplo:**
+
+```javascript
+function triggers(module) {
+  var arr = [];
+  arr.push({
+    when: 'displaying',
+    item: 'any_song',
+    action: function (obj) {
+      // song displayed
+      // obj.id
+      // obj.title
+    }
+  });
+  arr.push({
+    when: 'change',
+    item: 'bpm',
+    action: function (obj) {
+      // BPM changed
+      // obj.old_value
+      // obj.new_value
+    }
+  });
+  return arr;
+}
+```
+
 ---
 
 ### systemVariables(module)
-Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br>Observação: há um cachê de 1 segundo para reutilizar o último valor retornado pela `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 $js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=$js{sum(3,4)}` será exibido como `3+4=7`.<br>
+Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br>Observação: há um cachê de 1 segundo para reutilizar o último valor retornado pela `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 @js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=@js{sum(3,4)}` será exibido como `3+4=7`.<br>
 
 **Parâmetros:**
 
@@ -202,6 +411,28 @@ Este é o método correspondente do `menu arquivo > configurações > avan�
 | :---: | ------------|
 | _Object_ | Mapa chave/valor onde cada chave é o nome da variável do sistema criada e o valor é uma `function` que retorna o valor correspondente da variável do sistema |
 
+
+**Exemplo:**
+
+```javascript
+function systemVariables(module) {
+  var arr = {};
+  
+  //   text: 123 @js{test} xyz
+  // result: 123 abc xyz
+  arr.test = function() {
+    return 'abc';
+  };
+  
+  //   text: 3 + 4 = @js{sum(3, 4)}
+  // result: 3 + 4 = 7
+  arr.sum = function(a, b) {
+    return a + b;
+  };
+  
+  return arr;
+}
+```
 
 ---
 
@@ -222,10 +453,70 @@ Este é o método correspondente do `menu ferramentas > diversos > ações 
 | _Array&lt;[ModuleContextAction](#modulecontextaction)&gt;_ | 
 
 
+**Exemplo:**
+
+```javascript
+function contextActions(module) {
+  var arr = [];
+
+  arr.push({
+    name: i18n('Iniciar do Coro'),
+    types: ['song'],
+    action: function (evt) {
+      var r = h.hly('GetSong', {id: evt.item.id});
+      if (!r.data) {
+        var error = i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
+        h.notificationError(error, 3);
+        return;
+      }
+      var song = r.data;
+      var slides = song.slides;
+      var orders = song.order.split(",");
+      if (orders.length == 0 || (orders.length == 1 && orders[0] == '')) {
+        orders = h.intStreamRangeClosed(1, slides.length).toArray();
+      }
+      for (var i = 0; i < orders.length; i++) {
+        i = parseInt(i);
+        if (i <= 0 || i > slides.length) {
+          continue;
+        }
+        var slide = slides[orders[i] - 1];
+        if (!jsc.utils.isChorus(slide.slide_description)) {
+          continue;
+        }
+        h.hly('ShowSong', {
+          id: song.id,
+          initial_index: orders[i]
+        });
+        return;
+      }
+      var error = i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
+      h.notificationError(error, 3);
+    }
+  });
+
+  arr.push({
+    name: i18n('Exibir por {} segundos', [10]),
+    types: ['image', 'image_folder'],
+    action: function (evt) {
+      h.hly('ShowImage', {
+        file: evt.item.file_fullname,
+        automatic: {
+          seconds: 10,
+          repeat: false
+        }
+      });
+    }
+  });
+
+  return arr;
+}
+```
+
 ---
 
 ### textTransform(module)
-Este é o método correspondente do `menu arquivo > configurações > diversos > inserir texto`.<br>Permite inserir um texto no início ou no final de um slide ou alterar o texto atual.<br>Esta ação é feita em tempo de execução no momento da projeção do respectivo slide e é aplicada de forma independente para cada tela, de acordo com o valor em `screen_id`.Observação: há um cachê de 30 segundo para reutilizar o último valor retornado pela `function`, baseado no mesmo slide e mesma tela.
+Este é o método correspondente do `menu arquivo > configurações > diversos > inserir texto`.<br>Permite inserir um texto no início ou no final de um slide ou alterar o texto atual.<br>Esta ação é feita em tempo de execução no momento da projeção do respectivo slide e é aplicada de forma independente para cada tela, de acordo com o valor em `screen_id`.<br>Observação: há um cachê de 30 segundo para reutilizar o último valor retornado pela `function`, baseado no mesmo slide e mesma tela.
 
 **Parâmetros:**
 
@@ -242,6 +533,28 @@ Este é o método correspondente do `menu arquivo > configurações > diver
 | `text` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#moduletexttransforminfo).<br><br>Deve retornar um objeto: [ModuleTextTransform](#moduletexttransform).<br> |
 | `extra_slides` | _Function (opcional)_ | `function(obj) { /* return ModuleTextTransform; */ }`<br>`obj` é do tipo: [ModuleTextTransformInfo](#moduletexttransforminfo).<br><br>Deve retornar um objeto: [ModuleTextTransform](#moduletexttransform).<br> |
 
+
+**Exemplo:**
+
+```javascript
+function textTransform(module) {
+  var obj = {};
+  
+  obj.extra_slides = function(evt) {
+    if (evt.screen_id == 'public' && evt.slide_type == 'blank' && evt.source_type == 'music') {
+      // Isso faz com que na tela 'public'
+      // quando a opção F9 (sem texto) estiver ativada
+      // e for uma apresentação de letra de música
+      // o texto '♪' seja exibido
+      return {
+        add_end: '♪'
+      };
+    }
+    return null;
+  };
+  return obj;
+}
+```
 
 ---
 
@@ -264,9 +577,55 @@ Este é o método correspondente do `Menu Tema > Automatização`.<br>Permite
 | `automatic_presentation` | _Function (opcional)_ | `function(obj) { /* return ModuleThemeFilter; */ }`<br>`obj` é do tipo: [ModuleCustomThemeSongInfo](#modulecustomthemesonginfo).<br><br>Deve retornar um objeto: [ModuleThemeFilter](#modulethemefilter) |
 
 
+**Exemplo:**
+
+```javascript
+function customTheme(module) {
+  var obj = {};
+
+  obj.song = function (evt) {
+    var textlc = evt.text.toLowerCase();
+    if (textlc.contains('fogo') && textlc.contains('chuva')) {
+      // se o texto do slide tiver as palavras 'fogo' e 'chuva'
+      // define um vídeo como plano de fundo
+      // que tenha as tags 'Fogo' e 'Chuva'
+      // (as duas por conta de 'intersection: true')
+      return {
+        tags: ['Fogo', 'Chuva'],
+        intersection: true,
+        type: 'my_videos'
+      };
+    }
+    if (textlc.equals("azul")) {
+      // se o texto do slide for igual a 'azul'
+      // define um tema criado em tempo real
+      // com as configurações a seguir
+      return {
+        custom_theme: {
+          background: {
+            type: "color",
+            id: "0000FF"
+          },
+          font: {
+            name: "Arial",
+            bold: true,
+            italic: true,
+            size: 10.0,
+            color: "F5F5F5"
+          }
+        }
+      };
+    }
+    return null;
+  };
+
+  return obj;
+}
+```
+
 ---
 
-### lineBreakRule(module)
+### lineBreakRules(module)
 
 
 **Parâmetros:**
@@ -282,6 +641,34 @@ Este é o método correspondente do `Menu Tema > Automatização`.<br>Permite
 | :---: | ------------|
 | _Function_ | Define uma regra personalizada para quebra de linha automática (quando ativado) para as apresentações no programa (exceto versículos).<br><br>`function(obj) { /* return int; */ }`<br><br>`obj` é do tipo: [ModuleLineBreakRulesInfo](#modulelinebreakrulesinfo)<br><br>Deve retornar um objeto: int<br>Se o número retornado for `zero`, mantém a quebra de linha no local indicado, ou seja, a palavra atual iniciará uma nova linha.<br>Se o número retornado for menor do que `zero`, as últimas palavras em `previousWords` serão movidas para a nova linha, na quantidade indicada no número (positivo) retornado.<br>Se o número retornado for `1`, a palavra atual será mantida na linha atual.<br>Se o número retornado for maior do que `1`, a palavra atual será mantida na linha atual e as primeiras palavras em `nextWords` serão mantidas na linha atual, na quantidade indicada no número-1 retornado. |
 
+
+**Exemplo:**
+
+```javascript
+function lineBreakRules(module) {
+  return function(evt) {
+    if (evt.screen.id == 'public'
+          && evt.presentation.type == 'song'
+          && evt.nextWords.length == 0) {
+      // se for a tela 'public'
+      // e for uma apresentação de letra de música
+      // e não houver palavras restantes além da palavra atual
+      // 
+      // retorna -1 para que a última palavra da linha atual
+      // seja movida para a próxima linha
+      // 
+      // isso evita com que uma quebra de linha
+      // seja criada com apenas uma palavra sozinha
+      //
+      // caso fosse retornado 1, a palavra atual ficaria na linha atual
+      // evitando a quebra de linha
+      // porém nesse caso o tamanho da fonte do slide é reduzido
+      return -1;
+    }
+    return 0;
+  };
+}
+```
 
 ---
 
@@ -301,6 +688,45 @@ Cria itens do tipo 'Mensagem Personalizada' para exibição no app celular.<br>I
 | :---: |
 | _Array&lt;[ModuleCustomMessageInApp](#modulecustommessageinapp)&gt;_ | 
 
+
+**Exemplo:**
+
+```javascript
+function customMessageInApp(module) {
+  var arr = [];
+  arr.push({
+    name: i18n('Mensagem Personalizada no App'),
+    description: i18n('Descrição'),
+    input: [
+      {
+        id: 'example_1',
+        label: i18n('Nome') + ' 1'
+      }, {
+        id: 'example_2',
+        label: i18n('Nome') + ' 2',
+        suggestions: [
+          'Item 1', 'Item 2', 'Item 3'
+        ]
+      }, {
+        id: 'example_3',
+        label: i18n('Nome') + ' 3',
+        only_number: true
+      }
+    ],
+    action: function(evt) {
+     //evt.input.example_1
+     //evt.input.example_2
+     //evt.input.example_3
+     //evt.note
+     var msg = '<html>' + i18n('Mensagem recebida do app')
+         + '<br><code>' + h.toPrettyJson(evt.input) + '</code>'
+         + '<br>note: ' + evt.note;
+     h.notification(msg, 3);
+    }
+  });
+  return arr;
+}
+```
 
 ---
 
@@ -351,6 +777,12 @@ Adiciona uma mensagem no log interno do módulo.<br>Pode ser acessado pela janel
 
 _Método sem retorno_
 
+**Exemplo:**
+
+```javascript
+module.log('item: {}, item 2: {}', ['value', 'value 2']);
+```
+
 ---
 
 ### updatePanel()
@@ -394,6 +826,25 @@ Carrega no campo `settings` do módulo configurações extras que não estão de
 
 _Método sem retorno_
 
+**Exemplo:**
+
+```javascript
+var inputs = [
+  {
+    id: 'message',
+    type: 'string'
+  }, {
+    id: 'duration',
+    type: 'number',
+    default_value: 10
+  }
+];
+
+module.registerSettings('sets_name', inputs);
+//module.settings.sets_name.message
+//module.settings.sets_name.duration
+```
+
 ---
 
 ### inputSettings(id, inputs)
@@ -409,6 +860,12 @@ Exibir uma janela com campos de entrada para receber informações de forma inte
 
 _Método sem retorno_
 
+**Exemplo:**
+
+```javascript
+h.inputSettings('sets_name', null);
+```
+
 ---
 
 
@@ -420,13 +877,20 @@ _Método sem retorno_
 | `icon` | _String (opcional)_ | Ícone padrão do item.<br>Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
 | `icon_color` | _String (opcional)_ | Cor do ícone no formato hexadecimal. |
 | `hint` | _String (opcional)_ | Texto de dica que será exibido ao deixar o mouse parado em cima do item |
-| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item. |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`, conforme exemplo a seguir. |
 | `status` | _Object (opcional)_ | Retornar o estado atual de exibição do item.<br>Define as configurações de visualização do item em tempo de execução, como ícone, cor, etc.<br>Utiliza a sintaxe de [StatusView](https://github.com/holyrics/Scripts/blob/main/StatusView.md). |
 | `action` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar e soltar o item. |
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
 | `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Será corrigido na atualização `v2.24.0` |
 | `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
+
+## ModuleLoop
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `name` | _String_ | Nome do item |
+| `delay` | _Number_ | Intervalo em milissegundos entre cada execução.<br>Máximo: `300000`. |
+| `action` | _Function_ | Função que será executada |
 
 ## Trigger Item
 | Nome | Tipo  | Descrição |
@@ -449,20 +913,13 @@ _Método sem retorno_
 ```
 </details>
 
-## ModuleLoop
-| Nome | Tipo  | Descrição |
-| ---- | :---: | ------------|
-| `name` | _String_ | Nome do item |
-| `delay` | _Number_ | Intervalo em milissegundos entre cada execução.<br>Máximo: `300000`. |
-| `action` | _Function_ | Função que será executada |
-
 ## ModuleContextAction
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
 | `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `chat_message` |
-| `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br> |
+| `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 
 ## ModuleTextTransformInfo
 Contém as informações da origem da requisição
@@ -596,4 +1053,4 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 
 # Exemplo
 
-O arquivo [example.js](https://github.com/holyrics/JSCommunity/tree/main/src/modules/example/example.js) contém um exemplo detalhado e comentado das possibilidades de um módulo.
+Um módulo de exemplo: [example.js](https://github.com/holyrics/JSCommunity/tree/main/src/modules/example/example.js)
