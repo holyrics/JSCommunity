@@ -111,6 +111,18 @@ function example3(a, b, c) {
 
 ---
 
+## Módulos
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/modules)
+
+---
+
+## Modelos para importação de letra de música via JavaScript
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/importsongs)
+
+---
+
 ## Internationalization (I18N)
 
 O método `jsc.i18n(...)` está disponível para compatibilidade do código em diferentes idiomas.<br>
