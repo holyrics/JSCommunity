@@ -60,7 +60,9 @@ function info() {
 ```
 
 É possível utilizar o botão `include` no programa Holyrics como forma de administrar esses códigos externos.<br>
-Ao criar e testar seus módulos no programa Holyrics, na janela `include` crie uma nova aba para cada possível arquivo diferente e mantenha os códigos dentro dessas abas em `include`, em vez de deixar no código do próprio módulo.
+Ao criar e testar seus módulos no programa Holyrics, na janela `include` crie uma nova aba para cada possível arquivo diferente e mantenha os códigos dentro dessas abas em `include`, em vez de deixar no código do próprio módulo.<br>
+**Bug na `v2.23.0`** - foi identificado que ao editar o include, os módulos não utilizam o include atualizado, então é necessário editar qualquer coisa mínima no código do módulo (um simples espaço) pra forçar a reinicialização do módulo e utilizar o include atualizado.<br>
+Será corrigido na `v2.24.0`
 
 ## Functions
 
