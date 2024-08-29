@@ -31,6 +31,7 @@ function info() {
 
 ## settings()
 
+__Opcional__
 Exibe na janela de importação componentes de configuração para ser utilizado em `function extract(files, settings)`<br>
 Por exemplo, exibir uma lista de `charset` para o usuário poder selecionar qual `charset` utilizar na leitura dos arquivos de texto.
 Deve retornar um array de [InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md).<br>
@@ -78,7 +79,7 @@ function extract(files, settings) {
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 ### getTitleAndArtistFromName()
-Identifica o possível título e artista a partir do nome do arquivo.<br>Regras:<br>Se o nome do arquivo tiver `' - '`, separa o nome do arquivo, sendo a primeira parte o título e a segunda parte o artista.<br>Exemplo: title - artist.txt<br>['title', 'artist']<br><br>Se o nome do arquivo tiver parênteses, extrai o valor de dentro do parênteses como artista.<br>Exemplo: title (artist).txt<br>['title', 'artist']<br><br>Retorna o nome do arquivo inteiro como título caso não seja identificada uma regra.
+Identifica o possível título e artista a partir do nome do arquivo.<br>Regras:<br>Se o nome do arquivo tiver `' - '`, separa o nome do arquivo, sendo a primeira parte o título e a segunda parte o artista.<br>Exemplo: `title - artist.txt`<br>`['title', 'artist']`<br><br>Se o nome do arquivo tiver parênteses, extrai o valor de dentro do parênteses como artista.<br>Exemplo: `title (artist).txt`<br>`['title', 'artist']`<br><br>Retorna o nome do arquivo inteiro como título caso não seja identificada uma regra.
 
 
 
@@ -176,7 +177,7 @@ files.forEach(function(f) {
 
 ### readXml(charset = 'utf-8')
 ### readXML(charset = 'utf-8')
-Lê o arquivo em formato XML, mas retorna um `JavaScript Object` relativo, baseado na estrutura XML lida.<br>Todos os nós da estrutura XML serão considerados um array (exceto o primeiro nó raiz).<br>Cada nó terá o campo `content` com seu respectivo conteúdo e os campos de atributo.<br>Por praticidade, é possível chamar o content do primeiro item do array de forma direta com a sintaxe:<br>r.song.title[0].content;<br>r.song.title0;
+Lê o arquivo em formato XML, mas retorna um `JavaScript Object` relativo, baseado na estrutura XML lida.<br>Todos os nós da estrutura XML serão considerados um array (exceto o primeiro nó raiz).<br>Cada nó terá o campo `content` com seu respectivo conteúdo e os campos de atributo.<br>Por praticidade, é possível chamar o content do primeiro item do array de forma direta com a sintaxe `r.song.title0` em vez de `r.song.title[0].content`
 
 **Parâmetros:**
 
