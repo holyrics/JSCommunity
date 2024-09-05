@@ -10,7 +10,7 @@ function info() {
                      '• Compatível com pressionamento de F8/F9/F10/Finalização.<br>'+ 
                      '• Compatível com apresentações do tipo texto/bíblia/música/imagem!/Power Point/Apresentação automática.<br><br>'+
                      'Atualização: Os itens de texto/bíblia/música tem tempo mínimo dinâmico, aumentando de acordo com a quantidade de texto exibida.<br><br>'+
-                     '<hr>Para mais informações, acesse '+"<a href='https://youtu.be/l3beon6Mc-c'>youtube.com/@multimidiaverdadebalneario</a></html>",
+                     '<hr>Para mais informações, acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
        allowed_requests: [ 
                         'https://holyrics.com.br/api/jsc/map_verse_length.php' 
                         ]
@@ -111,7 +111,7 @@ function addTriggFX(arr, module) {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtu.be/l3beon6Mc-c'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         },
         {

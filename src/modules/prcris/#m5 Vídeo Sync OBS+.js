@@ -9,7 +9,7 @@ function info() {
                      '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
                      '• Encerra o vídeo no OBS e retorna à cena original.<br>'+
                      '• Libera o canal e ajusta o volume nos mixers digitais Behinger e SoundCraft.<br><br>'+
-                     '<hr>Para mais informações, acesse '+"<a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '<hr>Para mais informações, acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
     };
 }
 
@@ -100,7 +100,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, {
             type: 'title',
