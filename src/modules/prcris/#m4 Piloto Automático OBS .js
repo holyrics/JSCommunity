@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m4_
+var mID = '@prcris#m4';
 
 function info() {   
     return {  
-        id: '@prcris#m4',
+        id: mID,
         name: 'Piloto Automático OBS',           
         description: '<html>'+
                      '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+
@@ -19,8 +19,6 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
-//@prcris#m4_
-
 /// triggers para ocultar / exibir itens no telão e OBS
 function triggers(module) {
   
@@ -53,7 +51,7 @@ function addAllTrigg(arr, module) {
 
     for (var i = 0; i < triggers.length; i++) {
         var trig = triggers[i];
-        h.setGlobal('@prcris#m4_close_item', trig.closeItem);
+        h.setGlobal(mID+'_close_item', trig.closeItem);
         addTriggGeneric(arr, module, trig.displayItem, trig.closeItem, trig.isPpt);
     }
 }
@@ -61,7 +59,7 @@ function addAllTrigg(arr, module) {
 function addTriggGeneric(arr, module, displayItem, closeItem) {
     
     arr.push({
-        id: closeItem + "_close_obs" + '_@prcris#m4_',
+        id: closeItem + "_close_obs_" + mID,
         when: "closing",
         item: closeItem.split('|')[0],
         action: function(obj) {
@@ -71,7 +69,7 @@ function addTriggGeneric(arr, module, displayItem, closeItem) {
     });
 
     arr.push({
-        id: displayItem + "_show_obs" + '_@prcris#m4_',
+        id: displayItem + "_show_obs_" + mID,
         when: "displaying",
         item: displayItem.split('|')[0],
         action: function(obj) {
@@ -84,7 +82,7 @@ function addTriggFX(arr, module) {
 
  for (var i = 8; i <= 10 ; i++) {
  arr.push({
-    id: "press_f" + i +"_obs" + '_@prcris#m4_',
+    id: "press_f" + i +"_obs_" + mID,
     when: "displaying",
     item: "f"+i,
     action: function(obj) {
@@ -93,7 +91,7 @@ function addTriggFX(arr, module) {
   });
 
   arr.push({
-    id: "release_f" + i +"_obs" + '_@prcris#m4_',
+    id: "release_f" + i +"_obs_" + mID,
     when: "closing",
     item: "f"+i,
     action: function(obj) {
@@ -109,12 +107,10 @@ function addTriggFX(arr, module) {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m4_
-
-function settings() {
+ function settings() {
     return [
         {
-            name: 'Sobre @prcris#m4',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         },
@@ -200,24 +196,25 @@ function settings() {
 
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22736574496e74657276616c227d
+/*
 function setIntervalRefresh() {
 
 var id = h.setInterval(function () {
    module.repaintPanel();
 }, 1000);
 
-h.setGlobal('@prcris#m4_setRepaint_id', id);
+h.setGlobal(mID+'_setRepaint_id', id);
 
 }
-
+*/
 
 
 function setIntervalVerse(receiverID, scene, item, time) { 
 
-var id = h.getGlobal('@prcris#m4_setIntervalVerse_id') || 0;
+var id = h.getGlobal(mID+'_setIntervalVerse_id') || 0;
 
-h.log('@prcris#m4','setInterval values {} {} {} {}',receiverID, scene, item, time);
-h.setGlobal('@prcris#m4_setInterval_values',{receiverID : receiverID, scene : scene, item: item, time : time});
+h.log(mID,'setInterval values {} {} {} {}',receiverID, scene, item, time);
+h.setGlobal(mID+'_setInterval_values',{receiverID : receiverID, scene : scene, item: item, time : time});
 
 if (id>0) {
     return
@@ -231,7 +228,7 @@ id = h.setInterval(function (receiverID, scene, item, time) {
        return;
     }
     
-    var c = h.getGlobal('@prcris#m4_setInterval_values');
+    var c = h.getGlobal(mID+'_setInterval_values');
         
     var verse = cP.name;
     var types_screen = ['blank', 'black', 'wallpaper'];
@@ -239,38 +236,37 @@ id = h.setInterval(function (receiverID, scene, item, time) {
     var isBlank = types_screen.indexOf(cP.slide_type) !== -1 ? true : false;
     
     if (isBlank) {
-      h.setGlobal('@prcris#m4_setIntervalVerse_name', ''); 
+      h.setGlobal(mID+'_setIntervalVerse_name', ''); 
       return;
     }
     
-    var oldVerse = h.getGlobal('@prcris#m4_setIntervalVerse_name') || ''; 
+    var oldVerse = h.getGlobal(mID+'_setIntervalVerse_name') || ''; 
     
     if (oldVerse != verse) {
-        h.log('@prcris#m4','verse {}, oldVerse {}, isBlank {}', verse, oldVerse, isBlank);
-        h.log('@prcris#m4','setTimeoutKeyF do setInterval {} {} {} {}', c.receiverID, c.scene, c.item, c.time);
-        h.setGlobal('@prcris#m4_setIntervalVerse_name', verse);
+        h.log(mID,'verse {}, oldVerse {}, isBlank {}', verse, oldVerse, isBlank);
+        h.log(mID,'setTimeoutKeyF do setInterval {} {} {} {}', c.receiverID, c.scene, c.item, c.time);
+        h.setGlobal(mID+'_setIntervalVerse_name', verse);
         setTimeoutKeyF(c.receiverID, c.scene, c.item, c.time, 'verse');   
     }
 
 }, 1000);
 
-h.setGlobal('@prcris#m4_setIntervalVerse_id', id);
+h.setGlobal(mID+'_setIntervalVerse_id', id);
 
 } 
 
 function clearIntervalVerse() {
-  h.setGlobal('@prcris#m4_setIntervalVerse_name', '');
-  var id = h.getGlobal('@prcris#m4_setIntervalVerse_id') || 0;
+  h.setGlobal(mID+'_setIntervalVerse_name', '');
+  var id = h.getGlobal(mID+'_setIntervalVerse_id') || 0;
   if (id>0) {
-     h.setGlobal('@prcris#m4_setIntervalVerse_id', 0);
+     h.setGlobal(mID+'_setIntervalVerse_id', 0);
      h.clearInterval(id);
   }
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m4_
 function verseOBS(show, obj, module) {
   var trigg = obj.metadata.trigger.id;
-  h.log('@prcris#m4', '==== Trigger acionada: {}', trigg);
+  h.log(mID, '==== Trigger acionada: {}', trigg);
 
   var type = typePres();
   var typeTrigg = typeOfTrigger(trigg);
@@ -283,13 +279,13 @@ function verseOBS(show, obj, module) {
     type = 'song';
   }
 
-  h.log('@prcris#m4', '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
+  h.log(mID, '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
 
   clearTimeouts();
   clearIntervalVerse();
 
   if (typeAbort(type) && show) {
-    h.log('@prcris#m4', 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
+    h.log(mID, 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
     return;
   }
 
@@ -298,10 +294,10 @@ function verseOBS(show, obj, module) {
   var item = module.settings['scene_item_name_' + type];
   var time = module.settings.timerTexto;
 
-  h.log('@prcris#m4', "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
+  h.log(mID, "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
 
   if (!scene) {
-    h.log('@prcris#m4', 'Sem cena para o tipo: {}', type);
+    h.log(mID, 'Sem cena para o tipo: {}', type);
     return;
   }
 
@@ -309,7 +305,7 @@ function verseOBS(show, obj, module) {
     setTimeoutKeyF(receiverID, scene, item, time, type, obj);
   }
 
-  h.log('@prcris#m4', 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
+  h.log(mID, 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
   sceneItemEnabled(receiverID, scene, item, show);
 }
 
@@ -317,7 +313,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
     var maxAttempts = 10;
     var attempts = 0;
     var itemEnabled;
-    var status = h.getGlobal('@prcris#m4_status_of_types') || [];
+    var status = h.getGlobal(mID+'_status_of_types') || [];
 
     function updateStatus(sceneItemNameOrID, show) {
         var found = false;
@@ -331,7 +327,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
         if (!found) {
             status.push({ sceneItemNameOrID: sceneItemNameOrID, show: show });
         }
-        h.setGlobal('@prcris#m4_status_of_types', status);
+        h.setGlobal(mID+'_status_of_types', status);
     }
 
     function disableAllOtherItems(currentSceneItemNameOrID) {
@@ -350,17 +346,17 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
         try {
             itemEnabled = jsc.obs_v5.getSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID);
         } catch (e) {
-            h.log('@prcris#m4', 'Erro OBS: {}', [e]);
+            h.log(mID, 'Erro OBS: {}', [e]);
             return;
         }
-        h.log('@prcris#m4', 'Status inicial item {}: {} | passada {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
+        h.log(mID, 'Status inicial item {}: {} | passada {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
         if (itemEnabled == show) {
             break;
         } else {
             try {
                 jsc.obs_v5.setSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show);
             } catch (e) {
-                h.log('@prcris#m4', 'Erro OBS:  {}', [e]);
+                h.log(mID, 'Erro OBS:  {}', [e]);
                 return;
             }
             if (attempts > 0) {
@@ -371,7 +367,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
     }
 
     if (attempts == maxAttempts) {
-        h.log('@prcris#m4', "Max attempts reached. The scene item may not have been set correctly.");
+        h.log(mID, "Max attempts reached. The scene item may not have been set correctly.");
     } else {
         updateStatus(sceneItemNameOrID, show);
     }
@@ -379,8 +375,8 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
 
 function typeAbort(type) {
     
-    var currentPresentation = h.hly('GetCurrentPresentation');
-    var slide_type = currentPresentation && currentPresentation.data ? currentPresentation.data.slide_type : "undefined";
+    var currentPresentation = h.hly('GetCurrentPresentation').data;
+    var slide_type = currentPresentation ? currentPresentation.slide_type : "undefined";
     
     var types_presentation_abort = ['verse', 'ppt', 'text'];
     var types_screen_abort = ['blank', 'black', 'wallpaper'];
@@ -392,13 +388,13 @@ function typeAbort(type) {
 } 
 
 function typePres() {
-    var currentPresentation = h.hly('GetCurrentPresentation');
-    h.log('@prcris#m4', 'currentPresentation = {}', [currentPresentation]);
+    var currentPresentation = h.hly('GetCurrentPresentation').data;
+    h.log(mID, 'currentPresentation = {}', [currentPresentation]);
     var type = "";
-    if (currentPresentation && currentPresentation.data && currentPresentation.data.type !== undefined) {
-           type = currentPresentation.data.type.toLowerCase();
+    if (currentPresentation && currentPresentation.type !== undefined) {
+           type = currentPresentation.type.toLowerCase();
            type = type === 'file' ? 'ppt' : type;
-           if (type == 'image' && currentPresentation.data.name.indexOf("!") < 0) {
+           if (type == 'image' && currentPresentation.name.indexOf("!") < 0) {
                 type = "image_without_!";
            }
     }
@@ -408,36 +404,30 @@ function typePres() {
 
 
 function addTimeoutID(timeoutID) {
-  // Obtém o array global de timeouts
-  var timeouts = h.getGlobal("@prcris#m4_timeouts") || [];
-  
-  // Adiciona o novo timeoutID ao array
+  var timeouts = h.getGlobal(mID+"_timeouts", []);
   timeouts.push(timeoutID);
-  
-  // Salva o array atualizado globalmente
-  h.setGlobal("@prcris#m4_timeouts", timeouts);
+  h.setGlobal(mID+"_timeouts", timeouts);
 }
 
 function clearTimeouts() {
-  // Obtém o array global de timeouts
-  var timeouts = h.getGlobal("@prcris#m4_timeouts") || [];
+
+  var timeouts = h.getGlobal(mID+"_timeouts", []);
   
   // Cancela cada timeout no array
   for (var i = 0; i < timeouts.length; i++) {
-    h.log('@prcris#m4','Cancelando timeout {}', timeouts[i]);
+    h.log(mID,'Cancelando timeout {}', timeouts[i]);
     h.clearTimeout(timeouts[i]);
   }
   
-  var id = h.getGlobal('@prcris#m4_setRepaint_id') || 0;
+  var id = h.getGlobal(mID+'_setRepaint_id') || 0;
   if (id>0) {
-     h.setGlobal('@prcris#m4_setRepaint_id', 0);
+     h.setGlobal(mID+'_setRepaint_id', 0);
      h.clearInterval(id);
   }
 
   // Limpa o array de timeouts
-  h.setGlobal("@prcris#m4_timeouts", []);
+  h.setGlobal(mID+"_timeouts", []);
 }
-
 
 function disableSceneItems(settings) {
     var receiverID = settings.receiver_id;
@@ -467,31 +457,31 @@ function typeOfTrigger(type) {
     if (triggerID.indexOf('_slide') != -1) {
         triggerID = triggerID.slice(0, -6);
     }
-    h.log('@prcris#m4', '+*********** Nome da Trigger: {}, resultado da limpeza: {}', type, triggerID);
+    h.log(mID, '+*********** Nome da Trigger: {}, resultado da limpeza: {}', type, triggerID);
     return triggerID;
 }
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m4', log);
+    h.log.setEnabled(mID, log);
 }
 
 function calculateDisplayDuration(time, type, obj) { 
-  var pres = h.hly('GetCurrentPresentation');
   var timeoutMin = time * 1000;
   var textLength = 0;
   
-  h.log('@prcris#m4','================== {}',obj);
+  h.log(mID,'================== {}',obj);
 
   if (type === "text" || type === "song") {
     textLength = obj.text ? obj.text.length : 0;
   } else if (type === 'verse') {
+    var pres = h.hly('GetCurrentPresentation');
     textLength = getVerseLengthByID(pres.data.id);
   }
 
   var calculatedTimeout = textLength * 100;
   var timeoutDuration = calculatedTimeout < timeoutMin ? timeoutMin : calculatedTimeout + 5000;
 
-  h.log('@prcris#m4', "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
+  h.log(mID, "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
     textLength, type, timeoutMin / 1000, timeoutDuration / 1000);
 
   return timeoutDuration;
@@ -509,37 +499,35 @@ function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
       setIntervalVerse(receiverID, scene, item, time); // Configura o intervalo para versículo
     }
 
-    setIntervalRefresh(); // Configura o intervalo de atualização
+    // setIntervalRefresh(); // Configura o intervalo de atualização
 
     var timeoutID = h.setTimeout(function() {
       h.hly(clearType, { enable: true }); // Executa o comando F
-      h.log('@prcris#m4', '************ Executing timeout');
+      h.log(mID, '************ Executing timeout');
       sceneItemEnabled(receiverID, scene, item, false); // Desativa o item da cena
     }, timeoutDuration); // Define o timeout em milissegundos
 
     addTimeoutID(timeoutID); // Armazena o ID do timeout
-    h.log('@prcris#m4', '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
+    h.log(mID, '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
       type, clearType, timeoutDuration / 1000, receiverID, scene, item);
   }
 }
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
-//@prcris#m4_
-
 function actions(module) {
 
  logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
  return [
-        actionClearF8(module)
-        ]
+    actionClearF8(module)
+    ]
 }
 
 function actionClearF8(module) { //função para converter base salva de múltiplos slides para primeiro slide, reduzindo o arquivo
 return   { 
             id: 'clearTimeout',
             label: '',
-            icon : 'system:timer',
+            icon : 'timer',
             action: function(evt) {
                   h.notification("F8 automático cancelado para o slide atual",3);
                   h.hly('SetF8', { enable: false });
@@ -548,15 +536,12 @@ return   {
                   clearTimeouts();
             },
             status: function(evt) {
-                  var timeouts = h.getGlobal("@prcris#m4_timeouts") || [];
+                  var timeouts = h.getGlobal(mID+"_timeouts") || [];
                   if (timeouts.length>0) {
                   return {
-                        description : '<-Cancel', //h.getCountdown('@prcris#m4TimeOut'),
-                        icon : 'system:timer_off',
-                        active: true,           // default = false
-                        //foreground: '787878',   // default = null
+                        description : '<-Cancel', //h.getCountdown(mID+'TimeOut'),
+                        icon : 'timer_off',
                         background: 'FF0000',   // default = null
-                        //iconColor: '787878'     // default = null
                     };
                 } else {
                     return null; // default values

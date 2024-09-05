@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m5_
+mID = '@prcris#m5';
 
 function info() {
     return {
-        id: '@prcris#m5',
+        id: mID,
         name: 'Vídeo Sync OBS+',
         description: '<html>'+
                      '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
@@ -24,7 +24,7 @@ function triggers(module) {
 
   var arr = [];
   arr.push({
-    id: "video_show_obs" + '_@prcris#m5_',
+    id: "video_show_obs_" + mID,
     when: "displaying",
     item: "any_video",
     action: function(obj) {
@@ -46,12 +46,12 @@ function triggers(module) {
       var m2 = s.mixer_channel;
       var m3 = s.mixer_volume;
       
-      h.log("@prcris#m5", "Liberando mesa de som, receiver: {} , channel: {}, volume: {}",[m1,m2,m3]);
+      h.log(mID, "Liberando mesa de som, receiver: {} , channel: {}, volume: {}",[m1,m2,m3]);
       // Seta volume e libera o canal.
       unMute(m1, m2);      
       setVolume(m1, m2, m3 / 100);
       
-      h.log("@prcris#m5", "Ajustando player Holyrics: unMute, noRepeat, fullVolume");
+      h.log(mID, "Ajustando player Holyrics: unMute, noRepeat, fullVolume");
       
       var player = h.getPlayer(); 
       var pMute = player.isMute();
@@ -69,9 +69,9 @@ function triggers(module) {
       var p3 = s.scene_item_name;
       
       var jumpToScene = jsc.obs_v5.getActiveScene(p1);
-      h.log("@prcris#m5", "Salvando informação da cena atual, scene: {}",[jumpToScene]);
+      h.log(mID, "Salvando informação da cena atual, scene: {}",[jumpToScene]);
 
-      h.log("@prcris#m5", "Ativando cena no OBS, receiver: {} , scene: {}, item_scene: {}, file: {}",[p1,p2,p3,localFile]);
+      h.log(mID, "Ativando cena no OBS, receiver: {} , scene: {}, item_scene: {}, file: {}",[p1,p2,p3,localFile]);
       // ajusta a cena no OBS colocando o nome do vídeo e ativa a cena no OBS causando o play
       jsc.obs_v5.setInputSettings(p1, p3, {close_when_inactive: true, looping: false, local_file: localFile });
       jsc.obs_v5.setActiveScene(p1, p2);
@@ -79,9 +79,9 @@ function triggers(module) {
       // pepara para retornar à cena original quando o vídeo terminar ou for parado
       if (jumpToScene) {
           jsc.utils.trigger.addSingleRunVideoOnStop(mediaName, function() {
-              h.log("@prcris#m5", "Vídeo concluído - ativando cena anterior no OBS, receiver: {} , scene: {}",[p1, jumpToScene]);
+              h.log(mID, "Vídeo concluído - ativando cena anterior no OBS, receiver: {} , scene: {}",[p1, jumpToScene]);
               jsc.obs_v5.setActiveScene(p1, jumpToScene);
-              h.log("@prcris#m5", "Retornando cfgs VLC Player: mute: {} , repeat: {}, volume {} ",[pMute, pRepeat, pVolume]);
+              h.log(mID, "Retornando cfgs VLC Player: mute: {} , repeat: {}, volume {} ",[pMute, pRepeat, pVolume]);
               h.hly('MediaPlayerAction', {mute: pMute, repeat: pRepeat, volume: pVolume});
           });
       }
@@ -99,7 +99,7 @@ function triggers(module) {
 function settings() {
     return [
         {
-            name: 'Sobre @prcris#m5',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, {
@@ -128,7 +128,8 @@ function settings() {
             min: 0,
             max: 100,
             default_value: 0,
-            show_as_combobox : true
+            component: 'slider',
+            unit: '%'
         }, {
             type: 'separator'
         }, {
@@ -184,17 +185,17 @@ function settings() {
 //@prcris#m5_
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m5', log);
+    h.log.setEnabled('' + mID, log);
 }
 
 function setVolume(receiverID, channel, volume) {
   if (!receiverID) {
-    h.log("@prcris#m5",'setVolume: Mixer não configurado!'); 
+    h.log(mID,'setVolume: Mixer não configurado!'); 
     return;
   }
   var id = receiverID;
   var type = h.getReceiverInfo(id).type || "nenhum";
-  h.log("@prcris#m5","tipo mixer configurado: {}", type);
+  h.log(mID,"tipo mixer configurado: {}", type);
   try {
     if (type == 'osc') {
         jsc.x32.setChannelVolume(id, channel, volume);
@@ -202,17 +203,17 @@ function setVolume(receiverID, channel, volume) {
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).setVolume(volume);
     }
-  } catch (e) { h.log("@prcris#m5",'Erro {}',[e]) };
+  } catch (e) { h.log(mID,'Erro {}',[e]) };
 }
 
 function unMute(receiverID, channel) {
   if (!receiverID) {
-    h.log("@prcris#m5",'unMute: Mixer não configurado!'); 
+    h.log(mID,'unMute: Mixer não configurado!'); 
     return;
   }
   var id = receiverID;
   var type = h.getReceiverInfo(id).type || "nenhum";
-  h.log("@prcris#m5","tipo mixer configurado: {}", type);
+  h.log(mID,"tipo mixer configurado: {}", type);
   try { 
     if (type == 'osc') {
         jsc.x32.setChannelMute(id, channel, false);
@@ -220,5 +221,5 @@ function unMute(receiverID, channel) {
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).unmute();
     }
-  } catch (e) { h.log("@prcris#m5",'Erro {}',[e]) };
+  } catch (e) { h.log(mID,'Erro {}',[e]) };
 }
