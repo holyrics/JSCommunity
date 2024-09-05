@@ -104,7 +104,7 @@ function settings() {
             type: 'label'
         }, {
             type: 'title',
-            label: 'Configurações mixer digital:',
+            label: 'Configurações mixer digital: (opcional)',
         }, {
             id: 'digital_mixer_id',
             name: jsc.i18n('Receptor'),
@@ -188,8 +188,13 @@ function logState(log){
 }
 
 function setVolume(receiverID, channel, volume) {
+  if (!receiverID) {
+    h.log("@prcris#m5",'setVolume: Mixer não configurado!'); 
+    return;
+  }
   var id = receiverID;
-  var type = h.getReceiverInfo(id).type;
+  var type = h.getReceiverInfo(id).type || "nenhum";
+  h.log("@prcris#m5","tipo mixer configurado: {}", type);
   try {
     if (type == 'osc') {
         jsc.x32.setChannelVolume(id, channel, volume);
@@ -201,8 +206,13 @@ function setVolume(receiverID, channel, volume) {
 }
 
 function unMute(receiverID, channel) {
+  if (!receiverID) {
+    h.log("@prcris#m5",'unMute: Mixer não configurado!'); 
+    return;
+  }
   var id = receiverID;
-  var type = h.getReceiverInfo(id).type;
+  var type = h.getReceiverInfo(id).type || "nenhum";
+  h.log("@prcris#m5","tipo mixer configurado: {}", type);
   try { 
     if (type == 'osc') {
         jsc.x32.setChannelMute(id, channel, false);

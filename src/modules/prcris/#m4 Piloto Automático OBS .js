@@ -9,7 +9,11 @@ function info() {
                      '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+
                      '• Compatível com pressionamento de F8/F9/F10/Finalização.<br>'+ 
                      '• Compatível com apresentações do tipo texto/bíblia/música/imagem!/Power Point/Apresentação automática.<br><br>'+
-                     '<hr>Para mais informações, acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     'Atualização: Os itens de texto/bíblia/música tem tempo mínimo dinâmico, aumentando de acordo com a quantidade de texto exibida.<br><br>'+
+                     '<hr>Para mais informações, acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+       allowed_requests: [ 
+                        'https://holyrics.com.br/api/jsc/map_verse_length.php' 
+                        ]
     };
 }
 
@@ -23,7 +27,7 @@ function triggers(module) {
  logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração  
  disableSceneItems(module.settings); // oculta no OBS todos os itens configurados no módulo
  if (module.settings.log) {
-   h.openWindow('js_monitor');   
+   h.openWindow('js_monitor');    
  }
   
  var arr = [];
@@ -143,7 +147,7 @@ function settings() {
             }
         }, {
             id: 'scene_item_name_song',
-            name: jsc.i18n('Letra Música'),
+            name: jsc.i18n('Letra Música/Ap. Automática'),
             description: '',
             type: 'string',
             suggested_values: function(obj) {
@@ -176,7 +180,8 @@ function settings() {
         }, {
             id: 'timerTexto',
             name: jsc.i18n('F8 automático (segundos)'),
-            description: '<html>Tempo máximo de exibição de um slide antes de ativar a tecla F8 e ocultar o item no OBS.',
+            description: '<html>Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item.<BR>'+
+                         'Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras.',
             type: 'number',
             default_value : 20,
             min : 0,
@@ -195,6 +200,18 @@ function settings() {
 
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22736574496e74657276616c227d
+function setIntervalRefresh() {
+
+var id = h.setInterval(function () {
+   module.repaintPanel();
+}, 1000);
+
+h.setGlobal('@prcris#m4_setRepaint_id', id);
+
+}
+
+
+
 function setIntervalVerse(receiverID, scene, item, time) { 
 
 var id = h.getGlobal('@prcris#m4_setIntervalVerse_id') || 0;
@@ -232,7 +249,7 @@ id = h.setInterval(function (receiverID, scene, item, time) {
         h.log('@prcris#m4','verse {}, oldVerse {}, isBlank {}', verse, oldVerse, isBlank);
         h.log('@prcris#m4','setTimeoutKeyF do setInterval {} {} {} {}', c.receiverID, c.scene, c.item, c.time);
         h.setGlobal('@prcris#m4_setIntervalVerse_name', verse);
-        setTimeoutKeyF(c.receiverID, c.scene, c.item, c.time, 'verse', '');   
+        setTimeoutKeyF(c.receiverID, c.scene, c.item, c.time, 'verse');   
     }
 
 }, 1000);
@@ -252,56 +269,48 @@ function clearIntervalVerse() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
 //@prcris#m4_
 function verseOBS(show, obj, module) {
-  var trigg = obj.metadata.trigger.id
-  h.log('@prcris#m4', '====trigger acionada: {} ', [trigg]);
-  var type = typePres();
-  var typeTrigg = typeOfTrigger(trigg); 
-  var text = type === "text" ? obj.text : "";
+  var trigg = obj.metadata.trigger.id;
+  h.log('@prcris#m4', '==== Trigger acionada: {}', trigg);
 
-  type = type === "" ? typeTrigg : type;
-  var timeoutDisabled = type === "unknown" || type === "verse";
-  type = type === "unknown" ? typeTrigg : type;
-  
-  h.log('@prcris#m4', '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', [type, typeTrigg]);
-  
+  var type = typePres();
+  var typeTrigg = typeOfTrigger(trigg);
+
+  type = type || typeTrigg; // Usa `typeTrigg` se `type` estiver vazio
+  var timeoutDisabled = (type === "unknown");
+  type = (type === "unknown") ? typeTrigg : type;
+
+  if (type === 'automatic_presentation') {
+    type = 'song';
+  }
+
+  h.log('@prcris#m4', '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
+
   clearTimeouts();
   clearIntervalVerse();
 
-  
-  if (typeAbort(type) && show) { 
+  if (typeAbort(type) && show) {
     h.log('@prcris#m4', 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
-    return  
+    return;
   }
-  
+
   var receiverID = module.settings.receiver_id;
-  
-  var keyScene = 'scene_name';
-  var keyItem = 'scene_item_name_' + type;
-  
-  var scene = module.settings[keyScene];
-  var item = module.settings[keyItem];
-  
+  var scene = module.settings['scene_name'];
+  var item = module.settings['scene_item_name_' + type];
   var time = module.settings.timerTexto;
 
-  if (type == 'verse') {
-      setIntervalVerse(receiverID, scene, item, time);
+  h.log('@prcris#m4', "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
+
+  if (!scene) {
+    h.log('@prcris#m4', 'Sem cena para o tipo: {}', type);
+    return;
   }
-    
-  h.log('@prcris#m4',"keyItem:{} | item {} ",[keyItem,item]);
-  
-  if (!scene) { 
-     h.log('@prcris#m4','Sem cena para o tipo: {}',[type]);
-     return;
-  }
-  
+
   if (show && !timeoutDisabled) {
-     setTimeoutKeyF(receiverID, scene, item, time, type, text);
+    setTimeoutKeyF(receiverID, scene, item, time, type, obj);
   }
-    
-   h.log('@prcris#m4','type: {} setSceneItemEnabled( "{}", "{}", "{}", {})',[type, receiverID, scene, item, show]);
-   sceneItemEnabled(receiverID, scene, item, show);
 
-
+  h.log('@prcris#m4', 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
+  sceneItemEnabled(receiverID, scene, item, show);
 }
 
 function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
@@ -419,6 +428,12 @@ function clearTimeouts() {
     h.clearTimeout(timeouts[i]);
   }
   
+  var id = h.getGlobal('@prcris#m4_setRepaint_id') || 0;
+  if (id>0) {
+     h.setGlobal('@prcris#m4_setRepaint_id', 0);
+     h.clearInterval(id);
+  }
+
   // Limpa o array de timeouts
   h.setGlobal("@prcris#m4_timeouts", []);
 }
@@ -460,22 +475,138 @@ function logState(log){
     h.log.setEnabled('@prcris#m4', log);
 }
 
+function calculateDisplayDuration(time, type, obj) { 
+  var pres = h.hly('GetCurrentPresentation');
+  var timeoutMin = time * 1000;
+  var textLength = 0;
+  
+  h.log('@prcris#m4','================== {}',obj);
+
+  if (type === "text" || type === "song") {
+    textLength = obj.text ? obj.text.length : 0;
+  } else if (type === 'verse') {
+    textLength = getVerseLengthByID(pres.data.id);
+  }
+
+  var calculatedTimeout = textLength * 100;
+  var timeoutDuration = calculatedTimeout < timeoutMin ? timeoutMin : calculatedTimeout + 5000;
+
+  h.log('@prcris#m4', "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
+    textLength, type, timeoutMin / 1000, timeoutDuration / 1000);
+
+  return timeoutDuration;
+}
 
 
-function setTimeoutKeyF(receiverID, scene, item, time, type, text) {
-    var timeoutMin = time * 1000;
-    h.log('@prcris#m4',"Text length: {} | type: {}  | timeOutMin {}s",text.length, type, timeoutMin/1000);
-    if (timeoutMin > 0) {
-      clearTimeouts();
-      var timeoutDuration = (text.length * 100) < timeoutMin ? timeoutMin : (text.length * 100) + 5000;
-      var clearType = type == 'song' ? 'SetF9' : 'SetF8';
-      var timeoutID = h.setTimeout(function() {
-         h.hly(clearType, { enable: true }); // decide qual F apertar
-         h.log('@prcris#m4','************ Executing timeout');
-         sceneItemEnabled(receiverID, scene, item, false); 
-      }, timeoutDuration); // Time in milliseconds
-      // name: clear_type + '_' + type
-      addTimeoutID(timeoutID);
-      h.log('@prcris#m4','++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)',type, clearType,timeoutDuration/1000, receiverID, scene, item);
+function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
+  if (time > 0) {
+    clearTimeouts(); // Limpa os timeouts anteriores
+    
+    var clearType = (type === 'song') ? 'SetF9' : 'SetF8'; // Define qual tecla F será apertada
+    var timeoutDuration = calculateDisplayDuration(time, type, obj); // Calcula o tempo de exibição
+
+    if (type === 'verse') {
+      setIntervalVerse(receiverID, scene, item, time); // Configura o intervalo para versículo
     }
+
+    setIntervalRefresh(); // Configura o intervalo de atualização
+
+    var timeoutID = h.setTimeout(function() {
+      h.hly(clearType, { enable: true }); // Executa o comando F
+      h.log('@prcris#m4', '************ Executing timeout');
+      sceneItemEnabled(receiverID, scene, item, false); // Desativa o item da cena
+    }, timeoutDuration); // Define o timeout em milissegundos
+
+    addTimeoutID(timeoutID); // Armazena o ID do timeout
+    h.log('@prcris#m4', '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
+      type, clearType, timeoutDuration / 1000, receiverID, scene, item);
+  }
+}
+
+
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
+//@prcris#m4_
+
+function actions(module) {
+
+ logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
+ return [
+        actionClearF8(module)
+        ]
+}
+
+function actionClearF8(module) { //função para converter base salva de múltiplos slides para primeiro slide, reduzindo o arquivo
+return   { 
+            id: 'clearTimeout',
+            label: '',
+            icon : 'system:timer',
+            action: function(evt) {
+                  h.notification("F8 automático cancelado para o slide atual",3);
+                  h.hly('SetF8', { enable: false });
+                  h.hly('SetF9', { enable: false });
+                  h.hly('SetF10', { enable: false });
+                  clearTimeouts();
+            },
+            status: function(evt) {
+                  var timeouts = h.getGlobal("@prcris#m4_timeouts") || [];
+                  if (timeouts.length>0) {
+                  return {
+                        description : '<-Cancel', //h.getCountdown('@prcris#m4TimeOut'),
+                        icon : 'system:timer_off',
+                        active: true,           // default = false
+                        //foreground: '787878',   // default = null
+                        background: 'FF0000',   // default = null
+                        //iconColor: '787878'     // default = null
+                    };
+                } else {
+                    return null; // default values
+                }
+            }
+         }
+}
+
+
+
+
+
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226d6170566572736546756e6374696f6e73227d
+function getMapVerseLength(lang) {
+  lang = lang || 'pt';
+  var keyCache = 'map_verse_length_' + lang;
+  var map = h.getGlobal(keyCache);
+  if (map) {
+    return map;
+  }
+  map = h.restore(keyCache);
+  if (map) {
+    return h.setGlobal(keyCache, map);
+  }
+  var url = 'https://holyrics.com.br/api/jsc/map_verse_length.php?lang=' + lang;
+  var data = h.apiRequest(url, '');
+  var books = [];
+  data.split("#").forEach(dataChapters => {
+    books.push(dataChapters.split("!"));
+  });
+  map = books;
+  h.store(keyCache, map);
+  return h.setGlobal(keyCache, map);
+}
+
+function getVerseLength(b, c, v, lang) {
+  var map = getMapVerseLength(lang);
+  try {
+      var c = map[b - 1][c - 1].charAt(v - 1);
+      return (c.charCodeAt(0) - 65) * 10
+  } catch (e) {
+      return 0;
+  }  
+}
+
+function getVerseLengthByID(id, lang) {
+  return getVerseLength(
+    id.substring(0, 2),
+    id.substring(2, 5),
+    id.substring(5, 8),
+    lang
+  );
 }
