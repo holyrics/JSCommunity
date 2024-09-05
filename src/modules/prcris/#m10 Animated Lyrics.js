@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-// @prcris_#m10_
+var mID = '@prcris#m10'
 
 function info() {
     return {
-        id: '@prcris#m10',
+        id: mID,
         name: 'Letras Animadas',
         description: '<html>'+
                      '• Permite utilizar animações em vídeo como fundo de maneira automática <br><br>'+
@@ -24,13 +24,11 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m10_
-
 function settings() {
     
     return [
         {
-            name: 'Sobre @prcris#m10',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, {
@@ -47,7 +45,6 @@ function settings() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22637573746f6d5468656d65227d
-//@prcris#m10_
 function customTheme(module) {
     return {
         
@@ -56,22 +53,22 @@ function customTheme(module) {
            var loop_disabled = !!t;  
 
            if (obj.slide_show_index == 1) { 
-              h.log("@prcris#m10", 'disable_background_loop? {}', loop_disabled);
+              h.log(mID, 'disable_background_loop? {}', loop_disabled);
               h.setRuntimeSettings('disable_background_loop', loop_disabled);
               h.setRuntimeSettings('disable_extend_single_video', loop_disabled);
-              h.log("@prcris#m10", 'alias_background: {}', t);
+              h.log(mID, 'alias_background: {}', t);
            }
            
            if (!t) {
                if (obj.slide_show_index == 1) { 
-                  h.log("@prcris#m10", 'Campo extra alias_background não configurado');
+                  h.log(mID, 'Campo extra alias_background não configurado');
                }
               return null;
            }
            var path = 'backmusic/' + t + '/' + obj.slide_show_index + '.mp4';
            if (h.videoExists(path)) {
              if (obj.slide_show_index == 1) { 
-                 h.log("@prcris#m10", "Vídeo configurado {} ",path);
+                 h.log(mID, "Vídeo configurado {} ",path);
                 }
              return {
                custom_theme: {
@@ -87,7 +84,7 @@ function customTheme(module) {
           }
           else {
             if (obj.slide_show_index < 1000) {
-               h.log("@prcris#m10", "Vídeo não encontrado: {}", path);
+               h.log(mID, "Vídeo não encontrado: {}", path);
             }
           }
         }
@@ -104,5 +101,5 @@ function actions(module) {
 }
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m10', log);
+    h.log.setEnabled(mID, log);
 }

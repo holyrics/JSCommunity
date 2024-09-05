@@ -1,8 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-// @prcris_#m11_
+var mID = '@prcris#m11';
+
 function info() {
     return {
-        id: '@prcris#m11',
+        id: mID,
         name: 'Temas dinâmicos',
         description: '<html>'+
                      '• Este módulo automatiza a troca de tema e plano de fundo, permitindo ter sempre um fundo diferente'+
@@ -22,7 +23,6 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
-//@prcris#m11
 function triggers(module) {
 
   logState(module.settings.log); // habilita ou desabilita o log de acordo com a configuração  
@@ -30,7 +30,7 @@ function triggers(module) {
   var arr = [];
 
   arr.push({
-    id: "@prcris#m11_temaFixo_title",
+    id: mID + "_temaFixo_title",
     when: "displaying",
     item: "any_title_subitem",
     action: function(obj) {
@@ -43,19 +43,19 @@ function triggers(module) {
       }
 
       h.setGlobal('temaFixo', temaFixo);
-      h.log('@prcris#m11', 'temaFixo setado para {}', temaFixo);
+      h.log(mID, 'temaFixo setado para {}', temaFixo);
     }
   });
   
   
   
   arr.push({
-    id: "@prcris#m11_salta_titulo_musica",
+    id: mID + "_salta_titulo_musica",
     when: "displaying",
     item: "any_song_slide",
     action: function(obj) {
       if (obj.slide_show_index == -1 && module.settings.skiptitle) {
-        var timeout = h.getGlobal('@prcris#m11_salta_titulo_musica',1000);
+        var timeout = h.getGlobal(mID + '_salta_titulo_musica',1000);
               h.setTimeout(function (obj) {
                  h.hly('ActionGoToIndex', {index: 1});
               }, timeout);
@@ -67,13 +67,12 @@ function triggers(module) {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m11_
 
 function settings() {
     
     return [
         {
-            name: 'Sobre @prcris#m11',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, {
@@ -124,7 +123,7 @@ function settings() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22637573746f6d5468656d65227d
-//@prcris#m11_
+
 function customTheme(module) {
     function getTheme(obj) {
        var tema;
@@ -139,7 +138,7 @@ function customTheme(module) {
        else {                                            tema = module.settings.slow.name;}
        
        if (obj.slide_show_index === 1) {
-           h.log('@prcris#m11', 'Fundo selecionado: {}', tema);
+           h.log(mID, 'Fundo selecionado: {}', tema);
        }
        
        if (!tagExists(tema) && !obj.tema_fixo) {
@@ -170,8 +169,6 @@ function actions(module) {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m11
-
 function preCulto() {
   var r = h.hly('GetCurrentSchedule');
   var s = r.data[0];
@@ -190,7 +187,7 @@ function preCulto() {
 }
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m11', log);
+    h.log.setEnabled(mID, log);
 }
 
 function compararHora(str) {

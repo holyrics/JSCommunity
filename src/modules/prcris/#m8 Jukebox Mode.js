@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m8
+var mID = '@prcris#m8'
 
 function info() {
     return {
-        id: '@prcris#m8',
+        id: mID,
         name: 'Jukebox Mode',
         description: '<html>'+
                      '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>'+
@@ -13,12 +13,11 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2274726967676572227d
-//@prcris#m8
 
 function triggers(module) {
     var arr = [];    
     arr.push({
-        id: "troca_musica" + '_@prcris#m8_',
+        id: "troca_musica_" + mID,
         when: "displaying",
         item: "any_song_slide",
         action: function(obj) {
@@ -45,7 +44,7 @@ function triggers(module) {
 
                     if (playlist.data[i].type === "song" && titleFound && actualSongFound) {
                         h.showSong(playlist.data[i].song_id);
-                        h.notification("Música "+playlist.data[i].name+' inciada pelo módulo @prcris#m8', 5);
+                        h.notification("Música "+playlist.data[i].name+' inciada pelo módulo ' + mID, 5);
                         break;
                     }
                 }
@@ -53,7 +52,7 @@ function triggers(module) {
         }
     });
     arr.push({
-        id: "salva_titulo" + '_@prcris#m8_',
+        id: "salva_titulo_" + mID,
         when: "displaying",
         item: "any_title_subitem",
         action: function(obj) {

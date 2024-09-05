@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m2_
+var mID = '@prcris#m2'
 
 function info() {
     return {
-        id: '@prcris#m2',
+        id: mID,
         name: 'Tempo Certeiro',
         description: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), '+
                      'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>'+
@@ -39,61 +39,57 @@ function contextActions(module) {
         
         
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273797374656d56617273227d
-//@prcris#m2_
-
 function systemVariables(module) {
     return {
     prCris_m2_getCountDown : function() {
-        if (h.getCountdown(h.getGlobal('@prcris#m2_countdownKey')).indexOf('-') == -1) {
-           return h.getCountdown(h.getGlobal('@prcris#m2_countdownKey')).split(':')[2];
+        if (h.getCountdown(h.getGlobal(mID + '_countdownKey')).indexOf('-') == -1) {
+           return h.getCountdown(h.getGlobal(mID + '_countdownKey')).split(':')[2];
         }
         return '--';
         }
     };
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22747269676765727320227d
-//@prcris#m2_
-
 function triggers(module) {
  var triggs = [];
  triggs.push({
-      id: "@prcris#m2_countdown_interludio",
+      id: mID + "_countdown_interludio",
       when: "displaying",
       item: "any_song_slide",
       action: function(obj) {
         
-        h.setGlobal('@prcris#m2_countdownKey','@prcris#m2_instr_ctdw_'+h.random(0, 100000, '@prcris#m2_instr_ctdw_')); //
+        h.setGlobal(mID + '_countdownKey',mID + '_instr_ctdw_'+h.random(0, 100000, mID + '_instr_ctdw_')); //
         
-        h.log('@prcris#m2_', 'trigg_countdown_interludio() Passando título: {} | sl: {}',[obj.slide_description, obj.slide_show_index]);
+        h.log(mID, 'trigg_countdown_interludio() Passando título: {} | sl: {}',[obj.slide_description, obj.slide_show_index]);
         if (obj.slide_description == module.settings.instrumentalVerseName) {
-          h.log('@prcris#m2_', 'trigg_countdown_interludio() iniciando countdown');
-          h.startCountdown(h.getGlobal('@prcris#m2_countdownKey'), getInstrumentalTime(obj));
-          h.startTimer('@prcris#m2_slide_time');
+          h.log(mID, 'trigg_countdown_interludio() iniciando countdown');
+          h.startCountdown(h.getGlobal(mID + '_countdownKey'), getInstrumentalTime(obj));
+          h.startTimer(mID + '_slide_time');
         }
 
-        var slideAnterior = h.getGlobal('@prcris#m2_slide_anterior');
-        var slideTime = h.getTimerSeconds('@prcris#m2_slide_time');
+        var slideAnterior = h.getGlobal(mID + '_slide_anterior');
+        var slideTime = h.getTimerSeconds(mID + '_slide_time');
 
         if (slideAnterior == module.settings.instrumentalVerseName && slideTime > 0) {
            saveInstrumentalData(obj, slideTime);
         }
-        h.setGlobal('@prcris#m2_slide_anterior', obj.slide_description);
+        h.setGlobal(mID + '_slide_anterior', obj.slide_description);
       }
     });
 
   triggs.push({
-      id: "@prcris#m2_time_interludio_closing_any_song",
+      id: mID + "_time_interludio_closing_any_song",
       when: "closing",
       item: "any_song",
       action: function(obj) {
        storeInstrumentalData();
        h.setGlobal('slide_anterior', '');
-       h.log('@prcris#m2_', 'Encerrando música.');
+       h.log(mID, 'Encerrando música.');
       }
     });
 
   triggs.push({
-      id: "@prcris#m2_time_interludio_displaying_any_song",
+      id: mID + "_time_interludio_displaying_any_song",
       when: "displaying",
       item: "any_song",
       action: function(obj) {
@@ -103,8 +99,6 @@ function triggers(module) {
   return triggs;
 };
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
-//@prcris#m2_
-
 function actions(module) {
     logState(module.settings.log);
     return [
@@ -120,11 +114,11 @@ function actionGravaTempos() {
         hint : 'Rec',
         icon : 'system:fiber_manual_record',
         action: function(evt) {
-            var interludio_time = !h.getGlobal('@prcris#m2_rec_interludio_time');
-            h.setGlobal('@prcris#m2_rec_interludio_time', interludio_time);
+            var interludio_time = !h.getGlobal(mID + '_rec_interludio_time');
+            h.setGlobal(mID + '_rec_interludio_time', interludio_time);
         },
         status: function(evt) {
-            if (h.getGlobal('@prcris#m2_rec_interludio_time')) {
+            if (h.getGlobal(mID + '_rec_interludio_time')) {
                 return {
                     active: true,           // default = false
                     foreground: 'E6E6E6',   // default = null
@@ -182,8 +176,6 @@ function listUnrecordedCountdownSongs(module) {
     }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m2_
-
 function settings() {
     //mesma sintaxe de function input
     return [
@@ -235,8 +227,6 @@ function settings() {
     ];
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226164645f7374617274227d
-//@prcris#m2_
-
 function textTransform(module) {
     return {
         song: function(obj) {
@@ -260,7 +250,6 @@ function textTransform(module) {
     };
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m2_
 function getInstrumentalTime(obj) {
 
   var musicID = String(obj.id);
@@ -274,14 +263,14 @@ function getInstrumentalTime(obj) {
 
   try {
     if (instrCtdwn[musicID] && instrCtdwn[musicID][slideToGet] !== undefined) {
-      h.log('@prcris#m2_', 'getInstrumentalTime() instrCtdwn[{}][{}] = {}', [musicID, slideToGet, instrCtdwn[musicID][slideToGet]]);
+      h.log(mID, 'getInstrumentalTime() instrCtdwn[{}][{}] = {}', [musicID, slideToGet, instrCtdwn[musicID][slideToGet]]);
       return instrCtdwn[musicID][slideToGet];
     } else {
-      h.log('@prcris#m2_', 'getInstrumentalTime() instrCtdwn[{}][{}] = zerado', [musicID, slideToGet]);
+      h.log(mID, 'getInstrumentalTime() instrCtdwn[{}][{}] = zerado', [musicID, slideToGet]);
       return 0;
     }
   } catch (e) {
-    h.log('@prcris#m2_', 'getInstrumentalTime() Erro: {}', [e.message]);
+    h.log(mID, 'getInstrumentalTime() Erro: {}', [e.message]);
     return 0;  // Retorna 0 em caso de erro
   }
 }
@@ -295,7 +284,7 @@ function saveInstrumentalData(obj, slideTime) {
  }
  var slideToSave = String(obj.slide_show_index - 1);    
  if (slideToSave > obj.slide_show_total -1 || slideToSave < 0  || slideToSave > 100) {
-     h.log('@prcris#m2_','saveInstrumentalData() Ignorado slide {} - t{}s',[slideToSave,slideTime]);
+     h.log(mID,'saveInstrumentalData() Ignorado slide {} - t{}s',[slideToSave,slideTime]);
      return;
  }
  
@@ -303,19 +292,19 @@ function saveInstrumentalData(obj, slideTime) {
  
  if (!instrCtdwn[musicID]) {
     instrCtdwn[musicID] = {};  // Inicializa como um objeto vazio
-    h.log('@prcris#m2_', 'saveInstrumentalData() instrCtdwn[{}] inicializado []', [musicID]);
+    h.log(mID, 'saveInstrumentalData() instrCtdwn[{}] inicializado []', [musicID]);
  }
  
  instrCtdwn[musicID] = repairInstrumentalData(instrCtdwn[musicID]); //remove lixo negativo da base antiga
  
- h.log('@prcris#m2_','saveInstrumentalData() dados atuais m{}: {}', [musicID, instrCtdwn[musicID]]);
+ h.log(mID,'saveInstrumentalData() dados atuais m{}: {}', [musicID, instrCtdwn[musicID]]);
 
- if (h.getGlobal('@prcris#m2_rec_interludio_time') || instrCtdwn[musicID][slideToSave] === undefined) {
+ if (h.getGlobal(mID + '_rec_interludio_time') || instrCtdwn[musicID][slideToSave] === undefined) {
     instrCtdwn[musicID][slideToSave] = slideTime;
-    h.log('@prcris#m2_','saveInstrumentalData() Salvo m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
+    h.log(mID,'saveInstrumentalData() Salvo m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
  }
- h.setGlobal('@prcris#m2_instrCtdwn_addedData', true);
- h.setGlobal('@prcris#m2_instrCtdwn_data', instrCtdwn);
+ h.setGlobal(mID + '_instrCtdwn_addedData', true);
+ h.setGlobal(mID + '_instrCtdwn_data', instrCtdwn);
 }
 
 function repairInstrumentalData(data) {
@@ -334,11 +323,11 @@ function repairInstrumentalData(data) {
 }
 
 function restoreInstrumentalData() {
-  var tmp = h.getGlobal('@prcris#m2_instrCtdwn_data');
+  var tmp = h.getGlobal(mID + '_instrCtdwn_data');
   var origin = 'carregado da memória';
 
       if (!tmp) {
-         tmp = h.restore('@prcris#m2_instrCtdwn_data') ;
+         tmp = h.restore(mID + '_instrCtdwn_data') ;
          origin = 'carregado do arquivo';
       }
       if (!tmp) {
@@ -346,17 +335,17 @@ function restoreInstrumentalData() {
          origin = 'zerado';
       }
   var tmp2 = JSON.stringify(tmp);
-  h.log('@prcris#m2_',"restoreInstrumentalData() - {} - {} bytes",[origin, tmp2.length()]);  
+  h.log(mID,"restoreInstrumentalData() - {} - {} bytes",[origin, tmp2.length()]);  
   return tmp;
 }
 
 function storeInstrumentalData() {
 
-  if (h.getGlobal('@prcris#m2_instrCtdwn_addedData')) {
+  if (h.getGlobal(mID + '_instrCtdwn_addedData')) {
      var instrCtdwn = restoreInstrumentalData();
-     h.store('@prcris#m2_instrCtdwn_data', instrCtdwn);
-     h.log('@prcris#m2_','Dados salvos no arquivo: {}',[instrCtdwn]);
-     h.setGlobal('@prcris#m2_instrCtdwn_addedData',null);
+     h.store(mID + '_instrCtdwn_data', instrCtdwn);
+     h.log(mID,'Dados salvos no arquivo: {}',[instrCtdwn]);
+     h.setGlobal(mID + '_instrCtdwn_addedData',null);
      }
 }
 

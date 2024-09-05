@@ -1,9 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-// @prcris_#m3_
+var mID = mID;
 
 function info() {
     return {
-        id: '@prcris#m3',
+        id: mID,
         name: 'Imagem no Slide',
         description: '<html>'+
                      '• Permite inserir uma imagem em uma apresentação do tipo texto. <br><br>'+
@@ -23,13 +23,11 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m3_
-
 function settings() {
     
     return [
         {
-            name: 'Sobre @prcris#m3',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, {
@@ -46,14 +44,13 @@ function settings() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22637573746f6d5468656d65227d
-//@prcris#m3_
 function customTheme(module) {
     return {
         text: function(obj) {
             var t = obj.text;
             if (t.toUpperCase().indexOf("IMG=") === 0) {
                 var path = t.substring(4);
-                h.log("@prcris#m3", "Imagem encontrada " + path);
+                h.log(mID, "Imagem encontrada " + path);
                 return {
                     custom_theme: {
                         background: {
@@ -78,5 +75,5 @@ function actions(module) {
 }
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m3', log);
+    h.log.setEnabled(mID, log);
 }
