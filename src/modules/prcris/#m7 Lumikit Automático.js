@@ -1,8 +1,8 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m7
+var mID = '@prcris#m7'
 function info() {
     return {
-        id: '@prcris#m7',
+        id: mID,
         name: 'Lumikit Automático',
         description: '<html>'+
                      '• Sorteia cenas cadastradas como em movimento para versos de Refrão e Instrumental<br>'+
@@ -17,8 +17,6 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-// Functions
-//@prcris#m7
 function decodeLight(obj, marker) {
     var slideType = obj.slide_type + obj.slide_description;  
     return slideType.indexOf(marker) > -1;
@@ -31,7 +29,7 @@ function randomizeLight(type) {
 
 function setBpm(BPM, module) {
     if (BPM > 29) { 
-        h.log('@prcris#m7', 'BPM alterado para: ' + BPM);
+        h.log(mID, 'BPM alterado para: ' + BPM);
         h.hly('SetBpm', { bpm: BPM });
         // Ajusta o BPM das luzes
         jsc.lumikit.setBPM(module.settings.receiverID, BPM);
@@ -39,27 +37,24 @@ function setBpm(BPM, module) {
 }
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m7', log);
+    h.log.setEnabled(mID, log);
 }
 
 function setTimeoutBPM(module, bpm, slide, time) {
     time = time == 0 ? 500 : time;
     var timeoutDuration = time < 10 ? time * 1000 : time;
-    h.log('@prcris#m7', 'Velocidade será alterada pelo Slide {} para {} depois de {} segundos', [slide, bpm, timeoutDuration / 1000]); 
+    h.log(mID, 'Velocidade será alterada pelo Slide {} para {} depois de {} segundos', [slide, bpm, timeoutDuration / 1000]); 
     h.setTimeout(function() {
-        h.log('@prcris#m7', '************ Executando timeout');
-        h.log('@prcris#m7', 'Velocidade Alterada pelo Slide {} para {} depois de {} segundos', slide, bpm, timeoutDuration / 1000); 
+        h.log(mID, '************ Executando timeout');
+        h.log(mID, 'Velocidade Alterada pelo Slide {} para {} depois de {} segundos', slide, bpm, timeoutDuration / 1000); 
         setBpm(bpm, module);
-    }, timeoutDuration, '@prcris#m7_alterBPM'); // Tempo em milissegundos
+    }, timeoutDuration, mID + '_alterBPM'); // Tempo em milissegundos
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-// Settings
-//@prcris#m7
-
 function settings() {
     return [
         {
-            name: 'Sobre @prcris#m7',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações, visite <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, 
@@ -113,7 +108,7 @@ function settings() {
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 // Triggers
-//@prcris#m7
+
 function triggers(module) {
     var arr = [];
     
@@ -124,14 +119,14 @@ function triggers(module) {
     }    
     
     arr.push({
-        id: 'lumikitChangeScene_@prcris#m7',
+        id: 'lumikitChangeScene_' + mID,
         when: 'displaying',
         item: 'any_song_slide',
         action: function(obj) {
             var receiverID = module.settings.receiverID;
             var movingScenes = module.settings.movingScene.replace(/\s/g, '').split(',');  // Índice das cenas ritmadas
             var staticScenes = module.settings.staticScene.replace(/\s/g, '').split(',');    // Índice das cenas estáticas
-            var movementActive = h.getGlobal('@prcris#m7_movementActive', false);
+            var movementActive = h.getGlobal(mID + '_movementActive', false);
             var bpm = obj.bpm > 0 || !module.settings.movementRequiresBpm;
             var code;
 
@@ -147,8 +142,8 @@ function triggers(module) {
             } else {  
                 code = randomizeLight(staticScenes);
             }
-            h.setGlobal('@prcris#m7_movementActive', movingScenes.indexOf(code) > -1);
-            h.log('@prcris#m7', 'Luz sorteada: {} ', code); 
+            h.setGlobal(mID + '_movementActive', movingScenes.indexOf(code) > -1);
+            h.log(mID, 'Luz sorteada: {} ', code); 
             jsc.lumikit.setActiveScene(receiverID, 1, code);
         }
     });
@@ -157,7 +152,7 @@ function triggers(module) {
     // Usando a seguinte sintaxe: 23,2|30,80 que significa 
     // no slide 23 divida o bpm por 2, e no 30 ajuste o bpm para 80
     arr.push({
-        id: "BPM_variable_@prcris#m7",
+        id: "BPM_variable_" + mID,
         when: "displaying",
         item: "any_song_slide",
         action: function(obj) {
@@ -170,7 +165,7 @@ function triggers(module) {
                         if (slide == obj.slide_show_index) {
                              var bpm = bpmInfo[1];
                              var time = bpmInfo[2] || 0;
-                             h.log('@prcris#m7', 'BPM variável encontrado: {} ', slides[j]);    
+                             h.log(mID, 'BPM variável encontrado: {} ', slides[j]);    
                              if (bpm == '!') { bpm = obj.bpm * 2; }
                              else if (bpm < 4) { bpm = obj.bpm / bpm; }
                              setTimeoutBPM(module, parseInt(bpm).toFixed(0), slide, time);
@@ -182,22 +177,22 @@ function triggers(module) {
     });
     
     arr.push({
-        id: 'lumikitResetScene_@prcris#m7',
+        id: 'lumikitResetScene_' + mID,
         when: 'closing',
         item: 'any_song',
         action: function (obj) {    
-            h.setGlobal('@prcris#m7_movementActive', false);
+            h.setGlobal(mID + '_movementActive', false);
             jsc.lumikit.setActiveScene(module.settings.receiverID, 1, module.settings.defaultLightScene);
         }
     });
 
     // Seta a velocidade do ritmo / luzes caso esteja preenchido o BPM na música
     arr.push({ 
-        id: 'lumikitSetBpm_@prcris#m7',
+        id: 'lumikitSetBpm_' + mID,
         when: 'displaying',
         item: 'any_song',
         action: function (obj) {    
-            h.setGlobal('@prcris#m7_movementActive', false);
+            h.setGlobal(mID + '_movementActive', false);
             if (obj.bpm > 29) { 
                 setBpm(obj.bpm, module);
             }

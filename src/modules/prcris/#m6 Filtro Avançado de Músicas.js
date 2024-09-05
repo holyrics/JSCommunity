@@ -1,8 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m6
+var mID = '@prcris#m6';
+
 function info() {
     return {
-        id: '@prcris#m6',
+        id: mID,
         name: 'Filtro Avançado de Músicas',
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+
@@ -16,13 +17,12 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2253657474696e6773227d
-//@prcris#m6
 // esta aba é responsável pelo ícone da engrenagem, onde se configuram os parâmetros de funcionamento do módulo
 
 function settings(module) {
     var arr = [
         {
-            name: 'Sobre @prcris#m6_',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         },{
@@ -69,8 +69,6 @@ function settings(module) {
     return arr;
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73536574227d
-//@prcris#m6
-
 function actions(module) {
     logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
     return [
@@ -146,7 +144,7 @@ function actionSongsFilter(module) {
 
             var q = module.inputSettings('custom_search', inputs);
             if (q !== null) {
-                h.log("@prcris#m6","Valores escolhidos = {}",[q]);
+                h.log(mID,"Valores escolhidos = {}",[q]);
                 filterApply(q);
             }
         }
@@ -156,7 +154,7 @@ function actionSongsFilter(module) {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m6_
+
 // aqui estão as funções responsáveis por salvar, ler, capturar e aplicar volumes
 //
 
@@ -218,7 +216,7 @@ function listScheduledSingers(settings) { // Obter nomes dos cantores escalados
 
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m6', log);
+    h.log.setEnabled(mID, log);
 }
 
 
