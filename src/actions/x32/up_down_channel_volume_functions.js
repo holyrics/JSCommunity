@@ -42,7 +42,7 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 5,
-            show_as_combobox : true
+            component : 'slider'
        }, {
             id: 'smoothness',
             name: jsc.i18n('Smoothness')+' (1-10)',
@@ -51,7 +51,7 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 5,
-            show_as_combobox : true
+            component : 'slider'
        }, {
             id: 'unmute',
             name: jsc.i18n('Unmute'),
