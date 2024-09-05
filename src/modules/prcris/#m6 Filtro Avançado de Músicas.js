@@ -189,7 +189,7 @@ function filterApply(q) {
 
     h.hly('SetInterfaceInput', {
         id: 'main_lyrics_tab_search',
-        value: filter,
+        value: removeAccents(filter),
         focus: true
     });
 }
@@ -236,4 +236,29 @@ function filterGroups(startsWith) {
         }
     }
     return groups;
+}
+
+function removeAccents(str) {
+    var accentMap = {
+        'a': /[áàâãäå]/g,
+        'e': /[éèêë]/g,
+        'i': /[íìîï]/g,
+        'o': /[óòôõö]/g,
+        'u': /[úùûü]/g,
+        'c': /[ç]/g,
+        'n': /[ñ]/g,
+        'A': /[ÁÀÂÃÄÅ]/g,
+        'E': /[ÉÈÊË]/g,
+        'I': /[ÍÌÎÏ]/g,
+        'O': /[ÓÒÔÕÖ]/g,
+        'U': /[ÚÙÛÜ]/g,
+        'C': /[Ç]/g,
+        'N': /[Ñ]/g
+    };
+
+    for (var letter in accentMap) {
+        str = str.replace(accentMap[letter], '.');
+    }
+
+    return str;
 }
