@@ -7,6 +7,7 @@ function info() {
         name: 'Vídeo Sync OBS+',
         description: '<html>'+
                      '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
+                     '• Usa o Plugin do Holyrics para acessar o vídeo.<br>'+
                      '• Encerra o vídeo no OBS e retorna à cena original.<br>'+
                      '• Libera o canal e ajusta o volume nos mixers digitais Behinger e SoundCraft.<br><br>'+
                      '<hr>Para mais informações, acesse '+"<a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>"
@@ -15,8 +16,6 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
-//@prcris#m5_
-
 /// triggers para ocultar / exibir texto no telão e OBS
 function triggers(module) {
 
@@ -29,16 +28,16 @@ function triggers(module) {
     item: "any_video",
     action: function(obj) {
       var s = module.settings;
+      
+     var settings = getPluginSettings();
+         if (!settings.ip || !settings.port || !settings.token) {
+              h.log("Configurações de vídeo para o plugin não encontradas.");
+         return;
+        }
+  
       var mediaName = obj.file_fullname;
-      var localFile = obj.file_path;
-      if (s.path) {
-          var basePath = s.path.replace(/\\/g, '/');
-          if (!basePath.endsWith('/'))
-              basePath += '/';
-          localFile = basePath + mediaName;
-      }
 
-      if (s.exclamation_mark && localFile.indexOf('!') == -1) {
+      if (s.exclamation_mark && mediaName.indexOf('!') == -1) {
           return 
       }
       
@@ -71,9 +70,18 @@ function triggers(module) {
       var jumpToScene = jsc.obs_v5.getActiveScene(p1);
       h.log(mID, "Salvando informação da cena atual, scene: {}",[jumpToScene]);
 
-      h.log(mID, "Ativando cena no OBS, receiver: {} , scene: {}, item_scene: {}, file: {}",[p1,p2,p3,localFile]);
+      h.log(mID, "Ativando cena no OBS, receiver: {} , scene: {}, item_scene: {}, file: {}",[p1,p2,p3,mediaName]);
       // ajusta a cena no OBS colocando o nome do vídeo e ativa a cena no OBS causando o play
-      jsc.obs_v5.setInputSettings(p1, p3, {close_when_inactive: true, looping: false, local_file: localFile });
+      
+      url =  createURL(settings, mediaName);
+
+      jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
+      jsc.obs_v5.setInputSettings(p1, p3, {
+                                    input: url,
+                             input_format: "",
+                      close_when_inactive: true,
+                                  looping: false,
+                            is_local_file: false });
       jsc.obs_v5.setActiveScene(p1, p2);
       
       // pepara para retornar à cena original quando o vídeo terminar ou for parado
@@ -81,6 +89,7 @@ function triggers(module) {
           jsc.utils.trigger.addSingleRunVideoOnStop(mediaName, function() {
               h.log(mID, "Vídeo concluído - ativando cena anterior no OBS, receiver: {} , scene: {}",[p1, jumpToScene]);
               jsc.obs_v5.setActiveScene(p1, jumpToScene);
+              jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
               h.log(mID, "Retornando cfgs VLC Player: mute: {} , repeat: {}, volume {} ",[pMute, pRepeat, pVolume]);
               h.hly('MediaPlayerAction', {mute: pMute, repeat: pRepeat, volume: pVolume});
           });
@@ -94,8 +103,6 @@ function triggers(module) {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
-//@prcris#m5_
-
 function settings() {
     return [
         {
@@ -157,12 +164,6 @@ function settings() {
             suggested_values: function(obj) {
                 return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
             }
-        }, {
-            id: 'path',
-            name: jsc.utils.format('{} ({})', [jsc.i18n('Base directory'), jsc.i18n('Optional')]),
-            description: jsc.i18n('Location of the folder with videos on the computer where OBS Studio is open'),
-            type: 'string',
-            hint: 'C:/folder/example'
         }, {        
             id: 'exclamation_mark',
             label: jsc.i18n('Exibir apenas vídeos com exclamação (!) no nome'),
@@ -182,8 +183,6 @@ function settings() {
 
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m5_
-
 function logState(log){ 
     h.log.setEnabled('' + mID, log);
 }
@@ -222,4 +221,16 @@ function unMute(receiverID, channel) {
         jsc.soundcraft.conn(id).input(channel).unmute();
     }
   } catch (e) { h.log(mID,'Erro {}',[e]) };
+}
+
+function getPluginSettings() {
+  var json = h.readFileAsText('.plugin_system_settings.txt');
+  return JSON.parse(json);
+}
+
+function createURL(settings, path) {
+  var token = h.sha512Str(path + "#" + settings.token);
+  return "http://" + settings.ip + ":" + settings.port + "/get_video?"
+         + "path=" + encodeURIComponent(path)
+         + "&token=" + encodeURIComponent(token);
 }
