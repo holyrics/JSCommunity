@@ -109,16 +109,23 @@ function actionSongsFilter(module) {
                     label: 'Preencha os parâmetros:'
                 },
                 {
-                    id: 'singer|%group: ',
-                    type: 'text',
-                    name: 'Cantor',
-                    suggested_values: s.scheduled ? listScheduledSingers(s) : filterGroups(s.singer)
-                },
-                {
                     id: 'multitrack|%group: ',
                     type: 'text',
                     name: 'Trilha',
                     suggested_values: filterGroups(s.multitrack)
+                },
+                {
+                    id: 'artist|%artist: ',
+                    type: 'text',
+                    name: 'Artista',
+                    allowed_values: listArtists(),
+                    show_as_combobox : true
+                },
+                {
+                    id: 'singer|%group: ',
+                    type: 'combobox',
+                    name: 'Cantor',
+                    suggested_values: s.scheduled ? listScheduledSingers(s) : filterGroups(s.singer)
                 },
                 {
                     id: 'bpm_start|%bpm: >= ',
@@ -175,7 +182,7 @@ function filterApply(q) {
     if (groups.length == 1) {
         groupsFilter = "%group: " + groups[0];
     } else if (groups.length > 1) {
-        groupsFilter = "%group: --rgx (" + groups.join('|') + ")";
+        groupsFilter = "%group: --rgx (" + replaceAccents(groups.join('|')) + ")";
     }
 
     var combinedFilters = otherFilters.length > 0 ? otherFilters.join(' && ') : "";
@@ -189,7 +196,7 @@ function filterApply(q) {
 
     h.hly('SetInterfaceInput', {
         id: 'main_lyrics_tab_search',
-        value: removeAccents(filter),
+        value: filter,
         focus: true
     });
 }
@@ -238,27 +245,31 @@ function filterGroups(startsWith) {
     return groups;
 }
 
-function removeAccents(str) {
-    var accentMap = {
-        'a': /[áàâãäå]/g,
-        'e': /[éèêë]/g,
-        'i': /[íìîï]/g,
-        'o': /[óòôõö]/g,
-        'u': /[úùûü]/g,
-        'c': /[ç]/g,
-        'n': /[ñ]/g,
-        'A': /[ÁÀÂÃÄÅ]/g,
-        'E': /[ÉÈÊË]/g,
-        'I': /[ÍÌÎÏ]/g,
-        'O': /[ÓÒÔÕÖ]/g,
-        'U': /[ÚÙÛÜ]/g,
-        'C': /[Ç]/g,
-        'N': /[Ñ]/g
-    };
+function replaceAccents(text) {
+    var acentuados = /[áàâãäéèêëíìîïóòôõöúùûüçñÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇÑ]/g;
+    return text.replace(acentuados, '.');
+}
 
-    for (var letter in accentMap) {
-        str = str.replace(accentMap[letter], '.');
+
+
+function listArtists() {
+    // Obtém os dados
+    var r = h.hly('GetSongs').data;
+
+    // Cria um array de artistas
+    var artists = [];
+
+    // Itera sobre os dados e coleta os nomes dos artistas sem repetição
+    for (var i = 0; i < r.length; i++) {
+        var s = r[i];
+        // Adiciona o nome do artista à lista apenas se ainda não estiver lá
+        if (artists.indexOf(s.artist) === -1) {
+            artists.push(s.artist);
+        }
     }
 
-    return str;
+    // Ordena os artistas em ordem alfabética
+    artists.sort();
+
+    return artists;
 }
