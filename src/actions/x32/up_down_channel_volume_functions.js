@@ -42,6 +42,7 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 5,
+			show_as_combobox: !h.isMinVersion("2.23.0"),
             component : 'slider'
        }, {
             id: 'smoothness',
@@ -51,6 +52,7 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 5,
+			show_as_combobox: !h.isMinVersion("2.23.0"),
             component : 'slider'
        }, {
             id: 'unmute',

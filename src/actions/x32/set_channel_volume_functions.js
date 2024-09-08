@@ -31,6 +31,7 @@ function hGetItemInputParams() {
             min: 0,
             max: 100,
             default_value: 0,
+			show_as_combobox: !h.isMinVersion("2.23.0"),
             component : 'slider',
             unit: '%'		
        }, {
@@ -41,6 +42,7 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 1,
+			show_as_combobox: !h.isMinVersion("2.23.0"),
             component : 'slider'	
        }, {
             id: 'unmute',
