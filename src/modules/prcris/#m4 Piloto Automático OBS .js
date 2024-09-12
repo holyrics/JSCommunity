@@ -528,6 +528,7 @@ return   {
             id: 'clearTimeout',
             label: '',
             icon : 'timer',
+            hint : 'Cancela o F8 automático programado pelo tempo de exibição do Slide',
             action: function(evt) {
                   h.notification("F8 automático cancelado para o slide atual",3);
                   h.hly('SetF8', { enable: false });
