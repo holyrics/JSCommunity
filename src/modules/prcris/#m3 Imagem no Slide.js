@@ -1,5 +1,5 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-var mID = mID;
+var mID = '@prcris#m3';
 
 function info() {
     return {
