@@ -1,8 +1,9 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-//@prcris#m6
+var mID = '@prcris#m6';
+
 function info() {
     return {
-        id: '@prcris#m6',
+        id: mID,
         name: 'Filtro Avançado de Músicas',
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+
@@ -16,13 +17,12 @@ function info() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2253657474696e6773227d
-//@prcris#m6
 // esta aba é responsável pelo ícone da engrenagem, onde se configuram os parâmetros de funcionamento do módulo
 
 function settings(module) {
     var arr = [
         {
-            name: 'Sobre @prcris#m6_',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         },{
@@ -69,8 +69,6 @@ function settings(module) {
     return arr;
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73536574227d
-//@prcris#m6
-
 function actions(module) {
     logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
     return [
@@ -111,16 +109,23 @@ function actionSongsFilter(module) {
                     label: 'Preencha os parâmetros:'
                 },
                 {
-                    id: 'singer|%group: ',
-                    type: 'text',
-                    name: 'Cantor',
-                    suggested_values: s.scheduled ? listScheduledSingers(s) : filterGroups(s.singer)
-                },
-                {
                     id: 'multitrack|%group: ',
                     type: 'text',
                     name: 'Trilha',
                     suggested_values: filterGroups(s.multitrack)
+                },
+                {
+                    id: 'artist|%artist: ',
+                    type: 'text',
+                    name: 'Artista',
+                    allowed_values: listArtists(),
+                    show_as_combobox : true
+                },
+                {
+                    id: 'singer|%group: ',
+                    type: 'combobox',
+                    name: 'Cantor',
+                    suggested_values: s.scheduled ? listScheduledSingers(s) : filterGroups(s.singer)
                 },
                 {
                     id: 'bpm_start|%bpm: >= ',
@@ -146,7 +151,7 @@ function actionSongsFilter(module) {
 
             var q = module.inputSettings('custom_search', inputs);
             if (q !== null) {
-                h.log("@prcris#m6","Valores escolhidos = {}",[q]);
+                h.log(mID,"Valores escolhidos = {}",[q]);
                 filterApply(q);
             }
         }
@@ -156,7 +161,7 @@ function actionSongsFilter(module) {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-//@prcris#m6_
+
 // aqui estão as funções responsáveis por salvar, ler, capturar e aplicar volumes
 //
 
@@ -177,7 +182,7 @@ function filterApply(q) {
     if (groups.length == 1) {
         groupsFilter = "%group: " + groups[0];
     } else if (groups.length > 1) {
-        groupsFilter = "%group: --rgx (" + groups.join('|') + ")";
+        groupsFilter = "%group: --rgx (" + replaceAccents(groups.join('|')) + ")";
     }
 
     var combinedFilters = otherFilters.length > 0 ? otherFilters.join(' && ') : "";
@@ -218,7 +223,7 @@ function listScheduledSingers(settings) { // Obter nomes dos cantores escalados
 
 
 function logState(log){ 
-    h.log.setEnabled('@prcris#m6', log);
+    h.log.setEnabled(mID, log);
 }
 
 
@@ -238,4 +243,33 @@ function filterGroups(startsWith) {
         }
     }
     return groups;
+}
+
+function replaceAccents(text) {
+    var acentuados = /[áàâãäéèêëíìîïóòôõöúùûüçñÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇÑ]/g;
+    return text.replace(acentuados, '.');
+}
+
+
+
+function listArtists() {
+    // Obtém os dados
+    var r = h.hly('GetSongs').data;
+
+    // Cria um array de artistas
+    var artists = [];
+
+    // Itera sobre os dados e coleta os nomes dos artistas sem repetição
+    for (var i = 0; i < r.length; i++) {
+        var s = r[i];
+        // Adiciona o nome do artista à lista apenas se ainda não estiver lá
+        if (artists.indexOf(s.artist) === -1) {
+            artists.push(s.artist);
+        }
+    }
+
+    // Ordena os artistas em ordem alfabética
+    artists.sort();
+
+    return artists;
 }

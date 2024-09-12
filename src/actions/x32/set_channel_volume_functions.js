@@ -31,7 +31,9 @@ function hGetItemInputParams() {
             min: 0,
             max: 100,
             default_value: 0,
-            show_as_combobox : true
+			show_as_combobox: !h.isMinVersion("2.23.0"),
+            component : 'slider',
+            unit: '%'		
        }, {
             id: 'smoothness',
             name: jsc.i18n('Smoothness')+ ' (1-10)',
@@ -40,7 +42,8 @@ function hGetItemInputParams() {
             min: 1,
             max: 10,
             default_value: 1,
-            show_as_combobox : true
+			show_as_combobox: !h.isMinVersion("2.23.0"),
+            component : 'slider'	
        }, {
             id: 'unmute',
             name: jsc.i18n('Unmute'),
