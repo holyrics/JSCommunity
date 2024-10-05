@@ -69,11 +69,10 @@ function customTheme(module) {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273746172745570227d
-function actions(module) {
+function startup(module) {
     logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
-    return null;
-}
-
+}    
+   
 function logState(log){ 
     h.log.setEnabled(mID, log);
 }

@@ -1,5 +1,14 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m11';
+var mUID = '@prcris#m11';
+
+//#import modules_generic_functions 
+
+function startup(module) { 
+  mUID = mID + module.id;
+  logState(module.settings.log, mUID, 'startup '+ mID);
+}
+
 
 function info() {
     return {
@@ -24,9 +33,6 @@ function info() {
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 function triggers(module) {
-
-  logState(module.settings.log); // habilita ou desabilita o log de acordo com a configuração  
-
   var arr = [];
 
   arr.push({
@@ -114,7 +120,7 @@ function settings() {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
@@ -163,7 +169,6 @@ function customTheme(module) {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273746172745570227d
 function actions(module) {
     
-    logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
     return null;
 }
 
@@ -184,10 +189,6 @@ function preCulto() {
   }
 
   return false;
-}
-
-function logState(log){ 
-    h.log.setEnabled(mID, log);
 }
 
 function compararHora(str) {
@@ -216,14 +217,6 @@ function tagExists(tag) {
     }
     // Verifica se a tag existe no array de tags acumuladas
     return tags.indexOf(tag) !== -1;
-}
-
-
-function showMessage(title,message) {
-var content = [{ type: 'title',label: title },
-              { type: 'separator' },
-              { type: 'title',label: message}];
-h.input(content);
 }
 
 function getThemeData(themeName) {

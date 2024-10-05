@@ -1,5 +1,16 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m2'
+var mUID = '@prcris#m2';
+
+//#import modules_generic_functions
+
+function startup(module) { 
+
+mUID = mID + module.id;
+logState(module.settings.log, mUID, 'startup '+ mID);
+ 
+}
+
 
 function info() {
     return {
@@ -21,7 +32,7 @@ function contextActions(module) {
                    "Tempos Instrumentais Salvos - "+'(@prcris#m2)',
              types: ['song'],
              action: function(module) {
-             var musicID = String(module.id);
+             var musicID = String(module.item.id);
              var instrCtdwn = restoreInstrumentalData();
              var slideTimes = instrCtdwn[musicID];            
              var reportData = '';
@@ -30,7 +41,7 @@ function contextActions(module) {
                   var time = slideTimes[key];
                   reportData = reportData +'<br>Slide ' + slideNumber + '= ' + time + 's';
              }
-             showMessage('Tempos Instrumentais Salvos',['Tempos atuais da música ','<b>'+module.title+':</b>', reportData]);
+             showMessage('Tempos Instrumentais Salvos',['Tempos atuais da música ','<b>'+module.item.title+':</b>', reportData]);
             }
         }
        ];
@@ -42,8 +53,8 @@ function contextActions(module) {
 function systemVariables(module) {
     return {
     prCris_m2_getCountDown : function() {
-        if (h.getCountdown(h.getGlobal(mID + '_countdownKey')).indexOf('-') == -1) {
-           return h.getCountdown(h.getGlobal(mID + '_countdownKey')).split(':')[2];
+        if (h.getCountdown(h.getGlobal(mUID + '_countdownKey')).indexOf('-') == -1) {
+           return h.getCountdown(h.getGlobal(mUID + '_countdownKey')).split(':')[2];
         }
         return '--';
         }
@@ -53,43 +64,43 @@ function systemVariables(module) {
 function triggers(module) {
  var triggs = [];
  triggs.push({
-      id: mID + "_countdown_interludio",
+      id: mUID + "_countdown_interludio",
       when: "displaying",
       item: "any_song_slide",
       action: function(obj) {
         
-        h.setGlobal(mID + '_countdownKey',mID + '_instr_ctdw_'+h.random(0, 100000, mID + '_instr_ctdw_')); //
+        h.setGlobal(mUID + '_countdownKey',mUID + '_instr_ctdw_'+h.random(0, 100000, mUID + '_instr_ctdw_')); //
         
-        h.log(mID, 'trigg_countdown_interludio() Passando título: {} | sl: {}',[obj.slide_description, obj.slide_show_index]);
+        h.log(mUID, 'trigg_countdown_interludio() Passando título: {} | sl: {}',[obj.slide_description, obj.slide_show_index]);
         if (obj.slide_description == module.settings.instrumentalVerseName) {
-          h.log(mID, 'trigg_countdown_interludio() iniciando countdown');
-          h.startCountdown(h.getGlobal(mID + '_countdownKey'), getInstrumentalTime(obj));
+          h.log(mUID, 'trigg_countdown_interludio() iniciando countdown');
+          h.startCountdown(h.getGlobal(mUID + '_countdownKey'), getInstrumentalTime(obj));
           h.startTimer(mID + '_slide_time');
         }
 
-        var slideAnterior = h.getGlobal(mID + '_slide_anterior');
+        var slideAnterior = h.getGlobal(mUID + '_slide_anterior');
         var slideTime = h.getTimerSeconds(mID + '_slide_time');
 
         if (slideAnterior == module.settings.instrumentalVerseName && slideTime > 0) {
            saveInstrumentalData(obj, slideTime);
         }
-        h.setGlobal(mID + '_slide_anterior', obj.slide_description);
+        h.setGlobal(mUID + '_slide_anterior', obj.slide_description);
       }
     });
 
   triggs.push({
-      id: mID + "_time_interludio_closing_any_song",
+      id: mUID + "_time_interludio_closing_any_song",
       when: "closing",
       item: "any_song",
       action: function(obj) {
        storeInstrumentalData();
        h.setGlobal('slide_anterior', '');
-       h.log(mID, 'Encerrando música.');
+       h.log(mUID, 'Encerrando música.');
       }
     });
 
   triggs.push({
-      id: mID + "_time_interludio_displaying_any_song",
+      id: mUID + "_time_interludio_displaying_any_song",
       when: "displaying",
       item: "any_song",
       action: function(obj) {
@@ -100,7 +111,7 @@ function triggers(module) {
 };
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
-    logState(module.settings.log);
+
     return [
         actionGravaTempos(),
         listUnrecordedCountdownSongs(module)
@@ -114,15 +125,15 @@ function actionGravaTempos() {
         hint : 'Rec',
         icon : 'system:fiber_manual_record',
         action: function(evt) {
-            var interludio_time = !h.getGlobal(mID + '_rec_interludio_time');
-            h.setGlobal(mID + '_rec_interludio_time', interludio_time);
+            var interludio_time = !h.getGlobal(mUID + '_rec_interludio_time');
+            h.setGlobal(mUID + '_rec_interludio_time', interludio_time);
         },
         status: function(evt) {
-            if (h.getGlobal(mID + '_rec_interludio_time')) {
+            if (h.getGlobal(mUID + '_rec_interludio_time')) {
                 return {
                     active: true,           // default = false
                     foreground: 'E6E6E6',   // default = null
-                    background: 'FF0000',   // default = null
+                    background: '790903',   // default = null
                     iconColor: 'E6E6E6'     // default = null
                 };
             } else {
@@ -180,7 +191,7 @@ function settings() {
     //mesma sintaxe de function input
     return [
         {
-            name: 'Sobre @prcris#m2',
+            name: 'Sobre ' + mID,
             description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         },
@@ -221,7 +232,7 @@ function settings() {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID,' onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
@@ -263,14 +274,14 @@ function getInstrumentalTime(obj) {
 
   try {
     if (instrCtdwn[musicID] && instrCtdwn[musicID][slideToGet] !== undefined) {
-      h.log(mID, 'getInstrumentalTime() instrCtdwn[{}][{}] = {}', [musicID, slideToGet, instrCtdwn[musicID][slideToGet]]);
+      h.log(mUID, 'getInstrumentalTime() instrCtdwn[{}][{}] = {}', [musicID, slideToGet, instrCtdwn[musicID][slideToGet]]);
       return instrCtdwn[musicID][slideToGet];
     } else {
-      h.log(mID, 'getInstrumentalTime() instrCtdwn[{}][{}] = zerado', [musicID, slideToGet]);
+      h.log(mUID, 'getInstrumentalTime() instrCtdwn[{}][{}] = zerado', [musicID, slideToGet]);
       return 0;
     }
   } catch (e) {
-    h.log(mID, 'getInstrumentalTime() Erro: {}', [e.message]);
+    h.log(mUID, 'getInstrumentalTime() Erro: {}', [e.message]);
     return 0;  // Retorna 0 em caso de erro
   }
 }
@@ -284,7 +295,7 @@ function saveInstrumentalData(obj, slideTime) {
  }
  var slideToSave = String(obj.slide_show_index - 1);    
  if (slideToSave > obj.slide_show_total -1 || slideToSave < 0  || slideToSave > 100) {
-     h.log(mID,'saveInstrumentalData() Ignorado slide {} - t{}s',[slideToSave,slideTime]);
+     h.log(mUID,'saveInstrumentalData() Ignorado slide {} - t{}s',[slideToSave,slideTime]);
      return;
  }
  
@@ -292,19 +303,19 @@ function saveInstrumentalData(obj, slideTime) {
  
  if (!instrCtdwn[musicID]) {
     instrCtdwn[musicID] = {};  // Inicializa como um objeto vazio
-    h.log(mID, 'saveInstrumentalData() instrCtdwn[{}] inicializado []', [musicID]);
+    h.log(mUID, 'saveInstrumentalData() instrCtdwn[{}] inicializado []', [musicID]);
  }
  
  instrCtdwn[musicID] = repairInstrumentalData(instrCtdwn[musicID]); //remove lixo negativo da base antiga
  
- h.log(mID,'saveInstrumentalData() dados atuais m{}: {}', [musicID, instrCtdwn[musicID]]);
+ h.log(mUID,'saveInstrumentalData() dados atuais m{}: {}', [musicID, instrCtdwn[musicID]]);
 
- if (h.getGlobal(mID + '_rec_interludio_time') || instrCtdwn[musicID][slideToSave] === undefined) {
+ if (h.getGlobal(mUID + '_rec_interludio_time') || instrCtdwn[musicID][slideToSave] === undefined) {
     instrCtdwn[musicID][slideToSave] = slideTime;
-    h.log(mID,'saveInstrumentalData() Salvo m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
+    h.log(mUID,'saveInstrumentalData() Salvo m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
  }
- h.setGlobal(mID + '_instrCtdwn_addedData', true);
- h.setGlobal(mID + '_instrCtdwn_data', instrCtdwn);
+ h.setGlobal(mUID + '_instrCtdwn_addedData', true);
+ h.setGlobal(mUID + '_instrCtdwn_data', instrCtdwn);
 }
 
 function repairInstrumentalData(data) {
@@ -323,7 +334,7 @@ function repairInstrumentalData(data) {
 }
 
 function restoreInstrumentalData() {
-  var tmp = h.getGlobal(mID + '_instrCtdwn_data');
+  var tmp = h.getGlobal(mUID + '_instrCtdwn_data');
   var origin = 'carregado da memória';
 
       if (!tmp) {
@@ -335,24 +346,19 @@ function restoreInstrumentalData() {
          origin = 'zerado';
       }
   var tmp2 = JSON.stringify(tmp);
-  h.log(mID,"restoreInstrumentalData() - {} - {} bytes",[origin, tmp2.length()]);  
+  h.log(mUID,"restoreInstrumentalData() - {} - {} bytes",[origin, tmp2.length()]);  
   return tmp;
 }
 
 function storeInstrumentalData() {
 
-  if (h.getGlobal(mID + '_instrCtdwn_addedData')) {
+  if (h.getGlobal(mUID + '_instrCtdwn_addedData')) {
      var instrCtdwn = restoreInstrumentalData();
      h.store(mID + '_instrCtdwn_data', instrCtdwn);
-     h.log(mID,'Dados salvos no arquivo: {}',[instrCtdwn]);
-     h.setGlobal(mID + '_instrCtdwn_addedData',null);
+     h.log(mUID,'Dados salvos no arquivo: {}',[instrCtdwn]);
+     h.setGlobal(mUID + '_instrCtdwn_addedData',null);
      }
 }
-
-function logState(log){ 
-    h.log.setEnabled('@prcris#m1', log);
-}
-
 
 function showMessage(title, message) {
     var content = [{ type: 'title', label: title }, { type: 'separator' }];

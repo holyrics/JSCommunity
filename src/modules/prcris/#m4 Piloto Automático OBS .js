@@ -1,9 +1,17 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m4';
+var mUID = '@prcris#m4';
+
+//#import modules_generic_functions 
+
+function startup(module) { 
+  mUID = mID + module.id;
+  logState(module.settings.log, mUID, 'startup '+ mID); 
+}
 
 function info() {   
     return {  
-        id: mID,
+        id: mUID,
         name: 'Piloto Automático OBS',           
         description: '<html>'+
                      '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+
@@ -21,12 +29,13 @@ function info() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 /// triggers para ocultar / exibir itens no telão e OBS
 function triggers(module) {
+  if (module.isEnabled()) {
+     disableSceneItems(module.settings); // oculta no OBS todos os itens configurados no módulo
+  }
   
- logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração  
- disableSceneItems(module.settings); // oculta no OBS todos os itens configurados no módulo
- if (module.settings.log) {
-   h.openWindow('js_monitor');    
- }
+  if (isDev() && module.settings.log && module.isEnabled()) { 
+     h.openWindow('js_monitor');    
+  }
   
  var arr = [];
   
@@ -51,7 +60,7 @@ function addAllTrigg(arr, module) {
 
     for (var i = 0; i < triggers.length; i++) {
         var trig = triggers[i];
-        h.setGlobal(mID+'_close_item', trig.closeItem);
+        h.setGlobal(mUID+'_close_item', trig.closeItem);
         addTriggGeneric(arr, module, trig.displayItem, trig.closeItem, trig.isPpt);
     }
 }
@@ -59,7 +68,7 @@ function addAllTrigg(arr, module) {
 function addTriggGeneric(arr, module, displayItem, closeItem) {
     
     arr.push({
-        id: closeItem + "_close_obs_" + mID,
+        id: closeItem + "_close_obs_" + mUID,
         when: "closing",
         item: closeItem.split('|')[0],
         action: function(obj) {
@@ -69,7 +78,7 @@ function addTriggGeneric(arr, module, displayItem, closeItem) {
     });
 
     arr.push({
-        id: displayItem + "_show_obs_" + mID,
+        id: displayItem + "_show_obs_" + mUID,
         when: "displaying",
         item: displayItem.split('|')[0],
         action: function(obj) {
@@ -82,7 +91,7 @@ function addTriggFX(arr, module) {
 
  for (var i = 8; i <= 10 ; i++) {
  arr.push({
-    id: "press_f" + i +"_obs_" + mID,
+    id: "press_f" + i +"_obs_" + mUID,
     when: "displaying",
     item: "f"+i,
     action: function(obj) {
@@ -91,7 +100,7 @@ function addTriggFX(arr, module) {
   });
 
   arr.push({
-    id: "release_f" + i +"_obs_" + mID,
+    id: "release_f" + i +"_obs_" + mUID,
     when: "closing",
     item: "f"+i,
     action: function(obj) {
@@ -189,32 +198,19 @@ function addTriggFX(arr, module) {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
 
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22736574496e74657276616c227d
-/*
-function setIntervalRefresh() {
-
-var id = h.setInterval(function () {
-   module.repaintPanel();
-}, 1000);
-
-h.setGlobal(mID+'_setRepaint_id', id);
-
-}
-*/
-
-
 function setIntervalVerse(receiverID, scene, item, time) { 
 
-var id = h.getGlobal(mID+'_setIntervalVerse_id') || 0;
+var id = h.getGlobal(mUID+'_setIntervalVerse_id') || 0;
 
-h.log(mID,'setInterval values {} {} {} {}',receiverID, scene, item, time);
-h.setGlobal(mID+'_setInterval_values',{receiverID : receiverID, scene : scene, item: item, time : time});
+h.log(mUID,'setInterval values {} {} {} {}',receiverID, scene, item, time);
+h.setGlobal(mUID+'_setInterval_values',{receiverID : receiverID, scene : scene, item: item, time : time});
 
 if (id>0) {
     return
@@ -228,7 +224,7 @@ id = h.setInterval(function (receiverID, scene, item, time) {
        return;
     }
     
-    var c = h.getGlobal(mID+'_setInterval_values');
+    var c = h.getGlobal(mUID+'_setInterval_values');
         
     var verse = cP.name;
     var types_screen = ['blank', 'black', 'wallpaper'];
@@ -236,37 +232,37 @@ id = h.setInterval(function (receiverID, scene, item, time) {
     var isBlank = types_screen.indexOf(cP.slide_type) !== -1 ? true : false;
     
     if (isBlank) {
-      h.setGlobal(mID+'_setIntervalVerse_name', ''); 
+      h.setGlobal(mUID+'_setIntervalVerse_name', ''); 
       return;
     }
     
-    var oldVerse = h.getGlobal(mID+'_setIntervalVerse_name') || ''; 
+    var oldVerse = h.getGlobal(mUID+'_setIntervalVerse_name') || ''; 
     
     if (oldVerse != verse) {
-        h.log(mID,'verse {}, oldVerse {}, isBlank {}', verse, oldVerse, isBlank);
-        h.log(mID,'setTimeoutKeyF do setInterval {} {} {} {}', c.receiverID, c.scene, c.item, c.time);
-        h.setGlobal(mID+'_setIntervalVerse_name', verse);
+        h.log(mUID,'verse {}, oldVerse {}, isBlank {}', verse, oldVerse, isBlank);
+        h.log(mUID,'setTimeoutKeyF do setInterval {} {} {} {}', c.receiverID, c.scene, c.item, c.time);
+        h.setGlobal(mUID+'_setIntervalVerse_name', verse);
         setTimeoutKeyF(c.receiverID, c.scene, c.item, c.time, 'verse');   
     }
 
 }, 1000);
 
-h.setGlobal(mID+'_setIntervalVerse_id', id);
+h.setGlobal(mUID+'_setIntervalVerse_id', id);
 
 } 
 
 function clearIntervalVerse() {
-  h.setGlobal(mID+'_setIntervalVerse_name', '');
-  var id = h.getGlobal(mID+'_setIntervalVerse_id') || 0;
+  h.setGlobal(mUID+'_setIntervalVerse_name', '');
+  var id = h.getGlobal(mUID+'_setIntervalVerse_id') || 0;
   if (id>0) {
-     h.setGlobal(mID+'_setIntervalVerse_id', 0);
+     h.setGlobal(mUID+'_setIntervalVerse_id', 0);
      h.clearInterval(id);
   }
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
 function verseOBS(show, obj, module) {
   var trigg = obj.metadata.trigger.id;
-  h.log(mID, '==== Trigger acionada: {}', trigg);
+  h.log(mUID, '==== Trigger acionada: {}', trigg);
 
   var type = typePres();
   var typeTrigg = typeOfTrigger(trigg);
@@ -279,13 +275,13 @@ function verseOBS(show, obj, module) {
     type = 'song';
   }
 
-  h.log(mID, '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
+  h.log(mUID, '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
 
   clearTimeouts();
   clearIntervalVerse();
 
   if (typeAbort(type) && show) {
-    h.log(mID, 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
+    h.log(mUID, 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
     return;
   }
 
@@ -294,10 +290,10 @@ function verseOBS(show, obj, module) {
   var item = module.settings['scene_item_name_' + type];
   var time = module.settings.timerTexto;
 
-  h.log(mID, "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
+  h.log(mUID, "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
 
   if (!scene) {
-    h.log(mID, 'Sem cena para o tipo: {}', type);
+    h.log(mUID, 'Sem cena para o tipo: {}', type);
     return;
   }
 
@@ -305,7 +301,7 @@ function verseOBS(show, obj, module) {
     setTimeoutKeyF(receiverID, scene, item, time, type, obj);
   }
 
-  h.log(mID, 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
+  h.log(mUID, 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
   sceneItemEnabled(receiverID, scene, item, show);
 }
 
@@ -313,7 +309,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
     var maxAttempts = 10;
     var attempts = 0;
     var itemEnabled;
-    var status = h.getGlobal(mID+'_status_of_types') || [];
+    var status = h.getGlobal(mUID+'_status_of_types') || [];
 
     function updateStatus(sceneItemNameOrID, show) {
         var found = false;
@@ -327,7 +323,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
         if (!found) {
             status.push({ sceneItemNameOrID: sceneItemNameOrID, show: show });
         }
-        h.setGlobal(mID+'_status_of_types', status);
+        h.setGlobal(mUID+'_status_of_types', status);
     }
 
     function disableAllOtherItems(currentSceneItemNameOrID) {
@@ -346,17 +342,17 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
         try {
             itemEnabled = jsc.obs_v5.getSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID);
         } catch (e) {
-            h.log(mID, 'Erro OBS: {}', [e]);
+            h.log(mUID, 'Erro OBS: {}', [e]);
             return;
         }
-        h.log(mID, 'Status inicial item {}: {} | passada {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
+        h.log(mUID, 'Status inicial item {}: {} | passada {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
         if (itemEnabled == show) {
             break;
         } else {
             try {
                 jsc.obs_v5.setSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show);
             } catch (e) {
-                h.log(mID, 'Erro OBS:  {}', [e]);
+                h.log(mUID, 'Erro OBS:  {}', [e]);
                 return;
             }
             if (attempts > 0) {
@@ -367,7 +363,7 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
     }
 
     if (attempts == maxAttempts) {
-        h.log(mID, "Max attempts reached. The scene item may not have been set correctly.");
+        h.log(mUID, "Max attempts reached. The scene item may not have been set correctly.");
     } else {
         updateStatus(sceneItemNameOrID, show);
     }
@@ -389,7 +385,7 @@ function typeAbort(type) {
 
 function typePres() {
     var currentPresentation = h.hly('GetCurrentPresentation').data;
-    h.log(mID, 'currentPresentation = {}', [currentPresentation]);
+    h.log(mUID, 'currentPresentation = {}', [currentPresentation]);
     var type = "";
     if (currentPresentation && currentPresentation.type !== undefined) {
            type = currentPresentation.type.toLowerCase();
@@ -404,29 +400,29 @@ function typePres() {
 
 
 function addTimeoutID(timeoutID) {
-  var timeouts = h.getGlobal(mID+"_timeouts", []);
+  var timeouts = h.getGlobal(mUID+"_timeouts", []);
   timeouts.push(timeoutID);
-  h.setGlobal(mID+"_timeouts", timeouts);
+  h.setGlobal(mUID+"_timeouts", timeouts);
 }
 
 function clearTimeouts() {
 
-  var timeouts = h.getGlobal(mID+"_timeouts", []);
+  var timeouts = h.getGlobal(mUID+"_timeouts", []);
   
   // Cancela cada timeout no array
   for (var i = 0; i < timeouts.length; i++) {
-    h.log(mID,'Cancelando timeout {}', timeouts[i]);
+    h.log(mUID,'Cancelando timeout {}', timeouts[i]);
     h.clearTimeout(timeouts[i]);
   }
   
-  var id = h.getGlobal(mID+'_setRepaint_id') || 0;
+  var id = h.getGlobal(mUID+'_setRepaint_id') || 0;
   if (id>0) {
-     h.setGlobal(mID+'_setRepaint_id', 0);
+     h.setGlobal(mUID+'_setRepaint_id', 0);
      h.clearInterval(id);
   }
 
   // Limpa o array de timeouts
-  h.setGlobal(mID+"_timeouts", []);
+  h.setGlobal(mUID+"_timeouts", []);
 }
 
 function disableSceneItems(settings) {
@@ -457,19 +453,16 @@ function typeOfTrigger(type) {
     if (triggerID.indexOf('_slide') != -1) {
         triggerID = triggerID.slice(0, -6);
     }
-    h.log(mID, '+*********** Nome da Trigger: {}, resultado da limpeza: {}', type, triggerID);
+    h.log(mUID, '+*********** Nome da Trigger: {}, resultado da limpeza: {}', type, triggerID);
     return triggerID;
 }
 
-function logState(log){ 
-    h.log.setEnabled(mID, log);
-}
 
 function calculateDisplayDuration(time, type, obj) { 
   var timeoutMin = time * 1000;
   var textLength = 0;
   
-  h.log(mID,'================== {}',obj);
+  h.log(mUID,'================== {}',obj);
 
   if (type === "text" || type === "song") {
     textLength = obj.text ? obj.text.length : 0;
@@ -481,7 +474,7 @@ function calculateDisplayDuration(time, type, obj) {
   var calculatedTimeout = textLength * 100;
   var timeoutDuration = calculatedTimeout < timeoutMin ? timeoutMin : calculatedTimeout + 5000;
 
-  h.log(mID, "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
+  h.log(mUID, "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
     textLength, type, timeoutMin / 1000, timeoutDuration / 1000);
 
   return timeoutDuration;
@@ -503,12 +496,12 @@ function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
 
     var timeoutID = h.setTimeout(function() {
       h.hly(clearType, { enable: true }); // Executa o comando F
-      h.log(mID, '************ Executing timeout');
+      h.log(mUID, '************ Executing timeout');
       sceneItemEnabled(receiverID, scene, item, false); // Desativa o item da cena
     }, timeoutDuration); // Define o timeout em milissegundos
 
     addTimeoutID(timeoutID); // Armazena o ID do timeout
-    h.log(mID, '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
+    h.log(mUID, '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
       type, clearType, timeoutDuration / 1000, receiverID, scene, item);
   }
 }
@@ -516,8 +509,6 @@ function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
-
- logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
  return [
     actionClearF8(module)
     ]
@@ -537,12 +528,12 @@ return   {
                   clearTimeouts();
             },
             status: function(evt) {
-                  var timeouts = h.getGlobal(mID+"_timeouts") || [];
+                  var timeouts = h.getGlobal(mUID+"_timeouts") || [];
                   if (timeouts.length>0) {
                   return {
                         description : '<-Cancel', //h.getCountdown(mID+'TimeOut'),
                         icon : 'timer_off',
-                        background: 'FF0000',   // default = null
+                        background: '790903',   // default = null
                     };
                 } else {
                     return null; // default values
