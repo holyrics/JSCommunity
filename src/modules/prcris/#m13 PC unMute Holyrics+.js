@@ -110,7 +110,7 @@ function settings() {
         }, 
         {
             id: 'mixer_volume',
-            name: jsc.i18n('Volume ') + '(0-100)',
+            name: jsc.i18n('Volume'),
             description: '',
             type: 'number',
             component: 'slider',
@@ -255,7 +255,7 @@ function actionVolumeChannel(module) {
               action: function(evt) {
                  var inputs = [{
                         id: 'mixer_volume',
-                        name: '% ' + jsc.i18n('Volume ') + '(0-100)',
+                        name: jsc.i18n('Volume'),
                         type: 'number',
                         component: 'slider',
                         default_value: (getVolume(m1,m2,m3) * 100).toFixed(0),
