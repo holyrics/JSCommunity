@@ -274,9 +274,11 @@ function actionStatusChannel(module) {
     var m1 = s.digital_mixer_id;
     var m2 = s.mixer_channel;
     var m3 = s.channel_type;
+    var mute = getMute(m1,m2,m3);
     return {
         id: 'toggleMute',
         hint: 'Mute on/off',
+        icon : mute ?  'volume_off' : 'volume_up',
         action: function(evt) {
           toggleMute(m1,m2,m3);
         },
