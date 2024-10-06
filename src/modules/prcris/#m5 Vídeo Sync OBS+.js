@@ -25,7 +25,8 @@ function info() {
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
                      '=== ATENÇÃO - O CONTROLE DO VOLUME DO MIXER DIGITAL FOI SEPARADO EM OUTRO MÓDULO. <br>'+
                      '=== Baixe o módulo "PC unMute Holyrics+"<br>'+
-                     '<br><hr>Para mais informações, acesse '+"<a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '@ Para mais informações sobre automação com holyrics, visite <br>'+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+
     };
 }
 
@@ -54,7 +55,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: "<html><hr>@ Para mais informações sobre automação com holyrics, visite <br><a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, 
         {
@@ -98,6 +99,10 @@ function settings() {
             default_value: false
         },
         {
+            id: 'samePC',
+            label: 'Holyrics e OBS no mesmo computador',
+            type: 'boolean'
+        },{
             type: 'separator'
         }, 
         {
@@ -208,7 +213,7 @@ function obsVideo(module, show, mediaName) {
 
     // Ajusta a cena no OBS colocando o nome do vídeo e ativa a cena no OBS causando o play
    
-    var url = createURL(pSettings, mediaName);
+    var url = createURL(pSettings, mediaName, s.samePC);
 
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
     jsc.obs_v5.setInputSettings(p1, p3, {
@@ -247,12 +252,13 @@ function getPluginSettings() {
   return JSON.parse(json);
 }
 
-function createURL(settings, path) {
+function createURL(settings, path, samePC) {
   var token = h.sha256(path + "#" + settings.token);
   token = h.base64Encode(token);
   token = token.replaceAll("[^a-zA-Z0-9]", "");
   token = token.substring(0, Math.min(20, token.length()));
-  return "http://" + settings.ip + ":" + settings.port
+     
+  return "http://" + (samePC ? 'localhost' : settings.ip) + (settings.port == '80' ? "" : ":" + settings.port)
          + "/get_video"
          + "?path=" + encodeURIComponent(path)
          + "&token=" + token;
