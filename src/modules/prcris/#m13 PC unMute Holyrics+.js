@@ -14,8 +14,8 @@ logState(module.settings.log, mUID,'startup '+ mID);
 
 function info() {
     return {
-        id: mUID,
-        name: '#m13 PC unMute Holyrics+',
+        id: mID,
+        name: 'PC unMute Holyrics+',
         description: '<html>'+
                      'Que tal <b><u>liberar o canal de áudio conectado ao PC</u></b> em seu mixer digital sempre que iniciar um áudio no holyrics?<br><hr>'+
                      'Este módulo cria 3 triggers que fazem todo o trabalho para você, além de adicionar botões de mute e volume ao seu holyrics!<br><br>'+

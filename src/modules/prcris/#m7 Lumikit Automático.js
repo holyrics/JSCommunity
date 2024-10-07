@@ -11,7 +11,7 @@ function startup(module) {
 
 function info() {
     return {
-        id: mUID,
+        id: mID,
         name: 'Lumikit Automático',
         description: '<html>'+
                      '• Sorteia cenas cadastradas como em movimento para versos de Refrão e Instrumental<br>'+

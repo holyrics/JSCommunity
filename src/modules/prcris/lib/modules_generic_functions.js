@@ -1,7 +1,7 @@
-var infoVDDMM = "<html><hr><br>@ Para mais informações sobre automação com holyrics, visite <br><a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+var infoVDDMM = "<html><hr><br>@ Para mais informações sobre automação com holyrics, visite <br><a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>";
 
 function isDev() {
-  return false
+  return false;
 }
 
 function logState(log, id, caller){ 

@@ -11,7 +11,7 @@ function startup(module) {
 
 function info() {   
     return {  
-        id: mUID,
+        id: mID,
         name: 'Piloto Automático OBS',           
         description: '<html>'+
                      '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+

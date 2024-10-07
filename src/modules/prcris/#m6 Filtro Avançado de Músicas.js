@@ -11,7 +11,7 @@ function startup(module) {
 
 function info() {
     return {
-        id: mUID,
+        id: mID,
         name: 'Filtro Avançado de Músicas',
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+

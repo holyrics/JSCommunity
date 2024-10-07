@@ -1,5 +1,5 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-var mID = '@prcris#m1'
+var mID = '@prcris#m1';
 var mUID = '@prcris#m1';
 
 //#import modules_generic_functions
