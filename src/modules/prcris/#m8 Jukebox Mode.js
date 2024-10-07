@@ -1,5 +1,13 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-var mID = '@prcris#m8'
+var mID = '@prcris#m8';
+var mUID = '@prcris#m8';
+
+//#import modules_generic_functions 
+
+function startup(module) { 
+  mUID = mID + module.id;
+  logState(module.settings.log, mUID, 'startup '+ mID);
+}
 
 function info() {
     return {
@@ -7,7 +15,7 @@ function info() {
         name: 'Jukebox Mode',
         description: '<html>'+
                      '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>'+
-                     '<hr>Para mais informações sobre automações no holyrics, acesse <br>'+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     infoVDDMM
     };
 }
 
@@ -17,13 +25,13 @@ function info() {
 function triggers(module) {
     var arr = [];    
     arr.push({
-        id: "troca_musica_" + mID,
+        id: "troca_musica_" + mUID,
         when: "displaying",
         item: "any_song_slide",
         action: function(obj) {
             if (obj.slide_show_index == obj.slide_show_total && obj.slide_show_index > 1000) {
                 var playlist = h.hly('GetMediaPlaylist');
-                var currentTitle = h.getGlobal('currentTitle');
+                var currentTitle = h.getGlobal(mUID + 'currentTitle');
                 var titleFound = false;
                 var actualSongFound = false;
 
@@ -44,7 +52,7 @@ function triggers(module) {
 
                     if (playlist.data[i].type === "song" && titleFound && actualSongFound) {
                         h.showSong(playlist.data[i].song_id);
-                        h.notification("Música "+playlist.data[i].name+' inciada pelo módulo ' + mID, 5);
+                        h.notification("Música "+playlist.data[i].name+' inciada pelo módulo ' + mUID , 5);
                         break;
                     }
                 }
@@ -52,11 +60,11 @@ function triggers(module) {
         }
     });
     arr.push({
-        id: "salva_titulo_" + mID,
+        id: "salva_titulo_" + mUID,
         when: "displaying",
         item: "any_title_subitem",
         action: function(obj) {
-            h.setGlobal('currentTitle', obj.title);
+            h.setGlobal(mUID + 'currentTitle', obj.title);
         }
     });
     return arr;

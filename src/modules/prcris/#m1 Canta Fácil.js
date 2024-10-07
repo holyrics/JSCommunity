@@ -1,7 +1,15 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
+var mID = '@prcris#m1'
+var mUID = '@prcris#m1';
 
-var mID = '@prcris#m1';
+//#import modules_generic_functions
 
+function startup(module) { 
+
+mUID = mID + module.id;
+logState(module.settings.log, mUID, 'startup '+ mID);
+ 
+}
 
 function info() {
     return {
@@ -12,9 +20,9 @@ function info() {
                      '• Exibe o cantor escalado da música na tela de retorno no slide 1<br>'+
                      '• Monta uma base de dados de cantores por música para axiliar na montagem de escalas<br>'+
                      '• Ajusta o volume dos microfones dos cantores, baseado na voz principal da música na escala. (behinger e soundcraft)<BR>'+
-                     '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><hr>'+
-                     '@ Para mais informações acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
-    };
+                     '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><br>'+
+                     infoVDDMM
+       };
 }
 
 
@@ -26,23 +34,19 @@ function contextActions(module) {
     return [
         {
             name: spanIcon("\ueaca")+ 
-                  "Listar Cantor/Volume Vozes (" + mID + ')',
+                  "Listar Cantor/Volume Vozes (" + mUID + ')',
             types: ['song'],
             action: function(module) {
-                var musicID = String(module.id);
+                var musicID = String(module.item.id);
                 var slideNumber = 1;
                 var leadSinger = getSinger(musicID);
                 var volumeInputs = loadInputsVolume();
                 var mensagem = ["Cantor da música = " + leadSinger, "Volume verso 1:"];
-
                 if (volumeInputs[musicID] &&
                     volumeInputs[musicID][leadSinger] &&
                     volumeInputs[musicID][leadSinger].slides[slideNumber]) {
-
                     var volumes = volumeInputs[musicID][leadSinger].slides[slideNumber];
-
-                    h.log(mID, 'contextActionsCantorDaMusica mensagem {} ', [mensagem]);
-
+                    h.log(mUID, 'contextActionsCantorDaMusica mensagem {} ', [mensagem]);
                     for (var cantor in volumes) {
                         if (volumes.hasOwnProperty(cantor)) {
                             mensagem.push(cantor + " - " + volumes[cantor].volume);
@@ -51,7 +55,7 @@ function contextActions(module) {
                 }
               else
                   mensagem.push('Volume não encontrado para o verso 1');
-              showMessage(module.title, mensagem);
+              showMessage(module.item.title, mensagem);
           }  
         }
     ];
@@ -65,7 +69,7 @@ function settings(module) {
     var arr = [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },
         {
@@ -172,7 +176,7 @@ function settings(module) {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(module.settings.log, mUID, 'onchange '+ mID);; //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
@@ -385,7 +389,7 @@ function actionVocalsOfService(module) {
         hint : 'Cantores de cada música',
         icon : 'system:mic',
         action: function (evt) {
-          h.log(mID,'actionVocalsOfService(module) called');
+          h.log(mUID,'actionVocalsOfService(module) called');
           var schedule = h.hly('GetCurrentSchedule').data[0];
           var playlist_id = schedule.datetime;
           var scheduled = listScheduledSingers(schedule, module);
@@ -406,7 +410,7 @@ function actionVocalsOfService(module) {
           for (var i = 0; i < medias.length; i++) {
             var item = medias[i];
             if (item.type == 'song') {
-               h.log(mID,'playlist_id {}, item {}, scheduled {}, module {}',[playlist_id, item, scheduled, module.settings]);
+               h.log(mUID,'playlist_id {}, item {}, scheduled {}, module {}',[playlist_id, item, scheduled, module.settings]);
                inputs.push(createInput(playlist_id, item, scheduled, module));
             }
           }
@@ -426,7 +430,7 @@ function actionVocalsOfService(module) {
           }
           for (var i = 0; i < inputs.length; i++) {
             var id = inputs[i].id;
-            h.log(mID,'playlist_id {} , id {},  result[id] {}',[playlist_id, id, result[id]]);
+            h.log(mUID,'playlist_id {} , id {},  result[id] {}',[playlist_id, id, result[id]]);
             changeSingerOfSongByEvent(playlist_id, id, result[id]);
           }
         }
@@ -455,7 +459,7 @@ function getPlaylistConfig() {
   var settings = json;
     } catch (e) {}
   settings = settings || {};
-  h.log(mID,"getPlaylistConfig() - {} bytes - {} ",[JSON.stringify(settings).length, settings]);  
+  h.log(mUID,"getPlaylistConfig() - {} bytes - {} ",[JSON.stringify(settings).length, settings]);  
   return settings;
 }
 
@@ -542,7 +546,7 @@ function listSingerInServicesDatabase(musicId, resultSingers) {
             var id = parts[1];
             if (id === musicId) {
                 var singer = data[key];
-                h.log(mID, 'Data: {} Cantor: {}', [parts[0], singer]);
+                h.log(mUID, 'Data: {} Cantor: {}', [parts[0], singer]);
                 if (singers.indexOf(singer) === -1) { // Verifica se o cantor já existe no array
                     singers.push(singer);
                 }
@@ -610,7 +614,7 @@ function actionChannelVocalSetup(module) {
             });
             for (var i = 0; i < r.data.length; i++) {
                 var role = r.data[i].roles[0];
-                h.log(mID,'função {} nome {} ', [role.name,r.data[i].name]);
+                h.log(mUID,'função {} nome {} ', [role.name,r.data[i].name]);
                 if (role && role.name && role.name.contains(module.settings.vocalname)) {
                     inputs.push({
                         id: r.data[i].name,
@@ -706,7 +710,7 @@ function actionDefaultVolumeSetup(module) {
 // Cada chamada da action logo abaixo está apontando a aba que ela se encontra
 
 function actions(module) {
-    logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
+    
     return [
         { //menu de configurações extras
         id: 'menu',
@@ -735,10 +739,10 @@ return   {
             action: function(evt) {
                var inputsVolume = loadInputsVolume();
                var convertedInputsVolume = removeUnwantedSlides(inputsVolume);
-               h.log(mID,'Conversão: de {} para {} ',[summarySavedSongs(inputsVolume),summarySavedSongs(convertedInputsVolume)]);
-               h.log(mID,'Conversão: de {}b para {}b ',[JSON.stringify(inputsVolume).length,JSON.stringify(convertedInputsVolume).length]);
-               h.setGlobal(mID + '_inputs_volume', convertedInputsVolume);
-               h.setGlobal(mID + '_inputs_volume_changed',true);
+               h.log(mUID,'Conversão: de {} para {} ',[summarySavedSongs(inputsVolume),summarySavedSongs(convertedInputsVolume)]);
+               h.log(mUID,'Conversão: de {}b para {}b ',[JSON.stringify(inputsVolume).length,JSON.stringify(convertedInputsVolume).length]);
+               h.setGlobal(mUID + '_inputs_volume', convertedInputsVolume);
+               h.setGlobal(mUID + '_inputs_volume_changed',true);
                storeInputsVolume();
             }
          }
@@ -751,22 +755,22 @@ return   {
             hint: 'Rec',
             icon : 'system:fiber_manual_record',
             action: function(evt) {
-                var rec_volume_data = !h.getGlobal(mID + '_rec_volume_data');
-                h.setGlobal(mID + '_rec_volume_data', rec_volume_data);
+                var rec_volume_data = !h.getGlobal(mUID + '_rec_volume_data');
+                h.setGlobal(mUID + '_rec_volume_data', rec_volume_data);
                 if (rec_volume_data) {
                     module.updatePanel(); 
-                    h.setGlobal(mID + '_last_slide_number', null);
+                    h.setGlobal(mUID + '_last_slide_number', null);
                 }
                 else
                   storeInputsVolume();
             },
             status: function(evt) {
-                if (h.getGlobal(mID + '_rec_volume_data')) {
+                if (h.getGlobal(mUID + '_rec_volume_data')) {
                     return {
                         active: true,           // default = false
                         foreground: 'E6E6E6',   // default = null
-                        background: 'FF0000',   // default = null
-                        iconColor: 'E6E6E6'     // default = null
+                        background: '790903',   // default = null
+                        iconColor:  'E6E6E6'     // default = null
                     };
                 } else {
                     return null; // default values
@@ -781,20 +785,20 @@ return   {
             hint : 'Play',
             icon : 'system:play_arrow',
             action: function(evt) {
-                var set_volume_data = !h.getGlobal(mID + '_set_volume_data');
-                h.setGlobal(mID + '_set_volume_data', set_volume_data);
+                var set_volume_data = !h.getGlobal(mUID + '_set_volume_data');
+                h.setGlobal(mUID + '_set_volume_data', set_volume_data);
                 if (set_volume_data) {
                    // h.setGlobal('rec_volume_data', false); // Desativa o Rec se o Play for ativado
                     module.updatePanel();
-                    h.setGlobal(mID + '_last_slide_number', null);
+                    h.setGlobal(mUID + '_last_slide_number', null);
                 }
             },
             status: function(evt) {
-                if (h.getGlobal(mID + '_set_volume_data')) {
+                if (h.getGlobal(mUID + '_set_volume_data')) {
                     return {
                         active: true,           // default = false
                         foreground: 'E6E6E6',   // default = null
-                        background: 'FF0000',   // default = null
+                        background: '790903',   // default = null
                         iconColor: 'E6E6E6'     // default = null
                     };
                 } else {
@@ -810,41 +814,41 @@ return   {
 
 function triggers(module) {
     var arr = []; 
-    h.setGlobal(mID + '_set_volume_data', true);  // ativa o play na inicialização do módulo
+    h.setGlobal(mUID + '_set_volume_data', true);  // ativa o play na inicialização do módulo
     arr.push({
-        id : mID + '_clear_last_slide_number',
+        id : mUID + '_clear_last_slide_number',
         when: "closing",
         item: "any_song",
         action: function (obj) {
-            h.setGlobal(mID + '_last_slide_number', null);
+            h.setGlobal(mUID + '_last_slide_number', null);
             storeInputsVolume(); 
         }
     });
 
     arr.push({
-        id : mID + '_change_volume_vocal_by_slide',
+        id : mUID + '_change_volume_vocal_by_slide',
         when: "displaying",
         item: "any_song_slide",
         action: function(obj) {
     
             h.setGlobal('@prcris#type_of_rec_play',module.settings.type_of_rec_play);
-            if ((h.getGlobal(mID + '_rec_volume_data') && module.settings.type_of_rec_play == 'all') || // salva os volumes em qualquer slide
-                (h.getGlobal(mID + '_rec_volume_data') && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 5)) {  // salva os volumes somente no slide 5 para o slide 1
-                captureVolume(obj,module); 
+            if (((h.getGlobal(mUID + '_rec_volume_data') || !haveData(obj)) && module.settings.type_of_rec_play == 'all') ||  // salva os volumes em qualquer slide
+                ((h.getGlobal(mUID + '_rec_volume_data') || !haveData(obj)) && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 5)) {  // salva os volumes somente no slide 5 para o slide 1
+                captureVolume(obj, module);
             }
-            if ((h.getGlobal(mID + '_set_volume_data') && module.settings.type_of_rec_play == 'all') || // aplica os volumes em qualquer slide
-                (h.getGlobal(mID + '_set_volume_data') && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 1)) {  // aplica os volumes somente no slide 1
+            if ((h.getGlobal(mUID + '_set_volume_data') && module.settings.type_of_rec_play == 'all') || // aplica os volumes em qualquer slide
+                (h.getGlobal(mUID + '_set_volume_data') && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 1)) {  // aplica os volumes somente no slide 1
                    applyInputsVolume(obj,module); 
             }
         }
     });
     
     arr.push({
-        id : mID + '_clear_last_slide_number',
+        id : mUID + '_clear_last_slide_number',
         when: "displaying",
         item: "any_song",
         action: function (obj) {
-            h.setGlobal(mID + '_last_slide_number', null);
+            h.setGlobal(mUID + '_last_slide_number', null);
             storeInputsVolume(); 
             //moduleCfg(module.settings);
         }
@@ -874,7 +878,7 @@ function applyDefaultInputsVolume(leadSinger, module) {
     var leadSingerVolume = defaultVolumes['singer_' + leadSingerName];
     if (leadSingerVolume !== undefined && leadSingerVolume !== 0) {
         if (channels.hasOwnProperty(leadSingerName)) {
-            h.log(mID,'applyDefaultInputsVolume() Leader {} {} {}',[leadSingerName, channels[leadSingerName], leadSingerVolume / 100 ]);
+            h.log(mUID,'applyDefaultInputsVolume() Leader {} {} {}',[leadSingerName, channels[leadSingerName], leadSingerVolume / 100 ]);
             setVolume(channels[leadSingerName], leadSingerVolume / 100, module);
         }
     }
@@ -884,11 +888,25 @@ function applyDefaultInputsVolume(leadSinger, module) {
         if (name !== leadSingerName && scheduledSinger(name, module)) {
             var backingVolume = defaultVolumes['backing_' + name];
             if (backingVolume !== undefined && backingVolume !== 0 && scheduledSingers.indexOf(name) !== -1) {
-                h.log(mID,'applyDefaultInputsVolume() backing {} {} {}',[name, channels[name], backingVolume / 100 ]);
+                h.log(mUID,'applyDefaultInputsVolume() backing {} {} {}',[name, channels[name], backingVolume / 100 ]);
                 setVolume(channels[name], backingVolume / 100, module);
             }
        }
     }
+}
+
+function haveData(obj) {
+    var musicID = String(obj.id);
+    var slideNumber = obj.slide_show_index;
+    var leadSinger = loadSinger(musicID);
+    var inputsVolume = loadInputsVolume();
+    
+    if (!inputsVolume[musicID] || 
+        !inputsVolume[musicID][leadSinger] || 
+        !inputsVolume[musicID][leadSinger].slides[slideNumber]) {
+        return false; 
+    }
+    return true;
 }
 
 function applyInputsVolume(obj,module) {
@@ -913,11 +931,11 @@ function applyInputsVolume(obj,module) {
         !inputsVolume[musicID][leadSinger].slides[slideNumber]) {
        
         if (slideNumber <= 1) {
-            h.log(mID,'applyInputsVolume() -> calling  applyDefaultInputsVolume(leadSinger)');
+            h.log(mUID,'applyInputsVolume() -> calling  applyDefaultInputsVolume(leadSinger)');
             applyDefaultInputsVolume(leadSinger, module);
            }
         else {
-          h.log(mID,'applyInputsVolume() - Volumes not applyed for song id_{}|leadSinger_{}|s_{} (volume not recorded) ',[musicID, leadSinger, slideNumber]);
+          h.log(mUID,'applyInputsVolume() - Volumes not applyed for song id_{}|leadSinger_{}|s_{} (volume not recorded) ',[musicID, leadSinger, slideNumber]);
           }
           
         return;
@@ -931,33 +949,33 @@ function applyInputsVolume(obj,module) {
         if (scheduledSinger(name, module)) {
             var channelNumber = channels[name];
             var volume = savedVolumes[name] ? savedVolumes[name].volume : getDefaultBackingVolume(name);
-            h.log(mID,'volume: {} name: {}',[volume,name]);
+            h.log(mUID,'volume: {} name: {}',[volume,name]);
             if (volume !== null && volume !== 0) {
                 setVolume(channelNumber, volume, module);
             }
         }
     }
     
-    h.log(mID,'setInputsVolume() - mixer set: id_{}|s_{}|l_{}: {}',[musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
+    h.log(mUID,'setInputsVolume() - mixer set: id_{}|s_{}|l_{}: {}',[musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
 
 }
 
 
 function getLastSlideNumber(obj) {
-    var lastSlide = h.getGlobal(mID + '_last_slide_number');
+    var lastSlide = h.getGlobal(mUID + '_last_slide_number');
     var slideIndex = obj.slide_show_index;    // Atualiza o número do slide atual para a música
-    h.setGlobal(mID + '_last_slide_number', slideIndex);     // Salvando 
+    h.setGlobal(mUID + '_last_slide_number', slideIndex);     // Salvando 
     if (lastSlide !== undefined) {     // Verifica se há um slide anterior armazenado para a música
         return lastSlide;
     }
 }
 
 function storeInputsVolume() {;
- if (h.getGlobal(mID + '_inputs_volume_changed')) {
+ if (h.getGlobal(mUID + '_inputs_volume_changed')) {
     var tmp = loadInputsVolume();
     h.store(mID + '_inputs_volume_vocal_by_slide', tmp);
-    h.log(mID, 'Base atualizada {}.', [summarySavedSongs(tmp)]);
-    h.setGlobal(mID + '_inputs_volume_changed', null);
+    h.log(mUID, 'Base atualizada {}.', [summarySavedSongs(tmp)]);
+    h.setGlobal(mUID + '_inputs_volume_changed', null);
    }
 }
 
@@ -994,11 +1012,11 @@ var distinctMusicIDCount = countDistinctMusicIDs(inputsVolume);
 var totalSlideCount = countSlides(inputsVolume);
 return distinctMusicIDCount + ' músicas ' + totalSlideCount + ' slides '
 } catch(e) 
-  { h.log(mID, 'Erro {}', [e]);}
+  { h.log(mUID, 'Erro {}', [e]);}
 }
 
 function loadInputsVolume() {
-  var tmp = h.getGlobal(mID + '_inputs_volume');
+  var tmp = h.getGlobal(mUID + '_inputs_volume');
   var origem = 'carregado da memória';
       if (!tmp) {
          tmp = h.restore(mID + '_inputs_volume_vocal_by_slide') ;
@@ -1009,8 +1027,8 @@ function loadInputsVolume() {
          origem = 'zerado';
          }
   var tmp2 = JSON.stringify(tmp);
-  h.log(mID,"loadInputsVolume() - {} - {} bytes ",[origem, tmp2.length()]);  
-//  h.log(mID,"loadInputsVolume() {} ",[tmp]);  
+  h.log(mUID,"loadInputsVolume() - {} - {} bytes ",[origem, tmp2.length()]);  
+//  h.log(mUID,"loadInputsVolume() {} ",[tmp]);  
   return tmp;
 }
 
@@ -1034,7 +1052,7 @@ function captureVolume(obj,module) {
     }
     
     var leadSinger = loadSinger(musicID);
-    h.log(mID, 'captureVolume() - leadSinger: {}', [leadSinger]);
+    h.log(mUID, 'captureVolume() - leadSinger: {}', [leadSinger]);
     
     var inputsVolume = loadInputsVolume();
 
@@ -1042,25 +1060,25 @@ function captureVolume(obj,module) {
 
     if (!inputsVolume[musicID]) {
         inputsVolume[musicID] = {};
-        h.log(mID, 'captureVolume() - inputsVolume[{}] initialized', [musicID]);
+        h.log(mUID, 'captureVolume() - inputsVolume[{}] initialized', [musicID]);
     }
 
     try {
         if (!inputsVolume[musicID].hasOwnProperty(leadSinger)) {
             inputsVolume[musicID][leadSinger] = { slides: {} };
-            h.log(mID, 'captureVolume() - inputsVolume[{}][{}] initialized', [musicID, leadSinger]);
+            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}] initialized', [musicID, leadSinger]);
         }
     } catch (e) {
-        h.log(mID, 'Error initializing inputsVolume[{}][{}]: {}', [musicID, leadSinger, e]);
+        h.log(mUID, 'Error initializing inputsVolume[{}][{}]: {}', [musicID, leadSinger, e]);
     }
 
     try {
         if (!inputsVolume[musicID][leadSinger].slides[slideNumber]) {
             inputsVolume[musicID][leadSinger].slides[slideNumber] = {};
-            h.log(mID, 'captureVolume() - inputsVolume[{}][{}].slides[{}] initialized', [musicID, leadSinger, slideNumber]);
+            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}].slides[{}] initialized', [musicID, leadSinger, slideNumber]);
         }
     } catch (e) {
-        h.log(mID, 'Error initializing inputsVolume[{}][{}].slides[{}]: {}', [musicID, leadSinger, slideNumber, e]);
+        h.log(mUID, 'Error initializing inputsVolume[{}][{}].slides[{}]: {}', [musicID, leadSinger, slideNumber, e]);
     }
 
     for (var name in channels) {
@@ -1071,20 +1089,18 @@ function captureVolume(obj,module) {
               inputsVolume[musicID][leadSinger].slides[slideNumber][name] = { volume: volume };
            }
         } catch (e) {
-           h.log(mID, 'Error accessing channel {} {}: {}', [name, channelNumber, e]);
+           h.log(mUID, 'Error accessing channel {} {}: {}', [name, channelNumber, e]);
         }
     }
 
     try {
-        h.setGlobal(mID + '_inputs_volume', inputsVolume);
-        h.setGlobal(mID + '_inputs_volume_changed',true);
-        h.log(mID, 'captureVolume() - inputsVolume updated: id_{}|s_{}|l_{}={}', [musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
+        h.setGlobal(mUID + '_inputs_volume', inputsVolume);
+        h.setGlobal(mUID + '_inputs_volume_changed',true);
+        h.log(mUID, 'captureVolume() - inputsVolume updated: id_{}|s_{}|l_{}={}', [musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
     } catch (e) {
-        h.log(mID, 'Error updating inputs_volume: {}', [e]);
+        h.log(mUID, 'Error updating inputs_volume: {}', [e]);
     }
 }
-
-
 
 function getDefaultBackingVolume(name) {
    var defaultVolumes = loadDefaultVolume();
@@ -1108,8 +1124,6 @@ function unMuteScheduledSingers(module) {
         }
     }
 }
-
-
 
 function loadSinger(id) {
   var schedule = h.hly('GetCurrentSchedule').data[0];
@@ -1143,7 +1157,7 @@ function getVolume(channel, module) {
     if (type == 'soundcraft') {
         return jsc.soundcraft.conn(id).input(channel).getVolume();
     }
-  } catch (e) { h.log(mID,'Erro {}',[e]) };
+  } catch (e) { h.log(mUID,'Erro {}',[e]) };
 }
 
 function setVolume(channel, volume, module) {
@@ -1156,7 +1170,7 @@ function setVolume(channel, volume, module) {
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).setVolume(volume);
     }
-  } catch (e) { h.log(mID,'Erro {}',[e]) };
+  } catch (e) { h.log(mUID,'Erro {}',[e]) };
 }
 
 function unMute(channel, module) {
@@ -1169,22 +1183,7 @@ function unMute(channel, module) {
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).unmute();
     }
-  } catch (e) { h.log(mID,'Erro {}',[e]) };
-}
-
-
-function showMessage(title, message) {
-    var content = [{ type: 'title', label: title }, { type: 'separator' }];
-
-    if (typeof message === 'string') {
-        content.push({ type: 'title', label: message });
-    } else if (Array.isArray(message)) {
-        for (var i = 0; i < message.length; i++) {
-            content.push({ type: 'title', label: message[i] });
-        }
-    }
-
-    h.input(content);
+  } catch (e) { h.log(mUID,'Erro {}',[e]) };
 }
 
 
@@ -1209,14 +1208,7 @@ function removeUnwantedSlides(data) {
     return newData;
 }
 
-function logState(log){ 
-    h.log.setEnabled(mID, log);
-}
 
-
-function spanIcon(iconCodePoint){
-    return '<html><span style="font-family: Material Icons;">' + iconCodePoint + ' </span>';
-}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22756e7265636f72646564536f6e67735265706f7274227d
 function unrecordedSongsReport(module) {
     return {

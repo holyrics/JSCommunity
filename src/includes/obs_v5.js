@@ -1,3 +1,6 @@
+// Documentation website:
+// https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md
+
 // Create an object for operation 6
 function op6(d) {
     return {op: 6, d: d};
@@ -338,4 +341,26 @@ function getAudioInputList(receiverID) {
     jsc.utils.array.distinct(audioInputList);
     jsc.utils.array.sort(audioInputList);
     return audioInputList;
+}
+
+// pause media
+function pauseMedia(receiverID, mediaSourceName) {
+    var requestData = {
+        inputName: mediaSourceName,
+        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
+    };
+    
+    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
+    h.log('jsc.obs_v5', 'Pause media response: {}', response);
+}
+
+// resume/start media
+function playMedia(receiverID, mediaSourceName) {
+    var requestData = {
+        inputName: mediaSourceName,
+        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY"
+    };
+    
+    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
+    h.log('jsc.obs_v5', 'Resume media response: {}', response);
 }

@@ -1,5 +1,14 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m11';
+var mUID = '@prcris#m11';
+
+//#import modules_generic_functions 
+
+function startup(module) { 
+  mUID = mID + module.id;
+  logState(module.settings.log, mUID, 'startup '+ mID);
+}
+
 
 function info() {
     return {
@@ -10,9 +19,8 @@ function info() {
                      ' a cada exibição de uma música. <br>'+
                      '• Permite especificar um fundo fixo no campo extra <b>tema_fixo</b> em uma música. <br>'+
                      '• Também funciona para Apresentação Automática <br> '+
-                     '  uso: Crie tags com o nome de cada tema usado nas configurações e adicione os vídeos que deseja usar junto com o tema para que o módulo possa funcionar adequadamente.'+
-                     '  <br><hr>'+
-                     '@ Para mais informações, visite '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '  uso: Crie tags com o nome de cada tema usado nas configurações e adicione os vídeos que deseja usar junto com o tema para que o módulo possa funcionar adequadamente.<br>'+
+                     infoVDDMM
     };
 }
 
@@ -24,9 +32,6 @@ function info() {
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 function triggers(module) {
-
-  logState(module.settings.log); // habilita ou desabilita o log de acordo com a configuração  
-
   var arr = [];
 
   arr.push({
@@ -73,7 +78,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         }, {
             id: 'skiptitle',
@@ -114,7 +119,7 @@ function settings() {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
@@ -144,7 +149,7 @@ function customTheme(module) {
        if (!tagExists(tema) && !obj.tema_fixo) {
            h.log('', 'Você precisa criar uma tag para o tema: {} poder funcionar no modo aleatório.', tema);
        }
-        
+       
        return { intersection :  true,
                 cache_key : tema,
                 tags : [tema],
@@ -158,14 +163,6 @@ function customTheme(module) {
     };
 }
 
-
-
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273746172745570227d
-function actions(module) {
-    
-    logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
-    return null;
-}
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
@@ -186,10 +183,6 @@ function preCulto() {
   return false;
 }
 
-function logState(log){ 
-    h.log.setEnabled(mID, log);
-}
-
 function compararHora(str) {
     str = str.split(':');
     var agora = new Date();
@@ -200,6 +193,7 @@ function compararHora(str) {
     if (agora == varData) return 0;
     else return agora > varData ? 1 : -1;
 }
+
 function tagExists(tag) {
     var r = h.hly('GetBackgrounds');
     var tags = [];
@@ -216,14 +210,6 @@ function tagExists(tag) {
     }
     // Verifica se a tag existe no array de tags acumuladas
     return tags.indexOf(tag) !== -1;
-}
-
-
-function showMessage(title,message) {
-var content = [{ type: 'title',label: title },
-              { type: 'separator' },
-              { type: 'title',label: message}];
-h.input(content);
 }
 
 function getThemeData(themeName) {

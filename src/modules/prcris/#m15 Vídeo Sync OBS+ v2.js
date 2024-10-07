@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
-var mID = '@prcris#m5'; 
-var mUID = '@prcris#m5'; 
+var mID = '@prcris#m15'; 
+var mUID = '@prcris#m15'; 
 var pause = false;
 
 //#import modules_generic_functions
@@ -22,9 +22,9 @@ function info() {
                      '• ##NEW## Aceita Pause/Resume direto no player do VLC<br>'+
                      '• Quando termina o vídeo no OBS, ativa cena anterior.<br>'+
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
-                     '• Opção para liberar o canal e ajustar o volume nos mixers digitais Behinger e SoundCraft.<br>'+
-                     infoVDDMM,
-        min_version: '99.0.0'
+                     '=== ATENÇÃO - O CONTROLE DO VOLUME DO MIXER DIGITAL FOI SEPARADO EM OUTRO MÓDULO. <br>'+
+                     '=== Baixe o módulo "PC unMute Holyrics+"<br>'+
+                     infoVDDMM
     };
 }
 
@@ -40,16 +40,6 @@ function triggers(module) {
     item: "any_video",
     action: function(obj) {
 
-      var s = module.settings;
-      var m1 = s.digital_mixer_id;
-      var m2 = s.mixer_channel;
-      var m3 = s.mixer_volume;
-
-      h.log(mID, "Liberando mesa de som, receiver: {} , channel: {}, volume: {}", [m1, m2, m3]);
-      // Seta volume e libera o canal.
-      unMute(m1, m2);
-      setVolume(m1, m2, m3 / 100);
-
       obsVideo(module, true, obj.file_fullname);
       module.updatePanel();
     }
@@ -63,7 +53,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: "<html><hr>@ Para mais informações sobre automação com holyrics, visite <br><a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
             type: 'label'
         }, 
         {
@@ -112,39 +102,7 @@ function settings() {
             type: 'boolean'
         },{
             type: 'separator'
-        },  
-        {
-            type: 'title',
-            label: 'Configurações mixer digital: (opcional)'
         }, 
-        {
-            id: 'digital_mixer_id',
-            name: jsc.i18n('Receptor'),
-            description: '<html><hr>Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute',
-            type: 'receiver',
-            receiver: 'osc,soundcraft'
-        }, 
-        {
-            id: 'mixer_channel',
-            name: jsc.i18n('Channel number'),
-            description: '',
-            type: 'number',
-            min: 1,
-            max: 40,
-            default_value: 1,
-            show_as_combobox: true
-        }, 
-        {
-            id: 'mixer_volume',
-            name: '% ' + jsc.i18n('Volume ') + '(0-100)',
-            description: '',
-            type: 'number',
-            min: 0,
-            max: 100,
-            default_value: 0,
-            component: 'slider',
-            unit: '%'
-        },  
         {
             id: 'log',
             label: 'Habilitar log',
@@ -288,8 +246,14 @@ function obsVideo(module, show, mediaName) {
 }
 
 function getPluginSettings() {
-  var json = h.readFileAsText('.plugin_system_settings.txt');
-  return JSON.parse(json);
+  var arr = ['~\u0024', ''];
+  for (var i in arr) {
+    try {
+      var json = h.readFileAsText(arr[i] + '.plugin_system_settings.txt');
+      return JSON.parse(json);
+    } catch (e) {}
+  }
+  return {};
 }
 
 function createURL(settings, path, samePC) {
@@ -345,53 +309,4 @@ return {
                 }
             }
          }
-}
-
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226469676974616c5f6d6978227d
-function getMixerDetails(receiverID, channel_type) {
-  if (!receiverID) {
-    h.log(mUID, ': Mixer não configurado!');
-    return null;
-  }
-
-  var type = h.getReceiverInfo(receiverID).type || "nenhum"; 
-
-  var channelAction = null; 
-  if (type === 'osc') {
-    channelAction = channel_type == 0 ? 'Channel' : 'Aux'; 
-  } else if (type === 'soundcraft') {
-    channelAction = channel_type == 0 ? 'input' : channel_type == 1 ? 'aux' : channel_type == 2 ? 'line' : null; 
-  }
-
-  return { type: type, channelAction: channelAction }; 
-}
-
-function unMute(receiverID, channel, channel_type) {
-  var m = getMixerDetails(receiverID, channel_type);
-  if (!m || !m.channelAction) return; 
-
-  try {
-    if (m.type == 'osc') {
-      jsc.x32['set' + m.channelAction + 'Mute'](receiverID, channel, false); 
-    } else if (m.type == 'soundcraft') {
-      jsc.soundcraft.conn(receiverID)[m.channelAction](channel).unmute();
-    }
-  } catch (e) {
-    h.log(mUID, 'Erro {}', [e]);
-  }
-}
-
-function setVolume(receiverID, channel, volume, channel_type) {
-  var m = getMixerDetails(receiverID, channel_type);
-  if (!m) return;
-
-  try {
-    if (m.type == 'osc') {
-      jsc.x32['set' + m.channelAction + 'Volume'](receiverID, channel, volume); 
-    } else if (m.type == 'soundcraft') {
-      jsc.soundcraft.conn(receiverID)[m.channelAction](channel).setVolume(volume); 
-    }
-  } catch (e) {
-    h.log(mUID, 'Erro {}', [e]);
-  }
 }

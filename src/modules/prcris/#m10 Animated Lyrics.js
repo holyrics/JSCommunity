@@ -1,6 +1,15 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m10'
+var mUID = '@prcris#m10';
 
+//#import modules_generic_functions
+
+function startup(module) { 
+
+mUID = mID + module.id;
+logState(module.settings.log, mUID, 'startup '+ mID);
+ 
+}
 function info() {
     return {
         id: mID,
@@ -11,8 +20,8 @@ function info() {
                      'e crie as pastas das animações com um apelido e insira esse apelido em um campo extra da música<br>'+
                      'chamado <u>alias_background</u> e coloque o mesmo nome da pasta apelido para a música<br>'+
                      'O Módulo remove qualquer texto que seria exibido na tela principal, substituindo-o pelo vídeo.<br>'+
-                     'a tela de retorno permanece exibindo a letra da música do holyrics.<br><hr>'+
-                     '@ Para mais informações, visite '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     'a tela de retorno permanece exibindo a letra da música do holyrics.<br>'+
+                     infoVDDMM
     };
 }
 
@@ -29,14 +38,14 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         }, {
             id: 'log',
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID,'onchange '+ mID);
               }
         }
     ];
@@ -89,17 +98,4 @@ function customTheme(module) {
           }
         }
     };
-}
-
-
-
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273746172745570227d
-function actions(module) {
-    
-    logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
-    return null;
-}
-
-function logState(log){ 
-    h.log.setEnabled(mID, log);
 }

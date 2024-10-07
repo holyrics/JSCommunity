@@ -1,17 +1,26 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m6';
+var mUID = '@prcris#m6';
+
+//#import modules_generic_functions 
+
+function startup(module) { 
+  mUID = mID + module.id;
+  logState(module.settings.log, mUID, 'startup '+ mID);
+}
 
 function info() {
     return {
-        id: mID,
+        id: mUID,
         name: 'Filtro Avançado de Músicas',
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+
                      '• Grupos (diversos)<br>'+
+                     '• Artista <br>'+
                      '• Cantor <br>'+
                      '• Faixa de BPM<br>'+
                      '• Dias sem cantar<br>'+
-                     '<hr>@ Para mais informações acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     infoVDDMM
     };
 }
 
@@ -23,7 +32,7 @@ function settings(module) {
     var arr = [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },{
             type: 'separator'
@@ -62,7 +71,7 @@ function settings(module) {
             label: 'Habilitar log',
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
@@ -70,7 +79,7 @@ function settings(module) {
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73536574227d
 function actions(module) {
-    logState(module.settings.log); //habilita ou desabilita o log de acordo com a configuração
+    
     return [
         actionSongsFilter(module)       // na aba eventSingers
         ]
@@ -151,7 +160,7 @@ function actionSongsFilter(module) {
 
             var q = module.inputSettings('custom_search', inputs);
             if (q !== null) {
-                h.log(mID,"Valores escolhidos = {}",[q]);
+                h.log(mUID,"Valores escolhidos = {}",[q]);
                 filterApply(q);
             }
         }
@@ -219,11 +228,6 @@ function listScheduledSingers(settings) { // Obter nomes dos cantores escalados
        });
   }
   return scheduledSingers;
-}
-
-
-function logState(log){ 
-    h.log.setEnabled(mID, log);
 }
 
 
