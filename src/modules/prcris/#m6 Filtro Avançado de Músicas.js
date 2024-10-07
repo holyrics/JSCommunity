@@ -16,10 +16,11 @@ function info() {
         description: '<html>'+
                      '<b>Cria tags para filtrar músicas no campo pesquisa, filtra músicas por:</b><br>'+
                      '• Grupos (diversos)<br>'+
+                     '• Artista <br>'+
                      '• Cantor <br>'+
                      '• Faixa de BPM<br>'+
                      '• Dias sem cantar<br>'+
-                     '<hr>@ Para mais informações acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     infoVDDMM
     };
 }
 
@@ -31,7 +32,7 @@ function settings(module) {
     var arr = [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },{
             type: 'separator'

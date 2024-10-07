@@ -120,7 +120,7 @@ function addTriggFX(arr, module) {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtu.be/l3beon6Mc-c'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },
         {

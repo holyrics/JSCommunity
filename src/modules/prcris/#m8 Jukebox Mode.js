@@ -15,7 +15,7 @@ function info() {
         name: 'Jukebox Mode',
         description: '<html>'+
                      '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>'+
-                     '<hr>Para mais informações sobre automações no holyrics, acesse <br>'+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     infoVDDMM
     };
 }
 

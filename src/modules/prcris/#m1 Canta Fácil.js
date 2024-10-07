@@ -13,16 +13,16 @@ logState(module.settings.log, mUID, 'startup '+ mID);
 
 function info() {
     return {
-        id: mUID,
+        id: mID,
         name: 'Canta Fácil',
         description: '<html>'+
                      '• Permite associar um cantor escalado a cada música da aba Mídia<br>'+
                      '• Exibe o cantor escalado da música na tela de retorno no slide 1<br>'+
                      '• Monta uma base de dados de cantores por música para axiliar na montagem de escalas<br>'+
                      '• Ajusta o volume dos microfones dos cantores, baseado na voz principal da música na escala. (behinger e soundcraft)<BR>'+
-                     '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><hr>'+
-                     '@ Para mais informações acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
-    };
+                     '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><br>'+
+                     infoVDDMM
+       };
 }
 
 
@@ -69,7 +69,7 @@ function settings(module) {
     var arr = [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },
         {

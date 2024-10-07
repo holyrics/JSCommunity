@@ -1,5 +1,5 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-var mID = '@prcris#m2'
+var mID = '@prcris#m2';
 var mUID = '@prcris#m2';
 
 //#import modules_generic_functions
@@ -11,15 +11,14 @@ logState(module.settings.log, mUID, 'startup '+ mID);
  
 }
 
-
 function info() {
     return {
         id: mID,
         name: 'Tempo Certeiro',
         description: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), '+
                      'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>'+
-                     '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br><hr>'+
-                     '@ Para mais informações acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br>'+
+                     infoVDDMM
            };
    
 }
@@ -192,7 +191,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         },
         {

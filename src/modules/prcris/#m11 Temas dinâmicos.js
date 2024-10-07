@@ -19,9 +19,8 @@ function info() {
                      ' a cada exibição de uma música. <br>'+
                      '• Permite especificar um fundo fixo no campo extra <b>tema_fixo</b> em uma música. <br>'+
                      '• Também funciona para Apresentação Automática <br> '+
-                     '  uso: Crie tags com o nome de cada tema usado nas configurações e adicione os vídeos que deseja usar junto com o tema para que o módulo possa funcionar adequadamente.'+
-                     '  <br><hr>'+
-                     '@ Para mais informações, visite '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '  uso: Crie tags com o nome de cada tema usado nas configurações e adicione os vídeos que deseja usar junto com o tema para que o módulo possa funcionar adequadamente.<br>'+
+                     infoVDDMM
     };
 }
 
@@ -79,7 +78,7 @@ function settings() {
     return [
         {
             name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            description: infoVDDMM,
             type: 'label'
         }, {
             id: 'skiptitle',
@@ -150,7 +149,7 @@ function customTheme(module) {
        if (!tagExists(tema) && !obj.tema_fixo) {
            h.log('', 'Você precisa criar uma tag para o tema: {} poder funcionar no modo aleatório.', tema);
        }
-        
+       
        return { intersection :  true,
                 cache_key : tema,
                 tags : [tema],
@@ -164,13 +163,6 @@ function customTheme(module) {
     };
 }
 
-
-
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273746172745570227d
-function actions(module) {
-    
-    return null;
-}
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
@@ -201,6 +193,7 @@ function compararHora(str) {
     if (agora == varData) return 0;
     else return agora > varData ? 1 : -1;
 }
+
 function tagExists(tag) {
     var r = h.hly('GetBackgrounds');
     var tags = [];

@@ -1,4 +1,4 @@
-## include module
+var infoVDDMM = "<html><hr><br>@ Para mais informações sobre automação com holyrics, visite <br><a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
 
 function isDev() {
   return false
@@ -11,7 +11,6 @@ function logState(log, id, caller){
 function spanIcon(iconCodePoint){
     return '<html><span style="font-family: Material Icons;">' + iconCodePoint + ' </span>';
 }
-
 
 function showMessage(title, message) {
     var content = [{ type: 'title', label: title }, { type: 'separator' }];

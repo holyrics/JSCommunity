@@ -19,8 +19,8 @@ function info() {
                      '• Ajusta o BPM das luzes do Lumikit e do vídeo do Holyrics.<br>'+
                      '• Usa o campo extra slideBPM da música para estabelecer BPM variável exemplo: <br>'+
                      '   23,2|30,80,5 que significa:<br>'+
-                     '   no slide 23 divida o bpm por 2, e no 30 ajuste o bpm para 80, 5 segundos após exibir o verso 30.<br><br>'+
-                     '<hr>Para mais informações, acesse '+"<a href='https://youtube.com/@multimidiaverdadebalneario'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     '   no slide 23 divida o bpm por 2, e no 30 ajuste o bpm para 80, 5 segundos após exibir o verso 30.<br>'+
+                     infoVDDMM
     };
 }
 
