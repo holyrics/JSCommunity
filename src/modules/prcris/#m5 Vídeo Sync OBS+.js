@@ -1,9 +1,10 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
 var mID = '@prcris#m5'; 
-var mUID = '@prcris#m5'; 
+var mUID = mID + ''; 
 var pause = false;
 
 //#import modules_generic_functions
+//#import plugin_video_resources
 
 function startup(module) { 
 
@@ -18,8 +19,8 @@ function info() {
         name: 'Vídeo Sync OBS+',
         description: '<html>'+
                      '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
-                     '• ##NEW## Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
-                     '• ##NEW## Aceita Pause/Resume direto no player do VLC<br>'+
+                     '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
+                     '• Aceita Pause/Resume direto no player do VLC<br>'+
                      '• Quando termina o vídeo no OBS, ativa cena anterior.<br>'+
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
                      '• Opção para liberar o canal e ajustar o volume nos mixers digitais Behinger e SoundCraft.<br>'+
@@ -176,7 +177,7 @@ var p = h.getPlayer();
 var playing = true;
 var id = h.setInterval(function(){
   //verifica condição para cancelar a verificação
-  if (!h.getGlobal(mUID + '_jumpToScene', null)) {
+  if (!gsJump()) {
     h.clearInterval(id);
     return;
   }
@@ -189,6 +190,28 @@ var id = h.setInterval(function(){
   }, 200);
 }
 
+function restorePreviousScene(module) {
+      var s = module.settings;
+      var p1 = s.receiver_id
+      var p2 = s.scene_name;
+      var p3 = s.scene_item_name;
+      jsc.obs_v5.setActiveScene(p1, gsJump());
+      jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
+      gsJump("");
+}
+
+function gsJump(value) {
+
+h.log(mUID, "gsJump:{}", value);
+
+if (value != undefined) { 
+  h.setGlobal(mUID + '_jumpToScene', value == "" ? null : value);
+  }
+else
+  return h.getGlobal(mUID + '_jumpToScene', null);
+}
+
+
 function obsVideo(module, show, mediaName) { 
     var s = module.settings;
     var p1 = s.receiver_id;
@@ -196,12 +219,10 @@ function obsVideo(module, show, mediaName) {
     var p3 = s.scene_item_name;
     pause = false;
     if (!show) { 
-        var jumpToScene = h.getGlobal(mUID + '_jumpToScene', null);
-        if (jumpToScene) {
-            jsc.obs_v5.setActiveScene(p1, jumpToScene);
-            jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
-            h.log(mUID, "======= Execução de vídeo no OBS interrompida pelo botão de pânico, voltando para a cena {}", jumpToScene);
+        if (gsJump()) {
+            h.log(mUID, "======= Execução de vídeo no OBS interrompida pelo botão de pânico, voltando para a cena {}", gsJump());
             h.notification("Execução de vídeo no OBS interrompida pelo botão de pânico.", 3);
+            restorePreviousScene(module); 
         }
         return;
     }
@@ -211,12 +232,14 @@ function obsVideo(module, show, mediaName) {
     // Se exclamation_mark estiver habilitado, apenas vídeos com "!" no nome serão enviados para o OBS
     if (s.exclamation_mark == 'true' && mediaName.indexOf('!') == -1) {  //caso não possua
            h.log(mUID, "======= Vídeo não enviado para o OBS por NÃO possuir ! no nome.");
+           restorePreviousScene(module);
            return;
     }
     
     // Se exclamation_mark estiver desabilitado, apenas vídeos sem "!" no nome serão enviados para o OBS
     if (s.exclamation_mark == 'false' && mediaName.indexOf('!') > -1) { //caso possua:
            h.log(mUID, "======= Vídeo não enviado para o OBS por POSSUIR ! no nome.");
+           restorePreviousScene(module);
            return;
     }
 
@@ -232,7 +255,8 @@ function obsVideo(module, show, mediaName) {
         repeat: false,
         volume: 100
       });
-/// fim ajusta e salva configurações do player
+     
+    /// fim ajusta e salva configurações do player
 
     var pSettings = getPluginSettings();
 
@@ -244,15 +268,16 @@ function obsVideo(module, show, mediaName) {
 
     h.log(mUID, "======= Vídeo enviado para o OBS: " + mediaName);
     
-    var jumpToScene = jsc.obs_v5.getActiveScene(p1);
-    h.setGlobal(mUID + '_jumpToScene', jumpToScene);
+    var previousScene = jsc.obs_v5.getActiveScene(p1);
     
+    if (previousScene != s.scene_name) { // nunca captura a cena do video
+        gsJump(previousScene); 
+        h.log(mUID,"Cena atual capturada: {}", previousScene);
+    }
+
     module.updatePanel();
     
-    h.log(mUID, "Salvando informação da cena atual, scene: {}", [jumpToScene]);
-
-    // Ajusta a cena no OBS colocando o nome do vídeo e ativa a cena no OBS causando o play
-   
+    // Ajusta a cena no OBS colocando a url do vídeo e ativa a cena no OBS causando o play
     var url = createURL(pSettings, mediaName, s.samePC);
 
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
@@ -271,43 +296,27 @@ function obsVideo(module, show, mediaName) {
 
 
     // Prepara para retornar à cena original quando o vídeo terminar ou for parado
-    if (jumpToScene) {
+    if (gsJump()) {
         jsc.utils.trigger.addSingleRunVideoOnStop(mediaName, function() {
             if (jsc.obs_v5.getActiveScene(p1) == p2) { // Caso o botão de pânico tenha sido ativado, não trocar de cena
-                h.log(mUID, "======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [jumpToScene]);
-                jsc.obs_v5.setActiveScene(p1, h.getGlobal(mUID + '_jumpToScene'));
-                jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
-                h.setGlobal(mUID + '_jumpToScene', null);
+               h.setTimeout(function() { 
+                  if (!isPlaying()) {
+                      h.log(mUID, "======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [gsJump()]);
+                      restorePreviousScene(module); 
+                      module.updatePanel();
+                      h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
+                      h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
+                      pause = false;
+                  }
+              }, 500);
             }
-            module.updatePanel();
-            h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
-            h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
-            pause = false;
         });
     }
 }
 
-function getPluginSettings() {
-  var arr = ['~\u0024', ''];
-  for (var i in arr) {
-    try {
-      var json = h.readFileAsText(arr[i] + '.plugin_system_settings.txt');
-      return JSON.parse(json);
-    } catch (e) {}
-  }
-  return {};
-}
-
-function createURL(settings, path, samePC) {
-  var token = h.sha256(path + "#" + settings.token);
-  token = h.base64Encode(token);
-  token = token.replaceAll("[^a-zA-Z0-9]", "");
-  token = token.substring(0, Math.min(20, token.length()));
-     
-  return "http://" + (samePC ? 'localhost' : settings.ip) + (settings.port == '80' ? "" : ":" + settings.port)
-         + "/get_video"
-         + "?path=" + encodeURIComponent(path)
-         + "&token=" + token;
+function isPlaying() {
+var p = h.getPlayer();
+   return p.isPlaying()
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
@@ -326,11 +335,11 @@ return {
             icon : 'video_camera_front',
             hint : 'Cancela a execução do vídeo no OBS, retornando à cena original, mas continua a execução no VLC',
             action: function(evt) {
-                  var jumpToScene = h.getGlobal(mUID + '_jumpToScene', null);
-                  if (jumpToScene) {
+                 
+                  if (gsJump()) {
                       obsVideo(module, false);
                       h.setGlobal(mUID + '_jumpToScene', null)
-                      h.notification("Vídeo no OBS cancelado, voltando à cena " + jumpToScene,3);
+                      h.notification("Vídeo no OBS cancelado, voltando à cena " + gsJump(),3);
                       module.updatePanel();
                       module.settings.pause = false;
                       }
@@ -339,8 +348,7 @@ return {
                   }
             },
             status: function(evt) {
-                  var jumpToScene = h.getGlobal(mUID + '_jumpToScene', null);
-                  if (jumpToScene) {
+                  if (h.getGlobal(mUID + '_jumpToScene', null)) {
                   return {
                         description : '<-Pânico',
                         icon : 'camera',
