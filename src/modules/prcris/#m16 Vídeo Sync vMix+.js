@@ -220,7 +220,7 @@ function vmixVideo(module, show, mediaName) {
                        restorePreviousScene(module); 
                        module.updatePanel();
                      }
-                 }, 500);
+                 }, 800);
             }
         });
     }

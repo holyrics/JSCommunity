@@ -270,7 +270,7 @@ function obsVideo(module, show, mediaName) {
                       // h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
                       pause = false;
                   }
-              }, 500);
+              }, 800);
             }
         });
     }
