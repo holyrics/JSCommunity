@@ -83,8 +83,8 @@ function settings() {
         }, 
         {       
             id: 'scene_name1',
-            name: jsc.i18n('Primeira Cena'),
-            description: 'Escolha a primeira cena do vMix para passar o vídeo.',
+            name: jsc.i18n('Primeira Entrada'),
+            description: 'Escolha a primeira Entrada(input) do vMix para passar o vídeo.',
             type: 'string',
             suggested_values: function(obj) {
                 return getInputBrowser(obj.input.receiver_id);
@@ -92,8 +92,8 @@ function settings() {
         },
         {       
             id: 'scene_name2',
-            name: jsc.i18n('Segunda Cena'),
-            description: 'Escolha a segunda cena do vMix para passar o vídeo.',
+            name: jsc.i18n('Segunda Entrada'),
+            description: 'Escolha a segunda Entrada(input) do vMix para passar o vídeo.',
             type: 'string',
             suggested_values: function(obj) {
                 return getInputBrowser(obj.input.receiver_id);
