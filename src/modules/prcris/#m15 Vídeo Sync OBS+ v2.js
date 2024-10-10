@@ -22,13 +22,14 @@ function info() {
         name: 'Vídeo Sync OBS+',
         description: '<html>'+
                      '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
-                     '• ##NEW## Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
-                     '• ##NEW## Aceita Pause/Resume direto no player do VLC<br>'+
-                     '• Quando termina o vídeo no OBS, ativa cena anterior.<br>'+
+                     '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
+                     '• Aceita Pause/Resume direto no player do VLC<br>'+
+                     '• Aceita fila de vídeos.<br>'+
+                     '• Aceita interromper o vídeo.<br>'+
+                     '• Aceita enviar outro vídeo enquanto um está passando, fazendo a troca imediata.<br>'+
+                     '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>'+
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
-                     '=== ATENÇÃO - O CONTROLE DO VOLUME DO MIXER DIGITAL FOI SEPARADO EM OUTRO MÓDULO. <br>'+
-                     '=== Baixe o módulo "PC unMute Holyrics+"<br>'+
-                     infoVDDMM
+                     infoVDDMM                    
     };
 }
 
@@ -157,7 +158,7 @@ function restorePreviousScene(module) {
       var p2 = s.scene_name;
       var p3 = s.scene_item_name;
       jsc.obs_v5.setActiveScene(p1, gsJump());
-      jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
+      //jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
       gsJump("");
 }
 
@@ -210,13 +211,13 @@ function obsVideo(module, show, mediaName) {
       var pMute = player.isMute();
       var pRepeat = player.isRepeat();
       var pVolume = player.getVolume();
-      // aplica novas cfgs no player
+/*      // aplica novas cfgs no player
       h.hly('MediaPlayerAction', {
         mute: false,
         repeat: false,
         volume: 100
       });
-     
+*/     
     /// fim ajusta e salva configurações do player
 
     var pSettings = getPluginSettings();
@@ -265,8 +266,8 @@ function obsVideo(module, show, mediaName) {
                       h.log(mUID, "======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [gsJump()]);
                       restorePreviousScene(module); 
                       module.updatePanel();
-                      h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
-                      h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
+                      // h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
+                      // h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
                       pause = false;
                   }
               }, 500);

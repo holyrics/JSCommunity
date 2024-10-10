@@ -196,7 +196,7 @@ function restorePreviousScene(module) {
       var p2 = s.scene_name;
       var p3 = s.scene_item_name;
       jsc.obs_v5.setActiveScene(p1, gsJump());
-      jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
+      //jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, false);
       gsJump("");
 }
 
@@ -250,11 +250,12 @@ function obsVideo(module, show, mediaName) {
       var pRepeat = player.isRepeat();
       var pVolume = player.getVolume();
       // aplica novas cfgs no player
-      h.hly('MediaPlayerAction', {
+/*     h.hly('MediaPlayerAction', {
         mute: false,
         repeat: false,
         volume: 100
       });
+*/      
      
     /// fim ajusta e salva configurações do player
 
@@ -304,8 +305,8 @@ function obsVideo(module, show, mediaName) {
                       h.log(mUID, "======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [gsJump()]);
                       restorePreviousScene(module); 
                       module.updatePanel();
-                      h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
-                      h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
+                     // h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
+                     // h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
                       pause = false;
                   }
               }, 500);

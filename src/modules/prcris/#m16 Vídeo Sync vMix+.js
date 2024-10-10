@@ -23,13 +23,20 @@ function info() {
         description: '<html>'+
                      '• Exibe um vídeo em uma cena previamente configurada no vMix simultaneamente à exibição no Holyrics.<br>'+
                      '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
-                     '• Quando termina o vídeo no vMix, ativa cena anterior.<br>'+
+                     '• Aceita fila de vídeos.<br>'+
+                     '• Aceita interromper o vídeo.<br>'+
+                     '• Aceita enviar outro vídeo enquanto um está passando, fazendo a troca imediata.<br>'+
+                     '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>'+
                      '• Possui botão de pânico para interromper vídeo no vMix sem interferir no telão, ativando a cena anterior.<br>'+
                      '<hr><b><u>Configurações para uso:</u></b><br>' +
                      '<p style="padding-left: 30px;">• Crie 2 inputs(entrada) do tipo Browser(Navegador) e coloque na url: '+
-                     'about:blank e defina um nome para cada input(entrada), ex: "Holyrics Video 1 e 2".<br>'+
-                     '• No holyrics, configure um receptor para se comunicar com o vmix e selecione os inputs(entrada) criados no vmix.<br>'+
+                     '<u>about:blank</u> e defina um nome para cada input(entrada), ex: <u>Holyrics Video 1</u> e <u>Holyrics Video 2</u>.<br>'+
+                     '• No holyrics, configure um receptor para se comunicar com o vmix (copie o endereço exato da tela de configuração do vMix, em settings, Web Controller) e selecione os inputs(entrada) criados no vmix.<br>'+
                      '• A partir deste ponto, os vídeos serão exibidos simultaneamente no vMix.<br></p>'+
+                     '• Fique atento às suas configurações de firewall e rede, pois na maioria das vezes é isto que bloqueia a comunicação entre dois computadores.'+
+                     '<br><br><b>Observação:</b> O uso de 2 inputs se deve ao fato do vMix não possuir função do vídeo ocupar a tela toda, então '+
+                     'estou utilizando o comando ZOOM para ajustar o vídeo ao tamanho da tela se necessário, '+
+                     'o que só pode ser feito se a cena não estiver no "ao vivo", então o módulo sempre alterna entre estes dois inputs.<br>'+
                      infoVDDMM
     };
 }
@@ -212,8 +219,6 @@ function vmixVideo(module, show, mediaName) {
                        h.log(mUID, "======= trigger Video_close - ativando cena anterior no vMix, scene: {}", [gsJump()]);
                        restorePreviousScene(module); 
                        module.updatePanel();
-                       h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
-                       h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
                      }
                  }, 500);
             }
