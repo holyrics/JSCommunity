@@ -274,18 +274,18 @@ function SetPluginSettings(module) {
       var pRepeat = player.isRepeat();
       var pVolume = player.getVolume();
       
-      var message = '<html>'+spanIcon('\uE002')+' <b><u>A t e n ç ã o :</u></b><br>';
+      var message = '<html><img src="icon,warning"/> <b><u>A t e n ç ã o :</u></b><br>';
 
       // gera alertas de segurança
             
       if (pRepeat) {
-         message += '<br>'+spanIcon('\uE040')+'O modo <b>Repeat</b> está ativado.';
+         message += '<br><img src="icon,repeat"/> O modo <b>Repeat</b> está ativado.';
       }
       if (pVolume < 30) { 
-         message += '<br>'+spanIcon('\uE04D')+' O <b>volume</b> está abaixo de 30%.';
+         message += '<br><img src="icon,volume_down"/> O <b>volume</b> está abaixo de 30%.';
       }
       if (pMute) { 
-         message += '<br>'+spanIcon('\uE04F')+' O <b>mute</b> está ativado.';
+         message += '<br><img src="icon,volume_off"/> O <b>mute</b> está ativado.';
       }      
       
       h.notification(message,5);
