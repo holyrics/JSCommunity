@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
 var mID = '@prcris#m13'; 
-var mUID = '@prcris#m13'; 
+var mUID = mID + ''; 
 var pause = false;
 
 //#import modules_generic_functions
@@ -23,6 +23,7 @@ function info() {
                      '• Cria um botão exclusivo para gerenciar o mute do canal.<br>'+
                      '• Cria um fader exclusivo para ajuste do volume do canal.<br>'+
                      '• Compatível com Vídeo, Áudio e Apresentação Automática.<br>'+
+                     '• ##NEW### Opção de alterar o Volume do VLC do Holyrics<br>'+
                      '• Aceita as entradas AUX dos mixers.<br>'+
                      '<br><hr>Para mais informações, acesse '+"<a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>"
     };
@@ -51,7 +52,8 @@ function triggers(module) {
           var m3 = s.mixer_volume;
 
           h.log(mUID, "Liberando mesa de som, receiver: {} , channel: {}, volume: {}", [m1, m2, m3]);
-
+          
+          SetPluginSettings(module); 
           unMute(m1, m2, s.channel_type);
           setVolume(m1, m2, m3 / 100, s.channel_type);
 
@@ -111,6 +113,26 @@ function settings() {
         {
             id: 'mixer_volume',
             name: jsc.i18n('Volume'),
+            description: '',
+            type: 'number',
+            component: 'slider',
+            unit: '%'
+        },
+        {
+            type: 'separator'
+        },  
+        {
+            type: 'title',
+            label: 'Configurações VLC Player:'
+        },
+        {
+            id: 'vlc_volume_unmute',
+            label: 'Alterar volume / Mute',
+            type: 'boolean',
+        },
+        {
+            id: 'vlc_volume_level',
+            name: jsc.i18n('Volume VLC'),
             description: '',
             type: 'number',
             component: 'slider',
@@ -233,6 +255,44 @@ function toggleMute(receiverID, channel, channel_type) {
   }
 }
 
+
+function SetPluginSettings(module) {
+
+      var s = module.settings;
+
+      // aplica novas cfgs no player
+      if (s.vlc_volume_unmute) { 
+        h.hly('MediaPlayerAction', {
+                  mute: false,
+                volume: s.vlc_volume_level
+            });
+      }
+
+  h.setTimeout( function (obj)  {
+      var player = h.getPlayer();
+      var pMute = player.isMute();
+      var pRepeat = player.isRepeat();
+      var pVolume = player.getVolume();
+      
+      var message = '<html><img src="icon,warning"/> <b><u>A t e n ç ã o :</u></b><br>';
+
+      // gera alertas de segurança
+            
+      if (pRepeat) {
+         message += '<br><img src="icon,repeat"/> O modo <b>Repeat</b> está ativado.';
+      }
+      if (pVolume < 30) { 
+         message += '<br><img src="icon,volume_down"/> O <b>volume</b> está abaixo de 30%.';
+      }
+      if (pMute) { 
+         message += '<br><img src="icon,volume_off"/> O <b>mute</b> está ativado.';
+      }      
+      
+      h.notification(message,5);
+      
+   },500);
+      
+}
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
