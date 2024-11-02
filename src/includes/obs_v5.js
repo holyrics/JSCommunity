@@ -1,7 +1,12 @@
 // Documentation website:
 // https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md
 
-// Create an object for operation 6
+/**
+ * Creates an object with the operation `op` set to 6 and includes the provided data.
+ *
+ * @param {any} d - The data to be included in the object.
+ * @returns {Object} An object containing the operation and the data.
+ */
 function op6(d) {
     return {op: 6, d: d};
 }
@@ -26,17 +31,17 @@ function request(receiverID, requestType, requestData) {
 
 // Send a request batch to the OBS WebSocket server
 function requestBatch(receiverID, requests) {
-  jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
-  var d = { "requests": requests };
-  var json = h.apiRequest(receiverID, {op: 8, d: d});
-  if (json == null) {
-    throw h.getApiRequestLastError();
-  }
-  var response = JSON.parse(json);
-  if (response.d.results) {
-    return response.d.results;
-  }
-  throw JSON.stringify('unknown');
+    jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
+    var d = {"requests": requests};
+    var json = h.apiRequest(receiverID, {op: 8, d: d});
+    if (json == null) {
+        throw h.getApiRequestLastError();
+    }
+    var response = JSON.parse(json);
+    if (response.d.results) {
+        return response.d.results;
+    }
+    throw JSON.stringify('unknown');
 }
 
 // Get a list of available scenes
@@ -240,12 +245,12 @@ function getSourceFilterList(receiverID, sourceName) {
 }
 
 // Get the enabled/disabled status of a filter for a source
-function getSourceFilterEnabled(receiverID, sourceName, filterName) {    
+function getSourceFilterEnabled(receiverID, sourceName, filterName) {
     var response = jsc.obs_v5.request(receiverID, 'GetSourceFilter', {
         sourceName: sourceName,
         filterName: filterName
     });
-    h.log('jsc.obs_v5', 'getSourceFilterEnabled response: {}', response);    
+    h.log('jsc.obs_v5', 'getSourceFilterEnabled response: {}', response);
     return response.filterEnabled;
 }
 
@@ -272,20 +277,20 @@ function getInputSettings(receiverID, inputName) {
 // set input settings, example: local_file, close_when_inactive, and/or looping of the item
 function setInputSettings(receiverID, inputName, settings) {
     /* 
-    Example Media Source:
-    jsc.obs_v5.setInputSettings(receiverID, inputName, {
-        close_when_inactive: true,
-                    looping: true,
-                 local_file: 'c:/folder/filename.mp4'
-    });
-    */
+     Example Media Source:
+     jsc.obs_v5.setInputSettings(receiverID, inputName, {
+     close_when_inactive: true,
+     looping: true,
+     local_file: 'c:/folder/filename.mp4'
+     });
+     */
     settings = settings || {};
     if (settings.local_file) {
         settings.local_file = settings.local_file.replace(/\\/g, '/');
     }
-    
+
     return jsc.obs_v5.request(receiverID, 'SetInputSettings', {
-        inputName: inputName, 
+        inputName: inputName,
         inputSettings: settings
     });
 }
@@ -310,7 +315,7 @@ function getAudioInputList(receiverID) {
 
     for (var i = 0; i < rBatch.length; i++) {
         var input_kind = rBatch[i].responseData;
-        
+
         if (input_kind && input_kind.inputs && input_kind.inputs.length > 0) {
             for (var j = 0; j < input_kind.inputs.length; j++) {
                 var inputName = input_kind.inputs[j].inputName;
@@ -349,7 +354,7 @@ function pauseMedia(receiverID, mediaSourceName) {
         inputName: mediaSourceName,
         mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
     };
-    
+
     var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
     h.log('jsc.obs_v5', 'Pause media response: {}', response);
 }
@@ -360,7 +365,7 @@ function playMedia(receiverID, mediaSourceName) {
         inputName: mediaSourceName,
         mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY"
     };
-    
+
     var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
     h.log('jsc.obs_v5', 'Resume media response: {}', response);
 }

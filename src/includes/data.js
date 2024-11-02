@@ -86,3 +86,59 @@ var slideDescriptionMap = {
     chorus: ['chorus', 'coro', 'refrao', 'припев', 'coro'],
     instrumental: ['instrumental', 'инструментальныи', 'strumentale']
 };
+
+var styles = {
+    'light': {
+        'colors': {
+            primary: "448aff",
+            info: "17a2b8",
+            success: "00c800",
+            warning: "ffc107",
+            danger: "ff0000",
+            dark: "fcfcfc",
+            secondary: "707070",
+            light: "303030",
+            white: "070707"
+        }
+    },
+    'dark': {
+        'colors': {
+            primary: "6fa5ff",
+            info: "66d1ff",
+            success: "008e00",
+            warning: "ffc107",
+            danger: "790903",
+            dark: "1e1e1e",
+            secondary: "a4a4a4",
+            light: "c8c8c8",
+            white: "e6e6e6"
+        }
+    },
+    'dark_medium': {
+        'colors': {
+            primary: "6fa5ff",
+            info: "66d1ff",
+            success: "008e00",
+            warning: "ffc107",
+            danger: "ff8080",
+            dark: "3b3b3b",
+            secondary: "acacac",
+            light: "d0d0d0",
+            white: "ececec"
+        }
+    },
+    'dark_soft': {
+        'colors': {
+            primary: "6fa5ff",
+            info: "66d1ff",
+            success: "008e00",
+            warning: "ffc107",
+            danger: "ffbaba",
+            dark: "606060",
+            secondary: "c8c8c8",
+            light: "dcdcdc",
+            white: "f8f8f8"
+        }
+    }
+};
+var style = null;
