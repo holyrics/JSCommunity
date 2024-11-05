@@ -21,7 +21,7 @@ refreshShowTimeSchedules(module);
 function info() {
     return {
         id: mID,
-        name: 'Hora do Show',
+        name: 'Showtime',
         description: '> <b>Hora do Show</b> é um módulo automatizado para sincronização de eventos, projetado para criar uma impressionante apresentação de abertura. Integrando diversos sistemas e dispositivos, ele oferece total controle sobre iluminação, efeitos especiais, áudio e cenas de vídeo em tempo real.<br>' +
                      '<br>' +
                      '<b>Recursos Principais</b><br>' +
