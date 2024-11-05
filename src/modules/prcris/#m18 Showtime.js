@@ -30,11 +30,17 @@ function info() {
                      '• <b>Integração com Home Assistant:</b> Permite acionar dispositivos domésticos inteligentes, como lâmpadas e motores de telão, ampliando as possibilidades de automação.<br>' +
                      '• <b>Suporte a Mixers Profissionais:</b> Integra-se com mixers Behringer, Midas e SoundCraft, liberando volumes e canais conforme o evento progride.<br>' +
                      '• <b>Controle de Cenas no OBS:</b> Coordena cenas em loop e uma contagem regressiva no OBS, além de suportar vídeos simultâneos diferenciados para transmissão ao vivo e projeção local.<br>' +
-                     '• <b>Execução de Scripts JS Personalizados:</b> Adicione e execute seus próprios scripts Ja'+'vaScript via Holyrics para personalizar o comportamento do módulo (ver instruções nas configurações do item).<br>' +
                      infoVDDMM,
         allowed_requests: [
-            allowedPrcrisModuleRequests
+                     allowedPrcrisModuleRequests
         ],
+        permissions: [
+            {
+                type: 'blacklist_request',
+                key: 'obs_v5',
+                value: 'SetInputSettings'
+            }
+         ],    
         min_version: '2.24.0'
     };
 }
@@ -286,7 +292,7 @@ function actionShow(module) {
                     id: 'vlcVideo'+i,
                     type: 'video',
                     name: 'Local' + vdDur,
-                    description : 'Vídeo a ser executado nas telas Público configuradas, ' + (i == 0 ? ' em loop, no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.'),
+                    description : 'Vídeo a ser executado nas telas Público configuradas, ' + (i == 0 ? ' em loop, no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.')
                });
                
                if (s.streaming_id != "") {
@@ -365,7 +371,8 @@ function actionShow(module) {
             var q = module.inputSettings('cfg_'+sn, inputs);
             if (q !== null) {
                 h.log(mUID,"{%t} Valores escolhidos = {}",q);
-                s[sc] = q;
+                s[sc] = checkData(q);
+                
                 timingCheckAndSet(s,sc);
                 refreshShowTimeSchedules(module);
            }
@@ -1039,6 +1046,19 @@ function getCurrentTime() {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2267656e657269632066756e6374696f6e73227d
+function checkData(q) {
+    var tags = ['vlcVideo1', 'liveVideo0', 'liveVideo1'];
+    var messages = { 'vlcVideo1': '2 local', 'liveVideo0': ' 1 da Live', 'liveVideo1': ' 2 da Live'};
+    tags.forEach(function(tag) {
+        if (q[tag] && q[tag].isDir) {
+            showMessage('Para o Vídeo ' + messages[tag] + ' selecione apenas 1 vídeo e não uma pasta. Configuração Removida.');  
+            q[tag] = null;               
+        }
+    });
+    
+    return q;
+}
+
 function resetInactive(q, k) {
     var keys = [];
     var abort = false;
@@ -1253,90 +1273,4 @@ function formatDuration(ms) {
     return (hours ? (hours < 10 ? '0' + hours : hours) + ':' : '') +
            (minutes < 10 && hours ? '0' : '') + minutes + ':' +
            (seconds < 10 ? '0' : '') + seconds;
-}
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e636c75646573227d
-////////////// modules_generic_functions.js
-
-var infoVDDMM = "<hr><br>@ Para dicas sobre automação com holyrics, visite meu canal no youtube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Em caso de dúvidas fale comigo no tópico 'Gatilho - API - Script - Módulos' no grupo de suporte do telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, marque @prcris que terei prazer em ajudar - #juntos pelo Rei e pelo Reino!<br></p>";
-
-function isDev() {
-  return h.getRE() == h.sec('m5r3t6y7u8').decrypt('EUCkq90DCYkaH6DQgIH4Pg==');
-}
-
-function logState(log, id, caller){ 
-    h.log.setEnabled(id, log);
-    if (!isDev()){return;}
-    if (h.log.isEnabled(id)) { 
-       h.log("","Log {} ativado por: {} ", id, caller);
-    }
-    else {
-       //h.log['setPr'+'intTime'](false,id);
-       h.log("","Log {} desativado por: {} ", id, caller);
-    }
-}
-
-function spanIcon(iconCodePoint){
-    return '<html><span style="font-family: Material Icons;">' + iconCodePoint + ' </span>';
-}
-
-function showMessage(title, message) {
-    var content = [{ type: 'title', label: title }, { type: 'separator' }];
-
-    if (typeof message === 'string') {
-        content.push({ type: 'title', label: message });
-    } else if (Array.isArray(message)) {
-        for (var i = 0; i < message.length; i++) {
-            content.push({ type: 'title', label: message[i] });
-        }
-    }
-
-    h.input(content);
-}
-
-// pause media
-jsc.obs_v5.pauseMedia = function(receiverID, mediaSourceName) {
-    var requestData = {
-        inputName: mediaSourceName,
-        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
-    };
-    
-    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
-    h.log('jsc.obs_v5', 'Pause media response: {}', response);
-}
-
-// resume/start media
-jsc.obs_v5.playMedia = function (receiverID, mediaSourceName) {
-    var requestData = {
-        inputName: mediaSourceName,
-        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY"
-    };
-    
-    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
-    h.log('jsc.obs_v5', 'Resume media response: {}', response);
-}
-
-
-////////////////////// plugin_video_resources.js
-
-function getPluginSettings() {
-  var arr = ['~\u0024', ''];
-  for (var i in arr) {
-    try {
-      var json = h.readFileAsText(arr[i] + '.plugin_system_settings.txt');
-      return JSON.parse(json);
-    } catch (e) {}
-  }
-  return {};
-}
-
-function createURL(settings, path, samePC) {
-  var token = h.sha256(path + "#" + settings.token);
-  token = h.base64Encode(token);
-  token = token.replaceAll("[^a-zA-Z0-9]", "");
-  token = token.substring(0, Math.min(20, token.length()));
-     
-  return "http://" + (samePC ? 'localhost' : settings.ip) + (settings.port == '80' ? "" : ":" + settings.port)
-         + "/get_video"
-         + "?path=" + encodeURIComponent(path)
-         + "&token=" + token;
 }

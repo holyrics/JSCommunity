@@ -31,13 +31,16 @@ function info() {
                      '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>' +
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>' +
                      infoVDDMM,
+        allowed_requests: [
+                     allowedPrcrisModuleRequests
+                     ],
         permissions: [
             {
                 type: 'blacklist_request',
                 key: 'obs_v5',
                 value: 'SetInputSettings'
             }
-        ]
+         ]
     };
 }
 
