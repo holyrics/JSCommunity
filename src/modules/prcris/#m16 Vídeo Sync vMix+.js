@@ -37,8 +37,12 @@ function info() {
                      '<br><br><b>Observação:</b> O uso de 2 inputs se deve ao fato do vMix não possuir função do vídeo ocupar a tela toda, então '+
                      'estou utilizando o comando ZOOM para ajustar o vídeo ao tamanho da tela se necessário, '+
                      'o que só pode ser feito se a cena não estiver no "ao vivo", então o módulo sempre alterna entre estes dois inputs.<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
+
 }
 
 

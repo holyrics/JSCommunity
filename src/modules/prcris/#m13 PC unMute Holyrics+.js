@@ -9,7 +9,6 @@ function startup(module) {
 
 mUID = mID + module.id;
 logState(module.settings.log, mUID,'startup '+ mID);
-
 }
 
 function info() {
@@ -23,9 +22,12 @@ function info() {
                      '• Cria um botão exclusivo para gerenciar o mute do canal.<br>'+
                      '• Cria um fader exclusivo para ajuste do volume do canal.<br>'+
                      '• Compatível com Vídeo, Áudio e Apresentação Automática.<br>'+
-                     '• ##NEW### Opção de alterar o Volume do VLC do Holyrics<br>'+
+                     '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Opção de alterar o Volume do VLC do Holyrics<br>'+
                      '• Aceita as entradas AUX dos mixers.<br>'+
-                     '<br><hr>Para mais informações, acesse '+"<a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>"
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 
@@ -83,7 +85,7 @@ function settings() {
         }, 
         {
             id: 'digital_mixer_id',
-            name: jsc.i18n('Receptor'),
+            name: jsc.i18n('Mixer Digital'),
             description: '<html><hr>Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute',
             type: 'receiver',
             receiver: 'osc,soundcraft'

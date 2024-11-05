@@ -1,4 +1,5 @@
-var infoVDDMM = "<hr><br>@ Para dicas sobre automação com holyrics, visite meu canal no youtube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Em caso de dúvidas fale comigo no tópico 'Gatilho - API - Script - Módulos' no grupo de suporte do telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, marque @prcris que terei prazer em ajudar - #juntos pelo Rei e pelo Reino!<br></p>";
+var infoVDDMM = "<hr><br>@ Para dicas sobre automação com holyrics, visite meu canal no youtube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Em caso de dúvidas fale comigo no tópico 'Automatização & Ja"+"vaScript' no grupo de suporte do telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, marque @prcris que terei prazer em ajudar - #juntos pelo Rei e pelo Reino!<br></p>";
+var allowedPrcrisModuleRequests =  ['https://www.youtube.com','https://t.me'];
 
 function isDev() {
   return false;

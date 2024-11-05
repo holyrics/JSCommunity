@@ -20,18 +20,27 @@ function info() {
     return {
         id: mID,
         name: 'Vídeo Sync OBS+',
-        description: '<html>'+
-                     '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>'+
-                     '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>'+
-                     '• Aceita Pause/Resume direto no player do VLC<br>'+
-                     '• Aceita fila de vídeos.<br>'+
-                     '• Aceita interromper o vídeo.<br>'+
-                     '• Aceita enviar outro vídeo enquanto um está passando, fazendo a troca imediata.<br>'+
-                     '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>'+
-                     '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
-                     infoVDDMM                    
+        description: '<html>' +
+                     (h.isMinVersion("2.24.0") ? '<span style="background-color: yellow;"><font color="black"><b>##NEW</b></font></span> Não precisa mais liberar na blacklist_request o SetInputSettings<br>' : '') +
+                     '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>' +
+                     '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>' +
+                     '• Aceita Pause/Resume direto no player do VLC<br>' +
+                     '• Aceita fila de vídeos.<br>' +
+                     '• Aceita interromper o vídeo.<br>' +
+                     '• Aceita enviar outro vídeo enquanto um está passando, fazendo a troca imediata.<br>' +
+                     '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>' +
+                     '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>' +
+                     infoVDDMM,
+        permissions: [
+            {
+                type: 'blacklist_request',
+                key: 'obs_v5',
+                value: 'SetInputSettings'
+            }
+        ]
     };
 }
+
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
@@ -100,8 +109,7 @@ function settings() {
                 { value: false , label: 'Apenas vídeos sem ! no nome ou na pasta' }
             ],
             default_value: false
-        },
-        {
+        },{
             id: 'samePC',
             label: 'Holyrics e OBS no mesmo computador',
             type: 'boolean'
@@ -204,21 +212,6 @@ function obsVideo(module, show, mediaName) {
            restorePreviousScene(module);
            return;
     }
-
-/// ajusta e salva configurações do player
-      h.log(mUID, "Ajustando player Holyrics: unMute, noRepeat, fullVolume");
-      var player = h.getPlayer();
-      var pMute = player.isMute();
-      var pRepeat = player.isRepeat();
-      var pVolume = player.getVolume();
-/*      // aplica novas cfgs no player
-      h.hly('MediaPlayerAction', {
-        mute: false,
-        repeat: false,
-        volume: 100
-      });
-*/     
-    /// fim ajusta e salva configurações do player
 
     var pSettings = getPluginSettings();
 

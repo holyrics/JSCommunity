@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m10'
-var mUID = '@prcris#m10';
+var mUID = mID + ''; 
 
 //#import modules_generic_functions
 
@@ -21,7 +21,10 @@ function info() {
                      'chamado <u>alias_background</u> e coloque o mesmo nome da pasta apelido para a música<br>'+
                      'O Módulo remove qualquer texto que seria exibido na tela principal, substituindo-o pelo vídeo.<br>'+
                      'a tela de retorno permanece exibindo a letra da música do holyrics.<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 
