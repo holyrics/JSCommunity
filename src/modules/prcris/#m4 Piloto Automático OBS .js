@@ -20,7 +20,7 @@ function info() {
                      'Atualização: Os itens de texto/bíblia/música tem tempo mínimo dinâmico, aumentando de acordo com a quantidade de texto exibida.<br><br>'+
                      infoVDDMM,
          allowed_requests: [
-                     allowedPrcrisModuleRequests
+                     'https://holyrics.com.br/api/jsc/map_verse_length.php'
          ]
     };
 }
