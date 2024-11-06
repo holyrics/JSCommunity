@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m6';
-var mUID = '@prcris#m6';
+var mUID = mID + ''; 
 
 //#import modules_generic_functions 
 
@@ -20,7 +20,10 @@ function info() {
                      '• Cantor <br>'+
                      '• Faixa de BPM<br>'+
                      '• Dias sem cantar<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 
@@ -276,4 +279,128 @@ function listArtists() {
     artists.sort();
 
     return artists;
+}
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e746578745f616374696f6e227d
+function contextActions(module) {
+    return [
+        {
+            name: spanIcon("\ueaca") + "Listar músicas desta data (log)- " + mID,
+            types: ['song_history'],
+            action: function(module) {
+              listaMusicas(module,'log');
+           }
+        },
+        {
+            name: spanIcon("\ueaca") + "Adicionar músicas desta data na aba Mídia - " + mID,
+            types: ['song_history'],
+            action: function(module) {
+              listaMusicas(module,'playlist');
+           }
+        }
+    ];
+}
+
+
+function listaMusicas(module, local) {
+
+    var itemDate = new Date(module.item.date);
+
+    // Pegar os schedules de acordo com o mês e ano
+    var r = h.hly('GetSchedules', {
+        month: itemDate.getMonth() + 1,
+        year: itemDate.getFullYear()
+    });
+
+    for (var i = 0; i < r.data.length; i++) {
+        var s = r.data[i];
+        var scheduleDate = new Date(s.datetime);
+
+        // Verificar se a data do schedule é anterior à data do item e está no mesmo dia
+        if (scheduleDate.toDateString() === itemDate.toDateString()) { // && scheduleDate <= itemDate) {
+            h.log("Schedule encontrado:");
+            h.log(s.datetime);
+            h.log(s.name);
+
+            // Processar o media_playlist
+            var mediaPlaylist = s.media_playlist;
+            var currentTitle = null;
+            var hasSong = false;
+            var result = [];
+            var items = [];  // Lista que será usada para AddToPlaylist
+            var currentSongs = [];
+
+            for (var j = 0; j < mediaPlaylist.length; j++) {
+                var item = mediaPlaylist[j];
+
+                if (item.type === 'title') {
+                    // Se houver um título anterior com músicas, logar no formato correto
+                    if (hasSong) {
+                        if (local === 'log') {
+                            h.log("==" + currentTitle);
+                            for (var k = 0; k < currentSongs.length; k++) {
+                                h.log(currentSongs[k].name); // Logar o nome da música
+                            }
+                        }
+
+                        // Adicionar título e suas músicas à lista de items
+                        items.push({
+                            type: 'title',
+                            name: currentTitle,
+                            background_color: item.background_color || "000080" // Cor padrão caso não exista
+                        });
+
+                        // Adicionar as músicas associadas a este título
+                        for (var k = 0; k < currentSongs.length; k++) {
+                            items.push({
+                                type: 'song',
+                                id: currentSongs[k].song_id // Usar o song_id para adicionar ao playlist
+                            });
+                        }
+                    }
+                    // Reiniciar para o próximo título
+                    currentTitle = item.name;
+                    currentSongs = [];
+                    hasSong = false;
+                }
+
+                if (item.type === 'song') {
+                    currentSongs.push(item);
+                    hasSong = true;
+                }
+            }
+
+            // Adicionar o último grupo se houver músicas associadas
+            if (hasSong) {
+                if (local === 'log') {
+                    h.log("==" + currentTitle);
+                    for (var k = 0; k < currentSongs.length; k++) {
+                        h.log(currentSongs[k].name); // Logar o nome da música
+                    }
+                }
+
+                // Adicionar título e músicas ao items
+                items.push({
+                    type: 'title',
+                    name: currentTitle,
+                    background_color: "000080"
+                });
+
+                for (var k = 0; k < currentSongs.length; k++) {
+                    items.push({
+                        type: 'song',
+                        id: currentSongs[k].song_id
+                    });
+                }
+            }
+
+            if (local === 'playlist') {
+                var rAdd = h.hly('AddToPlaylist', {
+                    items: items
+                });
+                if (rAdd.status != 'ok') {
+                    h.log(rAdd.error);
+                }
+            }
+        }
+    }
 }

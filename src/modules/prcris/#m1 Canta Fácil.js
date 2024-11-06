@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-var mID = '@prcris#m1';
-var mUID = '@prcris#m1';
+var mID = '@prcris#m1'
+var mUID = mID+''; 
 
 //#import modules_generic_functions
 
@@ -21,8 +21,11 @@ function info() {
                      '• Monta uma base de dados de cantores por música para axiliar na montagem de escalas<br>'+
                      '• Ajusta o volume dos microfones dos cantores, baseado na voz principal da música na escala. (behinger e soundcraft)<BR>'+
                      '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><br>'+
-                     infoVDDMM
-       };
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
+    };
 }
 
 
@@ -710,7 +713,7 @@ function actionDefaultVolumeSetup(module) {
 // Cada chamada da action logo abaixo está apontando a aba que ela se encontra
 
 function actions(module) {
-    
+    startup(module);
     return [
         { //menu de configurações extras
         id: 'menu',
@@ -832,8 +835,8 @@ function triggers(module) {
         action: function(obj) {
     
             h.setGlobal('@prcris#type_of_rec_play',module.settings.type_of_rec_play);
-            if (((h.getGlobal(mUID + '_rec_volume_data') || !haveData(obj)) && module.settings.type_of_rec_play == 'all') ||  // salva os volumes em qualquer slide
-                ((h.getGlobal(mUID + '_rec_volume_data') || !haveData(obj)) && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 5)) {  // salva os volumes somente no slide 5 para o slide 1
+            if ((h.getGlobal(mUID + '_rec_volume_data') && module.settings.type_of_rec_play == 'all') ||  // salva os volumes em qualquer slide
+                (h.getGlobal(mUID + '_rec_volume_data') && module.settings.type_of_rec_play == 'first' && obj.slide_show_index == 5)) {  // salva os volumes somente no slide 5 para o slide 1
                 captureVolume(obj, module);
             }
             if ((h.getGlobal(mUID + '_set_volume_data') && module.settings.type_of_rec_play == 'all') || // aplica os volumes em qualquer slide
@@ -949,7 +952,11 @@ function applyInputsVolume(obj,module) {
         if (scheduledSinger(name, module)) {
             var channelNumber = channels[name];
             var volume = savedVolumes[name] ? savedVolumes[name].volume : getDefaultBackingVolume(name);
-            h.log(mUID,'volume: {} name: {}',[volume,name]);
+            if (volume == undefined) {
+                applyDefaultInputsVolume(leadSinger, module);
+                return
+            }
+            h.log(mUID,'volume: {} name: {}',volume, name);
             if (volume !== null && volume !== 0) {
                 setVolume(channelNumber, volume, module);
             }
@@ -1209,6 +1216,35 @@ function removeUnwantedSlides(data) {
 }
 
 
+function addIcon(text) {
+    // Mapeamento de ícones para palavras-chave específicas
+    var iconMap = {
+        "Culto" : "\uD83D\uDDD3\uFE0F", // calendário
+        "_voz" : "\uD83C\uDFBC", // notas musicais
+        "Escala": "\uD83D\uDE4B\u200D\u2642\uFE0F\uD83D\uDE4B\u200D\u2640\uFE0F", // 2 pessoas mao levantada
+        "Baixo": "\uD83C\uDFB8", // Emoji de guitarra baixo
+        "Violão": "\uD83C\uDFBB", // Emoji de microfone e guitarra
+        "Vocal": "\uD83C\uDFA4", // Emoji de microfone
+        "Holyrics": "\uD83D\uDCFD", // Emoji de projetor de filme
+        "Som": "\uD83D\uDD08", // Emoji de controle deslizante
+        "Bateria": "\uD83E\uDD41", // Emoji de bateria
+        "Teclado": "\uD83C\uDFB9", // Emoji de piano
+        "Guitar": "\uD83C\uDFB8", // Emoji de guitarra
+        "Sax": "\uD83C\uDFBA", // Emoji de saxofone
+        "Flauta": "\uD83C\uDFB6", // Emoji de notas musicais
+        "Percussão": "\uD83E\uDD41" // Emoji de bateria
+    };
+    
+    // Procura por palavras-chave no texto e adiciona o ícone correspondente
+    for (var keyword in iconMap) {
+        if (text.indexOf(keyword) !== -1) {
+            return iconMap[keyword] + " " + text;
+        }
+    }
+    
+    // Se nenhuma palavra-chave for encontrada, retorna o texto original
+    return text;
+}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22756e7265636f72646564536f6e67735265706f7274227d
 function unrecordedSongsReport(module) {
     return {

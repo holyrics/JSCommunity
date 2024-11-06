@@ -25,6 +25,9 @@ function info() {
                      '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+
                      '• Opção para liberar o canal e ajustar o volume nos mixers digitais Behinger e SoundCraft.<br>'+
                      infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ],
         min_version: '99.0.0'
     };
 }

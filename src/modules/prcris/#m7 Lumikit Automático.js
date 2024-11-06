@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m7';
-var mUID = '@prcris#m7';
+var mUID = mID + ''; 
 
 //#import modules_generic_functions 
 
@@ -20,7 +20,10 @@ function info() {
                      '• Usa o campo extra slideBPM da música para estabelecer BPM variável exemplo: <br>'+
                      '   23,2|30,80,5 que significa:<br>'+
                      '   no slide 23 divida o bpm por 2, e no 30 ajuste o bpm para 80, 5 segundos após exibir o verso 30.<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 

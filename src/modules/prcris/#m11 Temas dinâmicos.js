@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m11';
-var mUID = '@prcris#m11';
+var mUID = mID + ''; 
 
 //#import modules_generic_functions 
 
@@ -20,7 +20,10 @@ function info() {
                      '• Permite especificar um fundo fixo no campo extra <b>tema_fixo</b> em uma música. <br>'+
                      '• Também funciona para Apresentação Automática <br> '+
                      '  uso: Crie tags com o nome de cada tema usado nas configurações e adicione os vídeos que deseja usar junto com o tema para que o módulo possa funcionar adequadamente.<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 
@@ -52,7 +55,30 @@ function triggers(module) {
     }
   });
   
-  
+    arr.push({
+        id: "BPM_variable_" + mUID,
+        when: "displaying",
+        item: "any_song_slide",
+        action: function(obj) {
+            try {
+                if (obj.slideBPM != null) {
+                    var slides = obj.slideBPM.split('|');
+                    for (var j = 0; j < slides.length; j++) {
+                        var bpmInfo = slides[j].split(',');
+                        var slide = bpmInfo[0];
+                        if (slide == obj.slide_show_index) {
+                             var bpm = bpmInfo[1];
+                             var time = bpmInfo[2] || 0;
+                             h.log(mUID, 'BPM variável encontrado: {} ', slides[j]);    
+                             if (bpm == '!') { bpm = obj.bpm * 2; }
+                             else if (bpm < 4) { bpm = obj.bpm / bpm; }
+                             setTimeoutBPM(module, parseInt(bpm).toFixed(0), slide, time);
+                        }  
+                    }
+                }
+            } catch (e) { h.log("", 'Erro {}', [e]); }
+        }
+    });  
   
   arr.push({
     id: mID + "_salta_titulo_musica",
@@ -228,4 +254,23 @@ function getThemeData(themeName) {
     }
 
     return themeData;
+}
+
+
+function setBpm(BPM, module) {
+    if (BPM > 29) { 
+        h.log(mUID, 'BPM alterado para: ' + BPM);
+        h.hly('SetBpm', { bpm: BPM });
+    }
+}
+
+function setTimeoutBPM(module, bpm, slide, time) {
+    time = time == 0 ? 500 : time;
+    var timeoutDuration = time < 10 ? time * 1000 : time;
+    h.log(mUID, 'Velocidade será alterada pelo Slide {} para {} depois de {} segundos', [slide, bpm, timeoutDuration / 1000]); 
+    h.setTimeout(function() {
+        h.log(mUID, '************ Executando timeout');
+        h.log(mUID, 'Velocidade Alterada pelo Slide {} para {} depois de {} segundos', slide, bpm, timeoutDuration / 1000); 
+        setBpm(bpm, module);
+    }, timeoutDuration, mUID + '_alterBPM'); // Tempo em milissegundos
 }

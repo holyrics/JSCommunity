@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m8';
-var mUID = '@prcris#m8';
+var mUID = mID + ''; 
 
 //#import modules_generic_functions 
 
@@ -15,7 +15,10 @@ function info() {
         name: 'Jukebox Mode',
         description: '<html>'+
                      '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>'+
-                     infoVDDMM
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
     };
 }
 

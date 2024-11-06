@@ -1,6 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m2';
-var mUID = '@prcris#m2';
+var mUID = mID+''; 
 
 //#import modules_generic_functions
 
@@ -18,9 +18,11 @@ function info() {
         description: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), '+
                      'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>'+
                      '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br>'+
-                     infoVDDMM
-           };
-   
+                     infoVDDMM,
+         allowed_requests: [
+                     allowedPrcrisModuleRequests
+         ]
+    };
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e74657874416374696f6e73227d
@@ -236,26 +238,31 @@ function settings() {
         }
     ];
 }
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226164645f7374617274227d
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22746578745472616e73666f726d227d
 function textTransform(module) {
     return {
         song: function(obj) {
-            var add_text = {};
+            var text = {};
             
             //h.log(module.settings);
             if (module.settings.testScreen) {
-                add_text.add_end = '<styled><color: #ffff00>' + obj.screen_id + '</color>'; 
+                text.add_end = '<styled><color: #ffff00>' + obj.screen_id + '</color>'; 
             }
-
+            
+            
+            if (obj.screen_id == module.settings.screen_id) {
+             text.replace = "";   
+            }
+                      
             if (obj.slide_description == module.settings.instrumentalVerseName
                 && obj.screen_id == module.settings.screen_id
                 && obj.slide_number > 0 
                 && obj.slide_number < (obj.total_slides - 1)) {
-                add_text.add_start = "<styled><color: #ffff00><size:200> | @js{prCris_m2_getCountDown} | </size></color>" + (module.settings.line_break ? " \n " : "");
-                add_text.line_break = false;
+                text.add_start = "<styled><color: #ffff00><size:200> | @js{prCris_m2_getCountDown} | </size></color>" + (module.settings.line_break ? " \n " : "");
+                text.line_break = false;
             }
 
-            return Object.keys(add_text).length > 0 ? add_text : null;
+            return Object.keys(text).length > 0 ? text : null;
         }
     };
 }
