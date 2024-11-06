@@ -166,29 +166,13 @@ function actions(module) {
         }
     ];
     
-    if (isDev()) {
         act.push({
-            hint: 'Imprime CFGs',
+            hint: 'Imprime Showtime',
             icon: 'prin'+'t', // Corrigido para o nome correto do ícone
             action: function() {
-                try {
-                    var s = module.settings;
-                    var sn = getScheduleName();
-                                      
-                    var sc = 'cfg_' + sn;
-                    h.logfp("CFG geral {}: {}", sn, s[sc]);
-                    var keys = ['dmx', 'mixer', 'ha', 'js']; // tipos de inputs possíveis
-                    keys.forEach(function(key) {
-                        for (var i = 0; i < 2; i++) {
-                            h.logfp("CFG {}{}: {}", key, i, s[key + '_' + i + '_' + sn]);
-                        }
-                    });
-                } catch (e) {
-                    h.log("", 'Erro {}', [e]);
-                }
+                  eventReport(module);
             }
         });
-    }
     
     return act;
 }
@@ -710,17 +694,6 @@ setShowRunAt(function() { cancelShowRunAt(); }, getFurthestFutureTime(d, s, true
 
 }
 
-function timingCheckAndSet(s,cfg) {
-
-var totalVideos = Math.ceil((getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60);
-if (s[cfg].preservice < totalVideos) {
-  h.notification('Tempo para início foi definido para o mínimo da soma de todos os vídeos: '+totalVideos+' minutos');
-  s[cfg].preservice = totalVideos;
-}
-
-}
-
-
 
 function scVideosLocal(s,d) {
 var cfg = s[d.c];
@@ -798,6 +771,17 @@ function makeItHappen(s, i, n, cfg, key) {
       break;
     }
   }
+}
+
+
+function timingCheckAndSet(s,cfg) {
+
+var totalVideos = Math.ceil((getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60);
+if (s[cfg].preservice < totalVideos) {
+  h.notification('Tempo para início foi definido para o mínimo da soma de todos os vídeos: '+totalVideos+' minutos');
+  s[cfg].preservice = totalVideos;
+}
+
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22687562227d
 function setDMX(receiverID, scene, bpm) {
@@ -1273,4 +1257,72 @@ function formatDuration(ms) {
     return (hours ? (hours < 10 ? '0' + hours : hours) + ':' : '') +
            (minutes < 10 && hours ? '0' : '') + minutes + ':' +
            (seconds < 10 ? '0' : '') + seconds;
+}
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226576656e747265706f7274227d
+function eventReport(module) {
+    var s = module.settings;
+    var d = getTimersToShow(s);
+
+    // Array para armazenar todos os eventos e seus tempos
+    var events = [];
+    // Adiciona os eventos do VLC local
+    var cfgLocal = s[d.c];
+    h.log('Storyboard Showtime ' + d.s);
+    events.push({ time: d.startShow, description: 'Início do Vídeo 1 ('+cfgLocal.vlcVideo0.name+ ') na tela público' });
+    events.push({ time: d.startVlcVideoLastRepeat, description: 'Última repetição do vídeo 1  ('+cfgLocal.vlcVideo0.name+ ') na tela público' });
+    if (!cfgLocal.vlcVideo1.isDir) {
+        events.push({ time: d.startVlcVideo1, description: 'Início do vídeo 2 ('+cfgLocal.vlcVideo1.name+ ') ' });
+    }
+    // Adiciona os eventos de transmissão ao vivo
+    if (s.streaming_id != '') {
+        var cfgLive = s[d.c];
+        events.push({ time: d.startShow, description: 'Início do vídeo 1  ('+cfgLocal.liveVideo0.name+ ') em loop no OBS' });
+        events.push({ time: d.startLiveVideoLastRepeat, description: 'Última repetição do vídeo 1   ('+cfgLocal.liveVideo0.name+ ') no OBS' });
+        events.push({ time: d.startLiveVideo1, description: 'Início do Vídeo 2  ('+cfgLocal.liveVideo1.name+ ') no OBS' });
+        events.push({ time: d.endShow - (s[d.c].stop_obs_at * 1000), description: 'Acionamento da Cena final no OBS' });
+    }
+
+    // Adiciona os eventos de outros inputs (dmx, mixer, ha, js)
+    var keys = ['dmx', 'mixer', 'ha', 'js'];
+    keys.forEach(function(key) {
+        if (s[key + '_id'] != '' || key === 'js') {
+            for (var i = 0; i < 2; i++) {
+                var cfg = s[key + '_' + i + '_' + d.s];
+                var ic = inputCount(cfg, key);
+                for (var n = 0; n < ic + 1; n++) {
+                    if (cfg[key + n]) {
+                        var when = whenTime(i, d, cfg['timer_index' + n], cfg['timer' + n]);
+                        var receiverID = s[key + '_id'] ? h.getReceiverInfo(s[key + '_id']).name : '';
+
+                        // Define descrições detalhadas para cada tipo de input
+                        switch (key) {
+                            case 'dmx':
+                                events.push({ time: when, description: 'Acionar a cena Lumikit \'' + cfg['scene' + n] + '\', BPM \'' + cfg['bpm' + n] + '\'' });
+                                break;
+                            case 'mixer':
+                                events.push({ time: when, description: 'Ajustar volume do Mixer \'' + cfg['channel' + n] + '\', para \'' + cfg['volume' + n] + '%\'' });
+                                break;
+                            case 'ha':
+                                var estado = cfg['state' + n] === true ? 'Ligado' : 'Desligado';
+                                events.push({ time: when, description: 'Alterar o estado do dispositivo HA: \'' + cfg['switch' + n] + '\' para \'' + estado + '\'' });
+                                break;
+                            case 'js':
+                                events.push({ time: when, description: 'Executar script JS: show.' + cfg['fnInclude' + n] + '()' });
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Ordena os eventos por tempo
+    events.sort(function(a, b) {
+        return a.time - b.time;
+    });
+
+    // Log dos eventos ordenados
+    events.forEach(function(event) {
+        h.log(timeToStart(event.time) + ' -> ' + event.description);
+    });
 }
