@@ -275,7 +275,7 @@ function actionShow(module) {
               inputs.push({
                     id: 'vlcVideo'+i,
                     type: 'video',
-                    name: 'Local' + vdDur,
+                    name: 'Vídeo Local' + (i == 0 ? ' (aceita pasta)':'')+ vdDur,
                     description : 'Vídeo a ser executado nas telas Público configuradas, ' + (i == 0 ? ' em loop, no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.')
                });
                
@@ -286,7 +286,7 @@ function actionShow(module) {
                    inputs.push({
                         id: 'liveVideo'+i,
                         type: 'video', 
-                        name: 'Live' + vdDur,
+                        name: 'Vídeo Live' + vdDur,
                         description : 'Vídeo a ser executado na Live ' + (i == 0 ? ' em loop no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.')
                    });
                  if (i === 1) {
@@ -688,7 +688,8 @@ suspendConflictingModules(true, [13,15]);  // suspende o módulo de vídeo e de 
 
 sc(s,d);
 scVideosLocal(s,d);
-if (s.streaming_id != "") {
+
+if (s.streaming_id != '' && cfg.liveVideo0 && cfg.liveVideo1) {
    scVideosLive(s,d);
 }
 
@@ -778,9 +779,14 @@ function makeItHappen(s, i, n, cfg, key) {
 
 function timingCheckAndSet(s,cfg) {
 
-var totalVideos = Math.ceil((getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60);
+var totalVlcVideos = (getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60;
+var totalLiveVideos = (getVideoDuration(s[cfg]['liveVideo0']) + getVideoDuration(s[cfg]['liveVideo1'])) / 1000 / 60;
+var totalVideos =  Math.ceil(totalLiveVideos < totalVlcVideos ? totalVlcVideos : totalLiveVideos);
+
+h.log(mUID,'{%t} Tempo mínimo: {}m | VLC {}m | Live {}m', totalVideos, totalVlcVideos, totalLiveVideos);
+
 if (s[cfg].preservice < totalVideos) {
-  h.notification('Tempo para início foi definido para o mínimo da soma de todos os vídeos: '+totalVideos+' minutos');
+  h.notification('Tempo para início foi definido para o mínimo: '+totalVideos+' minutos');
   s[cfg].preservice = totalVideos;
 }
 
@@ -905,11 +911,30 @@ function setVolume(receiverID, channel, volume, channel_type) {
   }
 }
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227363686564756c657273227d
-function getScheduleTime() {
+function getScheduleTime(text) {
     var r = h.hly('GetCurrentSchedule');
     var s = r.data[0];
+    
+    if (text) {
+        // Extrai os componentes da data e hora
+        var date = new Date(s.datetime);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+
+        // Função auxiliar para preencher com zero à esquerda
+        function padZero(num) {
+            return (num < 10 ? '0' : '') + num;
+        }
+
+        // Retorna no formato 'HH:MM:SS'
+        return padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+    }
+
+    // Retorna o objeto datetime se text não for true
     return s.datetime;
 }
+
 
 function isTodaySchedule() {
     // Obtém a data do cronograma
@@ -1122,13 +1147,18 @@ d.c = 'cfg_' + d.s;
 var cfg = s[d.c];
 
 d.endShow = getTimeUntilSchedule(cfg.atraso);  // determina em quanto tempo o show vai terminar (ms)
+
 d.startShow = d.endShow - (cfg.preservice * 60 * 1000); //quando deve iniciar o vídeo em loop (ms)
+
 d.endVlcVideo1 = d.endShow;
 d.startVlcVideo0 = d.startShow;
 d.startVlcVideo1 = d.endShow - getVideoDuration(cfg.vlcVideo1); 
+
 d.startVlcVideoLastRepeat = d.startVlcVideo1 - getVideoDuration(cfg.vlcVideo0);
+
 d.startLiveVideo1 = d.endShow - getVideoDuration(cfg.liveVideo1); 
 d.endLiveVideo1 = d.endShow - (cfg.stop_obs_at * 1000); 
+
 d.startLiveVideoLastRepeat = d.startLiveVideo1 - getVideoDuration(cfg.liveVideo0);
 
 return d
@@ -1267,24 +1297,22 @@ function formatDuration(ms) {
 function eventReport(module) {
     var s = module.settings;
     var d = getTimersToShow(s);
-
-    // Array para armazenar todos os eventos e seus tempos
     var events = [];
+    var cfg = s[d.c];
+
     // Adiciona os eventos do VLC local
-    var cfgLocal = s[d.c];
-    h.log('Storyboard Showtime ' + d.s);
-    events.push({ time: d.startShow, description: 'Início do Vídeo 1 ('+cfgLocal.vlcVideo0.name+ ') na tela público' });
-    events.push({ time: d.startVlcVideoLastRepeat, description: 'Última repetição do vídeo 1  ('+cfgLocal.vlcVideo0.name+ ') na tela público' });
-    if (!cfgLocal.vlcVideo1.isDir) {
-        events.push({ time: d.startVlcVideo1, description: 'Início do vídeo 2 ('+cfgLocal.vlcVideo1.name+ ') ' });
+    events.push({ time: d.startShow, description: 'VLC === Início do Vídeo 1 (' + cfg.vlcVideo0.name + ') na tela público' });
+    events.push({ time: d.startVlcVideoLastRepeat, description: 'VLC >>> Última repetição do vídeo 1  (' + cfg.vlcVideo0.name + ') na tela público' });
+    if (!cfg.vlcVideo1.isDir) {
+        events.push({ time: d.startVlcVideo1, description: 'VLC === Início do vídeo 2 (' + cfg.vlcVideo1.name + ') na tela público' });
     }
+
     // Adiciona os eventos de transmissão ao vivo
-    if (s.streaming_id != '') {
-        var cfgLive = s[d.c];
-        events.push({ time: d.startShow, description: 'Início do vídeo 1  ('+cfgLocal.liveVideo0.name+ ') em loop no OBS' });
-        events.push({ time: d.startLiveVideoLastRepeat, description: 'Última repetição do vídeo 1   ('+cfgLocal.liveVideo0.name+ ') no OBS' });
-        events.push({ time: d.startLiveVideo1, description: 'Início do Vídeo 2  ('+cfgLocal.liveVideo1.name+ ') no OBS' });
-        events.push({ time: d.endShow - (s[d.c].stop_obs_at * 1000), description: 'Acionamento da Cena final no OBS' });
+    if (s.streaming_id != '' && cfg.liveVideo0 && cfg.liveVideo1) {
+        events.push({ time: d.startShow, description: 'OBS === Início do vídeo 1 (' + cfg.liveVideo0.name + ') em loop no OBS' });
+        events.push({ time: d.startLiveVideoLastRepeat, description: '>>> Última repetição do vídeo 1 (' + cfg.liveVideo0.name + ') no OBS' });
+        events.push({ time: d.startLiveVideo1, description: 'OBS === Início do Vídeo 2 (' + cfg.liveVideo1.name + ') no OBS' });
+        events.push({ time: d.endShow - (s[d.c].stop_obs_at * 1000), description: 'OBS --- Acionamento da Cena final no OBS' });
     }
 
     // Adiciona os eventos de outros inputs (dmx, mixer, ha, js)
@@ -1297,24 +1325,23 @@ function eventReport(module) {
                 for (var n = 0; n < ic + 1; n++) {
                     if (cfg[key + n]) {
                         var when = whenTime(i, d, cfg['timer_index' + n], cfg['timer' + n]);
-                        var receiverID = s[key + '_id'] ? h.getReceiverInfo(s[key + '_id']).name : '';
-
-                        // Define descrições detalhadas para cada tipo de input
+                        var description;
                         switch (key) {
                             case 'dmx':
-                                events.push({ time: when, description: 'Acionar a cena Lumikit \'' + cfg['scene' + n] + '\', BPM \'' + cfg['bpm' + n] + '\'' });
+                                description = 'DMX - Acionar a cena Lumikit \'' + cfg['scene' + n] + '\', BPM \'' + cfg['bpm' + n] + '\'';
                                 break;
                             case 'mixer':
-                                events.push({ time: when, description: 'Ajustar volume do Mixer \'' + cfg['channel' + n] + '\', para \'' + cfg['volume' + n] + '%\'' });
+                                description = 'MIX - Ajustar volume do Mixer \'' + cfg['channel' + n] + '\', para \'' + cfg['volume' + n] + '%\'';
                                 break;
                             case 'ha':
                                 var estado = cfg['state' + n] === true ? 'Ligado' : 'Desligado';
-                                events.push({ time: when, description: 'Alterar o estado do dispositivo HA: \'' + cfg['switch' + n] + '\' para \'' + estado + '\'' });
+                                description = 'HA  - Alterar o estado do dispositivo HA: \'' + cfg['switch' + n] + '\' para \'' + estado + '\'';
                                 break;
                             case 'js':
-                                events.push({ time: when, description: 'Executar script JS: show.' + cfg['fnInclude' + n] + '()' });
+                                description = 'JS  - Executar script JS: show.' + cfg['fnInclude' + n] + '()';
                                 break;
                         }
+                        events.push({ time: when, description: description });
                     }
                 }
             }
@@ -1326,8 +1353,41 @@ function eventReport(module) {
         return a.time - b.time;
     });
 
-    // Log dos eventos ordenados
+    // Calcula o comprimento máximo das linhas de log
+    var maxLineLength = 0;
+    events.forEach(function(event) {
+        var lineLength = timeToStart(event.time).length + 4 + event.description.length;
+        if (lineLength > maxLineLength) {
+            maxLineLength = lineLength;
+        }
+    });
+
+    function createSeparator(sep) {
+        var separator = '';
+        for (var i = 0; i < maxLineLength; i++) {
+            separator += sep;
+        }
+        return separator;
+    }
+
+    function center(text) {
+        var padding = Math.max((maxLineLength - text.length) / 2, 0);
+        var pad = Array(Math.floor(padding) + 1).join(' ');
+        return pad + text;
+    }
+
+    // Log inicial com linha separadora ajustada
+    h.log(createSeparator('='));
+    h.log(center('Storyboard Showtime ' + d.s + '.')); 
+    h.log(createSeparator('-'));
+    h.log('Fim vídeo 2 programado para ' + getScheduleTime(true) + ' + ' + cfg.atraso + ' minutos de atraso.')
+    h.log(createSeparator('-'));
+    
+    // Log dos eventos
     events.forEach(function(event) {
         h.log(timeToStart(event.time) + ' -> ' + event.description);
     });
+
+    // Linha separadora final
+    h.log(createSeparator('='));
 }
