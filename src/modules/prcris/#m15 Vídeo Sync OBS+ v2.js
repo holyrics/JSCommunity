@@ -56,7 +56,9 @@ function triggers(module) {
     when: "displaying",
     item: "any_video",
     action: function(obj) {
-
+      if (isModuleSuspended()) {
+         return;
+      }
       obsVideo(module, true, obj.file_fullname);
       module.updatePanel();
     }
@@ -175,7 +177,7 @@ function restorePreviousScene(module) {
 
 function gsJump(value) {
 
-h.log(mUID, "gsJump:{}", value);
+//h.log(mUID, "{%t} gsJump:{}", value);
 
 if (value != undefined) { 
   h.setGlobal(mUID + '_jumpToScene', value == "" ? null : value);
@@ -193,25 +195,25 @@ function obsVideo(module, show, mediaName) {
     pause = false;
     if (!show) { 
         if (gsJump()) {
-            h.log(mUID, "======= Execução de vídeo no OBS interrompida pelo botão de pânico, voltando para a cena {}", gsJump());
+            h.log(mUID, "{%t} ======= Execução de vídeo no OBS interrompida pelo botão de pânico, voltando para a cena {}", gsJump());
             h.notification("Execução de vídeo no OBS interrompida pelo botão de pânico.", 3);
             restorePreviousScene(module); 
         }
         return;
     }
-    h.log(mUID, "exclamation_mark: {} , mediaName: {}", s.exclamation_mark, mediaName);
-    h.log(mUID, "mediaName.indexOf('!') {}", mediaName.indexOf('!'));
+    h.log(mUID, "{%t} exclamation_mark: {} , mediaName: {}", s.exclamation_mark, mediaName);
+    h.log(mUID, "{%t} mediaName.indexOf('!') {}", mediaName.indexOf('!'));
     
     // Se exclamation_mark estiver habilitado, apenas vídeos com "!" no nome serão enviados para o OBS
     if (s.exclamation_mark == 'true' && mediaName.indexOf('!') == -1) {  //caso não possua
-           h.log(mUID, "======= Vídeo não enviado para o OBS por NÃO possuir ! no nome.");
+           h.log(mUID, "{%t} ======= Vídeo não enviado para o OBS por NÃO possuir ! no nome.");
            restorePreviousScene(module);
            return;
     }
     
     // Se exclamation_mark estiver desabilitado, apenas vídeos sem "!" no nome serão enviados para o OBS
     if (s.exclamation_mark == 'false' && mediaName.indexOf('!') > -1) { //caso possua:
-           h.log(mUID, "======= Vídeo não enviado para o OBS por POSSUIR ! no nome.");
+           h.log(mUID, "{%t} ======= Vídeo não enviado para o OBS por POSSUIR ! no nome.");
            restorePreviousScene(module);
            return;
     }
@@ -224,7 +226,7 @@ function obsVideo(module, show, mediaName) {
       return;
     }
 
-    h.log(mUID, "======= Vídeo enviado para o OBS: " + mediaName);
+    h.log(mUID, "{%t} ======= Vídeo enviado para o OBS: " + mediaName);
     
     var previousScene = jsc.obs_v5.getActiveScene(p1);
     
@@ -250,7 +252,7 @@ function obsVideo(module, show, mediaName) {
     
     intervalPauseVLC(module);
    
-    h.log(mUID, "======= Cena ativada no OBS, scene: {}, item_scene: {}, file: {}", [p2, p3, mediaName]);
+    h.log(mUID, "{%t} ======= Cena ativada no OBS, scene: {}, item_scene: {}, file: {}", [p2, p3, mediaName]);
 
 
     // Prepara para retornar à cena original quando o vídeo terminar ou for parado
@@ -259,10 +261,10 @@ function obsVideo(module, show, mediaName) {
             if (jsc.obs_v5.getActiveScene(p1) == p2) { // Caso o botão de pânico tenha sido ativado, não trocar de cena
                h.setTimeout(function() { 
                   if (!isPlaying()) {
-                      h.log(mUID, "======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [gsJump()]);
+                      h.log(mUID, "{%t} ======= Vídeo concluído - ativando cena anterior no OBS, scene: {}", [gsJump()]);
                       restorePreviousScene(module); 
                       module.updatePanel();
-                      // h.log(mUID, "Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
+                      // h.log(mUID, "{%t} Retornando cfgs VLC Player: mute: {}, repeat: {}, volume {}", [pMute, pRepeat, pVolume]);
                       // h.hly('MediaPlayerAction', { mute: pMute, repeat: pRepeat, volume: pVolume });
                       pause = false;
                   }

@@ -684,6 +684,8 @@ h.log(mUID, "{%t} Tempos em MS de cada evento: {}", h.toPrettyJson(d));
 
 timingCheckAndSet(s,d.c)
 
+suspendConflictingModules(true, [13,15]);  // suspende o módulo de vídeo e de mesa de som
+
 sc(s,d);
 scVideosLocal(s,d);
 if (s.streaming_id != "") {
@@ -783,6 +785,7 @@ if (s[cfg].preservice < totalVideos) {
 }
 
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22687562227d
 function setDMX(receiverID, scene, bpm) {
   var str = 'ASDFGHJKLZXCVBNM';
@@ -973,14 +976,15 @@ function timeToStart(milliseconds) {
 
 function cancelShowRunAt() {
     var openingTimers = h.getGlobal(mUID + '_openingServiceTimers') || [];
-
     // Cancel each timer in the list
     for (var i = 0; i < openingTimers.length; i++) {
         h.cancelRunAt(openingTimers[i]);
     }
     // Clear the timer list
     h.setGlobal(mUID + '_openingServiceTimers', []);
-    h.log(mUID, "{%t} All service opening timers have been canceled.");
+    h.log(mUID, "{%t} Todos os agendamentos do módulo foram cancelados.");
+    
+    suspendConflictingModules(false);
 }
 
 function getTimeUntilSchedule(delayMinutes) {  //quanto tempo para encerrar o show baseado na hora de inicio + minutos de atraso
@@ -1091,10 +1095,11 @@ function refreshShowTimeSchedules(module) {
      var timeToStartShow = getFurthestFutureTime(d, s, false);
      var timeToEndShow = getFurthestFutureTime(d, s, true);
      
-     if (timeToStartShow > -1) {
+     if (timeToStartShow - 10000 > -1) {
         setShowRunAt(function() { startSchedulesShow(module); }, timeToStartShow -10000, 'O Show vai iniciar!', true);
         h.notification('Show de abertura programado para iniciar às '+timeToStart(timeToStartShow),5);
      } else {
+        
         h.notification('Já passou do horário mínimo para programação do evento em '+ formatDuration(d.startShow * -1) +'!',5);
      }
 

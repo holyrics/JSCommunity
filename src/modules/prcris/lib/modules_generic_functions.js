@@ -26,3 +26,29 @@ function showMessage(title, message) {
 
     h.input(content);
 }
+
+
+function suspendConflictingModules(status, conflictModules) {
+    if (!status) {
+       conflictModules = h.getGlobal(mID+'ConflictModules') || [];
+    }
+    else
+    {
+      h.setGlobal(mID+'ConflictModules', conflictModules);
+    }
+
+    for (var i = 0; i < conflictModules.length; i++) {
+      var moduleName = '@prcris#m' + conflictModules[i];
+      h.setGlobal('suspendConflictingModules' + moduleName, status);    
+      h.log(mUID,'{%t} Módulo {}{}', moduleName , status ? ' temporariamente suspenso.' : ' reativado.');
+    }   
+}
+
+function isModuleSuspended() {
+    
+    var status = h.getGlobal('suspendConflictingModules' + mID) == true;
+    if (status) {
+       h.log(mUID,'{%t} Módulo {} temporariamente suspenso por outro processo.', mID);
+    }  
+    return status ;
+}

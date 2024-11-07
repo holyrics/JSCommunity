@@ -48,6 +48,9 @@ function triggers(module) {
       item: "any_" + type, 
       action: (function(type) {
         return function(obj) {
+          if (isModuleSuspended()) {
+             return;
+          }
           var s = module.settings;
           var m1 = s.digital_mixer_id;
           var m2 = s.mixer_channel;
