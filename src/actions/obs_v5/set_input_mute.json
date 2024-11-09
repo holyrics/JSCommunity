@@ -1,0 +1,13 @@
+{
+    "id": "obs_v5_set_input_mute",
+    "name": "OBS - sets an input mute state",
+    "description": "Change the current input mute state in OBS Studio",
+    "i18n": {
+        "name": {
+            "pt": "OBS - Ativar/desativar mudo do input"
+        },
+        "description": {
+            "pt": "Alterar o estado atual do mudo do input no OBS Studio"
+        }
+    }
+}

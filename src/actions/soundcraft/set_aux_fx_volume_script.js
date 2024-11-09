@@ -1,0 +1,1 @@
+jsc.soundcraft.setVolumeFromInput(obj.input);

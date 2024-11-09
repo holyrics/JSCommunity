@@ -11,5 +11,6 @@
             "pt": "Adicionar itens à lista de reprodução a partir do conteúdo copiado na área de transferência.\nCompatível com letra de música, versículos e títulos.\n \nQualquer linha que contenha \"dois-pontos\" será considerada uma referência de versículo:\nJo 3:16\n \nQualquer linha iniciada com \"==\" será considerada um título:\n== Título\n \nAs demais linhas serão consderadas como letra de música.\n \nExemplo:\n==Título 1\nMaravilhosa Graça\nJo 3:16\n==Título 2\nA Ele a Glória\nSalmos 23:1-3 Gn 1:1\n \nAs referências bíblicas podem utilizar o nome do livro completo ou abreviado, porém é necessário utilizar o nome/abreviação conforme o idioma da Bíblia principal selecionada atualmente no programa.",
             "ru": "Скрипт позволяет добавлять элементы в программу служения из буфер обмена.\nПоддерживает тексты песен, стихи из Библии и заголовки-блоки служения.\n \nЛюбая строка, содержащая \"двоеточие\", будет считаться ссылкой на стих из Писания:\nИоанна 3:16\n \nЛюбая строка, начинающаяся с \"==\" будет считаться заголовком блока служения:\n== Заголовок\n \nОстальные строки будут считаться текстом песни.\n \nПример:\n\n== Прославление 1\nВеликий Бог\nО, благодать\n\n== Проповедь Ивана Ивановича\nОт Иоанна 3:16\nПс 22:1-3\nБыт 1:1\n\nВ библейских ссылках можно использовать полное или сокращенное название книги, однако необходимо использовать название/аббревиатуру в соответствии с языком основной Библии, выбранной в данный момент в программе."
         }
-    }
+    },
+    "script_filter": " obj.type == 'action' "
 }

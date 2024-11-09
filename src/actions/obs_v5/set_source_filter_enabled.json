@@ -1,0 +1,13 @@
+{
+    "id": "obs_v5_set_source_filter_enabled",
+    "name": "OBS - Enable/disable source/scene filter",
+    "description": "Change the current source/scene filter state in OBS Studio",
+    "i18n": {
+        "name": {
+            "pt": "OBS - Ativar/desativar filtro de uma fonte ou cena"
+        },
+        "description": {
+            "pt": "Alterar o estado atual do filtro de uma fonte ou cena no OBS Studio"
+        }
+    }
+}

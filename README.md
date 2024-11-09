@@ -30,9 +30,21 @@ O arquivo `*.json` contém as informações do modelo:<br>
             "pt": "Descrição traduzida para o idioma correspondente",
             "es": "..."
         }
-    }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && obj.item == 'image' "
 }
 ```
+
+`script_filter` condição para exibir o item na lista de modelos.<br>
+`obj.type` pode ser `action` ou `trigger`<br>
+se `obj.type == 'action'`, não haverá outras variáveis.
+
+se `obj.type == 'trigger'`:<br>
+<br>
+`obj.when` pode ser `displaying` `closing` `change`<br>
+<br>
+`obj.item` pode ser `title` `song` `verse` `text` `audio` `video` `image` `announcement` `automatic_presentation` `countdown` `countdown_cp` `cp_text` `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue`<br>
+<br>
 
 O arquivo `*_functions.js` contém o script que fica na parte direita da janela de edição de script (métodos opcionais).<br>
 Para criar/organizar os métodos mais complexos necessários para execução do script principal.<br>
@@ -65,33 +77,49 @@ h.hly('StartCountdownCP', {
 ## Includes (biblioteca)
 
 É possível criar métodos para reutilização em qualquer código javascript executado pelo programa, como uma biblioteca, evitando códigos repetidos nos modelos de código, e também facilitando a criação de códigos personalizados no próprio programa, utilizando esta biblioteca integrada à biblioteca [jslib](https://github.com/holyrics/jslib) disponível no programa.<br>
-Os arquivos da biblioteca ficam na pasta (includes)[includes].
+Os arquivos da biblioteca ficam na pasta [src/includes](src/includes).
 
 A biblioteca pode ser acessada pela variável `jsc` _(JavaScript Community)_.<br>
 
-Cada arquivo na pasta [src/includes](src/includes) é uma nova variável em `jsc`, para melhor organização do código, exemplo:<br>
+Cada arquivo na pasta [src/includes](src/includes) (ou subpastas) é uma nova variável em `jsc`, para melhor organização do código, exemplo:<br>
 ```javascript
+//src/include/utils.js
 jsc.utils.example();
+
+//src/include/err.js
 jsc.err.example();
+
+//src/include/utils/array.js
+jsc.utils.array.example();
 ```
 
-Os métodos dentro de um include devem ser criados com a seguinte sintaxe:
+Exemplo de um include utils.js:
 ```javascript
-utils = {
-    example: function() {
-      h.log('jsc.utils.example OK');
-    },
-    //
-    example2: function(a, b) {
-      return a + b;
-    },
-    //
-    example3: function(a, b, c) {
-      return (a + b) * c;
-    }
-    //
-};
+function example() {
+    h.log('jsc.utils.example OK');
+}
+
+function example2(a, b) {
+    return a + b;
+}
+
+function example3(a, b, c) {
+    return (a + b) * c;
+}
+
 ```
+
+---
+
+## Módulos
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/modules)
+
+---
+
+## Modelos para importação de letra de música via JavaScript
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/importsongs)
 
 ---
 
@@ -148,3 +176,6 @@ A tradução dos submenus é feita no arquivo [i18n_tree.json](src/actions/i18n_
 ```
 O parâmetro com chave vazia é o valor padrão.
 
+## Licença
+
+Todos os códigos deste repositório, exceto [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules), estão sob a licença [MIT License](https://github.com/holyrics/JSCommunity/tree/main/LICENSE.txt).<br>

@@ -1,0 +1,14 @@
+{
+    "id": "obs_play_video_trigger",
+    "name": "Play a video on OBS & Holyrics simultaneously",
+    "description": "Plays a selected video in a specified scene of OBS Studio simultaneously with Holyrics, and switches to a specified scene upon completion.",
+    "i18n": {
+        "name": {
+            "pt": "Executar um vídeo no OBS e Holyrics simultaneamente"
+        },
+        "description": {
+            "pt": "Executa um vídeo selecionado em uma cena especificada do OBS Studio simultaneamente com o Holyrics e muda para uma cena especificada ao concluir."
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'video' || obj.item == 'any_video') "
+}

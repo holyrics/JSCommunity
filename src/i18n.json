@@ -3,76 +3,268 @@
         "key": "Scene name",
         "en": "Scene name",
         "pt": "Nome da cena",
-        "ru": "Имя сцены"
-    }, {
+        "ru": "Имя сцены",
+        "es": "Nombre de escena",
+        "it": "Nome della scena"
+    },
+    {
         "key": "Item name",
         "en": "Item name",
         "pt": "Nome do item",
-        "ru": "Имя элемента"
-    }, {
+        "ru": "Имя элемента",
+        "es": "Nombre del elemento",
+        "it": "Nome dell'oggetto"
+    },
+    {
         "key": "Item not found",
         "en": "Item not found",
         "pt": "Item não encontrado",
-        "ru": "Элемент не найден"
-    }, {
+        "ru": "Элемент не найден",
+        "es": "Elemento no encontrado",
+        "it": "Oggetto non trovato"
+    },
+    {
         "key": "Error",
         "en": "Error",
         "pt": "Erro",
-        "ru": "Ошибка"
-    }, {
+        "ru": "Ошибка",
+        "es": "Error",
+        "it": "Errore"
+    },
+    {
         "key": "Item",
         "en": "Item",
         "pt": "Item",
-        "ru": "Элемент"
-    }, {
+        "ru": "Элемент",
+        "es": "Elemento",
+        "it": "Oggetto"
+    },
+    {
         "key": "Multiple items found",
         "en": "Multiple items found",
         "pt": "Múltiplos itens encontrados",
-        "ru": "Найдено несколько элементов"
-    }, {
+        "ru": "Найдено несколько элементов",
+        "es": "Múltiples elementos encontrados",
+        "it": "Trovati più elementi"
+    },
+    {
         "key": "Clear playlist",
         "en": "Clear playlist",
         "pt": "Limpar lista de reprodução",
-        "ru": "Очистить список"
-    }, {
+        "ru": "Очистить список",
+        "es": "Limpiar lista de reproducción",
+        "it": "Pulisci playlist"
+    },
+    {
         "key": "Playlist",
         "en": "Playlist",
         "pt": "Lista de reprodução",
-        "ru": "Плейлист"
-    }, {
+        "ru": "Плейлист",
+        "es": "Lista de reproducción",
+        "it": "Playlist"
+    },
+    {
         "key": "Lyrics",
         "en": "Lyrics",
         "pt": "Letras",
-        "ru": "Песни"
-    }, {
+        "ru": "Песни",
+        "es": "Letras",
+        "it": "Testi"
+    },
+    {
         "key": "Medias",
         "en": "Medias",
         "pt": "Mídias",
-        "ru": "Медиа"
-    }, {
+        "ru": "Медиа",
+        "es": "Medios",
+        "it": "Media"
+    },
+    {
         "key": "Both",
         "en": "Both",
         "pt": "Ambos",
-        "ru": "Оба"
-    }, {
+        "ru": "Оба",
+        "es": "Ambos",
+        "it": "Entrambi"
+    },
+    {
         "key": "Action",
         "en": "Action",
         "pt": "Ação",
-        "ru": "Действие"
-    }, {
+        "ru": "Действие",
+        "es": "Acción",
+        "it": "Azione"
+    },
+    {
         "key": "Toggle",
         "en": "Toggle",
         "pt": "Alternar",
-        "ru": ""
-    }, {
+        "ru": "Переключить",
+        "es": "Alternar",
+        "it": "Attiva/disattiva"
+    },
+    {
         "key": "Enable",
         "en": "Enable",
         "pt": "Ativar",
-        "ru": ""
-    }, {
+        "ru": "Включить",
+        "es": "Habilitar",
+        "it": "Abilita"
+    },
+    {
         "key": "Disable",
         "en": "Disable",
         "pt": "Desativar",
-        "ru": ""
-    }
+        "ru": "Отключить",
+        "es": "Deshabilitar",
+        "it": "Disabilita"
+    },
+    {
+        "key": "Initialized",
+        "en": "Initialized",
+        "pt": "Inicializada",
+        "ru": "Инициализирована",
+        "es": "Inicializada",
+        "it": "Inizializzata"
+    },
+    {
+        "key": "Emptied",
+        "en": "Emptied",
+        "pt": "Esvaziada",
+        "ru": "Очищена",
+        "es": "Vacía",
+        "it": "Svuotata"
+    },
+    {
+        "key": "Moment added",
+        "en": "Moment added",
+        "pt": "Momento adicionado",
+        "ru": "Момент добавлен",
+        "es": "Momento añadido",
+        "it": "Momento aggiunto"
+    },
+    {
+        "key": "Source or scene name",
+        "en": "Source or scene name",
+        "pt": "Nome da fonte ou cena"
+    },
+    {
+        "key": "Filter name",
+        "en": "Filter name",
+        "pt": "Nome do filtro"
+    },
+    {
+        "key": "Channel",
+        "en": "Channel",
+        "pt": "Canal",
+        "ru": "Канал",
+        "es": "Canal",
+        "it": "Canale"
+    },
+    {
+        "key": "Group",
+        "en": "Group",
+        "pt": "Grupo",
+        "ru": "Группа",
+        "es": "Grupo",
+        "it": "Gruppo"
+    },
+    {
+        "key": "Mute",
+        "en": "Mute",
+        "pt": "Mudo",
+        "ru": "Отключить звук",
+        "es": "Silenciar",
+        "it": "Silenzia"
+    },
+    {
+        "key": "OSC Receiver",
+        "en": "OSC Receiver",
+        "pt": "Receptor OSC"
+    },
+    {
+        "key": "Channel number",
+        "en": "Channel number",
+        "pt": "Número do canal"
+    },
+    {
+        "key": "Volume",
+        "en": "Volume",
+        "pt": "Volume"
+    },
+    {
+        "key": "Speed",
+        "en": "Speed",
+        "pt": "Velocidade"
+    },
+    {
+        "key": "Unmute",
+        "en": "Unmute",
+        "pt": "Desmutar"
+    },
+    {
+        "key": "Mute",
+        "en": "Mute",
+        "pt": "Mudo"
+    },
+    {
+        "key": "Enable",
+        "en": "Enable",
+        "pt": "Habilitar"
+    },
+    {
+        "key": "Disable",
+        "en": "Disable",
+        "pt": "Desabilitar"
+    },
+    {
+        "key": "Toggle",
+        "en": "Toggle",
+        "pt": "Alternar"
+    },
+    {
+        "key": "Group",
+        "en": "Group",
+        "pt": "Grupo"
+    },
+    {
+        "key": "Type",
+        "en": "Type",
+        "pt": "Tipo"
+    },
+    {
+        "key": "Increase",
+        "en": "Increase",
+        "pt": "Aumentar"
+    },
+    {
+        "key": "Decrease",
+        "en": "Decrease",
+        "pt": "Diminuir"
+    },
+    {
+        "key": "Level",
+        "en": "Level",
+        "pt": "Nível"
+    },
+    {
+        "key": "Smoothness",
+        "en": "Smoothness",
+        "pt": "Suavidade"
+    },
+	{
+		"key": "File name",
+		"en": "File name",
+		"pt": "Nome do arquivo"
+	},
+	{
+		"key": "Base directory",
+		"en": "Base directory",
+		"pt": "Diretório base"
+	},
+	{
+		"key": "Post-Completion Jump",
+		"en": "Post-Completion Jump",
+		"pt": "Cena após vídeo"
+	}	
 ]
