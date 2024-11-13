@@ -60,7 +60,7 @@ function info() {
                     '• <b>Integration with Lumikit for DMX:</b> Control lights, special effect devices (smoke machine, bubbles, confetti), and other show equipment.<br>' +
                     '• <b>Integration with Home Assistant:</b> Allows triggering of smart home devices such as lights and screen motors, expanding automation possibilities.<br>' +
                     '• <b>Support for Professional Mixers:</b> Integrates with Behringer, Midas, and SoundCraft mixers, adjusting volumes and channels as the event progresses.<br>' +
-                    '• <b>Control of Scenes in OBS:</b> Coordinates looping scenes and a countdown in OBS, as well as supporting simultaneous differentiated videos for live streaming and local projection.<br>',
+                    '• <b>Control of Scenes in OBS:</b> Coordinates looping scenes and a countdown in OBS, as well as supporting simultaneous differentiated videos for live streaming and local projection.<br>'+infoVDDMM,
                 pt: '<html>' +
                     '> <b>Hora do Show</b> é um módulo automatizado para sincronização de eventos, projetado para criar uma impressionante apresentação de abertura. Integrando diversos sistemas e dispositivos, ele oferece total controle sobre iluminação, efeitos especiais, áudio e cenas de vídeo em tempo real.<br>' +
                     '<br>' +
@@ -69,7 +69,7 @@ function info() {
                     '• <b>Integração com Lumikit para DMX:</b> Controle de luzes, dispositivos de efeitos especiais (máquina de fumaça, bolhas, confete) e outros equipamentos de show.<br>' +
                     '• <b>Integração com Home Assistant:</b> Permite acionar dispositivos domésticos inteligentes, como lâmpadas e motores de telão, ampliando as possibilidades de automação.<br>' +
                     '• <b>Suporte a Mixers Profissionais:</b> Integra-se com mixers Behringer, Midas e SoundCraft, liberando volumes e canais conforme o evento progride.<br>' +
-                    '• <b>Controle de Cenas no OBS:</b> Coordena cenas em loop e uma contagem regressiva no OBS, além de suportar vídeos simultâneos diferenciados para transmissão ao vivo e projeção local.<br>',
+                    '• <b>Controle de Cenas no OBS:</b> Coordena cenas em loop e uma contagem regressiva no OBS, além de suportar vídeos simultâneos diferenciados para transmissão ao vivo e projeção local.<br>'+infoVDDMM,
                 es: '<html>' +
                     '> <b>Showtime</b> es un módulo automatizado para la sincronización de eventos, diseñado para crear una impresionante presentación de apertura. Al integrar diversos sistemas y dispositivos, ofrece control total sobre la iluminación, los efectos especiales, el audio y las escenas de video en tiempo real.<br>' +
                     '<br>' +
@@ -78,7 +78,7 @@ function info() {
                     '• <b>Integración con Lumikit para DMX:</b> Controla luces, dispositivos de efectos especiales (máquina de humo, burbujas, confeti) y otros equipos de espectáculo.<br>' +
                     '• <b>Integración con Home Assistant:</b> Permite activar dispositivos inteligentes del hogar, como luces y motores de pantallas, ampliando las posibilidades de automatización.<br>' +
                     '• <b>Soporte para Mezcladores Profesionales:</b> Se integra con mezcladores Behringer, Midas y SoundCraft, liberando volúmenes y canales a medida que avanza el evento.<br>' +
-                    '• <b>Control de Escenas en OBS:</b> Coordina escenas en bucle y una cuenta regresiva en OBS, además de soportar videos simultáneos diferenciados para transmisión en vivo y proyección local.<br>',
+                    '• <b>Control de Escenas en OBS:</b> Coordina escenas en bucle y una cuenta regresiva en OBS, además de soportar videos simultáneos diferenciados para transmisión en vivo y proyección local.<br>'+infoVDDMM,
                 ru: '<html>' +
                     '> <b>Шоутайм</b> — это автоматизированный модуль для синхронизации событий, предназначенный для создания впечатляющей вступительной презентации. Интегрируя различные системы и устройства, он обеспечивает полный контроль над освещением, спецэффектами, аудио и видеосценами в реальном времени.<br>' +
                     '<br>' +
@@ -87,7 +87,7 @@ function info() {
                     '• <b>Интеграция с Lumikit для DMX:</b> Управление светом, спецэффектами (дым-машина, пузыри, конфетти) и другим оборудованием для шоу.<br>' +
                     '• <b>Интеграция с Home Assistant:</b> Позволяет запускать умные устройства, такие как светильники и моторы экрана, расширяя возможности автоматизации.<br>' +
                     '• <b>Поддержка профессиональных микшеров:</b> Интегрируется с микшерами Behringer, Midas и SoundCraft, регулируя громкость и каналы по мере прогресса мероприятия.<br>' +
-                    '• <b>Управление сценами в OBS:</b> Координирует сцены в цикле и обратный отсчет в OBS, а также поддерживает одновременные разные видео для трансляции в прямом эфире и локальной проекции.<br>'
+                    '• <b>Управление сценами в OBS:</b> Координирует сцены в цикле и обратный отсчет в OBS, а также поддерживает одновременные разные видео для трансляции в прямом эфире и локальной проекции.<br>'+infoVDDMM
             }
         }
     };
