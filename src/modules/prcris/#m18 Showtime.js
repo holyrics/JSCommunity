@@ -18,21 +18,23 @@ refreshShowTimeSchedules(module);
 //   h.openWindow('js_monitor');    
 //   }
 }
+
 function info() {
     return {
         id: mID,
         name: 'Showtime',
-        description: '> <b>Hora do Show</b> é um módulo automatizado para sincronização de eventos, projetado para criar uma impressionante apresentação de abertura. Integrando diversos sistemas e dispositivos, ele oferece total controle sobre iluminação, efeitos especiais, áudio e cenas de vídeo em tempo real.<br>' +
+        description: '<html>' +
+                     '> <b>Showtime</b> is an automated module for event synchronization, designed to create an impressive opening presentation. By integrating various systems and devices, it offers full control over lighting, special effects, audio, and video scenes in real-time.<br>' +
                      '<br>' +
-                     '<b>Recursos Principais</b><br>' +
-                     '• <b>Timers Coordenados:</b> Define e sincroniza múltiplos timers para garantir o início exato de cada efeito na abertura do evento.<br>' +
-                     '• <b>Integração com Lumikit para DMX:</b> Controle de luzes, dispositivos de efeitos especiais (máquina de fumaça, bolhas, confete) e outros equipamentos de show.<br>' +
-                     '• <b>Integração com Home Assistant:</b> Permite acionar dispositivos domésticos inteligentes, como lâmpadas e motores de telão, ampliando as possibilidades de automação.<br>' +
-                     '• <b>Suporte a Mixers Profissionais:</b> Integra-se com mixers Behringer, Midas e SoundCraft, liberando volumes e canais conforme o evento progride.<br>' +
-                     '• <b>Controle de Cenas no OBS:</b> Coordena cenas em loop e uma contagem regressiva no OBS, além de suportar vídeos simultâneos diferenciados para transmissão ao vivo e projeção local.<br>' +
+                     '<b>Main Features</b><br>' +
+                     '• <b>Coordinated Timers:</b> Set and synchronize multiple timers to ensure the exact start of each effect during the event opening.<br>' +
+                     '• <b>Integration with Lumikit for DMX:</b> Control lights, special effect devices (smoke machine, bubbles, confetti), and other show equipment.<br>' +
+                     '• <b>Integration with Home Assistant:</b> Allows triggering of smart home devices such as lights and screen motors, expanding automation possibilities.<br>' +
+                     '• <b>Support for Professional Mixers:</b> Integrates with Behringer, Midas, and SoundCraft mixers, adjusting volumes and channels as the event progresses.<br>' +
+                     '• <b>Control of Scenes in OBS:</b> Coordinates looping scenes and a countdown in OBS, as well as supporting simultaneous differentiated videos for live streaming and local projection.<br>' +
                      infoVDDMM,
         allowed_requests: [
-                     allowedPrcrisModuleRequests
+            allowedPrcrisModuleRequests
         ],
         permissions: [
             {
@@ -40,18 +42,62 @@ function info() {
                 key: 'obs_v5',
                 value: 'SetInputSettings'
             }
-         ],    
-        min_version: '2.24.0'
+        ],
+        min_version: '2.24.0',
+        i18n: {
+            name: {
+                en: 'Showtime',
+                pt: 'Showtime',
+                es: 'Showtime',
+                ru: 'Шоутайм'
+            },
+            description: {
+                en: '<html>' +
+                    '> <b>Showtime</b> is an automated module for event synchronization, designed to create an impressive opening presentation. By integrating various systems and devices, it offers full control over lighting, special effects, audio, and video scenes in real-time.<br>' +
+                    '<br>' +
+                    '<b>Main Features</b><br>' +
+                    '• <b>Coordinated Timers:</b> Set and synchronize multiple timers to ensure the exact start of each effect during the event opening.<br>' +
+                    '• <b>Integration with Lumikit for DMX:</b> Control lights, special effect devices (smoke machine, bubbles, confetti), and other show equipment.<br>' +
+                    '• <b>Integration with Home Assistant:</b> Allows triggering of smart home devices such as lights and screen motors, expanding automation possibilities.<br>' +
+                    '• <b>Support for Professional Mixers:</b> Integrates with Behringer, Midas, and SoundCraft mixers, adjusting volumes and channels as the event progresses.<br>' +
+                    '• <b>Control of Scenes in OBS:</b> Coordinates looping scenes and a countdown in OBS, as well as supporting simultaneous differentiated videos for live streaming and local projection.<br>',
+                pt: '<html>' +
+                    '> <b>Hora do Show</b> é um módulo automatizado para sincronização de eventos, projetado para criar uma impressionante apresentação de abertura. Integrando diversos sistemas e dispositivos, ele oferece total controle sobre iluminação, efeitos especiais, áudio e cenas de vídeo em tempo real.<br>' +
+                    '<br>' +
+                    '<b>Recursos Principais</b><br>' +
+                    '• <b>Timers Coordenados:</b> Define e sincroniza múltiplos timers para garantir o início exato de cada efeito na abertura do evento.<br>' +
+                    '• <b>Integração com Lumikit para DMX:</b> Controle de luzes, dispositivos de efeitos especiais (máquina de fumaça, bolhas, confete) e outros equipamentos de show.<br>' +
+                    '• <b>Integração com Home Assistant:</b> Permite acionar dispositivos domésticos inteligentes, como lâmpadas e motores de telão, ampliando as possibilidades de automação.<br>' +
+                    '• <b>Suporte a Mixers Profissionais:</b> Integra-se com mixers Behringer, Midas e SoundCraft, liberando volumes e canais conforme o evento progride.<br>' +
+                    '• <b>Controle de Cenas no OBS:</b> Coordena cenas em loop e uma contagem regressiva no OBS, além de suportar vídeos simultâneos diferenciados para transmissão ao vivo e projeção local.<br>',
+                es: '<html>' +
+                    '> <b>Showtime</b> es un módulo automatizado para la sincronización de eventos, diseñado para crear una impresionante presentación de apertura. Al integrar diversos sistemas y dispositivos, ofrece control total sobre la iluminación, los efectos especiales, el audio y las escenas de video en tiempo real.<br>' +
+                    '<br>' +
+                    '<b>Características Principales</b><br>' +
+                    '• <b>Temporizadores Coordinados:</b> Configura y sincroniza varios temporizadores para garantizar el inicio exacto de cada efecto durante la apertura del evento.<br>' +
+                    '• <b>Integración con Lumikit para DMX:</b> Controla luces, dispositivos de efectos especiales (máquina de humo, burbujas, confeti) y otros equipos de espectáculo.<br>' +
+                    '• <b>Integración con Home Assistant:</b> Permite activar dispositivos inteligentes del hogar, como luces y motores de pantallas, ampliando las posibilidades de automatización.<br>' +
+                    '• <b>Soporte para Mezcladores Profesionales:</b> Se integra con mezcladores Behringer, Midas y SoundCraft, liberando volúmenes y canales a medida que avanza el evento.<br>' +
+                    '• <b>Control de Escenas en OBS:</b> Coordina escenas en bucle y una cuenta regresiva en OBS, además de soportar videos simultáneos diferenciados para transmisión en vivo y proyección local.<br>',
+                ru: '<html>' +
+                    '> <b>Шоутайм</b> — это автоматизированный модуль для синхронизации событий, предназначенный для создания впечатляющей вступительной презентации. Интегрируя различные системы и устройства, он обеспечивает полный контроль над освещением, спецэффектами, аудио и видеосценами в реальном времени.<br>' +
+                    '<br>' +
+                    '<b>Основные характеристики</b><br>' +
+                    '• <b>Согласованные таймеры:</b> Устанавливает и синхронизирует несколько таймеров, чтобы гарантировать точное начало каждого эффекта при открытии мероприятия.<br>' +
+                    '• <b>Интеграция с Lumikit для DMX:</b> Управление светом, спецэффектами (дым-машина, пузыри, конфетти) и другим оборудованием для шоу.<br>' +
+                    '• <b>Интеграция с Home Assistant:</b> Позволяет запускать умные устройства, такие как светильники и моторы экрана, расширяя возможности автоматизации.<br>' +
+                    '• <b>Поддержка профессиональных микшеров:</b> Интегрируется с микшерами Behringer, Midas и SoundCraft, регулируя громкость и каналы по мере прогресса мероприятия.<br>' +
+                    '• <b>Управление сценами в OBS:</b> Координирует сцены в цикле и обратный отсчет в OBS, а также поддерживает одновременные разные видео для трансляции в прямом эфире и локальной проекции.<br>'
+            }
+        }
     };
 }
 
-
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
 function settings() {
-    //mesma sintaxe de function input
     return [
         {
-            name: 'Sobre ' + mID,
+            name: jsc.i18n('About ') + mID,
             description: infoVDDMM,
             type: 'label'
         },
@@ -59,34 +105,34 @@ function settings() {
             type: 'separator'
         },
         {
-            label: 'Selecione Receceptores que for usar',
+            label: jsc.i18n('Select Receivers to use'),
             type: 'title'
         },
         {
             id: 'mixer_id',
-            name: jsc.i18n('Mixer Digital'),
-            description: '<html><hr>Associe ao receptor da Behinger/Soundcraft',
+            name: jsc.i18n('Digital Mixer'),
+            description: '<html><hr>' + jsc.i18n('Associate with the Behringer/Soundcraft receiver'),
             type: 'receiver',
             receiver: 'osc,soundcraft'
         }, 
         {
             id: 'dmx_id',
             name: 'DMX',
-            description: 'Selecione o Receptor do Lumikit',
+            description: jsc.i18n('Select the Lumikit Receiver'),
             type: 'receiver',
             receiver: 'lumikit'
         },
         {
             id: 'ha_id',
             name: jsc.i18n('Home Assistant'),
-            description: '<html><hr>Associe ao receptor do Home Assistant',
+            description: '<html><hr>' + jsc.i18n('Associate with the Home Assistant receiver'),
             type: 'receiver',
             receiver: 'ha'
         }, 
         {
             id: 'streaming_id',
-            name: 'Transmissão',
-            description: 'Nome do receptor do OBS.',
+            name: jsc.i18n('Streaming'),
+            description: jsc.i18n('OBS receiver name'),
             type: 'receiver',
             receiver: 'obs_v5'
         },
@@ -95,8 +141,8 @@ function settings() {
         },        
         {       
             id: 'video_scene',
-            name: 'Cena OBS para os vídeos',
-            description: 'Escolha a cena do OBS para passar o vídeo.',
+            name: jsc.i18n('OBS Scene for videos'),
+            description: jsc.i18n('Choose the OBS scene to play the video.'),
             type: 'string',
             suggested_values: function(obj) {
                 return jsc.obs_v5.getSceneList(obj.input.streaming_id);
@@ -104,8 +150,8 @@ function settings() {
         }, 
         {
             id: 'scene_item_name',
-            name: 'Nome da "Fonte de Mídia" no OBS',
-            description: 'O script interage diretamente com um objeto do tipo "fonte de mídia" presente na cena selecionada, configurando-o dinamicamente para o vídeo que o Holyrics estiver apresentando.',
+            name: jsc.i18n('OBS "Media Source" name'),
+            description: jsc.i18n('The script interacts directly with a "media source" object in the selected scene, dynamically configuring it for the video that Holyrics is displaying.'),
             type: 'string',
             suggested_values: function(obj) {
                 return jsc.obs_v5.getSceneItemList(obj.input.streaming_id, obj.input.video_scene);
@@ -117,20 +163,20 @@ function settings() {
         {
             id: 'inputs',
             type: 'number',
-            label: 'Quantidade de Inputs nas configurações' ,
-            default_value : 4,
-            description: 'Permite alterar a quantidade de entradas nas janelas de input do módulo.' 
+            label: jsc.i18n('Number of Inputs in settings'),
+            default_value: 4,
+            description: jsc.i18n('Allows changing the number of input windows in the module.')
         },
         {
             type: 'separator'
         },
         {
             id: 'log',
-            label: 'Habilitar log',
+            label: jsc.i18n('Enable log'),
             type: 'boolean',
-            onchange :  function(obj) {
-                logState(obj.input.log, mUID,' onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
-              }
+            onchange: function(obj) {
+                logState(obj.input.log, mUID, ' onchange ' + mID); // habilita ou desabilita o log de acordo com a configuração
+            }
         }
     ];
 }
@@ -140,25 +186,25 @@ function actions(module) {
         actionShow(module),
         copySchedule(module),
         {
-            hint: 'Agendar/Cancelar Show',
+            hint: jsc.i18n('Schedule/Cancel Show'),
             icon: 'hourglass_bottom',
             action: function() {
-               if (getTaskShowCount() > 0) {
-                 cancelShowRunAt(); 
-               } else {
-                 if (!isTodaySchedule()) { //aborta o agendamento caso o evento não seja hoje.
-                     showMessage('ops!','O evento selecionado não é na data de hoje!');
-                     return 
+                if (getTaskShowCount() > 0) {
+                    cancelShowRunAt(); 
+                } else {
+                    if (!isTodaySchedule()) { // aborts scheduling if event is not today
+                        showMessage(jsc.i18n('Oops!'), jsc.i18n('The selected event is not scheduled for today!'));
+                        return;
                     }
-                 refreshShowTimeSchedules(module);
-               }
+                    refreshShowTimeSchedules(module);
+                }
             },
             status: function(evt) {
                 if (getTaskShowCount() > 0) {
                     return jsc.utils.ui.item_status.danger({
-                             icon: 'hourglass_top',
-                             hint: 'Cancelar Show de Abertura'
-                           });
+                        icon: 'hourglass_top',
+                        hint: jsc.i18n('Cancel Opening Show')
+                    });
                 } else {
                     return null; // default values
                 }
@@ -166,35 +212,34 @@ function actions(module) {
         }
     ];
     
-        act.push({
-            hint: 'Imprime Showtime',
-            icon: 'prin'+'t', // Corrigido para o nome correto do ícone
-            action: function() {
-                  eventReport(module);
-            }
-        });
+    act.push({
+        hint: jsc.i18n('Pr'+'int Showtime'),
+        icon: 'pr'+'int',
+        action: function() {
+            eventReport(module);
+        }
+    });
     
     return act;
 }
 
-
 function copySchedule(module) {
     return {
-        hint: 'Copiar as configs de outro evento',
+        hint: jsc.i18n('Copy settings from another event'),
         icon: 'file_copy',
         action: function() {
             var s = module.settings;
             var inputs = [];
             inputs.push({
                 type: 'title',
-                name: '<html><b>Copiar show</b>'
+                name: '<html><b>' + jsc.i18n('Copy Show') + '</b>'
             });
             inputs.push({ type: 'separator' });
 
             inputs.push({
                 id: 'copyshow',
                 type: 'string',
-                label: 'Escolha o evento para copiar os dados',
+                label: jsc.i18n('Choose the event to copy data from'),
                 allowed_values: getShowList(s)
             });
             
@@ -202,14 +247,14 @@ function copySchedule(module) {
             if (q !== null) {
                 var sn = getScheduleName();
                 var sc = q.replace('cfg_', '');
-                s['cfg_' + sn] = s[q]; // clona configurações gerais
-                h.log(mUID, '{%t} Copiados os dados de {}: {}', q, s['cfg_' + getScheduleName()]);
+                s['cfg_' + sn] = s[q];
+                h.log(mUID, '{%t} ' + jsc.i18n('Copied data from') + ' {}: {}', q, s['cfg_' + getScheduleName()]);
                 
-                var keys = ['dmx', 'mixer', 'ha', 'js']; // tipos de inputs possíveis
+                var keys = ['dmx', 'mixer', 'ha', 'js'];
                 keys.forEach(function(key) {  
                     for (var i = 0; i < 2; i++) {
-                        s[key + '_' + i + '_' + sn] = s[key + '_' + i + '_' + sc] || []; // clona configurações dos buttons
-                        h.log(mUID, '{%t} Copiados os dados de {}: {}', key, s[key + '_' + i + '_' + sn]);
+                        s[key + '_' + i + '_' + sn] = s[key + '_' + i + '_' + sc] || [];
+                        h.log(mUID, '{%t} ' + jsc.i18n('Copied data from') + ' {}: {}', key, s[key + '_' + i + '_' + sn]);
                     }
                 });
             }
@@ -217,278 +262,266 @@ function copySchedule(module) {
     };
 }
 
-
-
 function actionShow(module) {
     var sn = getScheduleName();
     return {
-        hint: 'Configurar Show do '+sn,
+        hint: jsc.i18n('Configure Show for') + ' ' + sn,
         icon: 'set_meal',
         action: function() {
             var s = module.settings;
             var inputs = [];
             var vdDur = '';
             var sn = getScheduleName();
-            var sc = 'cfg_'+sn;
+            var sc = 'cfg_' + sn;
             
-            inputs.push({type: 'title', 
-                            name: '<html><b>Configurações para o show de abertura do ' +sn
-                         });
-             inputs.push({type: 'separator'});
+            inputs.push({
+                type: 'title',
+                name: '<html><b>' + jsc.i18n('Opening show settings for') + ' ' + sn + '</b>'
+            });
+            inputs.push({ type: 'separator' });
 
-             inputs.push({
-                 id: 'active',
-                 label: 'Show Ativo para "'+sn+'"',
-                 type: 'boolean',
-                 default_value : false,
-                 onchange :  function(obj) {
-                     logState(obj.input.log, mUID,' onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
-               }
-             });
-             inputs.push({
+            inputs.push({
+                id: 'active',
+                label: jsc.i18n('Active Show for "') + sn + '"',
+                type: 'boolean',
+                default_value: false,
+                onchange: function(obj) {
+                    logState(obj.input.log, mUID, ' onchange ' + mID);
+                }
+            });
+            inputs.push({
                 id: 'atraso',
                 type: 'number',
-                label: 'Atrasar abertura ('+getScheduleTime()+'+): ' ,
-                description: 'Minutos para somar na hora de abertura do evento programado para as ' + getScheduleTime()
-                })
+                label: jsc.i18n('Delay opening (') + getScheduleTime() + '+):',
+                description: jsc.i18n('Minutes to add to the scheduled opening time for') + ' ' + getScheduleTime()
+            });
                 
             for (var i = 0; i < 2; i++) {
-               (function(i) {
-               
-               inputs.push({type: 'separator'});
-               inputs.push({type: 'title', 
-                            name: '<html><b>Vídeo' + (i + 1) + (i == 0 ? ' (Pré-evento em Loop)' : ' (Contagem Regressiva)') 
-                          });
-               if (i === 0) {
-                   inputs.push({
-                   id: 'preservice',
-                   type: 'number',
-                   label: 'Iniciar quantos minutos antes da hora alvo?' ,
-                   description: 'Determina quanto tempo antes o vídeo de pré-evento deve iniciar. Exemplo: culto inicia 19:00, se preencher 20, este vídeo iniciará às 18:40.'
-                })
-
-               }
-              if (s[sc]) {
-                  vdDur = ' (' + formatDuration(getVideoDuration(s[sc]['vlcVideo' + i]))+')';
-              }
-
-              inputs.push({
-                    id: 'vlcVideo'+i,
-                    type: 'video',
-                    name: 'Vídeo Local' + (i == 0 ? ' (aceita pasta)':'')+ vdDur,
-                    description : 'Vídeo a ser executado nas telas Público configuradas, ' + (i == 0 ? ' em loop, no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.')
-               });
-               
-               if (s.streaming_id != "") {
-                 if (s[sc]) { 
-                   vdDur = ' (' + formatDuration(getVideoDuration(s[sc]['liveVideo' + i]))+')';
-                   }
-                   inputs.push({
-                        id: 'liveVideo'+i,
-                        type: 'video', 
-                        name: 'Vídeo Live' + vdDur,
-                        description : 'Vídeo a ser executado na Live ' + (i == 0 ? ' em loop no tempo programado antes da contagem regressiva' : ' que terminará no horário exato de início do evento.')
-                   });
-                 if (i === 1) {
-                   inputs.push({
-                      id: 'cam_scene',
-                      name: 'Cena câmera (fim show)',
-                      description: 'Escolha a cena do OBS após encerrar a abertura.',
-                      type: 'string',
-                      suggested_values: function(obj) {
-                      return jsc.obs_v5.getSceneList(s.streaming_id);
-                      }
-                   }); 
-                   inputs.push({
-                      id: 'stop_obs_at',
-                      type: 'number',
-                      label: 'Ir para a câmera quando faltar (s): ' ,
-                      description: 'Ir para a câmera faltando quantos segundos para terminar o vídeo? A ideia é fazer uma conexão entre a contagem da live e o final da contagem no culto.' 
-                   })
-                 }
-               }
-
-               if (s.dmx_id != "") {
-                 inputs.push({
-                      id: 'dmx'+i,
-                      type: 'button',
-                      name: 'Lumikit' ,
-                      button_label : 'Configurar Ações DMX',
-                      action : function() { 
-                          actionDMXInput(module,i)
-                      }
-                  });
-               }
-               if (s.mixer_id != "") {
-                 inputs.push({
-                      id: 'mixer'+i,
-                      type: 'button',
-                      name: 'Mixer' ,
-                      button_label : 'Configurar Ações Mixer',
-                      action : function() { 
-                          actionMixerInput(module,i)
-                      }
-                  });
-               }
-               if (s.ha_id != "") {
-                 inputs.push({
-                      id: 'ha'+i,
-                      type: 'button',
-                      name: 'Home Assistant',
-                      button_label : 'Configurar Ações HA',
-                      action : function() { 
-                          actionHAInput(module,i)
-                      }
-                });
-               }
-               inputs.push({
-                    id: 'js'+i,
-                    type: 'button',
-                    name: 'Funções JS no seu Include',
-                    button_label : 'Rotinas Extras',
-                    action : function() { 
-                        actionJSInput(module,i)
+                (function(i) {
+                    inputs.push({ type: 'separator' });
+                    inputs.push({
+                        type: 'title',
+                        name: '<html><b>' + jsc.i18n('Video') + ' ' + (i + 1) + (i == 0 ? jsc.i18n(' (Pre-event in Loop)') : jsc.i18n(' (Countdown)')) + '</b>'
+                    });
+                    if (i === 0) {
+                        inputs.push({
+                            id: 'preservice',
+                            type: 'number',
+                            label: jsc.i18n('Start how many minutes before the target time?'),
+                            description: jsc.i18n('Defines how long before the pre-event video should start. Example: service starts at 7:00 PM, if set to 20, this video will start at 6:40 PM.')
+                        });
                     }
-                });
-              })(i);
-            } 
-            var q = module.inputSettings('cfg_'+sn, inputs);
+                    if (s[sc]) {
+                        vdDur = ' (' + formatDuration(getVideoDuration(s[sc]['vlcVideo' + i])) + ')';
+                    }
+                    inputs.push({
+                        id: 'vlcVideo' + i,
+                        type: 'video',
+                        name: jsc.i18n('Local Video') + (i == 0 ? jsc.i18n(' (folder allowed)') : '') + vdDur,
+                        description: jsc.i18n('Video to be played on the configured Public screens') + (i == 0 ? jsc.i18n(' in loop at the scheduled time before the countdown') : jsc.i18n(' which will end at the exact start time of the event.'))
+                    });
+                    if (s.streaming_id != "") {
+                        if (s[sc]) {
+                            vdDur = ' (' + formatDuration(getVideoDuration(s[sc]['liveVideo' + i])) + ')';
+                        }
+                        inputs.push({
+                            id: 'liveVideo' + i,
+                            type: 'video',
+                            name: jsc.i18n('Live Video') + vdDur,
+                            description: jsc.i18n('Video to be played on the Live') + (i == 0 ? jsc.i18n(' in loop at the scheduled time before the countdown') : jsc.i18n(' which will end at the exact start time of the event.'))
+                        });
+                        if (i === 1) {
+                            inputs.push({
+                                id: 'cam_scene',
+                                name: jsc.i18n('Camera scene (end show)'),
+                                description: jsc.i18n('Choose the OBS scene after closing the opening.'),
+                                type: 'string',
+                                suggested_values: function(obj) {
+                                    return jsc.obs_v5.getSceneList(s.streaming_id);
+                                }
+                            });
+                            inputs.push({
+                                id: 'stop_obs_at',
+                                type: 'number',
+                                label: jsc.i18n('Switch to camera when ') + jsc.i18n(' seconds remain:'),
+                                description: jsc.i18n('Switch to camera how many seconds before the video ends? This is meant to sync the live countdown with the event countdown.')
+                            });
+                        }
+                    }
+                    if (s.dmx_id != "") {
+                        inputs.push({
+                            id: 'dmx' + i,
+                            type: 'button',
+                            name: 'Lumikit',
+                            button_label: jsc.i18n('Configure DMX Actions'),
+                            action: function() { 
+                                actionDMXInput(module, i);
+                            }
+                        });
+                    }
+                    if (s.mixer_id != "") {
+                        inputs.push({
+                            id: 'mixer' + i,
+                            type: 'button',
+                            name: 'Mixer',
+                            button_label: jsc.i18n('Configure Mixer Actions'),
+                            action: function() { 
+                                actionMixerInput(module, i);
+                            }
+                        });
+                    }
+                    if (s.ha_id != "") {
+                        inputs.push({
+                            id: 'ha' + i,
+                            type: 'button',
+                            name: 'Home Assistant',
+                            button_label: jsc.i18n('Configure HA Actions'),
+                            action: function() { 
+                                actionHAInput(module, i);
+                            }
+                        });
+                    }
+                    inputs.push({
+                        id: 'js' + i,
+                        type: 'button',
+                        name: jsc.i18n('JS Functions in your Include'),
+                        button_label: jsc.i18n('Extra Routines'),
+                        action: function() { 
+                            actionJSInput(module, i);
+                        }
+                    });
+                })(i);
+            }
+            var q = module.inputSettings('cfg_' + sn, inputs);
             if (q !== null) {
-                h.log(mUID,"{%t} Valores escolhidos = {}",q);
+                h.log(mUID, "{%t} " + jsc.i18n('Selected values =') + " {}", q);
                 s[sc] = checkData(q);
                 
-                timingCheckAndSet(s,sc);
+                timingCheckAndSet(s, sc);
                 refreshShowTimeSchedules(module);
-           }
+            }
         },
         status: function(evt) {
-                var s = module.settings;
-                var sc = 'cfg_'+getScheduleName();
-                if (s[sc] && s[sc].active !== true) {
-                    return {
-         	         hint: 'Configurar Show do '+sn+' (inativo)',
-                           foreground: '727272', 
-                           background: '444444', 
-                           iconColor: '727272'
-                    };
-                } else {
-                    return null; // default values
-                }
+            var s = module.settings;
+            var sc = 'cfg_' + getScheduleName();
+            if (s[sc] && s[sc].active !== true) {
+                return {
+                    hint: jsc.i18n('Configure Show for') + ' ' + sn + ' ' + jsc.i18n('(inactive)'),
+                    foreground: '727272', 
+                    background: 'EEEEEE'
+                };
+            } else {
+                return null;
+            }
         }
-    }
+    };
 }
 
-function actionJSInput(module,video) {
+
+function actionJSInput(module, video) {
     var s = module.settings;
     var inputs = [];
     var qtd_inputs = s.inputs || 4;
     var k = 'js';
-    
+
     inputs.push({
         type: 'title',
-        name: '<html><b>Ações extras em Ja'+'vaScript para o vídeo ' + (video + 1) + ' do evento ' + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Extra JavaScript Actions for video ') + (video + 1) + jsc.i18n(' of event ') + getScheduleName()
     });
-       
+
     for (var i = 0; i < qtd_inputs; i++) {
         inputs.push({ type: 'separator' });
-        
+
         inputs.push({
             id: k + i,
             type: 'boolean',
-            name: '<html><b>Ativar Comando ' + (i + 1)
+            name: '<html><b>' + jsc.i18n('Enable Command ') + (i + 1)
         });
-        
+
         inputs.push({
             id: 'fnInclude' + i,
             type: 'string',
-            label: 'Nome da Função show.() no Include',
-            description: 'Execute suas próprias funções em Ja'+'vaScript no Include do Holyrics e chame elas no módulo.<br><br><hr><br><b><u>Exemplo:</b></u><br><br>' +
-                '1. Abra a tela de Include no menu arquivo -> configurações -> avançado -> Botão Ja'+'vaScript -> Include.<br>' +
-                '2. Crie um objeto em uma var global chamado show, que conterá suas funções, seguindo o exemplo abaixo.<br><br>' +
+            label: jsc.i18n('Function Name show.() in Include'),
+            description: jsc.i18n('Run your own JavaScript functions in Holyrics Include and call them in the module.')+'<br><br><hr><br><b><u>Example:</u></b><br><br>' +
+                jsc.i18n('1. Open the Include screen from the File -> Settings -> Advanced -> JavaScript -> Include.<br>') +
+                jsc.i18n('2. Create an object in a global variable called show, which will contain your functions, following the example below.') +' <br><br>'+
                 '<pre style="color: #D4D4D4; font-family: monospace; background-color: #1E1E1E; padding: 10px; border-radius: 5px;">' +
                 'var show = { <br>' +
                 '    helloworld: function () {<br>' +
                 '        h.log("=== hello world ===");<br>' +
-                '        // escreva todo o código pra sua função helloworld<br>' +
+                '        // write all the code for your helloworld function<br>' +
                 '    },<br>' +
                 '    helloholyrics: function () {<br>' +
                 '        h.log("=== hello holyrics ===");<br>' +
-                '        // escreva todo o código pra sua função helloholyrics<br>' +
+                '        // write all the code for your helloholyrics function<br>' +
                 '    }<br>' +
-                '};</pre><br><br>' +
-                '<b><u>Nota:</u></b> As funções não recebem parâmetros e são chamadas sem ()<br>' +
-                'Coloque apenas o nome dela na hora de configurar no módulo, exemplo: helloholyrics<br>' +
-                'Ficou com dúvidas? É melhor você estudar mais e usar só as coisas prontas do módulo!'
+                '};</pre><br><br><b><u>'+
+                jsc.i18n('Note') + ':</u></b> ' +
+                jsc.i18n('Functions do not take parameters and are called without ().<br>') +
+                jsc.i18n('Just enter the function name when configuring in the module, e.g., helloholyrics<br>') +
+                jsc.i18n('Have questions? It\'s better to study more and only use the module\'s built-in features!')
         });
 
         inputs = inputs.concat(createRelativeTimeInputs(i, video));
     }    
 
-    var sc = k+'_'+video+'_'+getScheduleName();
+    var sc = k + '_' + video + '_' + getScheduleName();
     var q = module.inputSettings(sc, inputs);
-        if (q !== null) {
-            h.log(mUID,"{%t} Valores escolhidos = {}",[q]);
-            s[sc] = resetInactive(q, k);;
-        }
+    if (q !== null) {
+        h.log(mUID, "{%t} Selected values = {}", [q]);
+        s[sc] = resetInactive(q, k);
+    }
 }
 
-function actionHAInput(module,video) {
+function actionHAInput(module, video) {
     var s = module.settings;
     var inputs = [];
     var qtd_inputs = s.inputs || 4;
     var k = 'ha';
     inputs.push({
         type: 'title',
-        name: '<html><b>Configurações de interruptores Home Assistant para o vídeo ' + (video + 1) + ' do evento ' + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Home Assistant Switch Settings for video ') + (video + 1) + jsc.i18n(' of event ') + getScheduleName()
     });
-    
-    var allowedValues = [{value: '', label : ''}];
-    var switchs = jsc.ha.getSwitchList(s.ha_id);
-    for (var i = 0; i < switchs.length; i++) { 
-       var item = switchs[i];
-       var label = item.replace('switch.', ''); // Remove o prefixo "switch."
-       label = label.replace(/_/g, ' '); // Substitui "_" por espaço
-       label = label.replace(/\b\w/g, function(c) { return c.toUpperCase(); }); // Capitaliza a primeira letra de cada palavra
-       allowedValues.push({
-          value: item, // O item original da lista
-          label: label // O label formatado
-       });
+
+    var allowedValues = [{ value: '', label: '' }];
+    var switches = jsc.ha.getSwitchList(s.ha_id);
+    for (var i = 0; i < switches.length; i++) {
+        var item = switches[i];
+        var label = item.replace('switch.', '').replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+        allowedValues.push({ value: item, label: label });
     }
 
-    
     for (var i = 0; i < qtd_inputs; i++) {
         inputs.push({ type: 'separator' });
-        
+
         inputs.push({
             id: k + i,
             type: 'boolean',
-            name: '<html><b>Ativar Comando ' + (i + 1)
+            name: '<html><b>' + jsc.i18n('Enable Command') + ' ' + (i + 1)
         });
-        
+
         inputs.push({
             id: 'switch' + i,
             type: 'string',
-            label: 'Interruptor',
+            label: jsc.i18n('Switch'),
             allowed_values: allowedValues
         });
-        
+
         inputs.push({
-            id: 'state' + i ,
+            id: 'state' + i,
             type: 'string',
-            label: 'Ação',
-            allowed_values: [{ value: null , label: '' },
-                             { value: true , label: 'Ligar' },
-                             { value: false , label: 'Desligar'}]
-            });
-            
-         inputs = inputs.concat(createRelativeTimeInputs(i, video));
+            label: jsc.i18n('Action'),
+            allowed_values: [{ value: null, label: '' }, { value: true, label: jsc.i18n('Turn On') }, { value: false, label: jsc.i18n('Turn Off') }]
+        });
+
+        inputs = inputs.concat(createRelativeTimeInputs(i, video));
     }
-    var sc = k + '_'+video+'_'+getScheduleName();
+    var sc = k + '_' + video + '_' + getScheduleName();
     var q = module.inputSettings(sc, inputs);
-        if (q !== null) {
-            h.log(mUID,"{%t} Valores escolhidos = {}",[q]);
-            s[sc] = resetInactive(q, k);
-        }
+    if (q !== null) {
+        h.log(mUID, "{%t} Selected values = {}", [q]);
+        s[sc] = resetInactive(q, k);
+    }
 }
 
 function actionMixerInput(module, video) {
@@ -496,28 +529,27 @@ function actionMixerInput(module, video) {
     var inputs = [];
     var qtd_inputs = s.inputs || 4;
     var k = 'mixer';
-    
+
     inputs.push({
         type: 'title',
-        name: '<html><b>Ações do Mixer durante o vídeo ' + (video + 1) + ' do evento ' + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Mixer Actions during video') + ' ' + (video + 1) + ' ' + jsc.i18n('of event') + ' ' +  getScheduleName()
     });
-    
+
     for (var i = 0; i < qtd_inputs; i++) {
         inputs.push({ type: 'separator' });
-        
+
         inputs.push({
             id: k + i,
             type: 'boolean',
-            name: '<html><b>Ativar Comando ' + (i + 1)
+            name: '<html><b>' + jsc.i18n('Activate Command') + ' ' +  (i + 1)
         });
-        
-        var allowedValues = [{value: '',
-                              label: ''}];
-                              
+
+        var allowedValues = [{value: '', label: ''}];
+
         var types = ['Input', 'Aux', 'Line'];
-        var max_input = 32; // Máximo de canais de input
+        var max_input = 32; // Maximum input channels
         
-        // Gerar a lista para 'Input' channels
+        // Generate the list for 'Input' channels
         for (var j = 1; j <= max_input; j++) {
             allowedValues.push({
                 value: 'Input ' + j,
@@ -525,27 +557,27 @@ function actionMixerInput(module, video) {
             });
         }
         
-        // Gerar a lista para 'Aux' channels (1 a 6)
+        // Generate the list for 'Aux' channels (1 to 6)
         for (var j = 1; j <= 6; j++) {
             allowedValues.push({
                 value: 'Aux ' + j,
                 label: 'Aux ' + j // Ex: "Aux 1", "Aux 2", etc.
             });
         }
-        
-        // Gerar a lista para 'Line' channels (1 a 16 ou outra faixa desejada)
+
+        // Generate the list for 'Line' channels (1 to 16 or other desired range)
         for (var j = 1; j <= 16; j++) {
             allowedValues.push({
                 value: 'Line ' + j,
                 label: 'Line ' + j // Ex: "Line 1", "Line 2", etc.
             });
         }
-        
-        // Adicionando o campo ao inputs
+
+        // Adding the field to inputs
         inputs.push({
             id: 'channel' + i,
             type: 'string',
-            label: 'Canal',
+            label: jsc.i18n('Channel'),
             allowed_values: allowedValues
         });
 
@@ -555,104 +587,102 @@ function actionMixerInput(module, video) {
             component: 'slider',
             unit: '%'
         });
-        
+
         inputs = inputs.concat(createRelativeTimeInputs(i, video));
     }
     var sc = k + '_' + video + '_' + getScheduleName();
     var q = module.inputSettings(sc , inputs);
     if (q !== null) {
-        h.log(mUID, "{%t} Valores escolhidos = {}", [q]);
+        h.log(mUID, "{%t} Selected values = {}", [q]);
         s[sc] = resetInactive(q, k);
     }
 }
-
 
 function actionDMXInput(module, video) {
     var s = module.settings;
     var inputs = [];
     var qtd_inputs = s.inputs || 4;
     var k = 'dmx';
-    
+
     inputs.push({
         type: 'title',
-        name: '<html><b>Configurações de cenas Lumikit para o vídeo ' + (video + 1) + ' do evento ' + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Lumikit scene settings for video') + ' ' +  (video + 1) + ' ' +  jsc.i18n('of event') + ' ' +  getScheduleName()
     });
-    
+
     for (var i = 0; i < qtd_inputs; i++) {
         inputs.push({ type: 'separator' });
-        
+
         inputs.push({
             id: k + i,
             type: 'boolean',
-            name: '<html><b>Ativar Comando ' + (i + 1)
+            name: '<html><b>' + jsc.i18n('Activate Command') + ' ' +  (i + 1)
         });
-        
+
         var allowedValues = [{label: '', page: ''}];
-        var letters = 'ASDFGHJKLZXCVBNM'.split(''); // Sequência de cenas do lumikit
-        
+        var letters = 'ASDFGHJKLZXCVBNM'.split(''); // Lumikit scene sequence
+
         for (var page = 1; page <= 10; page++) {
             for (var j = 0; j < letters.length; j++) {
                 allowedValues.push({
-                    value: page + '|' + letters[j], // Combina a página com a cena
-                    label: 'Página ' + page + ' - Cena ' + letters[j] // Label descritivo
+                    value: page + '|' + letters[j], // Combine page and scene
+                    label: jsc.i18n('Page') + ' ' +  page + ' - ' +  jsc.i18n('Scene') + ' ' +  letters[j] // Descriptive label
                 });
             }
         }
 
         inputs.push({
-            id: 'bpm' + i ,
+            id: 'bpm' + i,
             type: 'number',
             min: 0,
             max: 200,
             show_as_combobox : true,
-            label: 'BPM'
+            label: jsc.i18n('BPM')
         });
-        
+
         inputs.push({
             id: 'scene' + i,
             type: 'string',
-            label: 'Cena',
+            label: jsc.i18n('Scene'),
             allowed_values: allowedValues
         });
-        
+
         inputs = inputs.concat(createRelativeTimeInputs(i, video));
     }
-    
+
     var sc = k + '_'+video+'_'+getScheduleName();
     var q = module.inputSettings(sc, inputs);
-        if (q !== null) {
-            h.log(mUID,"{%t} Valores escolhidos = {}",[q]);
-            s[sc] = resetInactive(q, k);
-        }
+    if (q !== null) {
+        h.log(mUID, "{%t} Selected values = {}", [q]);
+        s[sc] = resetInactive(q, k);
+    }
 }
 
 function createRelativeTimeInputs(i, video) {
-
-    var add = video === 0 ? '' : '/final';
-    var allowedValues = [{ value: null, label: '' },{ value: true, label: 'Início do Vídeo' }];
+    var add = video === 0 ? '' : '/'+jsc.i18n('end');
+    var allowedValues = [{ value: null, label: '' }, { value: true, label: jsc.i18n('Start of Video') }];
     if (video === 1) {
-          allowedValues.push({ value: false, label: 'Final do Vídeo' });
+        allowedValues.push({ value: false, label: jsc.i18n('End of Video') });
     }
 
-    var result = [ 
+    var result = [
         {
             id: 'timer' + i,
             type: 'number',
             min: -1000,
             max: 1000,
             default_value: 0,
-            label: 'Ajuste (±S)',
-            description: 'Tempo em relação ao início' + add + ' do vídeo. Exemplo 5 segundos antes de iniciar o vídeo coloque -5, 4 segundos depois do inicio' + add + ' do vídeo coloque 4'
+            label: jsc.i18n('Adjustment (±S)'),
+            description: jsc.i18n('Time relative to the start') + add + ' ' +  jsc.i18n('of the video. For example, 5 seconds before the start of the video, set -5, 4 seconds after the start') + add + ' ' +  jsc.i18n('of the video, set 4')
         },
         {
             id: 'timer_index' + i,
             type: 'string',
-            label: 'Em relação ao ',
+            label: jsc.i18n('Relative to'),
             allowed_values: allowedValues
-        }];
-   return result;
+        }
+    ];
+    return result;
 }
-
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 function triggers(module) {
@@ -672,54 +702,52 @@ return arr;
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226d616b652069742068617070656e227d
 function startSchedulesShow(module) {
 
-cancelShowRunAt();
-var s = module.settings;
-var d = getTimersToShow(s);
+    cancelShowRunAt();
+    var s = module.settings;
+    var d = getTimersToShow(s);
 
-if (d.startShow<0) {
-  return
+    if (d.startShow < 0) {
+        return;
+    }
+
+    h.log(mUID, "{%t} " + jsc.i18n("Event times in MS") + ": {}", h.toPrettyJson(d));
+
+    timingCheckAndSet(s, d.c);
+
+    suspendConflictingModules(true, [13, 15]);  // suspends video and soundboard module
+
+    sc(s, d);
+    scVideosLocal(s, d);
+
+    if (s.streaming_id != '' && cfg.liveVideo0 && cfg.liveVideo1) {
+        scVideosLive(s, d);
+    }
+
+    setShowRunAt(function() { cancelShowRunAt(); }, getFurthestFutureTime(d, s, true) + 2000, 'Clear List');
 }
 
-h.log(mUID, "{%t} Tempos em MS de cada evento: {}", h.toPrettyJson(d));
-
-timingCheckAndSet(s,d.c)
-
-suspendConflictingModules(true, [13,15]);  // suspende o módulo de vídeo e de mesa de som
-
-sc(s,d);
-scVideosLocal(s,d);
-
-if (s.streaming_id != '' && cfg.liveVideo0 && cfg.liveVideo1) {
-   scVideosLive(s,d);
+function scVideosLocal(s, d) {
+    var cfg = s[d.c];
+    setShowRunAt(function() { playVLC(cfg.vlcVideo0, true); }, d.startShow, 'vlcLoop');
+    setShowRunAt(function() { playVLC(cfg.vlcVideo0, false); }, d.startVlcVideoLastRepeat, 'vlcLastRepeat'); // ensures the last video run is complete
+    if (!cfg.vlcVideo1.isDir) {
+        setShowRunAt(function() { playVLC(cfg.vlcVideo1, false);}, d.startVlcVideo1, 'vlcFinal');
+    }
 }
 
-setShowRunAt(function() { cancelShowRunAt(); }, getFurthestFutureTime(d, s, true) + 2000, 'Clear List');
-
-}
-
-
-function scVideosLocal(s,d) {
-var cfg = s[d.c];
-setShowRunAt(function() { playVLC(cfg.vlcVideo0, true); }, d.startShow, 'vlcLoop');
-setShowRunAt(function() { playVLC(cfg.vlcVideo0, false); }, d.startVlcVideoLastRepeat, 'vlcLastRepeat'); // garante que a última execução do vídeo será completa
-if (!cfg.vlcVideo1.isDir) {
-   setShowRunAt(function() { playVLC(cfg.vlcVideo1, false);}, d.startVlcVideo1, 'vlcFinal');
-}
-}
-
-function scVideosLive(s,d) {
-var cfg = s[d.c];
-setShowRunAt(function() { playOBS(s, cfg.liveVideo0, true); }, d.startShow, 'liveLoop');
-setShowRunAt(function() { playOBS(s, cfg.liveVideo0, false); }, d.startLiveVideoLastRepeat, 'liveLastRepeat'); // garante que a última execução do vídeo será completa
-setShowRunAt(function() { playOBS(s, cfg.liveVideo1, false); }, d.startLiveVideo1, 'liveFinal');
-setShowRunAt(function() { 
-         //h.log(mUID, '{%t} s.streaming_id {}, cfg.cam_scene {}',s.streaming_id,cfg.cam_scene);
-         jsc.obs_v5.setActiveScene(s.streaming_id, cfg.cam_scene); }
-         , d.endShow - (s[d.c].stop_obs_at * 1000) , 'liveCAM'); 
+function scVideosLive(s, d) {
+    var cfg = s[d.c];
+    setShowRunAt(function() { playOBS(s, cfg.liveVideo0, true); }, d.startShow, 'liveLoop');
+    setShowRunAt(function() { playOBS(s, cfg.liveVideo0, false); }, d.startLiveVideoLastRepeat, 'liveLastRepeat'); // ensures the last video run is complete
+    setShowRunAt(function() { playOBS(s, cfg.liveVideo1, false); }, d.startLiveVideo1, 'liveFinal');
+    setShowRunAt(function() { 
+        //h.log(mUID, '{%t} s.streaming_id {}, cfg.cam_scene {}',s.streaming_id,cfg.cam_scene);
+        jsc.obs_v5.setActiveScene(s.streaming_id, cfg.cam_scene); 
+    }, d.endShow - (s[d.c].stop_obs_at * 1000), 'liveCAM'); 
 }
 
 function sc(s, d) {
-    var keys = ['dmx', 'mixer', 'ha', 'js'];  // tipos de inputs possíveis
+    var keys = ['dmx', 'mixer', 'ha', 'js'];  // possible input types
     keys.forEach(function(key) {  
         if (s[key + '_id'] != "" || key === 'js') {
             for (var i = 0; i < 2; i++) {
@@ -733,7 +761,7 @@ function sc(s, d) {
                                 try {
                                     makeItHappen(s, i, n, cfg, key);
                                 } catch (e) { 
-                                    h.log("", 'Erro {}', [e]);
+                                    h.log("", jsc.i18n('Error {}'), [e]);
                                 }
                             }, when, key + '_' + i + '_' + n);
                         })(i, n, when, cfg, key);  
@@ -744,17 +772,15 @@ function sc(s, d) {
     });
 }
 
-
-
 function makeItHappen(s, i, n, cfg, key) {
   
-  if (s[key+'_id']) {
-     var receiverID = h.getReceiverInfo(s[key+'_id']).name;
+  if (s[key + '_id']) {
+     var receiverID = h.getReceiverInfo(s[key + '_id']).name;
   }
   
   switch (key) {
     case 'dmx': {
-      h.log(mUID, "{%t} setDMX('{}', '{}', '{}');",  receiverID, cfg['scene' + n], cfg['bpm' + n]);   
+      h.log(mUID, "{%t} setDMX('{}', '{}', '{}');", receiverID, cfg['scene' + n], cfg['bpm' + n]);   
       setDMX(s.dmx_id, cfg['scene' + n], cfg['bpm' + n]);
       break;
     }
@@ -776,20 +802,18 @@ function makeItHappen(s, i, n, cfg, key) {
   }
 }
 
+function timingCheckAndSet(s, cfg) {
 
-function timingCheckAndSet(s,cfg) {
+    var totalVlcVideos = (getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60;
+    var totalLiveVideos = (getVideoDuration(s[cfg]['liveVideo0']) + getVideoDuration(s[cfg]['liveVideo1'])) / 1000 / 60;
+    var totalVideos =  Math.ceil(totalLiveVideos < totalVlcVideos ? totalVlcVideos : totalLiveVideos);
 
-var totalVlcVideos = (getVideoDuration(s[cfg]['vlcVideo0']) + getVideoDuration(s[cfg]['vlcVideo1'])) / 1000 / 60;
-var totalLiveVideos = (getVideoDuration(s[cfg]['liveVideo0']) + getVideoDuration(s[cfg]['liveVideo1'])) / 1000 / 60;
-var totalVideos =  Math.ceil(totalLiveVideos < totalVlcVideos ? totalVlcVideos : totalLiveVideos);
+    h.log(mUID, "{%t} " + jsc.i18n("Minimum time") + ": {}m | VLC {}m | Live {}m", totalVideos, totalVlcVideos, totalLiveVideos);
 
-h.log(mUID,'{%t} Tempo mínimo: {}m | VLC {}m | Live {}m', totalVideos, totalVlcVideos, totalLiveVideos);
-
-if (s[cfg].preservice < totalVideos) {
-  h.notification('Tempo para início foi definido para o mínimo: '+totalVideos+' minutos');
-  s[cfg].preservice = totalVideos;
-}
-
+    if (s[cfg].preservice < totalVideos) {
+        h.notification(jsc.i18n('The start time was set to the minimum')+': ' + totalVideos + ' ' + jsc.i18n('minutes'));
+        s[cfg].preservice = totalVideos;
+    }
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22687562227d
@@ -833,7 +857,7 @@ function playOBS(s, mediaName, repeat) {
     var pSettings = getPluginSettings();
  
     if (!pSettings.ip || !pSettings.port || !pSettings.token) {
-      h.log("Configurações de vídeo para o plugin não encontradas. Configure o Plugin do Holyrics");
+      h.log(jsc.i18n("Video settings for the plugin not found. Please configure the Holyrics plugin"));
       return;
     }
     
@@ -864,7 +888,7 @@ function playOBS(s, mediaName, repeat) {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226d6978657273227d
 function getMixerDetails(receiverID, channel_type) {
   if (!receiverID) {
-    h.log(mUID, '{%t} : Mixer não configurado!');
+    h.log(mUID, '{%t} : ' + jsc.i18n('Mixer not configured!'));
     return null;
   }
 
@@ -1007,7 +1031,7 @@ function cancelShowRunAt() {
     }
     // Clear the timer list
     h.setGlobal(mUID + '_openingServiceTimers', []);
-    h.log(mUID, "{%t} Todos os agendamentos do módulo foram cancelados.");
+    h.log(mUID, '{%t} ' + jsc.i18n('All module schedules have been cancelled.'));
     
     suspendConflictingModules(false);
 }
@@ -1061,16 +1085,22 @@ function getCurrentTime() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2267656e657269632066756e6374696f6e73227d
 function checkData(q) {
     var tags = ['vlcVideo1', 'liveVideo0', 'liveVideo1'];
-    var messages = { 'vlcVideo1': '2 local', 'liveVideo0': ' 1 da Live', 'liveVideo1': ' 2 da Live'};
+    var messages = { 
+        'vlcVideo1': jsc.i18n('local video') + ' 2', 
+        'liveVideo0': jsc.i18n('Live video') + ' 1', 
+        'liveVideo1': jsc.i18n('Live video') + ' 2' 
+    };
+    
     tags.forEach(function(tag) {
         if (q[tag] && q[tag].isDir) {
-            showMessage('Para o Vídeo ' + messages[tag] + ' selecione apenas 1 vídeo e não uma pasta. Configuração Removida.');  
+            showMessage(jsc.i18n('For Video') + ' ' +  messages[tag]  + ' ' +  jsc.i18n('select only 1 video and not a folder. Configuration removed.'));
             q[tag] = null;               
         }
     });
     
     return q;
 }
+
 
 function resetInactive(q, k) {
     var keys = [];
@@ -1121,12 +1151,12 @@ function refreshShowTimeSchedules(module) {
      var timeToEndShow = getFurthestFutureTime(d, s, true);
      
      if (timeToStartShow - 10000 > -1) {
-        setShowRunAt(function() { startSchedulesShow(module); }, timeToStartShow -10000, 'O Show vai iniciar!', true);
-        h.notification('Show de abertura programado para iniciar às '+timeToStart(timeToStartShow),5);
+        setShowRunAt(function() { startSchedulesShow(module); }, timeToStartShow -10000, 'The show will start now!', true);
+        h.notification(jsc.i18n('Opening show scheduled to start at')  + ' ' +  timeToStart(timeToStartShow), 5);
      } else {
-        
-        h.notification('Já passou do horário mínimo para programação do evento em '+ formatDuration(d.startShow * -1) +'!',5);
-     }
+        h.notification(jsc.i18n('The minimum time for event programming has passed by')  + ' ' +  formatDuration(d.startShow * -1) + '!', 5);
+}
+
 
      module.repaintPanel();
      module.updatePanel();
@@ -1217,7 +1247,7 @@ function getFurthestFutureTime(d, s, isMax) {
         result = filteredTimes.length > 0 ? Math.min.apply(null, filteredTimes) : -1;
     }
 
-    h.log(mUID, "{%t} tempo " + (isMax ? "máximo" : "mínimo") + ": {} | {}", result, timeToStart(result));
+    h.log(mUID, "{%t} " + jsc.i18n('time') + " " + (isMax ? jsc.i18n('maximum') : jsc.i18n('minimum')) + ": {} | {}", result, timeToStart(result));
 
     return result;
 }
@@ -1230,7 +1260,7 @@ function getShowList(s) {
     for (var key in s) {
         if (key.indexOf('cfg_') === 0) { // Compatível com ECMAScript 5.1
             var showName = key.replace('cfg_', '');
-            if (showName !== sn && showName !== 'Temporário') {
+            if (showName !== sn && showName !== jsc.i18n('Temporary')) {
                 allowedIValues.push({ value: key, label: showName });
             }
         }
@@ -1301,18 +1331,18 @@ function eventReport(module) {
     var cfg = s[d.c];
 
     // Adiciona os eventos do VLC local
-    events.push({ time: d.startShow, description: 'VLC === Início do Vídeo 1 (' + cfg.vlcVideo0.name + ') na tela público' });
-    events.push({ time: d.startVlcVideoLastRepeat, description: 'VLC >>> Última repetição do vídeo 1  (' + cfg.vlcVideo0.name + ') na tela público' });
+    events.push({ time: d.startShow, description: 'VLC === ' + jsc.i18n('Start Video') + ' 1 (' + cfg.vlcVideo0.name + ') ' + jsc.i18n('on public screen') });
+    events.push({ time: d.startVlcVideoLastRepeat, description: 'VLC >>> ' + jsc.i18n('Last repeat of Video') + ' 1 (' + cfg.vlcVideo0.name + ') ' + jsc.i18n('on public screen') });
     if (!cfg.vlcVideo1.isDir) {
-        events.push({ time: d.startVlcVideo1, description: 'VLC === Início do vídeo 2 (' + cfg.vlcVideo1.name + ') na tela público' });
+        events.push({ time: d.startVlcVideo1, description: 'VLC === ' + jsc.i18n('Start Video') + ' 2 (' + cfg.vlcVideo1.name + ') ' + jsc.i18n('on public screen') });
     }
 
     // Adiciona os eventos de transmissão ao vivo
     if (s.streaming_id != '' && cfg.liveVideo0 && cfg.liveVideo1) {
-        events.push({ time: d.startShow, description: 'OBS === Início do vídeo 1 (' + cfg.liveVideo0.name + ') em loop no OBS' });
-        events.push({ time: d.startLiveVideoLastRepeat, description: '>>> Última repetição do vídeo 1 (' + cfg.liveVideo0.name + ') no OBS' });
-        events.push({ time: d.startLiveVideo1, description: 'OBS === Início do Vídeo 2 (' + cfg.liveVideo1.name + ') no OBS' });
-        events.push({ time: d.endShow - (s[d.c].stop_obs_at * 1000), description: 'OBS --- Acionamento da Cena final no OBS' });
+        events.push({ time: d.startShow, description: 'OBS === ' + jsc.i18n('Start Video') + ' 1 (' + cfg.liveVideo0.name + ') ' + jsc.i18n('in loop on OBS') });
+        events.push({ time: d.startLiveVideoLastRepeat, description: '>>> ' + jsc.i18n('Last repeat of Video') + ' 1 (' + cfg.liveVideo0.name + ') ' + jsc.i18n('on OBS') });
+        events.push({ time: d.startLiveVideo1, description: 'OBS === ' + jsc.i18n('Start Video') + ' 2 (' + cfg.liveVideo1.name + ') ' + jsc.i18n('on OBS') });
+        events.push({ time: d.endShow - (s[d.c].stop_obs_at * 1000), description: 'OBS --- ' + jsc.i18n('Trigger final scene on OBS') });
     }
 
     // Adiciona os eventos de outros inputs (dmx, mixer, ha, js)
@@ -1328,17 +1358,17 @@ function eventReport(module) {
                         var description;
                         switch (key) {
                             case 'dmx':
-                                description = 'DMX - Acionar a cena Lumikit \'' + cfg['scene' + n] + '\', BPM \'' + cfg['bpm' + n] + '\'';
+                                description = 'DMX - ' + jsc.i18n('Trigger Lumikit scene') + ' \'' + cfg['scene' + n] + '\', ' + jsc.i18n('BPM') + ' \'' + cfg['bpm' + n] + '\'';
                                 break;
                             case 'mixer':
-                                description = 'MIX - Ajustar volume do Mixer \'' + cfg['channel' + n] + '\', para \'' + cfg['volume' + n] + '%\'';
+                                description = 'MIX - ' + jsc.i18n('Adjust Mixer volume') + ' \'' + cfg['channel' + n] + '\', ' + jsc.i18n('to') + ' \'' + cfg['volume' + n] + '%\'';
                                 break;
                             case 'ha':
-                                var estado = cfg['state' + n] === true ? 'Ligado' : 'Desligado';
-                                description = 'HA  - Alterar o estado do dispositivo HA: \'' + cfg['switch' + n] + '\' para \'' + estado + '\'';
+                                var estado = cfg['state' + n] === true ? jsc.i18n('On') : jsc.i18n('Off');
+                                description = 'HA  - ' + jsc.i18n('Change HA device state') + ': \'' + cfg['switch' + n] + '\' ' + jsc.i18n('to') + ' \'' + estado + '\'';
                                 break;
                             case 'js':
-                                description = 'JS  - Executar script JS: show.' + cfg['fnInclude' + n] + '()';
+                                description = 'JS  - ' + jsc.i18n('Execute JS script') + ': show.' + cfg['fnInclude' + n] + '()';
                                 break;
                         }
                         events.push({ time: when, description: description });
@@ -1378,11 +1408,11 @@ function eventReport(module) {
 
     // Log inicial com linha separadora ajustada
     h.log(createSeparator('='));
-    h.log(center('Storyboard Showtime ' + d.s + '.')); 
+    h.log(center(jsc.i18n('Storyboard Showtime') + ' ' + d.s + '.'));
     h.log(createSeparator('-'));
-    h.log('Fim vídeo 2 programado para ' + getScheduleTime(true) + ' + ' + cfg.atraso + ' minutos de atraso.')
+    h.log(jsc.i18n('End of Video 2 scheduled for') + ' ' + getScheduleTime(true) + ' + ' + cfg.atraso + ' ' + jsc.i18n('minutes delay.'));
     h.log(createSeparator('-'));
-    
+
     // Log dos eventos
     events.forEach(function(event) {
         h.log(timeToStart(event.time) + ' -> ' + event.description);
