@@ -58,7 +58,7 @@ function info() {
                     '• Supports interrupting the video.<br>' +
                     '• Supports sending another video while one is playing, for immediate switching.<br>' +
                     '• When the video ends in Holyrics, it activates the previous scene.<br>' +
-                    '• Has a panic button to stop the video in OBS without interfering with the main screen, activating the previous scene.<br>',
+                    '• Has a panic button to stop the video in OBS without interfering with the main screen, activating the previous scene.<br>'+infoVDDMM,
                 pt: '<html>' +
                     (h.isMinVersion("2.24.0") ? '<span style="background-color: yellow;"><font color="black"><b>##NOVO</b></font></span> Não precisa mais liberar na blacklist_request o SetInputSettings<br>' : '') +
                     '• Exibe um vídeo em uma cena previamente configurada no OBS simultaneamente à exibição no Holyrics.<br>' +
@@ -68,7 +68,7 @@ function info() {
                     '• Aceita interromper o vídeo.<br>' +
                     '• Aceita enviar outro vídeo enquanto um está passando, fazendo a troca imediata.<br>' +
                     '• Quando termina o vídeo no Holyrics, ativa cena anterior.<br>' +
-                    '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>',
+                    '• Possui botão de pânico para interromper vídeo no OBS sem interferir no telão, ativando a cena anterior.<br>'+infoVDDMM,
                 es: '<html>' +
                     (h.isMinVersion("2.24.0") ? '<span style="background-color: yellow;"><font color="black"><b>##NUEVO</b></font></span> No es necesario liberar SetInputSettings en blacklist_request<br>' : '') +
                     '• Muestra un video en una escena preconfigurada en OBS simultáneamente con la visualización en Holyrics.<br>' +
@@ -78,7 +78,7 @@ function info() {
                     '• Soporta interrumpir el video.<br>' +
                     '• Permite enviar otro video mientras se reproduce uno, para cambio inmediato.<br>' +
                     '• Cuando el video termina en Holyrics, activa la escena anterior.<br>' +
-                    '• Tiene un botón de pánico para detener el video en OBS sin interferir en la pantalla principal, activando la escena anterior.<br>',
+                    '• Tiene un botón de pánico para detener el video en OBS sin interferir en la pantalla principal, activando la escena anterior.<br>'+infoVDDMM,
                 ru: '<html>' +
                     (h.isMinVersion("2.24.0") ? '<span style="background-color: yellow;"><font color="black"><b>##НОВОЕ</b></font></span> Не нужно разблокировать SetInputSettings в blacklist_request<br>' : '') +
                     '• Показывает видео на предварительно настроенной сцене в OBS одновременно с показом в Holyrics.<br>' +
@@ -88,7 +88,7 @@ function info() {
                     '• Поддерживает прерывание видео.<br>' +
                     '• Поддерживает отправку другого видео во время воспроизведения одного, для немедленной смены.<br>' +
                     '• Когда видео заканчивается в Holyrics, активируется предыдущая сцена.<br>' +
-                    '• Имеет кнопку экстренного прерывания видео в OBS без вмешательства в основной экран, активируя предыдущую сцену.<br>'
+                    '• Имеет кнопку экстренного прерывания видео в OBS без вмешательства в основной экран, активируя предыдущую сцену.<br>'+infoVDDMM
             }
         }
     };

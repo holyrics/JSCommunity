@@ -60,7 +60,7 @@ function info() {
                     '• In Holyrics, configure a receiver to communicate with vMix (copy the exact address from vMix configuration screen under settings, Web Controller) and select the inputs created in vMix.<br>' +
                     '• From this point, videos will be displayed simultaneously in vMix.<br></p>' +
                     '• Be mindful of your firewall and network settings, as these often block communication between two computers.<br>' +
-                    '<br><b>Note:</b> The use of 2 inputs is due to the fact that vMix doesn’t support the video occupying the full screen; therefore, I am using the ZOOM command to adjust the video to the screen size if needed, which can only be done if the scene is not “live”. Thus, the module always alternates between these two inputs.<br>',
+                    '<br><b>Note:</b> The use of 2 inputs is due to the fact that vMix doesn’t support the video occupying the full screen; therefore, I am using the ZOOM command to adjust the video to the screen size if needed, which can only be done if the scene is not “live”. Thus, the module always alternates between these two inputs.<br>'+infoVDDMM,
                 pt: '<html>' +
                     '• Exibe um vídeo em uma cena previamente configurada no vMix simultaneamente à exibição no Holyrics.<br>' +
                     '• Usa o Plugin do Holyrics para acessar diretamente o vídeo, sem captura por NDI.<br>' +
@@ -74,7 +74,7 @@ function info() {
                     '• No Holyrics, configure um receptor para se comunicar com o vMix (copie o endereço exato da tela de configuração do vMix, em settings, Web Controller) e selecione os inputs criados no vMix.<br>' +
                     '• A partir deste ponto, os vídeos serão exibidos simultaneamente no vMix.<br></p>' +
                     '• Fique atento às suas configurações de firewall e rede, pois na maioria das vezes é isto que bloqueia a comunicação entre dois computadores.<br>' +
-                    '<br><b>Observação:</b> O uso de 2 inputs se deve ao fato do vMix não possuir função do vídeo ocupar a tela toda, então estou utilizando o comando ZOOM para ajustar o vídeo ao tamanho da tela se necessário, o que só pode ser feito se a cena não estiver no "ao vivo", então o módulo sempre alterna entre estes dois inputs.<br>',
+                    '<br><b>Observação:</b> O uso de 2 inputs se deve ao fato do vMix não possuir função do vídeo ocupar a tela toda, então estou utilizando o comando ZOOM para ajustar o vídeo ao tamanho da tela se necessário, o que só pode ser feito se a cena não estiver no "ao vivo", então o módulo sempre alterna entre estes dois inputs.<br>'+infoVDDMM,
                 es: '<html>' +
                     '• Muestra un video en una escena preconfigurada en vMix simultáneamente con su visualización en Holyrics.<br>' +
                     '• Utiliza el plugin de Holyrics para acceder al video directamente, sin captura por NDI.<br>' +
@@ -88,7 +88,7 @@ function info() {
                     '• En Holyrics, configure un receptor para comunicarse con vMix (copie la dirección exacta de la pantalla de configuración de vMix en settings, Web Controller) y seleccione las entradas creadas en vMix.<br>' +
                     '• A partir de este punto, los videos se mostrarán simultáneamente en vMix.<br></p>' +
                     '• Preste atención a su configuración de firewall y red, ya que generalmente esto bloquea la comunicación entre dos computadoras.<br>' +
-                    '<br><b>Nota:</b> El uso de 2 entradas se debe al hec'+'ho de que vMix no permite que el video ocupe toda la pantalla; por lo tanto, utilizo el comando ZOOM para ajustar el video al tamaño de la pantalla si es necesario, lo cual solo se puede hacer si la escena no está en "vivo". Por ello, el módulo siempre alterna entre estas dos entradas.<br>',
+                    '<br><b>Nota:</b> El uso de 2 entradas se debe al hec'+'ho de que vMix no permite que el video ocupe toda la pantalla; por lo tanto, utilizo el comando ZOOM para ajustar el video al tamaño de la pantalla si es necesario, lo cual solo se puede hacer si la escena no está en "vivo". Por ello, el módulo siempre alterna entre estas dos entradas.<br>'+infoVDDMM,
                 ru: '<html>' +
                     '• Отображает видео в заранее настроенной сцене в vMix одновременно с его отображением на Holyrics.<br>' +
                     '• Использует плагин Holyrics для прямого доступа к видео без захвата по NDI.<br>' +
@@ -102,7 +102,7 @@ function info() {
                     '• В Holyrics настройте приемник для связи с vMix (скопируйте точный адрес с экрана настроек vMix в настройках, Web Controller) и выберите входы, созданные в vMix.<br>' +
                     '• С этого момента видео будут отображаться одновременно в vMix.<br></p>' +
                     '• Обратите внимание на настройки брандмауэра и сети, так как это часто блокирует связь между двумя компьютерами.<br>' +
-                    '<br><b>Примечание:</b> Использование 2 входов связано с тем, что vMix не поддерживает видео на весь экран; поэтому я использую команду ZOOM, чтобы при необходимости настроить видео на размер экрана, что можно сделать только если сцена не "в эфире". Таким образом, модуль всегда чередует эти два входа.<br>',
+                    '<br><b>Примечание:</b> Использование 2 входов связано с тем, что vMix не поддерживает видео на весь экран; поэтому я использую команду ZOOM, чтобы при необходимости настроить видео на размер экрана, что можно сделать только если сцена не "в эфире". Таким образом, модуль всегда чередует эти два входа.<br>'+infoVDDMM,
                 it: '<html>' +
                     '• Mostra un video in una scena preconfigurata in vMix contemporaneamente alla sua visualizzazione su Holyrics.<br>' +
                     '• Utilizza il plugin Holyrics per accedere direttamente al video senza cattura NDI.<br>' +
@@ -116,7 +116,7 @@ function info() {
                     '• In Holyrics, configura un ricevitore per comunicare con vMix (copia l’indirizzo esatto dalla schermata di configurazione di vMix nelle impostazioni, Web Controller) e seleziona gli ingressi creati in vMix.<br>' +
                     '• Da questo momento, i video verranno visualizzati contemporaneamente in vMix.<br></p>' +
                     '• Fai attenzione alle impostazioni del firewall e della rete, poiché spesso bloccano la comunicazione tra due computer.<br>' +
-                    '<br><b>Nota:</b> L’uso di 2 ingressi è dovuto al fatto che vMix non supporta la visualizzazione del video a schermo intero; quindi utilizzo il comando ZOOM per regolare il video alle dimensioni dello schermo se necessario, cosa possibile solo se la scena non è “live”. Pertanto, il modulo alterna sempre tra questi due ingressi.<br>'
+                    '<br><b>Nota:</b> L’uso di 2 ingressi è dovuto al fatto che vMix non supporta la visualizzazione del video a schermo intero; quindi utilizzo il comando ZOOM per regolare il video alle dimensioni dello schermo se necessario, cosa possibile solo se la scena non è “live”. Pertanto, il modulo alterna sempre tra questi due ingressi.<br>'+infoVDDMM
             }
         }
     };
