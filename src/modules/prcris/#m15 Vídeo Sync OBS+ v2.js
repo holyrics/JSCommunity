@@ -133,7 +133,7 @@ function settings() {
         },
         {
             id: 'receiver_id',
-            name: jsc.i18n('OBS Studio'),
+            name: 'OBS Studio',
             description: jsc.i18n('OBS receiver name'),
             type: 'receiver',
             receiver: 'obs_v5'
