@@ -1,270 +1,2172 @@
 [
-    {
-        "key": "Scene name",
-        "en": "Scene name",
-        "pt": "Nome da cena",
-        "ru": "Имя сцены",
-        "es": "Nombre de escena",
-        "it": "Nome della scena"
-    },
-    {
-        "key": "Item name",
-        "en": "Item name",
-        "pt": "Nome do item",
-        "ru": "Имя элемента",
-        "es": "Nombre del elemento",
-        "it": "Nome dell'oggetto"
-    },
-    {
-        "key": "Item not found",
-        "en": "Item not found",
-        "pt": "Item não encontrado",
-        "ru": "Элемент не найден",
-        "es": "Elemento no encontrado",
-        "it": "Oggetto non trovato"
-    },
-    {
-        "key": "Error",
-        "en": "Error",
-        "pt": "Erro",
-        "ru": "Ошибка",
-        "es": "Error",
-        "it": "Errore"
-    },
-    {
-        "key": "Item",
-        "en": "Item",
-        "pt": "Item",
-        "ru": "Элемент",
-        "es": "Elemento",
-        "it": "Oggetto"
-    },
-    {
-        "key": "Multiple items found",
-        "en": "Multiple items found",
-        "pt": "Múltiplos itens encontrados",
-        "ru": "Найдено несколько элементов",
-        "es": "Múltiples elementos encontrados",
-        "it": "Trovati più elementi"
-    },
-    {
-        "key": "Clear playlist",
-        "en": "Clear playlist",
-        "pt": "Limpar lista de reprodução",
-        "ru": "Очистить список",
-        "es": "Limpiar lista de reproducción",
-        "it": "Pulisci playlist"
-    },
-    {
-        "key": "Playlist",
-        "en": "Playlist",
-        "pt": "Lista de reprodução",
-        "ru": "Плейлист",
-        "es": "Lista de reproducción",
-        "it": "Playlist"
-    },
-    {
-        "key": "Lyrics",
-        "en": "Lyrics",
-        "pt": "Letras",
-        "ru": "Песни",
-        "es": "Letras",
-        "it": "Testi"
-    },
-    {
-        "key": "Medias",
-        "en": "Medias",
-        "pt": "Mídias",
-        "ru": "Медиа",
-        "es": "Medios",
-        "it": "Media"
-    },
-    {
-        "key": "Both",
-        "en": "Both",
-        "pt": "Ambos",
-        "ru": "Оба",
-        "es": "Ambos",
-        "it": "Entrambi"
-    },
-    {
-        "key": "Action",
-        "en": "Action",
-        "pt": "Ação",
-        "ru": "Действие",
-        "es": "Acción",
-        "it": "Azione"
-    },
-    {
-        "key": "Toggle",
-        "en": "Toggle",
-        "pt": "Alternar",
-        "ru": "Переключить",
-        "es": "Alternar",
-        "it": "Attiva/disattiva"
-    },
-    {
-        "key": "Enable",
-        "en": "Enable",
-        "pt": "Ativar",
-        "ru": "Включить",
-        "es": "Habilitar",
-        "it": "Abilita"
-    },
-    {
-        "key": "Disable",
-        "en": "Disable",
-        "pt": "Desativar",
-        "ru": "Отключить",
-        "es": "Deshabilitar",
-        "it": "Disabilita"
-    },
-    {
-        "key": "Initialized",
-        "en": "Initialized",
-        "pt": "Inicializada",
-        "ru": "Инициализирована",
-        "es": "Inicializada",
-        "it": "Inizializzata"
-    },
-    {
-        "key": "Emptied",
-        "en": "Emptied",
-        "pt": "Esvaziada",
-        "ru": "Очищена",
-        "es": "Vacía",
-        "it": "Svuotata"
-    },
-    {
-        "key": "Moment added",
-        "en": "Moment added",
-        "pt": "Momento adicionado",
-        "ru": "Момент добавлен",
-        "es": "Momento añadido",
-        "it": "Momento aggiunto"
-    },
-    {
-        "key": "Source or scene name",
-        "en": "Source or scene name",
-        "pt": "Nome da fonte ou cena"
-    },
-    {
-        "key": "Filter name",
-        "en": "Filter name",
-        "pt": "Nome do filtro"
-    },
-    {
-        "key": "Channel",
-        "en": "Channel",
-        "pt": "Canal",
-        "ru": "Канал",
-        "es": "Canal",
-        "it": "Canale"
-    },
-    {
-        "key": "Group",
-        "en": "Group",
-        "pt": "Grupo",
-        "ru": "Группа",
-        "es": "Grupo",
-        "it": "Gruppo"
-    },
-    {
-        "key": "Mute",
-        "en": "Mute",
-        "pt": "Mudo",
-        "ru": "Отключить звук",
-        "es": "Silenciar",
-        "it": "Silenzia"
-    },
-    {
-        "key": "OSC Receiver",
-        "en": "OSC Receiver",
-        "pt": "Receptor OSC"
-    },
-    {
-        "key": "Channel number",
-        "en": "Channel number",
-        "pt": "Número do canal"
-    },
-    {
-        "key": "Volume",
-        "en": "Volume",
-        "pt": "Volume"
-    },
-    {
-        "key": "Speed",
-        "en": "Speed",
-        "pt": "Velocidade"
-    },
-    {
-        "key": "Unmute",
-        "en": "Unmute",
-        "pt": "Desmutar"
-    },
-    {
-        "key": "Mute",
-        "en": "Mute",
-        "pt": "Mudo"
-    },
-    {
-        "key": "Enable",
-        "en": "Enable",
-        "pt": "Habilitar"
-    },
-    {
-        "key": "Disable",
-        "en": "Disable",
-        "pt": "Desabilitar"
-    },
-    {
-        "key": "Toggle",
-        "en": "Toggle",
-        "pt": "Alternar"
-    },
-    {
-        "key": "Group",
-        "en": "Group",
-        "pt": "Grupo"
-    },
-    {
-        "key": "Type",
-        "en": "Type",
-        "pt": "Tipo"
-    },
-    {
-        "key": "Increase",
-        "en": "Increase",
-        "pt": "Aumentar"
-    },
-    {
-        "key": "Decrease",
-        "en": "Decrease",
-        "pt": "Diminuir"
-    },
-    {
-        "key": "Level",
-        "en": "Level",
-        "pt": "Nível"
-    },
-    {
-        "key": "Smoothness",
-        "en": "Smoothness",
-        "pt": "Suavidade"
-    },
-	{
-		"key": "File name",
-		"en": "File name",
-		"pt": "Nome do arquivo"
-	},
-	{
-		"key": "Base directory",
-		"en": "Base directory",
-		"pt": "Diretório base"
-	},
-	{
-		"key": "Post-Completion Jump",
-		"en": "Post-Completion Jump",
-		"pt": "Cena após vídeo"
-	}	
+  {
+    "key": "Scene name",
+    "en": "Scene name",
+    "pt": "Nome da cena",
+    "ru": "Имя сцены",
+    "es": "Nombre de escena",
+    "it": "Nome della scena",
+    "fr": "Nom de la scène",
+    "uk": "Назва сцени"
+  },
+  {
+    "key": "Item name",
+    "en": "Item name",
+    "pt": "Nome do item",
+    "ru": "Имя элемента",
+    "es": "Nombre del elemento",
+    "it": "Nome dell'oggetto",
+    "fr": "Nom de l'élément",
+    "uk": "Назва елемента"
+  },
+  {
+    "key": "Item not found",
+    "en": "Item not found",
+    "pt": "Item não encontrado",
+    "ru": "Элемент не найден",
+    "es": "Elemento no encontrado",
+    "it": "Oggetto non trovato",
+    "fr": "Élément non trouvé",
+    "uk": "Елемент не знайдено"
+  },
+  {
+    "key": "Error",
+    "en": "Error",
+    "pt": "Erro",
+    "ru": "Ошибка",
+    "es": "Error",
+    "it": "Errore",
+    "fr": "Erreur",
+    "uk": "Помилка"
+  },
+  {
+    "key": "Item",
+    "en": "Item",
+    "pt": "Item",
+    "ru": "Элемент",
+    "es": "Elemento",
+    "it": "Oggetto",
+    "fr": "Article",
+    "uk": "Елемент"
+  },
+  {
+    "key": "Multiple items found",
+    "en": "Multiple items found",
+    "pt": "Múltiplos itens encontrados",
+    "ru": "Найдено несколько элементов",
+    "es": "Múltiples elementos encontrados",
+    "it": "Trovati più elementi",
+    "fr": "Plusieurs éléments trouvés",
+    "uk": "Знайдено кілька елементів"
+  },
+  {
+    "key": "Clear playlist",
+    "en": "Clear playlist",
+    "pt": "Limpar lista de reprodução",
+    "ru": "Очистить список",
+    "es": "Limpiar lista de reproducción",
+    "it": "Pulisci playlist",
+    "fr": "Effacer la liste de lecture",
+    "uk": "Очистити плейлист"
+  },
+  {
+    "key": "Playlist",
+    "en": "Playlist",
+    "pt": "Lista de reprodução",
+    "ru": "Плейлист",
+    "es": "Lista de reproducción",
+    "it": "Playlist",
+    "fr": "Playlist",
+    "uk": "Список відтворення"
+  },
+  {
+    "key": "Lyrics",
+    "en": "Lyrics",
+    "pt": "Letras",
+    "ru": "Песни",
+    "es": "Letras",
+    "it": "Testi",
+    "fr": "Paroles",
+    "uk": "Тексти пісень"
+  },
+  {
+    "key": "Medias",
+    "en": "Medias",
+    "pt": "Mídias",
+    "ru": "Медиа",
+    "es": "Medios",
+    "it": "Media",
+    "fr": "Médias",
+    "uk": "Медіа"
+  },
+  {
+    "key": "Both",
+    "en": "Both",
+    "pt": "Ambos",
+    "ru": "Оба",
+    "es": "Ambos",
+    "it": "Entrambi",
+    "fr": "Les deux",
+    "uk": "Обидва"
+  },
+  {
+    "key": "Action",
+    "en": "Action",
+    "pt": "Ação",
+    "ru": "Действие",
+    "es": "Acción",
+    "it": "Azione",
+    "fr": "Action",
+    "uk": "Дія"
+  },
+  {
+    "key": "Toggle",
+    "en": "Toggle",
+    "pt": "Alternar",
+    "ru": "Переключить",
+    "es": "Alternar",
+    "it": "Attiva/disattiva",
+    "fr": "Basculer",
+    "uk": "Перемикання"
+  },
+  {
+    "key": "Enable",
+    "en": "Enable",
+    "pt": "Ativar",
+    "ru": "Включить",
+    "es": "Habilitar",
+    "it": "Abilita",
+    "fr": "Activer",
+    "uk": "Увімкнути"
+  },
+  {
+    "key": "Disable",
+    "en": "Disable",
+    "pt": "Desativar",
+    "ru": "Отключить",
+    "es": "Deshabilitar",
+    "it": "Disabilita",
+    "fr": "Désactiver",
+    "uk": "Вимкнути"
+  },
+  {
+    "key": "Initialized",
+    "en": "Initialized",
+    "pt": "Inicializada",
+    "ru": "Инициализирована",
+    "es": "Inicializada",
+    "it": "Inizializzata",
+    "fr": "Initialisé",
+    "uk": "Ініціалізовано"
+  },
+  {
+    "key": "Emptied",
+    "en": "Emptied",
+    "pt": "Esvaziada",
+    "ru": "Очищена",
+    "es": "Vacía",
+    "it": "Svuotata",
+    "fr": "Vidé",
+    "uk": "Очистили"
+  },
+  {
+    "key": "Moment added",
+    "en": "Moment added",
+    "pt": "Momento adicionado",
+    "ru": "Момент добавлен",
+    "es": "Momento añadido",
+    "it": "Momento aggiunto",
+    "fr": "Moment ajouté",
+    "uk": "Момент додано"
+  },
+  {
+    "key": "Source or scene name",
+    "en": "Source or scene name",
+    "pt": "Nome da fonte ou cena",
+    "ru": "Имя источника или сцены",
+    "es": "Nombre de la fuente o escena",
+    "it": "Nome della sorgente o della scena",
+    "fr": "Nom de la source ou de la scène",
+    "uk": "Назва джерела або сцени"
+  },
+  {
+    "key": "Filter name",
+    "en": "Filter name",
+    "pt": "Nome do filtro",
+    "ru": "Имя фильтра",
+    "es": "Nombre del filtro",
+    "it": "Nome del filtro",
+    "fr": "Nom du filtre",
+    "uk": "Назва фільтра"
+  },
+  {
+    "key": "Channel",
+    "en": "Channel",
+    "pt": "Canal",
+    "ru": "Канал",
+    "es": "Canal",
+    "it": "Canale",
+    "fr": "le canal",
+    "uk": "Канал"
+  },
+  {
+    "key": "Group",
+    "en": "Group",
+    "pt": "Grupo",
+    "ru": "Группа",
+    "es": "Grupo",
+    "it": "Gruppo",
+    "fr": "Groupe",
+    "uk": "Група"
+  },
+  {
+    "key": "Mute",
+    "en": "Mute",
+    "pt": "Mudo",
+    "ru": "Отключить звук",
+    "es": "Silenciar",
+    "it": "Silenzia",
+    "fr": "Muet",
+    "uk": "Вимкнути звук"
+  },
+  {
+    "key": "OSC Receiver",
+    "en": "OSC Receiver",
+    "pt": "Receptor OSC",
+    "ru": "Приемник OSC",
+    "es": "Receptor OSC",
+    "it": "Ricevitore OSC",
+    "fr": "Récepteur OSC",
+    "uk": "OSC приймач"
+  },
+  {
+    "key": "Channel number",
+    "en": "Channel number",
+    "pt": "Número do canal",
+    "ru": "Номер канала",
+    "es": "Número de canal",
+    "it": "Numero di canale",
+    "fr": "Numéro de canal",
+    "uk": "Номер каналу"
+  },
+  {
+    "key": "Volume",
+    "en": "Volume",
+    "pt": "Volume",
+    "ru": "Громкость",
+    "es": "Volumen",
+    "it": "Volume",
+    "fr": "Volume",
+    "uk": "Гучність"
+  },
+  {
+    "key": "Speed",
+    "en": "Speed",
+    "pt": "Velocidade",
+    "ru": "Скорость",
+    "es": "Velocidad",
+    "it": "Velocità",
+    "fr": "Vitesse",
+    "uk": "Швидкість"
+  },
+  {
+    "key": "Unmute",
+    "en": "Unmute",
+    "pt": "Desmutar",
+    "ru": "Включить звук",
+    "es": "Desactivar silencio",
+    "it": "Attiva audio",
+    "fr": "Démuter",
+    "uk": "Увімкнути звук"
+  },
+  {
+    "key": "Type",
+    "en": "Type",
+    "pt": "Tipo",
+    "ru": "Тип",
+    "es": "Tipo",
+    "it": "Genere",
+    "fr": "Type",
+    "uk": "Тип"
+  },
+  {
+    "key": "Increase",
+    "en": "Increase",
+    "pt": "Aumentar",
+    "ru": "Увеличить",
+    "es": "Aumentar",
+    "it": "Aumentare",
+    "fr": "Augmenter",
+    "uk": "Збільшити"
+  },
+  {
+    "key": "Decrease",
+    "en": "Decrease",
+    "pt": "Diminuir",
+    "ru": "Уменьшить",
+    "es": "Disminuir",
+    "it": "Diminuire",
+    "fr": "Diminuer",
+    "uk": "Зменшити"
+  },
+  {
+    "key": "Level",
+    "en": "Level",
+    "pt": "Nível",
+    "ru": "Уровень",
+    "es": "Nivel",
+    "it": "Livello",
+    "fr": "Niveau",
+    "uk": "Рівень"
+  },
+  {
+    "key": "Smoothness",
+    "en": "Smoothness",
+    "pt": "Suavidade",
+    "ru": "Плавность",
+    "es": "Suavidad",
+    "it": "Fluidità",
+    "fr": "Lissage",
+    "uk": "Гладкість"
+  },
+  {
+    "key": "File name",
+    "en": "File name",
+    "pt": "Nome do arquivo",
+    "ru": "Имя файла",
+    "es": "Nombre del archivo",
+    "it": "Nome del file",
+    "fr": "Nom de fichier",
+    "uk": "Назва файлу"
+  },
+  {
+    "key": "Base directory",
+    "en": "Base directory",
+    "pt": "Diretório base",
+    "ru": "Основной каталог",
+    "es": "Directorio base",
+    "it": "Directory principale",
+    "fr": "Répertoire de base",
+    "uk": "Базовий каталог"
+  },
+  {
+    "key": "Post-Completion Jump",
+    "en": "Post-Completion Jump",
+    "pt": "Cena após vídeo",
+    "ru": "Прыжок после завершения",
+    "es": "Salto post-completado",
+    "it": "Salto post-completamento",
+    "fr": "Saut après achèvement",
+    "uk": "Перехід після завершення"
+  },
+  {
+    "key": "Receptor",
+    "en": "Receiver",
+    "pt": "Receptor",
+    "ru": "Рецептор",
+    "es": "Receptor",
+    "it": "Recettore",
+    "fr": "Récepteur",
+    "uk": "Рецептор"
+  },
+  {
+    "key": "<html>Nome <b>função</b> integrantes cantores",
+    "en": "<html>Name <b>function</b> members singers",
+    "pt": "<html>Nome <b>função</b> integrantes cantores",
+    "ru": "<html>Имя <b>функции</b> участников певцов",
+    "es": "<html>Nombre <b>función</b> integrantes cantores",
+    "it": "<html>Nome <b>funzione</b> membri cantanti",
+    "fr": "<html>Nom <b>fonction</b> membres chanteurs",
+    "uk": "<html>Назва <b>функції</b> учасників співаків"
+  },
+  {
+    "key": "Capturar/Aplicar volume",
+    "en": "Capture/Apply volume",
+    "pt": "Capturar/Aplicar volume",
+    "ru": "Захватить/Применить громкость",
+    "es": "Capturar/Aplicar volumen",
+    "it": "Cattura/Applica volume",
+    "fr": "Capturer/Appliquer le volume",
+    "uk": "Захопити/Застосувати гучність"
+  },
+  {
+    "key": "Primeiro Slide",
+    "en": "First Slide",
+    "pt": "Primeiro Slide",
+    "ru": "Первый слайд",
+    "es": "Primera diapositiva",
+    "it": "Primo Slide",
+    "fr": "Première diapositive",
+    "uk": "Перший слайд"
+  },
+  {
+    "key": "Todos os Slides",
+    "en": "All Slides",
+    "pt": "Todos os Slides",
+    "ru": "Все слайды",
+    "es": "Todas las diapositivas",
+    "it": "Tutti i Slide",
+    "fr": "Toutes les diapositives",
+    "uk": "Усі слайди"
+  },
+  {
+    "key": "Mixer Digital",
+    "en": "Digital Mixer",
+    "pt": "Mixer Digital",
+    "ru": "Цифровой микшер",
+    "es": "Mezclador digital",
+    "it": "Mixer Digitale",
+    "fr": "Mixeur numérique",
+    "uk": "Цифровий мікшер"
+  },
+  {
+    "key": "Tipo Entrada",
+    "en": "Input Type",
+    "pt": "Tipo Entrada",
+    "ru": "Тип входа",
+    "es": "Tipo de entrada",
+    "it": "Tipo di ingresso",
+    "fr": "Type d'entrée",
+    "uk": "Тип входу"
+  },
+  {
+    "key": "Volume VLC",
+    "en": "VLC Volume",
+    "pt": "Volume VLC",
+    "ru": "Громкость VLC",
+    "es": "Volumen VLC",
+    "it": "Volume VLC",
+    "fr": "Volume VLC",
+    "uk": "Гучність VLC"
+  },
+  {
+    "key": "About",
+    "en": "About",
+    "pt": "Sobre",
+    "ru": "О программе",
+    "es": "Acerca",
+    "it": "Su",
+    "fr": "À propos",
+    "uk": "Про програму"
+  },
+  {
+    "key": "For more information about automation with Holyrics, visit",
+    "en": "For more information about automation with Holyrics, visit",
+    "pt": "Para mais informações sobre automação com Holyrics, visite",
+    "ru": "Для получения дополнительной информации об автоматизации с Holyrics, посетите",
+    "es": "Para más información sobre la automatización con Holyrics, visita",
+    "it": "Per ulteriori informazioni sull'automazione con Holyrics, visita",
+    "fr": "Pour plus d'informations sur l'automatisation avec Holyrics, visitez",
+    "uk": "Для отримання додаткової інформації про автоматизацію з Holyrics, відвідайте"
+  },
+  {
+    "key": "OBS Settings",
+    "en": "OBS Settings",
+    "pt": "Configurações do OBS",
+    "ru": "Настройки OBS",
+    "es": "Configuraciones de OBS",
+    "it": "Impostazioni OBS",
+    "fr": "Paramètres OBS",
+    "uk": "Налаштування OBS"
+  },
+  {
+    "key": "OBS receiver name",
+    "en": "OBS receiver name",
+    "pt": "Nome do receptor OBS",
+    "ru": "Имя приемника OBS",
+    "es": "Nombre del receptor OBS",
+    "it": "Nome del ricevitore OBS",
+    "fr": "Nom du récepteur OBS",
+    "uk": "Назва приймача OBS"
+  },
+  {
+    "key": "Select the OBS scene to play the video",
+    "en": "Select the OBS scene to play the video",
+    "pt": "Selecione a cena do OBS para reproduzir o vídeo",
+    "ru": "Выберите сцену OBS для воспроизведения видео",
+    "es": "Selecciona la escena de OBS para reproducir el video",
+    "it": "Seleziona la scena OBS per riprodurre il video",
+    "fr": "Sélectionnez la scène OBS pour lire la vidéo",
+    "uk": "Виберіть сцену OBS для відтворення відео"
+  },
+  {
+    "key": "OBS ",
+    "en": "OBS ",
+    "pt": "OBS ",
+    "ru": "OBS ",
+    "es": "OBS ",
+    "it": "OBS ",
+    "fr": "OBS ",
+    "uk": "OBS "
+  },
+  {
+    "key": "The script interacts directly with a ",
+    "en": "The script interacts directly with a ",
+    "pt": "O script interage diretamente com um ",
+    "ru": "Скрипт взаимодействует напрямую с ",
+    "es": "El script interactúa directamente con un ",
+    "it": "Lo script interagisce direttamente con un ",
+    "fr": "Le script interagit directement avec un ",
+    "uk": "Скрипт взаємодіє безпосередньо з "
+  },
+  {
+    "key": "Send to OBS",
+    "en": "Send to OBS",
+    "pt": "Enviar para OBS",
+    "ru": "Отправить в OBS",
+    "es": "Enviar a OBS",
+    "it": "Invia a OBS",
+    "fr": "Envoyer à OBS",
+    "uk": "Відправити в OBS"
+  },
+  {
+    "key": "Option to send only specific videos or folders to OBS",
+    "en": "Option to send only specific videos or folders to OBS",
+    "pt": "Opção para enviar apenas vídeos ou pastas específicas para o OBS",
+    "ru": "Опция отправки только определенных видео или папок в OBS",
+    "es": "Opción para enviar solo videos o carpetas específicas a OBS",
+    "it": "Opzione per inviare solo video o cartelle specifiche a OBS",
+    "fr": "Option d'envoyer uniquement des vidéos ou des dossiers spécifiques à OBS",
+    "uk": "Опція відправити лише певні відео або папки в OBS"
+  },
+  {
+    "key": "Only videos with ! in the name or folder",
+    "en": "Only videos with ! in the name or folder",
+    "pt": "Apenas vídeos com ! no nome ou pasta",
+    "ru": "Только видео с ! в имени или папке",
+    "es": "Solo videos con ! en el nombre o carpeta",
+    "it": "Solo video con ! nel nome o nella cartella",
+    "fr": "Uniquement des vidéos avec ! dans le nom ou le dossier",
+    "uk": "Тільки відео з ! в назві або папці"
+  },
+  {
+    "key": "Only videos without ! in the name or folder",
+    "en": "Only videos without ! in the name or folder",
+    "pt": "Apenas vídeos sem ! no nome ou pasta",
+    "ru": "Только видео без ! в имени или папке",
+    "es": "Solo videos sin ! en el nombre o carpeta",
+    "it": "Solo video senza ! nel nome o nella cartella",
+    "fr": "Uniquement des vidéos sans ! dans le nom ou le dossier",
+    "uk": "Тільки відео без ! в назві або папці"
+  },
+  {
+    "key": "Holyrics and OBS on the same computer",
+    "en": "Holyrics and OBS on the same computer",
+    "pt": "Holyrics e OBS no mesmo computador",
+    "ru": "Holyrics и OBS на одном компьютере",
+    "es": "Holyrics y OBS en la misma computadora",
+    "it": "Holyrics e OBS sullo stesso computer",
+    "fr": "Holyrics et OBS sur le même ordinateur",
+    "uk": "Holyrics та OBS на одному комп'ютері"
+  },
+  {
+    "key": "Enable log",
+    "en": "Enable log",
+    "pt": "Ativar log",
+    "ru": "Включить журнал",
+    "es": "Habilitar registro",
+    "it": "Abilita log",
+    "fr": "Activer le journal",
+    "uk": "Увімкнути журнал"
+  },
+  {
+    "key": "Option to enable activity logging",
+    "en": "Option to enable activity logging",
+    "pt": "Opção para ativar o registro de atividades",
+    "ru": "Опция включения ведения журнала активности",
+    "es": "Opción para habilitar el registro de actividad",
+    "it": "Opzione per abilitare la registrazione delle attività",
+    "fr": "Option pour activer l'enregistrement d'activité",
+    "uk": "Опція увімкнути ведення журналу активності"
+  },
+  {
+    "key": "OBS video playback interrupted by panic button, returning to previous scene",
+    "en": "OBS video playback interrupted by panic button, returning to previous scene",
+    "pt": "Reprodução de vídeo no OBS interrompida pelo botão de pânico, retornando à cena anterior",
+    "ru": "Воспроизведение видео в OBS прервано кнопкой паники, возвращение к предыдущей сцене",
+    "es": "Reproducción de video en OBS interrumpida por el botón de pánico, regresando a la escena anterior",
+    "it": "Riproduzione video OBS interrotta dal pulsante di emergenza, ritorno alla scena precedente",
+    "fr": "Lecture vidéo OBS interrompue par le bouton de panique, retour à la scène précédente",
+    "uk": "Відтворення відео в OBS перервано кнопкою паніки, повертаючись до попередньої сцени"
+  },
+  {
+    "key": "OBS video playback interrupted by panic button",
+    "en": "OBS video playback interrupted by panic button",
+    "pt": "Reprodução de vídeo no OBS interrompida pelo botão de pânico",
+    "ru": "Воспроизведение видео в OBS прервано кнопкой паники",
+    "es": "Reproducción de video en OBS interrumpida por el botón de pánico",
+    "it": "Riproduzione video OBS interrotta dal pulsante di emergenza",
+    "fr": "Lecture vidéo OBS interrompue par le bouton de panique",
+    "uk": "Відтворення відео в OBS перервано кнопкою паніки"
+  },
+  {
+    "key": "exclamation mark",
+    "en": "exclamation mark",
+    "pt": "sinal de exclamação",
+    "ru": "восклицательный знак",
+    "es": "signo de exclamación",
+    "it": "punto esclamativo",
+    "fr": "point d'exclamation",
+    "uk": "знак оклику"
+  },
+  {
+    "key": "media name contains ",
+    "en": "media name contains ",
+    "pt": "nome da mídia contém ",
+    "ru": "имя медиа содержит ",
+    "es": "el nombre del medio contiene ",
+    "it": "il nome del media contiene ",
+    "fr": "le nom du média contient ",
+    "uk": "назва медіа містить "
+  },
+  {
+    "key": "Video not sent to OBS as it does NOT contain ",
+    "en": "Video not sent to OBS as it does NOT contain ",
+    "pt": "Vídeo não enviado para o OBS pois NÃO contém ",
+    "ru": "Видео не отправлено в OBS, так как оно НЕ содержит ",
+    "es": "Video no enviado a OBS ya que NO contiene ",
+    "it": "Video non inviato a OBS poiché NON contiene ",
+    "fr": "Vidéo non envoyée à OBS car elle ne contient PAS ",
+    "uk": "Відео не надіслано в OBS, оскільки воно НЕ містить "
+  },
+  {
+    "key": "Video not sent to OBS as it contains ",
+    "en": "Video not sent to OBS as it contains ",
+    "pt": "Vídeo não enviado para o OBS pois contém ",
+    "ru": "Видео не отправлено в OBS, так как оно содержит ",
+    "es": "Video no enviado a OBS ya que contiene ",
+    "it": "Video non inviato a OBS poiché contiene ",
+    "fr": "Vidéo non envoyée à OBS car elle contient ",
+    "uk": "Відео не надіслано в OBS, оскільки воно містить "
+  },
+  {
+    "key": "OBS video plugin settings not found. Configure the Holyrics Plugin",
+    "en": "OBS video plugin settings not found. Configure the Holyrics Plugin",
+    "pt": "Configurações do plugin de vídeo do OBS não encontradas. Configure o Plugin Holyrics",
+    "ru": "Настройки плагина видео OBS не найдены. Настройте плагин Holyrics",
+    "es": "Configuraciones del plugin de video de OBS no encontradas. Configura el plugin de Holyrics",
+    "it": "Impostazioni del plugin video OBS non trovate. Configura il plugin Holyrics",
+    "fr": "Paramètres du plugin vidéo OBS non trouvés. Configurez le plugin Holyrics",
+    "uk": "Налаштування плагіна відео OBS не знайдено. Налаштуйте плагін Holyrics"
+  },
+  {
+    "key": "Video sent to OBS",
+    "en": "Video sent to OBS",
+    "pt": "Vídeo enviado para o OBS",
+    "ru": "Видео отправлено в OBS",
+    "es": "Video enviado a OBS",
+    "it": "Video inviato a OBS",
+    "fr": "Vidéo envoyée à OBS",
+    "uk": "Відео надіслано в OBS"
+  },
+  {
+    "key": "Current scene captured",
+    "en": "Current scene captured",
+    "pt": "Cena atual capturada",
+    "ru": "Текущая сцена захвачена",
+    "es": "Escena actual capturada",
+    "it": "Scena corrente catturata",
+    "fr": "Scène actuelle capturée",
+    "uk": "Поточна сцена захоплена"
+  },
+  {
+    "key": "Scene activated in OBS, scene",
+    "en": "Scene activated in OBS, scene",
+    "pt": "Cena ativada no OBS, cena",
+    "ru": "Сцена активирована в OBS, сцена",
+    "es": "Escena activada en OBS, escena",
+    "it": "Scena attivata in OBS, scena",
+    "fr": "Scène activée dans OBS, scène",
+    "uk": "Сцена активована в OBS, сцена"
+  },
+  {
+    "key": "Video finished - activating previous scene in OBS",
+    "en": "Video finished - activating previous scene in OBS",
+    "pt": "Vídeo finalizado - ativando a cena anterior no OBS",
+    "ru": "Видео завершено - активация предыдущей сцены в OBS",
+    "es": "Video terminado - activando la escena anterior en OBS",
+    "it": "Video terminato - attivazione della scena precedente in OBS",
+    "fr": "Vidéo terminée - activation de la scène précédente dans OBS",
+    "uk": "Відео закінчено - активуючи попередню сцену в OBS"
+  },
+  {
+    "key": "Cancels video playback in OBS, returning to the original scene, but continues playback in VLC",
+    "en": "Cancels video playback in OBS, returning to the original scene, but continues playback in VLC",
+    "pt": "Cancela a reprodução de vídeo no OBS, retornando à cena original, mas continua a reprodução no VLC",
+    "ru": "Отменяет воспроизведение видео в OBS, возвращаясь к оригинальной сцене, но продолжает воспроизведение в VLC",
+    "es": "Cancela la reproducción de video en OBS, regresando a la escena original, pero continúa la reproducción en VLC",
+    "it": "Annulla riproduzione video in OBS, ritorno alla scena originale, ma continua la riproduzione in VLC",
+    "fr": "Annule la lecture vidéo dans OBS, retour à la scène d'origine, mais continue la lecture dans VLC",
+    "uk": "Скасовує відтворення відео в OBS, повертаючись до оригінальної сцени, але продовжує відтворення в VLC"
+  },
+  {
+    "key": "Video in OBS canceled, returning to scene",
+    "en": "Video in OBS canceled, returning to scene",
+    "pt": "Vídeo no OBS cancelado, retornando à cena",
+    "ru": "Видео в OBS отменено, возвращение к сцене",
+    "es": "Video en OBS cancelado, regresando a la escena",
+    "it": "Video in OBS annullato, ritorno alla scena",
+    "fr": "Vidéo dans OBS annulée, retour à la scène",
+    "uk": "Відео в OBS скасовано, повертаючись до сцени"
+  },
+  {
+    "key": "Don’t panic, there is no video to cancel!",
+    "en": "Don’t panic, there is no video to cancel!",
+    "pt": "Não entre em pânico, não há vídeo para cancelar!",
+    "ru": "Не паникуйте, нет видео для отмены!",
+    "es": "¡No te preocupes, no hay video para cancelar!",
+    "it": "Non farti prendere dal panico, non c'è video da annullare!",
+    "fr": "Ne paniquez pas, il n'y a pas de vidéo à annuler !",
+    "uk": "Не панікуйте, немає відео для скасування!"
+  },
+  {
+    "key": "<-Panic",
+    "en": "<-Panic",
+    "pt": "<-Pânico",
+    "ru": "<-Паника",
+    "es": "<-Pánico",
+    "it": "<-Panico",
+    "fr": "<-Panic",
+    "uk": "<-Паніка"
+  },
+  {
+    "key": "For more information on automation with Holyrics, visit",
+    "en": "For more information on automation with Holyrics, visit",
+    "pt": "Para mais informações sobre automação com Holyrics, visite",
+    "ru": "Для получения дополнительной информации об автоматизации с Holyrics, посетите",
+    "es": "Para más información sobre la automatización con Holyrics, visita",
+    "it": "Per ulteriori informazioni sull'automazione con Holyrics, visita",
+    "fr": "Pour plus d'informations sur l'automatisation avec Holyrics, visitez",
+    "uk": "Для отримання додаткової інформації про автоматизацію з Holyrics, відвідайте"
+  },
+  {
+    "key": "Settings in vMix",
+    "en": "Settings in vMix",
+    "pt": "Configurações no vMix",
+    "ru": "Настройки в vMix",
+    "es": "Configuraciones en vMix",
+    "it": "Impostazioni in vMix",
+    "fr": "Paramètres dans vMix",
+    "uk": "Налаштування в vMix"
+  },
+  {
+    "key": "vMix receiver name",
+    "en": "vMix receiver name",
+    "pt": "Nome do receptor vMix",
+    "ru": "Имя приемника vMix",
+    "es": "Nombre del receptor vMix",
+    "it": "Nome del ricevitore vMix",
+    "fr": "Nom du récepteur vMix",
+    "uk": "Назва приймача vMix"
+  },
+  {
+    "key": "First Input",
+    "en": "First Input",
+    "pt": "Primeira Entrada",
+    "ru": "Первый вход",
+    "es": "Primera entrada",
+    "it": "Primo Input",
+    "fr": "Première entrée",
+    "uk": "Перший вхід"
+  },
+  {
+    "key": "Select the first input in vMix to play the video",
+    "en": "Select the first input in vMix to play the video",
+    "pt": "Selecione a primeira entrada no vMix para reproduzir o vídeo",
+    "ru": "Выберите первый вход в vMix для воспроизведения видео",
+    "es": "Selecciona la primera entrada en vMix para reproducir el video",
+    "it": "Seleziona il primo input in vMix per riprodurre il video",
+    "fr": "Sélectionnez la première entrée dans vMix pour lire la vidéo",
+    "uk": "Виберіть перший вхід у vMix для відтворення відео"
+  },
+  {
+    "key": "Second Input",
+    "en": "Second Input",
+    "pt": "Segunda Entrada",
+    "ru": "Второй вход",
+    "es": "Segunda entrada",
+    "it": "Secondo Input",
+    "fr": "Deuxième entrée",
+    "uk": "Другий вхід"
+  },
+  {
+    "key": "Select the second input in vMix to play the video.",
+    "en": "Select the second input in vMix to play the video.",
+    "pt": "Selecione a segunda entrada no vMix para reproduzir o vídeo.",
+    "ru": "Выберите второй вход в vMix для воспроизведения видео.",
+    "es": "Selecciona la segunda entrada en vMix para reproducir el video.",
+    "it": "Seleziona il secondo input in vMix per riprodurre il video.",
+    "fr": "Sélectionnez la deuxième entrée dans vMix pour lire la vidéo.",
+    "uk": "Виберіть другий вхід у vMix для відтворення відео."
+  },
+  {
+    "key": "Output Resolution",
+    "en": "Output Resolution",
+    "pt": "Resolução de Saída",
+    "ru": "Разрешение вывода",
+    "es": "Resolución de salida",
+    "it": "Risoluzione di uscita",
+    "fr": "Résolution de sortie",
+    "uk": "Роздільна здатність виходу"
+  },
+  {
+    "key": "Select your vMix output resolution.",
+    "en": "Select your vMix output resolution.",
+    "pt": "Selecione a resolução de saída do vMix.",
+    "ru": "Выберите разрешение вывода vMix.",
+    "es": "Selecciona la resolución de salida de vMix.",
+    "it": "Seleziona la risoluzione di uscita di vMix.",
+    "fr": "Sélectionnez votre résolution de sortie vMix.",
+    "uk": "Виберіть роздільну здатність виходу vMix."
+  },
+  {
+    "key": "Send to vMix",
+    "en": "Send to vMix",
+    "pt": "Enviar para vMix",
+    "ru": "Отправить в vMix",
+    "es": "Enviar a vMix",
+    "it": "Invia a vMix",
+    "fr": "Envoyer à vMix",
+    "uk": "Відправити в vMix"
+  },
+  {
+    "key": "Allows the option to send only certain videos or folders to vMix",
+    "en": "Allows the option to send only certain videos or folders to vMix",
+    "pt": "Permite a opção de enviar apenas certos vídeos ou pastas para o vMix",
+    "ru": "Позволяет опцию отправки только определенных видео или папок в vMix",
+    "es": "Permite la opción de enviar solo ciertos videos o carpetas a vMix",
+    "it": "Consente l'opzione di inviare solo determinati video o cartelle a vMix",
+    "fr": "Permet l'option d'envoyer uniquement certaines vidéos ou dossiers à vMix",
+    "uk": "Дозволяє опцію відправити лише певні відео або папки в vMix"
+  },
+  {
+    "key": "Holyrics and vMix on the same computer",
+    "en": "Holyrics and vMix on the same computer",
+    "pt": "Holyrics e vMix no mesmo computador",
+    "ru": "Holyrics и vMix на одном компьютере",
+    "es": "Holyrics y vMix en la misma computadora",
+    "it": "Holyrics e vMix sullo stesso computer",
+    "fr": "Holyrics et vMix sur le même ordinateur",
+    "uk": "Holyrics та vMix на одному комп'ютері"
+  },
+  {
+    "key": "Selected scene",
+    "en": "Selected scene",
+    "pt": "Cena selecionada",
+    "ru": "Выбранная сцена",
+    "es": "Escena seleccionada",
+    "it": "Scena selezionata",
+    "fr": "Scène sélectionnée",
+    "uk": "Вибрана сцена"
+  },
+  {
+    "key": "Video playback in vMix interrupted by panic button, returning to scene",
+    "en": "Video playback in vMix interrupted by panic button, returning to scene",
+    "pt": "Reprodução de vídeo no vMix interrompida pelo botão de pânico, retornando à cena",
+    "ru": "Воспроизведение видео в vMix прервано кнопкой паники, возвращение к сцене",
+    "es": "Reproducción de video en vMix interrumpida por el botón de pánico, regresando a la escena",
+    "it": "Riproduzione video in vMix interrotta dal pulsante di emergenza, ritorno alla scena",
+    "fr": "Lecture vidéo dans vMix interrompue par le bouton de panique, retour à la scène",
+    "uk": "Відтворення відео в vMix перервано кнопкою паніки, повертаючись до сцени"
+  },
+  {
+    "key": "Video playback in vMix interrupted by panic button.",
+    "en": "Video playback in vMix interrupted by panic button.",
+    "pt": "Reprodução de vídeo no vMix interrompida pelo botão de pânico.",
+    "ru": "Воспроизведение видео в vMix прервано кнопкой паники.",
+    "es": "Reproducción de video en vMix interrumpida por el botón de pánico.",
+    "it": "Riproduzione video in vMix interrotta dal pulsante di emergenza.",
+    "fr": "Lecture vidéo dans vMix interrompue par le bouton de panique.",
+    "uk": "Відтворення відео в vMix перервано кнопкою паніки."
+  },
+  {
+    "key": "Video not sent to vMix because it does NOT have ! in the name.",
+    "en": "Video not sent to vMix because it does NOT have ! in the name.",
+    "pt": "Vídeo não enviado para o vMix porque NÃO tem ! no nome.",
+    "ru": "Видео не отправлено в vMix, потому что оно НЕ имеет ! в имени.",
+    "es": "Video no enviado a vMix porque NO tiene ! en el nombre.",
+    "it": "Video non inviato a vMix perché NON ha ! nel nome.",
+    "fr": "Vidéo non envoyée à vMix car elle ne contient PAS ! dans le nom.",
+    "uk": "Відео не надіслано в vMix, оскільки воно НЕ має ! в назві."
+  },
+  {
+    "key": "Video not sent to vMix because it HAS ! in the name.",
+    "en": "Video not sent to vMix because it HAS ! in the name.",
+    "pt": "Vídeo não enviado para o vMix porque TEM ! no nome.",
+    "ru": "Видео не отправлено в vMix, потому что оно ИМЕЕТ ! в имени.",
+    "es": "Video no enviado a vMix porque TIENE ! en el nombre.",
+    "it": "Video non inviato a vMix perché HA ! nel nome.",
+    "fr": "Vidéo non envoyée à vMix car elle CONTIENT ! dans le nom.",
+    "uk": "Відео не надіслано в vMix, оскільки воно МАЄ ! в назві."
+  },
+  {
+    "key": "New video playing while another video is still running.",
+    "en": "New video playing while another video is still running.",
+    "pt": "Novo vídeo tocando enquanto outro vídeo ainda está em execução.",
+    "ru": "Новое видео воспроизводится, пока другое видео все еще идет.",
+    "es": "Nuevo video reproduciéndose mientras otro video sigue en ejecución.",
+    "it": "Nuovo video in riproduzione mentre un altro video è ancora in esecuzione.",
+    "fr": "Nouvelle vidéo en cours de lecture pendant qu'une autre vidéo est encore en cours.",
+    "uk": "Нове відео відтворюється, поки інше відео все ще відтворюється."
+  },
+  {
+    "key": "Scene activated in vMix",
+    "en": "Scene activated in vMix",
+    "pt": "Cena ativada no vMix",
+    "ru": "Сцена активирована в vMix",
+    "es": "Escena activada en vMix",
+    "it": "Scena attivata in vMix",
+    "fr": "Scène activée dans vMix",
+    "uk": "Сцена активована в vMix"
+  },
+  {
+    "key": "scene",
+    "en": "scene",
+    "pt": "cena",
+    "ru": "сцена",
+    "es": "escena",
+    "it": "scena",
+    "fr": "scène",
+    "uk": "сцена"
+  },
+  {
+    "key": "file",
+    "en": "file",
+    "pt": "arquivo",
+    "ru": "файл",
+    "es": "archivo",
+    "it": "file",
+    "fr": "fichier",
+    "uk": "файл"
+  },
+  {
+    "key": "trigger Video_close - activating previous scene in vMix",
+    "en": "trigger Video_close - activating previous scene in vMix",
+    "pt": "trigger Video_close - ativando a cena anterior no vMix",
+    "ru": "триггер Video_close - активация предыдущей сцены в vMix",
+    "es": "activar Video_close - activando la escena anterior en vMix",
+    "it": "attiva Video_close - attivazione della scena precedente in vMix",
+    "fr": "déclencher Video_close - activation de la scène précédente dans vMix",
+    "uk": "триггер Video_close - активуючи попередню сцену в vMix"
+  },
+  {
+    "key": "Cancels video playback in vMix, returning to the original scene, but continues playback in VLC",
+    "en": "Cancels video playback in vMix, returning to the original scene, but continues playback in VLC",
+    "pt": "Cancela a reprodução de vídeo no vMix, retornando à cena original, mas continua a reprodução no VLC",
+    "ru": "Отменяет воспроизведение видео в vMix, возвращаясь к оригинальной сцене, но продолжает воспроизведение в VLC",
+    "es": "Cancela la reproducción de video en vMix, regresando a la escena original, pero continúa la reproducción en VLC",
+    "it": "Annulla riproduzione video in vMix, ritorno alla scena originale, ma continua la riproduzione in VLC",
+    "fr": "Annule la lecture vidéo dans vMix, retour à la scène d'origine, mais continue la lecture dans VLC",
+    "uk": "Скасовує відтворення відео в vMix, повертаючись до оригінальної сцени, але продовжує відтворення в VLC"
+  },
+  {
+    "key": "Video in vMix canceled, returning to scene",
+    "en": "Video in vMix canceled, returning to scene",
+    "pt": "Vídeo no vMix cancelado, retornando à cena",
+    "ru": "Видео в vMix отменено, возвращение к сцене",
+    "es": "Video en vMix cancelado, regresando a la escena",
+    "it": "Video in vMix annullato, ritorno alla scena",
+    "fr": "Vidéo dans vMix annulée, retour à la scène",
+    "uk": "Відео в vMix скасовано, повертаючись до сцени"
+  },
+  {
+    "key": "Don",
+    "en": "Don",
+    "pt": "Não",
+    "ru": "Не",
+    "es": "No",
+    "it": "Non",
+    "fr": "Ne",
+    "uk": "Не"
+  },
+  {
+    "key": "Panic",
+    "en": "Panic",
+    "pt": "Pânico",
+    "ru": "Паника",
+    "es": "Pánico",
+    "it": "Panico",
+    "fr": "Panic",
+    "uk": "Паніка"
+  },
+  {
+    "key": "Select Receivers to use",
+    "en": "Select Receivers to use",
+    "pt": "Selecionar Receptores para usar",
+    "ru": "Выберите приемники для использования",
+    "es": "Seleccionar receptores a utilizar",
+    "it": "Seleziona i ricevitori da utilizzare",
+    "fr": "Sélectionner les récepteurs à utiliser",
+    "uk": "Виберіть приймачі для використання"
+  },
+  {
+    "key": "Digital Mixer",
+    "en": "Digital Mixer",
+    "pt": "Mixer Digital",
+    "ru": "Цифровой микшер",
+    "es": "Mezclador digital",
+    "it": "Mixer Digitale",
+    "fr": "Mixeur numérique",
+    "uk": "Цифровий мікшер"
+  },
+  {
+    "key": "Associate with the Behringer/Soundcraft receiver",
+    "en": "Associate with the Behringer/Soundcraft receiver",
+    "pt": "Associar com o receptor Behringer/Soundcraft",
+    "ru": "Ассоциировать с приемником Behringer/Soundcraft",
+    "es": "Asociar con el receptor Behringer/Soundcraft",
+    "it": "Associa con il ricevitore Behringer/Soundcraft",
+    "fr": "Associer avec le récepteur Behringer/Soundcraft",
+    "uk": "Ассоціювати з приймачем Behringer/Soundcraft"
+  },
+  {
+    "key": "Select the Lumikit Receiver",
+    "en": "Select the Lumikit Receiver",
+    "pt": "Selecionar o Receptor Lumikit",
+    "ru": "Выберите приемник Lumikit",
+    "es": "Seleccionar el receptor Lumikit",
+    "it": "Seleziona il ricevitore Lumikit",
+    "fr": "Sélectionner le récepteur Lumikit",
+    "uk": "Вибрати приймач Lumikit"
+  },
+  {
+    "key": "Home Assistant",
+    "en": "Home Assistant",
+    "pt": "Assistente Doméstico",
+    "ru": "Домашний помощник",
+    "es": "Asistente del hogar",
+    "it": "Home Assistant",
+    "fr": "Assistant Domestique",
+    "uk": "Home Assistant"
+  },
+  {
+    "key": "Associate with the Home Assistant receiver",
+    "en": "Associate with the Home Assistant receiver",
+    "pt": "Associar com o receptor do Assistente Doméstico",
+    "ru": "Ассоциировать с приемником Домашнего помощника",
+    "es": "Asociar con el receptor del Asistente del hogar",
+    "it": "Associa con il ricevitore Home Assistant",
+    "fr": "Associer avec le récepteur de l'Assistant Domestique",
+    "uk": "Ассоціювати з приймачем Home Assistant"
+  },
+  {
+    "key": "Streaming",
+    "en": "Streaming",
+    "pt": "Transmissão",
+    "ru": "Трансляция",
+    "es": "Transmisión",
+    "it": "Trasmissione",
+    "fr": "Streaming",
+    "uk": "Трансляція"
+  },
+  {
+    "key": "OBS Scene for videos",
+    "en": "OBS Scene for videos",
+    "pt": "Cena do OBS para vídeos",
+    "ru": "Сцена OBS для видео",
+    "es": "Escena de OBS para videos",
+    "it": "Scena OBS per video",
+    "fr": "Scène OBS pour les vidéos",
+    "uk": "Сцена OBS для відео"
+  },
+  {
+    "key": "Choose the OBS scene to play the video.",
+    "en": "Choose the OBS scene to play the video.",
+    "pt": "Escolha a cena do OBS para reproduzir o vídeo.",
+    "ru": "Выберите сцену OBS для воспроизведения видео.",
+    "es": "Elige la escena de OBS para reproducir el video.",
+    "it": "Scegli la scena OBS per riprodurre il video.",
+    "fr": "Choisissez la scène OBS pour lire la vidéo.",
+    "uk": "Виберіть сцену OBS для відтворення відео."
+  },
+  {
+    "key": "Number of Inputs in settings",
+    "en": "Number of Inputs in settings",
+    "pt": "Número de Entradas nas configurações",
+    "ru": "Количество входов в настройках",
+    "es": "Número de entradas en configuraciones",
+    "it": "Numero di ingressi nelle impostazioni",
+    "fr": "Nombre d'entrées dans les paramètres",
+    "uk": "Кількість входів у налаштуваннях"
+  },
+  {
+    "key": "Allows changing the number of input windows in the module.",
+    "en": "Allows changing the number of input windows in the module.",
+    "pt": "Permite alterar o número de janelas de entrada no módulo.",
+    "ru": "Позволяет изменять количество окон ввода в модуле.",
+    "es": "Permite cambiar el número de ventanas de entrada en el módulo.",
+    "it": "Consente di cambiare il numero di finestre di input nel modulo.",
+    "fr": "Permet de changer le nombre de fenêtres d'entrée dans le module.",
+    "uk": "Дозволяє змінювати кількість вікон вводу в модулі."
+  },
+  {
+    "key": "Schedule/Cancel Show",
+    "en": "Schedule/Cancel Show",
+    "pt": "Agendar/Cancelar Show",
+    "ru": "Запланировать/Отменить шоу",
+    "es": "Programar/Cancelar Show",
+    "it": "Pianifica/Annulla Spettacolo",
+    "fr": "Programmer/Annuler le spectacle",
+    "uk": "Запланувати/Скасувати шоу"
+  },
+  {
+    "key": "Oops!",
+    "en": "Oops!",
+    "pt": "Ops!",
+    "ru": "Упс!",
+    "es": "¡Ups!",
+    "it": "Ops!",
+    "fr": "Oups!",
+    "uk": "Ой!"
+  },
+  {
+    "key": "The selected event is not scheduled for today!",
+    "en": "The selected event is not scheduled for today!",
+    "pt": "O evento selecionado não está agendado para hoje!",
+    "ru": "Выбранное событие не запланировано на сегодня!",
+    "es": "¡El evento seleccionado no está programado para hoy!",
+    "it": "L'evento selezionato non è programmato per oggi!",
+    "fr": "L'événement sélectionné n'est pas programmé pour aujourd'hui!",
+    "uk": "Вибрана подія не запланована на сьогодні!"
+  },
+  {
+    "key": "Cancel Opening Show",
+    "en": "Cancel Opening Show",
+    "pt": "Cancelar Show de Abertura",
+    "ru": "Отменить открытие шоу",
+    "es": "Cancelar Show de Apertura",
+    "it": "Annulla Spettacolo di Apertura",
+    "fr": "Annuler le spectacle d'ouverture",
+    "uk": "Скасувати відкриття шоу"
+  },
+  {
+    "key": "Print Showtime",
+    "en": "Print Showtime",
+    "pt": "Print Showtime",
+    "ru": "Print Showtime",
+    "es": "Print Hora del Show",
+    "it": "Stampa Orario Spettacolo",
+    "fr": "Imprimer l'heure du spectacle",
+    "uk": "Друк часу шоу"
+  },
+  {
+    "key": "Copy settings from another event",
+    "en": "Copy settings from another event",
+    "pt": "Copiar configurações de outro evento",
+    "ru": "Скопировать настройки из другого события",
+    "es": "Copiar configuraciones de otro evento",
+    "it": "Copia impostazioni da un altro evento",
+    "fr": "Copier les paramètres d'un autre événement",
+    "uk": "Копіювати налаштування з іншої події"
+  },
+  {
+    "key": "Copy Show",
+    "en": "Copy Show",
+    "pt": "Copiar Show",
+    "ru": "Скопировать шоу",
+    "es": "Copiar Show",
+    "it": "Copia Spettacolo",
+    "fr": "Copier le spectacle",
+    "uk": "Копіювати шоу"
+  },
+  {
+    "key": "Choose the event to copy data from",
+    "en": "Choose the event to copy data from",
+    "pt": "Escolha o evento para copiar dados de",
+    "ru": "Выберите событие, из которого нужно скопировать данные",
+    "es": "Elige el evento del cual copiar datos",
+    "it": "Scegli l'evento da cui copiare i dati",
+    "fr": "Choisissez l'événement à partir duquel copier les données",
+    "uk": "Виберіть подію, з якої потрібно скопіювати дані"
+  },
+  {
+    "key": "Copied data from",
+    "en": "Copied data from",
+    "pt": "Dados copiados de",
+    "ru": "Скопированные данные из",
+    "es": "Datos copiados de",
+    "it": "Dati copiati da",
+    "fr": "Données copiées de",
+    "uk": "Скопійовані дані з"
+  },
+  {
+    "key": "Opening show settings for {}",
+    "en": "Opening show settings for {}",
+    "pt": "Abrindo configurações do show para {}",
+    "ru": "Настройки открытия шоу для {}",
+    "es": "Configuraciones del show de apertura para {}",
+    "it": "Impostazioni dello spettacolo di apertura per {}",
+    "fr": "Paramètres du spectacle d'ouverture pour {}",
+    "uk": "Налаштування відкриття шоу для {}"
+  },
+  {
+    "key": "Active Show for {}",
+    "en": "Active Show for {}",
+    "pt": "Show ativo para {}",
+    "ru": "Активное шоу для {}",
+    "es": "Show Activo para {}",
+    "it": "Spettacolo Attivo per {}",
+    "fr": "Spectacle actif pour {}",
+    "uk": "Активне шоу для {}"
+  },
+  {
+    "key": "Delay opening",
+    "en": "Delay opening",
+    "pt": "Atrasar abertura",
+    "ru": "Задержка открытия",
+    "es": "Retrasar apertura",
+    "it": "Ritardo apertura",
+    "fr": "Retarder l'ouverture",
+    "uk": "Затримка відкриття"
+  },
+  {
+    "key": "Minutes to add to the scheduled opening time for {}",
+    "en": "Minutes to add to the scheduled opening time for {}",
+    "pt": "Minutos a adicionar ao horário de abertura programado para {}",
+    "ru": "Минуты, которые нужно добавить к запланированному времени открытия для {}",
+    "es": "Minutos a añadir al tiempo de apertura programado para {}",
+    "it": "Minuti da aggiungere all'orario di apertura programmato per {}",
+    "fr": "Minutes à ajouter à l'heure d'ouverture programmée pour {}",
+    "uk": "Хвилини, які потрібно додати до запланованого часу відкриття для {}"
+  },
+  {
+    "key": "Video",
+    "en": "Video",
+    "pt": "Vídeo",
+    "ru": "Видео",
+    "es": "Vídeo",
+    "it": "Video",
+    "fr": "Vidéo",
+    "uk": "Відео"
+  },
+  {
+    "key": "Pre-event in Loop",
+    "en": "Pre-event in Loop",
+    "pt": "Pré-evento em Loop",
+    "ru": "Предварительное событие в цикле",
+    "es": "Pre-evento en Bucle",
+    "it": "Pre-evento in Loop",
+    "fr": "Pré-événement en boucle",
+    "uk": "Передподія в циклі"
+  },
+  {
+    "key": "Countdown",
+    "en": "Countdown",
+    "pt": "Contagem regressiva",
+    "ru": "Обратный отсчет",
+    "es": "Cuenta regresiva",
+    "it": "Conto alla rovescia",
+    "fr": "Compte à rebours",
+    "uk": "Зворотній відлік"
+  },
+  {
+    "key": "Start how many minutes before the target time?",
+    "en": "Start how many minutes before the target time?",
+    "pt": "Começar quantos minutos antes do horário alvo?",
+    "ru": "Начать за сколько минут до целевого времени?",
+    "es": "¿Cuántos minutos antes del tiempo objetivo debería comenzar?",
+    "it": "Inizia quanti minuti prima dell'orario target?",
+    "fr": "Commencer combien de minutes avant l'heure cible?",
+    "uk": "Почати за скільки хвилин до цільового часу?"
+  },
+  {
+    "key": "Defines how long before the pre-event video should start. Example: service starts at 7:00 PM, if set to 20, this video will start at 6:40 PM.",
+    "en": "Defines how long before the pre-event video should start. Example: service starts at 7:00 PM, if set to 20, this video will start at 6:40 PM.",
+    "pt": "Define quanto tempo antes o vídeo pré-evento deve começar. Exemplo: o serviço começa às 19:00, se definido para 20, este vídeo começará às 18:40.",
+    "ru": "Определяет, как долго до предварительного видео должно начаться. Пример: служба начинается в 19:00, если установить на 20, это видео начнется в 18:40.",
+    "es": "Define cuánto tiempo antes debería comenzar el video del pre-evento. Ejemplo: el servicio comienza a las 7:00 PM, si se establece en 20, este video comenzará a las 6:40 PM.",
+    "it": "Definisce quanto tempo prima dovrebbe iniziare il video pre-evento. Esempio: il servizio inizia alle 19:00, se impostato su 20, questo video inizierà alle 18:40.",
+    "fr": "Définit combien de temps avant la vidéo de pré-événement doit commencer. Exemple : le service commence à 19h00, si réglé à 20, cette vidéo commencera à 18h40.",
+    "uk": "Визначає, як довго до початку відео передподії має початися. Приклад: служба починається о 19:00, якщо встановлено 20, це відео почнеться о 18:40."
+  },
+  {
+    "key": "Local Video",
+    "en": "Local Video",
+    "pt": "Vídeo Local",
+    "ru": "Локальное видео",
+    "es": "Video Local",
+    "it": "Video Locale",
+    "fr": "Vidéo locale",
+    "uk": "Локальне відео"
+  },
+  {
+    "key": "Folder allowed",
+    "en": "Folder allowed",
+    "pt": "Pasta permitida",
+    "ru": "Разрешенная папка",
+    "es": "Carpeta permitida",
+    "it": "Cartella consentita",
+    "fr": "Dossier autorisé",
+    "uk": "Дозволена папка"
+  },
+  {
+    "key": "Video to be played on the configured Public screens in loop at the scheduled time before the countdown",
+    "en": "Video to be played on the configured Public screens in loop at the scheduled time before the countdown",
+    "pt": "Vídeo a ser reproduzido nas telas públicas configuradas em loop no horário programado antes da contagem regressiva",
+    "ru": "Видео, которое будет воспроизводиться на настроенных публичных экранах в цикле в запланированное время перед обратным отсчетом",
+    "es": "Video que se reproducirá en las pantallas públicas configuradas en bucle a la hora programada antes de la cuenta regresiva",
+    "it": "Video da riprodurre sugli schermi pubblici configurati in loop all'orario programmato prima del conto alla rovescia",
+    "fr": "Vidéo à jouer sur les écrans publics configurés en boucle à l'heure programmée avant le compte à rebours",
+    "uk": "Відео, яке буде відтворюватися на налаштованих публічних екранах у циклі в запланований час перед зворотним відліком"
+  },
+  {
+    "key": "Video to be played on the configured Public screens which will end at the exact start time of the event.",
+    "en": "Video to be played on the configured Public screens which will end at the exact start time of the event.",
+    "pt": "Vídeo a ser reproduzido nas telas públicas configuradas que terminará exatamente no horário de início do evento.",
+    "ru": "Видео, которое будет воспроизводиться на настроенных публичных экранах и закончится в точное время начала события.",
+    "es": "Video que se reproducirá en las pantallas públicas configuradas que terminará a la hora exacta de inicio del evento.",
+    "it": "Video da riprodurre sugli schermi pubblici configurati che terminerà all'orario esatto di inizio dell'evento.",
+    "fr": "Vidéo à jouer sur les écrans publics configurés qui se terminera à l'heure exacte de début de l'événement.",
+    "uk": "Відео, яке буде відтворюватися на налаштованих публічних екранах, яке закінчиться в точний час початку події."
+  },
+  {
+    "key": "Live Video",
+    "en": "Live Video",
+    "pt": "Vídeo Ao Vivo",
+    "ru": "Прямое видео",
+    "es": "Video en Vivo",
+    "it": "Video in Diretta",
+    "fr": "Vidéo en direct",
+    "uk": "Пряме відео"
+  },
+  {
+    "key": "Video to be played on the Live in loop at the scheduled time before the countdown",
+    "en": "Video to be played on the Live in loop at the scheduled time before the countdown",
+    "pt": "Vídeo a ser reproduzido ao vivo em loop no horário programado antes da contagem regressiva",
+    "ru": "Видео, которое будет воспроизводиться в прямом эфире в цикле в запланированное время перед обратным отсчетом",
+    "es": "Video que se reproducirá en el Live en bucle a la hora programada antes de la cuenta regresiva",
+    "it": "Video da riprodurre in diretta in loop all'orario programmato prima del conto alla rovescia",
+    "fr": "Vidéo à jouer en direct en boucle à l'heure programmée avant le compte à rebours",
+    "uk": "Відео, яке буде відтворюватися на прямому ефірі в циклі в запланований час перед зворотним відліком"
+  },
+  {
+    "key": "Video to be played on the Live which will end at the exact start time of the event.",
+    "en": "Video to be played on the Live which will end at the exact start time of the event.",
+    "pt": "Vídeo a ser reproduzido ao vivo que terminará exatamente no horário de início do evento.",
+    "ru": "Видео, которое будет воспроизводиться в прямом эфире и закончится в точное время начала события.",
+    "es": "Video que se reproducirá en el Live que terminará a la hora exacta de inicio del evento.",
+    "it": "Video da riprodurre in diretta che terminerà all'orario esatto di inizio dell'evento.",
+    "fr": "Vidéo à jouer en direct qui se terminera à l'heure exacte de début de l'événement.",
+    "uk": "Відео, яке буде відтворюватися на прямому ефірі, яке закінчиться в точний час початку події."
+  },
+  {
+    "key": "Camera scene (end show)",
+    "en": "Camera scene (end show)",
+    "pt": "Cena da câmera (finalizar show)",
+    "ru": "Сцена камеры (конец шоу)",
+    "es": "Escena de cámara (fin del show)",
+    "it": "Scena della telecamera (fine spettacolo)",
+    "fr": "Scène de caméra (fin du spectacle)",
+    "uk": "Сцена камери (кінець шоу)"
+  },
+  {
+    "key": "Choose the OBS scene after closing the opening.",
+    "en": "Choose the OBS scene after closing the opening.",
+    "pt": "Escolha a cena do OBS após fechar a abertura.",
+    "ru": "Выберите сцену OBS после закрытия открытия.",
+    "es": "Elige la escena de OBS después de cerrar la apertura.",
+    "it": "Scegli la scena OBS dopo la chiusura dell'apertura.",
+    "fr": "Choisissez la scène OBS après la fermeture de l'ouverture.",
+    "uk": "Виберіть сцену OBS після закриття відкриття."
+  },
+  {
+    "key": "Switch to camera when seconds remain",
+    "en": "Switch to camera when seconds remain",
+    "pt": "Mudar para a câmera quando restarem segundos",
+    "ru": "Переключиться на камеру, когда останется секунд",
+    "es": "Cambiar a cámara cuando queden segundos",
+    "it": "Passa alla telecamera quando mancano secondi",
+    "fr": "Passer à la caméra lorsque des secondes restent",
+    "uk": "Переключитися на камеру, коли залишилося секунд"
+  },
+  {
+    "key": "Switch to camera how many seconds before the video ends? This is meant to sync the live countdown with the event countdown.",
+    "en": "Switch to camera how many seconds before the video ends? This is meant to sync the live countdown with the event countdown.",
+    "pt": "Mudar para a câmera quantos segundos antes do vídeo terminar? Isso é para sincronizar a contagem regressiva ao vivo com a contagem regressiva do evento.",
+    "ru": "Переключиться на камеру за сколько секунд до окончания видео? Это нужно для синхронизации живого обратного отсчета с обратным отсчетом события.",
+    "es": "¿Cambiar a cámara cuántos segundos antes de que termine el video? Esto está destinado a sincronizar la cuenta regresiva en vivo con la cuenta regresiva del evento.",
+    "it": "Passa alla telecamera quanti secondi prima che il video finisca? Questo serve a sincronizzare il conto alla rovescia dal vivo con il conto alla rovescia dell'evento.",
+    "fr": "Passer à la caméra combien de secondes avant la fin de la vidéo? Cela est destiné à synchroniser le compte à rebours en direct avec le compte à rebours de l'événement.",
+    "uk": "Переключитися на камеру за скільки секунд до закінчення відео? Це потрібно для синхронізації живого зворотного відліку з зворотним відліком події."
+  },
+  {
+    "key": "Configure DMX Actions",
+    "en": "Configure DMX Actions",
+    "pt": "Configurar Ações DMX",
+    "ru": "Настроить действия DMX",
+    "es": "Configurar Acciones DMX",
+    "it": "Configura Azioni DMX",
+    "fr": "Configurer les actions DMX",
+    "uk": "Налаштувати дії DMX"
+  },
+  {
+    "key": "Configure Mixer Actions",
+    "en": "Configure Mixer Actions",
+    "pt": "Configurar Ações do Mixer",
+    "ru": "Настроить действия микшера",
+    "es": "Configurar Acciones de Mezclador",
+    "it": "Configura Azioni Mixer",
+    "fr": "Configurer les actions de mixage",
+    "uk": "Налаштувати дії мікшера"
+  },
+  {
+    "key": "Configure HA Actions",
+    "en": "Configure HA Actions",
+    "pt": "Configurar Ações HA",
+    "ru": "Настроить действия HA",
+    "es": "Configurar Acciones HA",
+    "it": "Configura Azioni HA",
+    "fr": "Configurer les actions HA",
+    "uk": "Налаштувати дії HA"
+  },
+  {
+    "key": "JS Functions in your Include",
+    "en": "JS Functions in your Include",
+    "pt": "Funções JS no seu Include",
+    "ru": "JS функции в вашем включении",
+    "es": "Funciones JS en tu Include",
+    "it": "Funzioni JS nel tuo Include",
+    "fr": "Fonctions JS dans votre inclusion",
+    "uk": "JS функції у вашому включенні"
+  },
+  {
+    "key": "Extra Routines",
+    "en": "Extra Routines",
+    "pt": "Rotinas Extras",
+    "ru": "Дополнительные рутины",
+    "es": "Rutinas Extra",
+    "it": "Routine Extra",
+    "fr": "Routines supplémentaires",
+    "uk": "Додаткові рутини"
+  },
+  {
+    "key": "Selected values",
+    "en": "Selected values",
+    "pt": "Valores selecionados",
+    "ru": "Выбранные значения",
+    "es": "Valores seleccionados",
+    "it": "Valori selezionati",
+    "fr": "Valeurs sélectionnées",
+    "uk": "Вибрані значення"
+  },
+  {
+    "key": "Configure Show for {}",
+    "en": "Configure Show for {}",
+    "pt": "Configurar Show para {}",
+    "ru": "Настроить шоу для {}",
+    "es": "Configurar Show para {}",
+    "it": "Configura Spettacolo per {}",
+    "fr": "Configurer le spectacle pour {}",
+    "uk": "Налаштувати шоу для {}"
+  },
+  {
+    "key": "Inactive",
+    "en": "Inactive",
+    "pt": "Inativo",
+    "ru": "Неактивный",
+    "es": "Inactivo",
+    "it": "Inattivo",
+    "fr": "Inactif",
+    "uk": "Неактивний"
+  },
+  {
+    "key": "Extra JavaScript Actions for video {} of event {}",
+    "en": "Extra JavaScript Actions for video {} of event {}",
+    "pt": "Ações JavaScript Extras para vídeo {} do evento {}",
+    "ru": "Дополнительные действия JavaScript для видео {} события {}",
+    "es": "Acciones de JavaScript Extra para video {} del evento {}",
+    "it": "Azioni JavaScript Extra per video {} dell'evento {}",
+    "fr": "Actions JavaScript supplémentaires pour la vidéo {} de l'événement {}",
+    "uk": "Додаткові дії JavaScript для відео {} події {}"
+  },
+  {
+    "key": "Enable Command",
+    "en": "Enable Command",
+    "pt": "Ativar Comando",
+    "ru": "Включить команду",
+    "es": "Habilitar Comando",
+    "it": "Abilita Comando",
+    "fr": "Activer la commande",
+    "uk": "Увімкнути команду"
+  },
+  {
+    "key": "Function Name show.() in Include",
+    "en": "Function Name show.() in Include",
+    "pt": "Nome da Função show.() em Include",
+    "ru": "Имя функции show.() в включении",
+    "es": "Nombre de la Función show.() en Include",
+    "it": "Nome della Funzione show.() in Include",
+    "fr": "Nom de la fonction show.() dans l'inclusion",
+    "uk": "Ім'я функції show.() в включенні"
+  },
+  {
+    "key": "Run your own JavaScript functions in Holyrics Include and call them in the module.",
+    "en": "Run your own JavaScript functions in Holyrics Include and call them in the module.",
+    "pt": "Execute suas próprias funções JavaScript no Include do Holyrics e chame-as no módulo.",
+    "ru": "Запустите свои собственные функции JavaScript в Holyrics Include и вызывайте их в модуле.",
+    "es": "Ejecuta tus propias funciones de JavaScript en Holyrics Include y llámalas en el módulo.",
+    "it": "Esegui le tue funzioni JavaScript nel Holyrics Include e chiamale nel modulo.",
+    "fr": "Exécutez vos propres fonctions JavaScript dans l'inclusion Holyrics et appelez-les dans le module.",
+    "uk": "Запустіть свої власні JavaScript функції в Holyrics Include і викликайте їх у модулі."
+  },
+  {
+    "key": "Open the Include screen from the File -> Settings -> Advanced -> JavaScript -> Include",
+    "en": "Open the Include screen from the File -> Settings -> Advanced -> JavaScript -> Include",
+    "pt": "Abra a tela Include em Arquivo -> Configurações -> Avançado -> JavaScript -> Include",
+    "ru": "Откройте экран включения из Файл -> Настройки -> Дополнительно -> JavaScript -> Включить",
+    "es": "Abre la pantalla Include desde Archivo -> Configuración -> Avanzado -> JavaScript -> Include",
+    "it": "Apri la schermata Include da File -> Impostazioni -> Avanzate -> JavaScript -> Include",
+    "fr": "Ouvrir l'écran d'inclusion depuis Fichier -> Paramètres -> Avancé -> JavaScript -> Inclusion",
+    "uk": "Відкрийте екран включення з Файл -> Налаштування -> Розширені -> JavaScript -> Включити"
+  },
+  {
+    "key": "Create an object in a global variable called show, which will contain your functions, following the example below",
+    "en": "Create an object in a global variable called show, which will contain your functions, following the example below",
+    "pt": "Crie um objeto em uma variável global chamada show, que conterá suas funções, seguindo o exemplo abaixo",
+    "ru": "Создайте объект в глобальной переменной под названием show, который будет содержать ваши функции, следуя приведенному ниже примеру",
+    "es": "Crea un objeto en una variable global llamada show, que contendrá tus funciones, siguiendo el ejemplo a continuación",
+    "it": "Crea un oggetto in una variabile globale chiamata show, che conterrà le tue funzioni, seguendo l'esempio qui sotto",
+    "fr": "Créer un objet dans une variable globale appelée show, qui contiendra vos fonctions, suivant l'exemple ci-dessous",
+    "uk": "Створіть об'єкт у глобальній змінній під назвою show, який міститиме ваші функції, слідуючи наведеному нижче прикладу"
+  },
+  {
+    "key": "Note",
+    "en": "Note",
+    "pt": "Anotação",
+    "ru": "Заметка",
+    "es": "Nota",
+    "it": "Annotazione",
+    "fr": "Note",
+    "uk": "Примітка"
+  },
+  {
+    "key": "Functions do not take parameters and are called without ()",
+    "en": "Functions do not take parameters and are called without ()",
+    "pt": "Funções não aceitam parâmetros e são chamadas sem ()",
+    "ru": "Функции не принимают параметры и вызываются без ()",
+    "es": "Las funciones no toman parámetros y se llaman sin ()",
+    "it": "Le funzioni non prendono parametri e vengono chiamate senza ()",
+    "fr": "Les fonctions ne prennent pas de paramètres et sont appelées sans ()",
+    "uk": "Функції не приймають параметри і викликаються без ()"
+  },
+  {
+    "key": "Just enter the function name when configuring in the module, e.g., helloholyrics",
+    "en": "Just enter the function name when configuring in the module, e.g., helloholyrics",
+    "pt": "Basta inserir o nome da função ao configurar no módulo, por exemplo, helloholyrics",
+    "ru": "Просто введите имя функции при настройке в модуле, например, helloholyrics",
+    "es": "Solo ingresa el nombre de la función al configurar en el módulo, por ejemplo, helloholyrics",
+    "it": "Inserisci solo il nome della funzione quando configuri nel modulo, ad esempio, helloholyrics",
+    "fr": "Il suffit d'entrer le nom de la fonction lors de la configuration dans le module, par exemple, helloholyrics",
+    "uk": "Просто введіть ім'я функції при налаштуванні в модулі, наприклад, helloholyrics"
+  },
+  {
+    "key": "Have questions? It's better to study more and only use the module's built-in features!",
+    "en": "Have questions? It's better to study more and only use the module's built-in features!",
+    "pt": "Tem perguntas? É melhor estudar mais e usar apenas os recursos integrados do módulo!",
+    "ru": "Есть вопросы? Лучше учиться больше и использовать только встроенные функции модуля!",
+    "es": "¿Tienes preguntas? ¡Es mejor estudiar más y solo usar las funciones integradas del módulo!",
+    "it": "Hai domande? È meglio studiare di più e utilizzare solo le funzionalità integrate del modulo!",
+    "fr": "Vous avez des questions? Il vaut mieux étudier davantage et n'utiliser que les fonctionnalités intégrées du module!",
+    "uk": "Є питання? Краще вивчити більше і використовувати лише вбудовані функції модуля!"
+  },
+  {
+    "key": "Home Assistant Switch Settings for video {} of event {}",
+    "en": "Home Assistant Switch Settings for video {} of event {}",
+    "pt": "Configurações do Switch do Home Assistant para vídeo {} do evento {}",
+    "ru": "Настройки переключателя Home Assistant для видео {} события {}",
+    "es": "Configuraciones del Interruptor de Home Assistant para video {} del evento {}",
+    "it": "Impostazioni Switch di Home Assistant per video {} dell'evento {}",
+    "fr": "Paramètres de l'interrupteur de l'Assistant Domestique pour la vidéo {} de l'événement {}",
+    "uk": "Налаштування перемикача Home Assistant для відео {} події {}"
+  },
+  {
+    "key": "Switch",
+    "en": "Switch",
+    "pt": "Interruptor",
+    "ru": "Переключатель",
+    "es": "Interruptor",
+    "it": "Interruttore",
+    "fr": "Interrupteur",
+    "uk": "Перемикач"
+  },
+  {
+    "key": "Turn On",
+    "en": "Turn On",
+    "pt": "Ligar",
+    "ru": "Включить",
+    "es": "Encender",
+    "it": "Accendi",
+    "fr": "Allumer",
+    "uk": "Увімкнути"
+  },
+  {
+    "key": "Turn Off",
+    "en": "Turn Off",
+    "pt": "Desligar",
+    "ru": "Выключить",
+    "es": "Apagar",
+    "it": "Spegni",
+    "fr": "Éteindre",
+    "uk": "Вимкнути"
+  },
+  {
+    "key": "Mixer Actions during video {} of event {}",
+    "en": "Mixer Actions during video {} of event {}",
+    "pt": "Ações do Mixer durante o vídeo {} do evento {}",
+    "ru": "Действия микшера во время видео {} события {}",
+    "es": "Acciones de Mezclador durante el video {} del evento {}",
+    "it": "Azioni Mixer durante video {} dell'evento {}",
+    "fr": "Actions de mixage pendant la vidéo {} de l'événement {}",
+    "uk": "Дії мікшера під час відео {} події {}"
+  },
+  {
+    "key": "Activate Command",
+    "en": "Activate Command",
+    "pt": "Ativar Comando",
+    "ru": "Активировать команду",
+    "es": "Activar Comando",
+    "it": "Attiva Comando",
+    "fr": "Activer la commande",
+    "uk": "Активувати команду"
+  },
+  {
+    "key": "Lumikit scene settings for video {} of event {}",
+    "en": "Lumikit scene settings for video {} of event {}",
+    "pt": "Configurações da cena Lumikit para vídeo {} do evento {}",
+    "ru": "Настройки сцены Lumikit для видео {} события {}",
+    "es": "Configuraciones de escena Lumikit para video {} del evento {}",
+    "it": "Impostazioni scena Lumikit per video {} dell'evento {}",
+    "fr": "Paramètres de scène Lumikit pour la vidéo {} de l'événement {}",
+    "uk": "Налаштування сцени Lumikit для відео {} події {}"
+  },
+  {
+    "key": "Page",
+    "en": "Page",
+    "pt": "Página",
+    "ru": "Страница",
+    "es": "Página",
+    "it": "Pagina",
+    "fr": "Page",
+    "uk": "Сторінка"
+  },
+  {
+    "key": "Scene",
+    "en": "Scene",
+    "pt": "Cena",
+    "ru": "Сцена",
+    "es": "Escena",
+    "it": "Scena",
+    "fr": "Scène",
+    "uk": "Сцена"
+  },
+  {
+    "key": "BPM",
+    "en": "BPM",
+    "pt": "BPM",
+    "ru": "BPM",
+    "es": "BPM",
+    "it": "BPM",
+    "fr": "BPM",
+    "uk": "BPM"
+  },
+  {
+    "key": "end",
+    "en": "end",
+    "pt": "final",
+    "ru": "конец",
+    "es": "fin",
+    "it": "fine",
+    "fr": "fin",
+    "uk": "кінець"
+  },
+  {
+    "key": "Start of Video",
+    "en": "Start of Video",
+    "pt": "Início do Vídeo",
+    "ru": "Начало видео",
+    "es": "Inicio del Video",
+    "it": "Inizio del Video",
+    "fr": "Début de la vidéo",
+    "uk": "Початок відео"
+  },
+  {
+    "key": "End of Video",
+    "en": "End of Video",
+    "pt": "Fim do Vídeo",
+    "ru": "Конец видео",
+    "es": "Fin del Video",
+    "it": "Fine del Video",
+    "fr": "Fin de la vidéo",
+    "uk": "Кінець відео"
+  },
+  {
+    "key": "Adjustment (±S)",
+    "en": "Adjustment (±S)",
+    "pt": "Ajuste (±S)",
+    "ru": "Корректировка (±S)",
+    "es": "Ajuste (±S)",
+    "it": "Regolazione (±S)",
+    "fr": "Ajustement (±S)",
+    "uk": "Регулювання (±S)"
+  },
+  {
+    "key": "Time relative to the start/end of the video",
+    "en": "Time relative to the start/end of the video",
+    "pt": "Tempo relativo ao início/fim do vídeo",
+    "ru": "Время относительно начала/конца видео",
+    "es": "Tiempo relativo al inicio/fin del video",
+    "it": "Tempo relativo all'inizio/fine del video",
+    "fr": "Temps par rapport au début/fin de la vidéo",
+    "uk": "Час відносно початку/закінчення відео"
+  },
+  {
+    "key": "For example, 5 seconds before the start of the video, set -5, 4 seconds after the start/end of the video, set 4",
+    "en": "For example, 5 seconds before the start of the video, set -5, 4 seconds after the start/end of the video, set 4",
+    "pt": "Por exemplo, 5 segundos antes do início do vídeo, defina -5, 4 segundos após o início/fim do vídeo, defina 4",
+    "ru": "Например, 5 секунд до начала видео, установите -5, 4 секунды после начала/конца видео, установите 4",
+    "es": "Por ejemplo, 5 segundos antes del inicio del video, establece -5, 4 segundos después del inicio/fin del video, establece 4",
+    "it": "Ad esempio, 5 secondi prima dell'inizio del video, impostare -5, 4 secondi dopo l'inizio/fine del video, impostare 4",
+    "fr": "Par exemple, 5 secondes avant le début de la vidéo, réglez -5, 4 secondes après le début/fin de la vidéo, réglez 4",
+    "uk": "Наприклад, 5 секунд до початку відео, встановіть -5, 4 секунди після початку/закінчення відео, встановіть 4"
+  },
+  {
+    "key": "Relative to",
+    "en": "Relative to",
+    "pt": "Relativo a",
+    "ru": "Относительно",
+    "es": "Relativo a",
+    "it": "Relativo a",
+    "fr": "Relatif à",
+    "uk": "Відносно"
+  },
+  {
+    "key": "Event times in MS",
+    "en": "Event times in MS",
+    "pt": "Horários do evento em MS",
+    "ru": "Времена событий в MS",
+    "es": "Tiempos de evento en MS",
+    "it": "Tempi dell'evento in MS",
+    "fr": "Heures d'événements en MS",
+    "uk": "Час подій у мс"
+  },
+  {
+    "key": "Error {}",
+    "en": "Error {}",
+    "pt": "Erro {}",
+    "ru": "Ошибка {}",
+    "es": "Error {}",
+    "it": "Errore {}",
+    "fr": "Erreur {}",
+    "uk": "Помилка {}"
+  },
+  {
+    "key": "Minimum time",
+    "en": "Minimum time",
+    "pt": "Tempo mínimo",
+    "ru": "Минимальное время",
+    "es": "Tiempo mínimo",
+    "it": "Tempo minimo",
+    "fr": "Temps minimum",
+    "uk": "Мінімальний час"
+  },
+  {
+    "key": "The start time was set to the minimum",
+    "en": "The start time was set to the minimum",
+    "pt": "O horário de início foi definido para o mínimo",
+    "ru": "Время начала было установлено на минимум",
+    "es": "El tiempo de inicio se estableció en el mínimo",
+    "it": "L'orario di inizio è stato impostato al minimo",
+    "fr": "L'heure de début a été réglée sur le minimum",
+    "uk": "Час початку було встановлено на мінімум"
+  },
+  {
+    "key": "minutes",
+    "en": "minutes",
+    "pt": "minutos",
+    "ru": "минуты",
+    "es": "minutos",
+    "it": "minuti",
+    "fr": "minutes",
+    "uk": "хвилини"
+  },
+  {
+    "key": "Video settings for the plugin not found. Please configure the Holyrics plugin",
+    "en": "Video settings for the plugin not found. Please configure the Holyrics plugin",
+    "pt": "Configurações de vídeo para o plugin não encontradas. Por favor, configure o plugin Holyrics",
+    "ru": "Настройки видео для плагина не найдены. Пожалуйста, настройте плагин Holyrics",
+    "es": "Configuraciones de video para el plugin no encontradas. Por favor configura el plugin Holyrics",
+    "it": "Impostazioni video per il plugin non trovate. Si prega di configurare il plugin Holyrics",
+    "fr": "Paramètres vidéo pour le plugin non trouvés. Veuillez configurer le plugin Holyrics",
+    "uk": "Налаштування відео для плагіна не знайдено. Будь ласка, налаштуйте плагін Holyrics"
+  },
+  {
+    "key": "Mixer not configured!",
+    "en": "Mixer not configured!",
+    "pt": "Mixer não configurado!",
+    "ru": "Микшер не настроен!",
+    "es": "¡Mezclador no configurado!",
+    "it": "Mixer non configurato!",
+    "fr": "Mixeur non configuré !",
+    "uk": "Мікшер не налаштований!"
+  },
+  {
+    "key": "All module schedules have been cancelled.",
+    "en": "All module schedules have been cancelled.",
+    "pt": "Todos os horários do módulo foram cancelados.",
+    "ru": "Все расписания модуля были отменены.",
+    "es": "Todos los horarios del módulo han sido cancelados.",
+    "it": "Tutti i programmi del modulo sono stati annullati.",
+    "fr": "Tous les horaires des modules ont été annulés.",
+    "uk": "Усі розклади модулів скасовані."
+  },
+  {
+    "key": "local video",
+    "en": "local video",
+    "pt": "vídeo local",
+    "ru": "локальное видео",
+    "es": "video local",
+    "it": "video locale",
+    "fr": "vidéo locale",
+    "uk": "локальне відео"
+  },
+  {
+    "key": "Live video",
+    "en": "Live video",
+    "pt": "vídeo ao vivo",
+    "ru": "живое видео",
+    "es": "video en vivo",
+    "it": "video in diretta",
+    "fr": "vidéo en direct",
+    "uk": "Пряме відео"
+  },
+  {
+    "key": "Opening show scheduled to start at",
+    "en": "Opening show scheduled to start at",
+    "pt": "Abertura do show programada para começar às",
+    "ru": "Открытие шоу запланировано на",
+    "es": "Show de apertura programado para comenzar a",
+    "it": "Apertura dello spettacolo programmata per",
+    "fr": "Spectacle d'ouverture prévu pour commencer à",
+    "uk": "Відкриття шоу заплановано на"
+  },
+  {
+    "key": "The minimum time for event programming has passed by",
+    "en": "The minimum time for event programming has passed by",
+    "pt": "O tempo mínimo para programação do evento passou",
+    "ru": "Минимальное время для программирования события истекло",
+    "es": "El tiempo mínimo para la programación del evento ha pasado",
+    "it": "Il tempo minimo per la programmazione dell'evento è scaduto",
+    "fr": "Le temps minimum pour la programmation de l'événement est dépassé de",
+    "uk": "Мінімальний час для програмування події минув"
+  },
+  {
+    "key": "time",
+    "en": "time",
+    "pt": "tempo",
+    "ru": "время",
+    "es": "tiempo",
+    "it": "tempo",
+    "fr": "temps",
+    "uk": "час"
+  },
+  {
+    "key": "maximum",
+    "en": "maximum",
+    "pt": "máximo",
+    "ru": "максимум",
+    "es": "máximo",
+    "it": "massimo",
+    "fr": "maximum",
+    "uk": "максимум"
+  },
+  {
+    "key": "minimum",
+    "en": "minimum",
+    "pt": "mínimo",
+    "ru": "минимум",
+    "es": "mínimo",
+    "it": "minimo",
+    "fr": "minimum",
+    "uk": "мінімум"
+  },
+  {
+    "key": "Temporary",
+    "en": "Temporary",
+    "pt": "Temporário",
+    "ru": "Временный",
+    "es": "Temporario",
+    "it": "Temporaneo",
+    "fr": "Temporaire",
+    "uk": "Тимчасовий"
+  },
+  {
+    "key": "Start Video",
+    "en": "Start Video",
+    "pt": "Iniciar Vídeo",
+    "ru": "Начать видео",
+    "es": "Iniciar Video",
+    "it": "Avvia Video",
+    "fr": "Démarrer la vidéo",
+    "uk": "Почати відео"
+  },
+  {
+    "key": "on public screen",
+    "en": "on public screen",
+    "pt": "na tela pública",
+    "ru": "на общественном экране",
+    "es": "en pantalla pública",
+    "it": "su schermo pubblico",
+    "fr": "sur écran public",
+    "uk": "на публічному екрані"
+  },
+  {
+    "key": "Last repeat of Video",
+    "en": "Last repeat of Video",
+    "pt": "Última repetição do Vídeo",
+    "ru": "Последний повтор видео",
+    "es": "Última repetición del Video",
+    "it": "Ultima ripetizione del Video",
+    "fr": "Dernière répétition de la vidéo",
+    "uk": "Останнє повторення відео"
+  },
+  {
+    "key": "in loop on OBS",
+    "en": "in loop on OBS",
+    "pt": "em loop no OBS",
+    "ru": "в цикле на OBS",
+    "es": "en bucle en OBS",
+    "it": "in loop su OBS",
+    "fr": "en boucle sur OBS",
+    "uk": "в циклі на OBS"
+  },
+  {
+    "key": "on OBS",
+    "en": "on OBS",
+    "pt": "no OBS",
+    "ru": "на OBS",
+    "es": "en OBS",
+    "it": "su OBS",
+    "fr": "sur OBS",
+    "uk": "на OBS"
+  },
+  {
+    "key": "Trigger final scene on OBS",
+    "en": "Trigger final scene on OBS",
+    "pt": "Acionar a cena final no OBS",
+    "ru": "Запустить финальную сцену на OBS",
+    "es": "Activar escena final en OBS",
+    "it": "Attiva scena finale su OBS",
+    "fr": "Déclencher la scène finale sur OBS",
+    "uk": "Запустити фінальну сцену на OBS"
+  },
+  {
+    "key": "Trigger Lumikit scene",
+    "en": "Trigger Lumikit scene",
+    "pt": "Acionar a cena Lumikit",
+    "ru": "Запустить сцену Lumikit",
+    "es": "Activar escena Lumikit",
+    "it": "Attiva scena Lumikit",
+    "fr": "Déclencher la scène Lumikit",
+    "uk": "Запустити сцену Lumikit"
+  },
+  {
+    "key": "Adjust Mixer volume",
+    "en": "Adjust Mixer volume",
+    "pt": "Ajustar o volume do Mixer",
+    "ru": "Настроить громкость микшера",
+    "es": "Ajustar volumen del mezclador",
+    "it": "Regola volume Mixer",
+    "fr": "Ajuster le volume du mixeur",
+    "uk": "Регулювати гучність мікшера"
+  },
+  {
+    "key": "to",
+    "en": "to",
+    "pt": "para",
+    "ru": "на",
+    "es": "a",
+    "it": "a",
+    "fr": "à",
+    "uk": "до"
+  },
+  {
+    "key": "On",
+    "en": "On",
+    "pt": "Ligado",
+    "ru": "Включено",
+    "es": "Encendido",
+    "it": "Acceso",
+    "fr": "Activé",
+    "uk": "Увімкнено"
+  },
+  {
+    "key": "Off",
+    "en": "Off",
+    "pt": "Desligado",
+    "ru": "Выключено",
+    "es": "Apagado",
+    "it": "Spento",
+    "fr": "Désactivé",
+    "uk": "Вимкнено"
+  },
+  {
+    "key": "Change HA device state",
+    "en": "Change HA device state",
+    "pt": "Mudar o estado do dispositivo HA",
+    "ru": "Изменить состояние устройства HA",
+    "es": "Cambiar estado del dispositivo HA",
+    "it": "Cambia stato dispositivo HA",
+    "fr": "Changer l'état de l'appareil HA",
+    "uk": "Змінити стан пристрою HA"
+  },
+  {
+    "key": "Execute JS script",
+    "en": "Execute JS script",
+    "pt": "Executar script JS",
+    "ru": "Выполнить JS скрипт",
+    "es": "Ejecutar script JS",
+    "it": "Esegui script JS",
+    "fr": "Exécuter le script JS",
+    "uk": "Виконати JS скрипт"
+  },
+  {
+    "key": "Storyboard Showtime",
+    "en": "Storyboard Showtime",
+    "pt": "Storyboard Showtime",
+    "ru": "Сценарий шоу",
+    "es": "Storyboard Showtime",
+    "it": "Storyboard Showtime",
+    "fr": "Storyboard Showtime",
+    "uk": "Сценарій шоу"
+  },
+  {
+    "key": "End of Video 2 scheduled for {} + {} minutes delay",
+    "en": "End of Video 2 scheduled for {} + {} minutes delay",
+    "pt": "Fim do Vídeo 2 agendado para {} + {} minutos de atraso",
+    "ru": "Конец видео 2 запланирован на {} + {} минут задержки",
+    "es": "Fin del Video 2 programado para {} + {} minutos de retraso",
+    "it": "Fine del Video 2 programmata per {} + {} minuti di ritardo",
+    "fr": "Fin de la vidéo 2 prévue pour {} + {} minutes de retard",
+    "uk": "Кінець відео 2 заплановано на {} + {} хвилин затримки"
+  },
+  {
+    "key": "Cena base",
+    "en": "Base scene",
+    "pt": "Cena base",
+    "ru": "Базовая цена",
+    "es": "Escena base",
+    "it": "Scena base",
+    "fr": "Cena base",
+    "uk": "Базова ціна"
+  },
+  {
+    "key": "Bíblia",
+    "en": "Bible",
+    "pt": "Bíblia",
+    "ru": "Библия",
+    "es": "Biblia",
+    "it": "Bibbia",
+    "fr": "Bible",
+    "uk": "Біблія"
+  },
+  {
+    "key": "Letra Música/Ap. Automática",
+    "en": "Song Lyrics/Auto Presentation",
+    "pt": "Letra Música/Ap. Automática",
+    "ru": "Текст песни/автоматическое представление",
+    "es": "Letra Música/Ap. Automática",
+    "it": "Testo Musica/Ap. Automatica",
+    "fr": "Paroles de la chanson/Ap. Automatique",
+    "uk": "Текст пісні/Автоматична презентація"
+  },
+  {
+    "key": "Texto",
+    "en": "Text",
+    "pt": "Texto",
+    "ru": "Текст",
+    "es": "Texto",
+    "it": "Testo",
+    "fr": "Texte",
+    "uk": "Текст"
+  },
+  {
+    "key": "Imagens com !",
+    "en": "Images with !",
+    "pt": "Imagens com !",
+    "ru": "Изображения с !",
+    "es": "Imágenes con !",
+    "it": "Immagini con !",
+    "fr": "Images avec !",
+    "uk": "Зображення з !"
+  },
+  {
+    "key": "Apresentações Power Point",
+    "en": "PowerPoint presentations",
+    "pt": "Apresentações Power Point",
+    "ru": "Презентации Power Point",
+    "es": "Presentaciones Power Point",
+    "it": "Presentazioni Power Point",
+    "fr": "Présentations Power Point",
+    "uk": "Презентації Power Point"
+  },
+  {
+    "key": "F8 automático",
+    "en": "Automatic F8",
+    "pt": "F8 automático",
+    "ru": "Автоматический F8",
+    "es": "F8 automático",
+    "it": "F8 automatico",
+    "fr": "F8 automatique",
+    "uk": "Автоматичне F8"
+  },
+  {
+    "key": "segundos",
+    "en": "seconds",
+    "pt": "segundos",
+    "ru": "секунды",
+    "es": "segundos",
+    "it": "secondi",
+    "fr": "secondes",
+    "uk": "секунди"
+  },
+  {
+    "key": "Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item",
+    "en": "Minimum display time of a slide before activating the F8 key and hiding the item",
+    "pt": "Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item",
+    "ru": "Минимальное время отображения слайда перед активацией клавиши F8 и скрытием элемента",
+    "es": "Tiempo mínimo de exhibición de una diapositiva antes de activar la tecla F8 y ocultar el elemento",
+    "it": "Tempo minimo di visualizzazione di una diapositiva prima di attivare il tasto F8 e nascondere l'elemento",
+    "fr": "Temps minimum d'affichage d'une diapositive avant d'activer la touche F8 et de masquer l'élément",
+    "uk": "Мінімальний час показу слайду перед активацією клавіші F8 та приховуванням елемента"
+  },
+  {
+    "key": "Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras",
+    "en": "Text, music, and bible slides can have a longer time based on the number of characters, approximately 1 second for every 10 letters",
+    "pt": "Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras",
+    "ru": "Слайды с текстом, музыкой и библией могут иметь большее время в зависимости от количества символов, примерно 1 секунда на каждые 10 букв",
+    "es": "Diapositivas de texto, música y biblia pueden tener un tiempo mayor basado en la cantidad de caracteres, siendo aproximadamente 1 segundo por cada 10 letras",
+    "it": "Le diapositive di testo, musica e bibbia possono avere un tempo maggiore basato sulla quantità di caratteri, essendo approssimativamente 1 secondo ogni 10 lettere",
+    "fr": "Les diapositives de texte, de musique et de bible peuvent avoir un temps plus long basé sur le nombre de caractères, soit environ 1 seconde pour chaque 10 lettres",
+    "uk": "Слайди з текстом, музикою та біблією можуть мати більший час, залежно від кількості символів, приблизно 1 секунда на кожні 10 літер"
+  },
+  {
+    "key": "Enviar para o OBS",
+    "en": "Send to OBS",
+    "pt": "Enviar para o OBS",
+    "ru": "Отправить в OBS",
+    "es": "Enviar a OBS",
+    "it": "Invia a OBS",
+    "fr": "Envoyer à l'OBS",
+    "uk": "Відправити на OBS"
+  },
+  {
+    "key": "For Video {} select only 1 video and not a folder. Configuration removed.",
+    "en": "For Video {}, select only 1 video and not a folder. Configuration removed.",
+    "pt": "Para o Vídeo {} selecione apenas 1 vídeo e não uma pasta. Configuração removida.",
+    "ru": "Для видео {} выберите только 1 видео, а не папку. Конфигурация удалена.",
+    "es": "Para Video {} selecciona solo 1 video y no una carpeta. Configuración eliminada.",
+    "it": "Per Video {} seleziona solo 1 video e non una cartella. Configurazione rimossa.",
+    "fr": "Pour la vidéo {}, sélectionnez uniquement 1 vidéo et non un dossier. Configuration supprimée.",
+    "uk": "Для відео {} виберіть лише 1 відео, а не папку. Налаштування видалено."
+  }
 ]

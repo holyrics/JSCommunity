@@ -97,7 +97,7 @@ function info() {
 function settings() {
     return [
         {
-            name: jsc.i18n('About ') + mID,
+            name: jsc.i18n('About') + ' ' + mID,
             description: infoVDDMM,
             type: 'label'
         },
@@ -213,8 +213,8 @@ function actions(module) {
     ];
     
     act.push({
-        hint: jsc.i18n('Pr'+'int Showtime'),
-        icon: 'pr'+'int',
+        hint: jsc.i18n("\u0050rint Showtime"),
+        icon: "\u0070rint",
         action: function() {
             eventReport(module);
         }
@@ -265,7 +265,7 @@ function copySchedule(module) {
 function actionShow(module) {
     var sn = getScheduleName();
     return {
-        hint: jsc.i18n('Configure Show for') + ' ' + sn,
+        hint: jsc.i18n('Configure Show for {}', [sn]),
         icon: 'set_meal',
         action: function() {
             var s = module.settings;
@@ -276,13 +276,13 @@ function actionShow(module) {
             
             inputs.push({
                 type: 'title',
-                name: '<html><b>' + jsc.i18n('Opening show settings for') + ' ' + sn + '</b>'
+                name: '<html><b>' + jsc.i18n('Opening show settings for {}', [sn]) + '</b>'
             });
             inputs.push({ type: 'separator' });
 
             inputs.push({
                 id: 'active',
-                label: jsc.i18n('Active Show for "') + sn + '"',
+                label: jsc.i18n('Active Show for {}', ['"' + sn + '"']),
                 type: 'boolean',
                 default_value: false,
                 onchange: function(obj) {
@@ -292,8 +292,8 @@ function actionShow(module) {
             inputs.push({
                 id: 'atraso',
                 type: 'number',
-                label: jsc.i18n('Delay opening (') + getScheduleTime() + '+):',
-                description: jsc.i18n('Minutes to add to the scheduled opening time for') + ' ' + getScheduleTime()
+                label: jsc.i18n('Delay opening') + ' (' + getScheduleTime() + '+):',
+                description: jsc.i18n('Minutes to add to the scheduled opening time for {}', [getScheduleTime()])
             });
                 
             for (var i = 0; i < 2; i++) {
@@ -301,7 +301,7 @@ function actionShow(module) {
                     inputs.push({ type: 'separator' });
                     inputs.push({
                         type: 'title',
-                        name: '<html><b>' + jsc.i18n('Video') + ' ' + (i + 1) + (i == 0 ? jsc.i18n(' (Pre-event in Loop)') : jsc.i18n(' (Countdown)')) + '</b>'
+                        name: '<html><b>' + jsc.i18n('Video') + ' ' + (i + 1) + ' (' + (i == 0 ? jsc.i18n('Pre-event in Loop') : jsc.i18n('Countdown')) + ')</b>'
                     });
                     if (i === 0) {
                         inputs.push({
@@ -314,11 +314,13 @@ function actionShow(module) {
                     if (s[sc]) {
                         vdDur = ' (' + formatDuration(getVideoDuration(s[sc]['vlcVideo' + i])) + ')';
                     }
+                    
                     inputs.push({
                         id: 'vlcVideo' + i,
                         type: 'video',
-                        name: jsc.i18n('Local Video') + (i == 0 ? jsc.i18n(' (folder allowed)') : '') + vdDur,
-                        description: jsc.i18n('Video to be played on the configured Public screens') + (i == 0 ? jsc.i18n(' in loop at the scheduled time before the countdown') : jsc.i18n(' which will end at the exact start time of the event.'))
+                        name: jsc.i18n('Local Video') + (i == 0 ? ' (' + jsc.i18n('Folder allowed').toLowerCase() + ')' : '') + vdDur,
+                        description: (i == 0) ? jsc.i18n('Video to be played on the configured Public screens in loop at the scheduled time before the countdown')
+                                              : jsc.i18n('Video to be played on the configured Public screens which will end at the exact start time of the event.')
                     });
                     if (s.streaming_id != "") {
                         if (s[sc]) {
@@ -328,7 +330,8 @@ function actionShow(module) {
                             id: 'liveVideo' + i,
                             type: 'video',
                             name: jsc.i18n('Live Video') + vdDur,
-                            description: jsc.i18n('Video to be played on the Live') + (i == 0 ? jsc.i18n(' in loop at the scheduled time before the countdown') : jsc.i18n(' which will end at the exact start time of the event.'))
+                            description: (i == 0) ? jsc.i18n('Video to be played on the Live in loop at the scheduled time before the countdown')
+                                                  : jsc.i18n('Video to be played on the Live which will end at the exact start time of the event.')
                         });
                         if (i === 1) {
                             inputs.push({
@@ -343,7 +346,7 @@ function actionShow(module) {
                             inputs.push({
                                 id: 'stop_obs_at',
                                 type: 'number',
-                                label: jsc.i18n('Switch to camera when ') + jsc.i18n(' seconds remain:'),
+                                label: jsc.i18n('Switch to camera when seconds remain') + ':',
                                 description: jsc.i18n('Switch to camera how many seconds before the video ends? This is meant to sync the live countdown with the event countdown.')
                             });
                         }
@@ -394,7 +397,7 @@ function actionShow(module) {
             }
             var q = module.inputSettings('cfg_' + sn, inputs);
             if (q !== null) {
-                h.log(mUID, "{%t} " + jsc.i18n('Selected values =') + " {}", q);
+                h.log(mUID, "{%t} " + jsc.i18n('Selected values') + " = {}", q);
                 s[sc] = checkData(q);
                 
                 timingCheckAndSet(s, sc);
@@ -406,7 +409,7 @@ function actionShow(module) {
             var sc = 'cfg_' + getScheduleName();
             if (s[sc] && s[sc].active !== true) {
                 return {
-                    hint: jsc.i18n('Configure Show for') + ' ' + sn + ' ' + jsc.i18n('(inactive)'),
+                    hint: jsc.i18n('Configure Show for {}', [sn]) + ' (' + jsc.i18n('Inactive').toLowerCase() + ')',
                     foreground: '727272', 
                     background: 'EEEEEE'
                 };
@@ -426,7 +429,7 @@ function actionJSInput(module, video) {
 
     inputs.push({
         type: 'title',
-        name: '<html><b>' + jsc.i18n('Extra JavaScript Actions for video ') + (video + 1) + jsc.i18n(' of event ') + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Extra JavaScript Actions for video {} of event {}', [video + 1, getScheduleName()])
     });
 
     for (var i = 0; i < qtd_inputs; i++) {
@@ -435,7 +438,7 @@ function actionJSInput(module, video) {
         inputs.push({
             id: k + i,
             type: 'boolean',
-            name: '<html><b>' + jsc.i18n('Enable Command ') + (i + 1)
+            name: '<html><b>' + jsc.i18n('Enable Command') + ' ' + (i + 1)
         });
 
         inputs.push({
@@ -443,8 +446,8 @@ function actionJSInput(module, video) {
             type: 'string',
             label: jsc.i18n('Function Name show.() in Include'),
             description: jsc.i18n('Run your own JavaScript functions in Holyrics Include and call them in the module.')+'<br><br><hr><br><b><u>Example:</u></b><br><br>' +
-                jsc.i18n('1. Open the Include screen from the File -> Settings -> Advanced -> JavaScript -> Include.<br>') +
-                jsc.i18n('2. Create an object in a global variable called show, which will contain your functions, following the example below.') +' <br><br>'+
+                '1. ' + jsc.i18n('Open the Include screen from the File -> Settings -> Advanced -> JavaScript -> Include') + '.<br>' +
+                '2. ' + jsc.i18n('Create an object in a global variable called show, which will contain your functions, following the example below') + '. <br><br>'+
                 '<pre style="color: #D4D4D4; font-family: monospace; background-color: #1E1E1E; padding: 10px; border-radius: 5px;">' +
                 'var show = { <br>' +
                 '    helloworld: function () {<br>' +
@@ -457,8 +460,8 @@ function actionJSInput(module, video) {
                 '    }<br>' +
                 '};</pre><br><br><b><u>'+
                 jsc.i18n('Note') + ':</u></b> ' +
-                jsc.i18n('Functions do not take parameters and are called without ().<br>') +
-                jsc.i18n('Just enter the function name when configuring in the module, e.g., helloholyrics<br>') +
+                jsc.i18n('Functions do not take parameters and are called without ()') + '.<br>' +
+                jsc.i18n('Just enter the function name when configuring in the module, e.g., helloholyrics') + '<br>' +
                 jsc.i18n('Have questions? It\'s better to study more and only use the module\'s built-in features!')
         });
 
@@ -480,7 +483,7 @@ function actionHAInput(module, video) {
     var k = 'ha';
     inputs.push({
         type: 'title',
-        name: '<html><b>' + jsc.i18n('Home Assistant Switch Settings for video ') + (video + 1) + jsc.i18n(' of event ') + getScheduleName()
+        name: '<html><b>' + jsc.i18n('Home Assistant Switch Settings for video {} of event {}', [video + 1, getScheduleName()])
     });
 
     var allowedValues = [{ value: '', label: '' }];
@@ -532,7 +535,7 @@ function actionMixerInput(module, video) {
 
     inputs.push({
         type: 'title',
-        name: '<html><b>' + jsc.i18n('Mixer Actions during video') + ' ' + (video + 1) + ' ' + jsc.i18n('of event') + ' ' +  getScheduleName()
+        name: '<html><b>' + jsc.i18n('Mixer Actions during video {} of event {}', [video + 1, getScheduleName()]),
     });
 
     for (var i = 0; i < qtd_inputs; i++) {
@@ -606,7 +609,7 @@ function actionDMXInput(module, video) {
 
     inputs.push({
         type: 'title',
-        name: '<html><b>' + jsc.i18n('Lumikit scene settings for video') + ' ' +  (video + 1) + ' ' +  jsc.i18n('of event') + ' ' +  getScheduleName()
+        name: '<html><b>' + jsc.i18n('Lumikit scene settings for video {} of event {}', [video + 1, getScheduleName()])
     });
 
     for (var i = 0; i < qtd_inputs; i++) {
@@ -658,7 +661,7 @@ function actionDMXInput(module, video) {
 }
 
 function createRelativeTimeInputs(i, video) {
-    var add = video === 0 ? '' : '/'+jsc.i18n('end');
+    //var add = video === 0 ? '' : '/' + jsc.i18n('end');
     var allowedValues = [{ value: null, label: '' }, { value: true, label: jsc.i18n('Start of Video') }];
     if (video === 1) {
         allowedValues.push({ value: false, label: jsc.i18n('End of Video') });
@@ -672,7 +675,7 @@ function createRelativeTimeInputs(i, video) {
             max: 1000,
             default_value: 0,
             label: jsc.i18n('Adjustment (±S)'),
-            description: jsc.i18n('Time relative to the start') + add + ' ' +  jsc.i18n('of the video. For example, 5 seconds before the start of the video, set -5, 4 seconds after the start') + add + ' ' +  jsc.i18n('of the video, set 4')
+            description: jsc.i18n('Time relative to the start/end of the video') + '. ' + jsc.i18n('For example, 5 seconds before the start of the video, set -5, 4 seconds after the start/end of the video, set 4') + '.'
         },
         {
             id: 'timer_index' + i,
@@ -1093,7 +1096,7 @@ function checkData(q) {
     
     tags.forEach(function(tag) {
         if (q[tag] && q[tag].isDir) {
-            showMessage(jsc.i18n('For Video') + ' ' +  messages[tag]  + ' ' +  jsc.i18n('select only 1 video and not a folder. Configuration removed.'));
+            showMessage(jsc.i18n('For Video {} select only 1 video and not a folder. Configuration removed.', [messages[tag]]));
             q[tag] = null;               
         }
     });
@@ -1410,7 +1413,7 @@ function eventReport(module) {
     h.log(createSeparator('='));
     h.log(center(jsc.i18n('Storyboard Showtime') + ' ' + d.s + '.'));
     h.log(createSeparator('-'));
-    h.log(jsc.i18n('End of Video 2 scheduled for') + ' ' + getScheduleTime(true) + ' + ' + cfg.atraso + ' ' + jsc.i18n('minutes delay.'));
+    h.log(jsc.i18n('End of Video 2 scheduled for {} + {} minutes delay', [getScheduleTime(true), cfg.atraso]));
     h.log(createSeparator('-'));
 
     // Log dos eventos

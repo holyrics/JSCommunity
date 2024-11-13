@@ -184,9 +184,9 @@ function addTriggFX(arr, module) {
             }
         }, {
             id: 'timerTexto',
-            name: jsc.i18n('F8 automático (segundos)'),
-            description: '<html>Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item.<BR>'+
-                         'Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras.',
+            name: jsc.i18n('F8 automático') + ' (' + jsc.i18n('segundos') + ')',
+            description: '<html>' + jsc.i18n('Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item') + '.<br>'+
+                         jsc.i18n('Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras') + '.',
             type: 'number',
             default_value : 20,
             min : 0,

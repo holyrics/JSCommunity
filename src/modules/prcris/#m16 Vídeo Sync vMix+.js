@@ -159,14 +159,14 @@ function settings() {
         {
             id: 'receiver_id',
             name: 'vMIX',
-            description: jsc.i18n("vMix receiver name."),
+            description: jsc.i18n("vMix receiver name"),
             type: 'receiver',
             receiver: 'vMix'
         }, 
         {       
             id: 'scene_name1',
             name: jsc.i18n('First Input'),
-            description: jsc.i18n("Select the first input in vMix to play the video."),
+            description: jsc.i18n("Select the first input in vMix to play the video"),
             type: 'string',
             suggested_values: function(obj) {
                 return getInputBrowser(obj.input.receiver_id);

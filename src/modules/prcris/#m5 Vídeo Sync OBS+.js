@@ -101,7 +101,7 @@ function settings() {
         }, 
         {        
             id: 'exclamation_mark',
-            label: jsc.i18n('Enviar para o OBS:'),
+            label: jsc.i18n('Enviar para o OBS') + ':',
             description: 'Dá a opção de enviar apenas alguns vídeos ou pastas para o OBS',
             type: 'string',
             allowed_values: [
@@ -140,7 +140,7 @@ function settings() {
         }, 
         {
             id: 'mixer_volume',
-            name: '% ' + jsc.i18n('Volume ') + '(0-100)',
+            name: '% ' + jsc.i18n('Volume') + ' (0-100)',
             description: '',
             type: 'number',
             min: 0,

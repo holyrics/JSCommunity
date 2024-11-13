@@ -133,7 +133,7 @@ function settings() {
         },
         {
             id: 'receiver_id',
-            name: jsc.i18n('OBS Studio'),
+            name: 'OBS Studio',
             description: jsc.i18n('OBS receiver name'),
             type: 'receiver',
             receiver: 'obs_v5'
@@ -252,7 +252,6 @@ function obsVideo(module, show, mediaName) {
         }
         return;
     }
-
     h.log(mUID, "{%t} " + jsc.i18n("exclamation mark") + ": {} , mediaName: {}", [s.exclamation_mark, mediaName]);
     h.log(mUID, "{%t} " + jsc.i18n("media name contains '!'") + ": {}", [mediaName.indexOf('!') !== -1]);
     
