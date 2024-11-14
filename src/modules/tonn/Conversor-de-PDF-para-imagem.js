@@ -62,7 +62,7 @@ function contextActions(module) {
     name: 'Converter para imagem',
     types: ['file'],
     action: function (evt) {
-      var fileName = "PDF2Image.bat";
+      var fileName = module.settings.PDF2Image || "PDF2Image.bat";
       if (!h.fileExists(fileName)) {
         h.notification("O arquivo " + fileName + " não foi encontrado na pasta de arquivos do holyrics", 10)
         return;
