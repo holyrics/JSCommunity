@@ -37,12 +37,9 @@ function actions(module) {
   arr.push({
     id: 'MultiplesPDF2Image',
     name: 'Converter todos os PDFs para imagem',
-    icon: 'task',
+    icon: 'picture_as_pdf',
     action: function (evt) {
-      var s = module.settings;
-      h.log("module.settings: " + module.settings)
       var fileName = module.settings.MultiplesPDF2Image || "MultiplesPDF2Image.bat";
-
       if (!h.fileExists(fileName)) {
         h.notification("O arquivo " + fileName + " não foi encontrado na pasta de arquivos do holyrics", 10)
         return;
