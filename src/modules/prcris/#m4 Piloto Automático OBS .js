@@ -12,18 +12,53 @@ function startup(module) {
 function info() {   
     return {  
         id: mID,
-        name: 'Piloto Automático OBS',           
-        description: '<html>'+
-                     '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>'+
-                     '• Compatível com pressionamento de F8/F9/F10/Finalização.<br>'+ 
-                     '• Compatível com apresentações do tipo texto/bíblia/música/imagem!/Power Point/Apresentação automática.<br><br>'+
-                     'Atualização: Os itens de texto/bíblia/música tem tempo mínimo dinâmico, aumentando de acordo com a quantidade de texto exibida.<br><br>'+
-                     infoVDDMM,
-         allowed_requests: [
-                     'https://holyrics.com.br/api/jsc/map_verse_length.php'
-         ]
+        name: 'OBS Autopilot',
+        description: '<html>' +
+                    '• Shows or hides an item in an OBS scene when a slide is shown or hidden.<br>' +
+                    '• Compatible with F8/F9/F10/End Key triggers.<br>' + 
+                    '• Compatible with presentations in text/bible/music/image/PowerPoint/Automatic Presentation formats.<br><br>' +
+                    'Update: Text/bible/music items have dynamic minimum display times, which increase based on the amount of text shown.<br><br>' + 
+                    infoVDDMM,
+        allowed_requests: [
+            'https://holyrics.com.br/api/jsc/map_verse_length.php'
+        ],
+        i18n: {
+            name: {
+                en: 'OBS Autopilot',
+                pt: 'Piloto Automático OBS',
+                es: 'Piloto Automático OBS',
+                ru: 'Автопилот OBS'
+            },
+            description: {
+                en: '<html>' +
+                    '• Shows or hides an item in an OBS scene when a slide is shown or hidden.<br>' +
+                    '• Compatible with F8/F9/F10/End Key triggers.<br>' + 
+                    '• Compatible with presentations in text/bible/music/image/PowerPoint/Automatic Presentation formats.<br><br>' +
+                    'Update: Text/bible/music items have dynamic minimum display times, which increase based on the amount of text shown.<br><br>' + 
+                    infoVDDMM,
+                pt: '<html>' +
+                    '• Exibe ou oculta um item em uma cena no OBS ao mostrar ou esconder um slide.<br>' +
+                    '• Compatível com pressionamento de F8/F9/F10/Finalização.<br>' + 
+                    '• Compatível com apresentações do tipo texto/bíblia/música/imagem!/Power Point/Apresentação automática.<br><br>' +
+                    'Atualização: Os itens de texto/bíblia/música têm tempo mínimo dinâmico, aumentando de acordo com a quantidade de texto exibida.<br><br>' + 
+                    infoVDDMM,
+                es: '<html>' +
+                    '• Muestra u oculta un elemento en una escena de OBS al mostrar u ocultar una diapositiva.<br>' +
+                    '• Compatible con las teclas F8/F9/F10/Finalización.<br>' + 
+                    '• Compatible con presentaciones de tipo texto/biblia/música/imagen/PowerPoint/Presentación automática.<br><br>' +
+                    'Actualización: Los elementos de texto/biblia/música tienen un tiempo mínimo dinámico, que aumenta según la cantidad de texto mostrado.<br><br>' + 
+                    infoVDDMM,
+                ru: '<html>' +
+                    '• Показывает или скрывает элемент на сцене OBS при показе или скрытии слайда.<br>' +
+                    '• Совместим с F8/F9/F10/Завершение.<br>' + 
+                    '• Совместим с презентациями типа текст/библия/музыка/изображение/PowerPoint/автоматическая презентация.<br><br>' +
+                    'Обновление: элементы текста/библии/музыки имеют динамическое минимальное время отображения, увеличивающееся в зависимости от количества отображаемого текста.<br><br>' + 
+                    infoVDDMM
+            }
+        }
     };
 }
+
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
@@ -116,10 +151,10 @@ function addTriggFX(arr, module) {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
- function settings() {
+function settings() {
     return [
         {
-            name: 'Sobre ' + mID,
+            name: jsc.i18n('Sobre') + ' ' + mID,
             description: infoVDDMM,
             type: 'label'
         },
@@ -141,7 +176,7 @@ function addTriggFX(arr, module) {
             type: 'separator'
         }, {
             type: 'title',
-            label: 'Associe os objetos da cena base:',
+            label: jsc.i18n('Associe os objetos da cena base') + ':',
         }, {
             id: 'scene_item_name_verse',
             name: jsc.i18n('Bíblia'),
@@ -152,7 +187,7 @@ function addTriggFX(arr, module) {
             }
         }, {
             id: 'scene_item_name_song',
-            name: jsc.i18n('Letra Música/Ap. Automática'),
+            name: jsc.i18n('Letra Música') + '/' + jsc.i18n('Apresentação Automática'),
             description: '',
             type: 'string',
             suggested_values: function(obj) {
@@ -169,7 +204,7 @@ function addTriggFX(arr, module) {
         }, {
             id: 'scene_item_name_image',
             name: jsc.i18n('Imagens com !'),
-            description: '<html>Ao exibir imagens: <i>(nome precisa conter uma exclamação "!")</i>',
+            description: '<html>' + jsc.i18n('Ao exibir imagens') + ': <i>' + jsc.i18n('(nome precisa conter uma exclamação "!")') + '</i>',
             type: 'string',
             suggested_values: function(obj) {
                 return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
@@ -185,7 +220,7 @@ function addTriggFX(arr, module) {
         }, {
             id: 'timerTexto',
             name: jsc.i18n('F8 automático') + ' (' + jsc.i18n('segundos') + ')',
-            description: '<html>' + jsc.i18n('Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item') + '.<br>'+
+            description: '<html>' + jsc.i18n('Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item') + '.<br>' +
                          jsc.i18n('Slides de texto, música e bíblia podem ter um tempo maior baseado na quantidade de caracteres, sendo aproximadamente 1 segundo a cada 10 letras') + '.',
             type: 'number',
             default_value : 20,
@@ -195,15 +230,15 @@ function addTriggFX(arr, module) {
             type: 'separator'
         }, {
             id: 'log',
-            label: 'Habilitar log',
+            label: jsc.i18n('Habilitar log'),
             type: 'boolean',
             onchange :  function(obj) {
-                logState(obj.input.log, mUID, 'onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onChange ' + mID); //habilita ou desabilita o log de acordo com a configuração  
               }
         }
     ];
-
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22736574496e74657276616c227d
 function setIntervalVerse(receiverID, scene, item, time) { 
 
@@ -262,7 +297,7 @@ function clearIntervalVerse() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
 function verseOBS(show, obj, module) {
   var trigg = obj.metadata.trigger.id;
-  h.log(mUID, '==== Trigger acionada: {}', trigg);
+  h.log(mUID, '==== ' + jsc.i18n('Trigger acionada') + ': {}', trigg);
 
   var type = typePres();
   var typeTrigg = typeOfTrigger(trigg);
@@ -275,13 +310,13 @@ function verseOBS(show, obj, module) {
     type = 'song';
   }
 
-  h.log(mUID, '+==== Tipo de dados na tela | type: {}, typeTrigg: {}', type, typeTrigg);
+  h.log(mUID, '+==== ' + jsc.i18n('Tipo de dados na tela') + ' | type : {}, typeTrigg: {}', type, typeTrigg);
 
   clearTimeouts();
   clearIntervalVerse();
 
   if (typeAbort(type) && show) {
-    h.log(mUID, 'Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper');
+    h.log(mUID, jsc.i18n('Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper'));
     return;
   }
 
@@ -293,7 +328,7 @@ function verseOBS(show, obj, module) {
   h.log(mUID, "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
 
   if (!scene) {
-    h.log(mUID, 'Sem cena para o tipo: {}', type);
+    h.log(mUID, jsc.i18n('Sem cena para o tipo') + ': {}', type);
     return;
   }
 
@@ -342,17 +377,17 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
         try {
             itemEnabled = jsc.obs_v5.getSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID);
         } catch (e) {
-            h.log(mUID, 'Erro OBS: {}', [e]);
+            h.log(mUID, jsc.i18n('Erro OBS') + ': {}', [e]);
             return;
         }
-        h.log(mUID, 'Status inicial item {}: {} | passada {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
+        h.log(mUID, jsc.i18n('Status inicial item') + ' {}: {} | ' + jsc.i18n('passada') + ' {}', [sceneItemNameOrID, itemEnabled, attempts + 1]);
         if (itemEnabled == show) {
             break;
         } else {
             try {
                 jsc.obs_v5.setSceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show);
             } catch (e) {
-                h.log(mUID, 'Erro OBS:  {}', [e]);
+                h.log(mUID, jsc.i18n('Erro OBS') + ': {}', [e]);
                 return;
             }
             if (attempts > 0) {
@@ -363,73 +398,64 @@ function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
     }
 
     if (attempts == maxAttempts) {
-        h.log(mUID, "Max attempts reached. The scene item may not have been set correctly.");
+       h.log(mUID, jsc.i18n("Número máximo de tentativas atingido. O item da cena pode não ter sido configurado corretamente."));
     } else {
         updateStatus(sceneItemNameOrID, show);
     }
 }
 
 function typeAbort(type) {
-    
     var currentPresentation = h.hly('GetCurrentPresentation').data;
     var slide_type = currentPresentation ? currentPresentation.slide_type : "undefined";
     
     var types_presentation_abort = ['verse', 'ppt', 'text'];
     var types_screen_abort = ['blank', 'black', 'wallpaper'];
 
-    var abortS =  types_screen_abort.indexOf(slide_type) !== -1 ? true : false;
-    var abortT =  types_presentation_abort.indexOf(type) !== -1 ? true : false;
+    var abortS = types_screen_abort.indexOf(slide_type) !== -1;
+    var abortT = types_presentation_abort.indexOf(type) !== -1;
     
     return abortS && abortT;
-} 
+}
 
 function typePres() {
     var currentPresentation = h.hly('GetCurrentPresentation').data;
-    h.log(mUID, 'currentPresentation = {}', [currentPresentation]);
+    h.log(mUID, 'currentPresentation= {}', [currentPresentation]);
     var type = "";
     if (currentPresentation && currentPresentation.type !== undefined) {
-           type = currentPresentation.type.toLowerCase();
-           type = type === 'file' ? 'ppt' : type;
-           if (type == 'image' && currentPresentation.name.indexOf("!") < 0) {
-                type = "image_without_!";
-           }
+        type = currentPresentation.type.toLowerCase();
+        type = type === 'file' ? 'ppt' : type;
+        if (type == 'image' && currentPresentation.name.indexOf("!") < 0) {
+            type = "image_without_!";
+        }
     }
     type = type.indexOf("system_") === 0 ? type.substring(7) : type;
     return type;
 }
 
-
 function addTimeoutID(timeoutID) {
-  var timeouts = h.getGlobal(mUID+"_timeouts", []);
-  timeouts.push(timeoutID);
-  h.setGlobal(mUID+"_timeouts", timeouts);
+    var timeouts = h.getGlobal(mUID+"_timeouts", []);
+    timeouts.push(timeoutID);
+    h.setGlobal(mUID+"_timeouts", timeouts);
 }
 
 function clearTimeouts() {
-
-  var timeouts = h.getGlobal(mUID+"_timeouts", []);
-  
-  // Cancela cada timeout no array
-  for (var i = 0; i < timeouts.length; i++) {
-    h.log(mUID,'Cancelando timeout {}', timeouts[i]);
-    h.clearTimeout(timeouts[i]);
-  }
-  
-  var id = h.getGlobal(mUID+'_setRepaint_id') || 0;
-  if (id>0) {
-     h.setGlobal(mUID+'_setRepaint_id', 0);
-     h.clearInterval(id);
-  }
-
-  // Limpa o array de timeouts
-  h.setGlobal(mUID+"_timeouts", []);
+    var timeouts = h.getGlobal(mUID+"_timeouts", []);
+    for (var i = 0; i < timeouts.length; i++) {
+        h.log(mUID, jsc.i18n('Cancelando timeout') + ' {}', timeouts[i]);
+        h.clearTimeout(timeouts[i]);
+    }
+    var id = h.getGlobal(mUID+'_setRepaint_id') || 0;
+    if (id > 0) {
+        h.setGlobal(mUID+'_setRepaint_id', 0);
+        h.clearInterval(id);
+    }
+    h.setGlobal(mUID+"_timeouts", []);
 }
 
 function disableSceneItems(settings) {
     var receiverID = settings.receiver_id;
     var sceneName = settings.scene_name;
 
-    // Lista de keys que contêm os nomes dos itens da cena
     var itemKeys = [
         'scene_item_name_verse',
         'scene_item_name_song',
@@ -438,7 +464,6 @@ function disableSceneItems(settings) {
         'scene_item_name_ppt'
     ];
 
-    // Iterar sobre as keys para desabilitar os itens correspondentes
     for (var i = 0; i < itemKeys.length; i++) {
         var sceneItemNameOrID = settings[itemKeys[i]];
         if (sceneItemNameOrID) {
@@ -453,59 +478,52 @@ function typeOfTrigger(type) {
     if (triggerID.indexOf('_slide') != -1) {
         triggerID = triggerID.slice(0, -6);
     }
-    h.log(mUID, '+*********** Nome da Trigger: {}, resultado da limpeza: {}', type, triggerID);
+    h.log(mUID, '+*********** ' + jsc.i18n('Nome da Trigger') + ': {}, ' + jsc.i18n('resultado da limpeza') + ': {}', type, triggerID);
     return triggerID;
 }
 
-
-function calculateDisplayDuration(time, type, obj) { 
-  var timeoutMin = time * 1000;
-  var textLength = 0;
-  
-  h.log(mUID,'================== {}',obj);
-
-  if (type === "text" || type === "song") {
-    textLength = obj.text ? obj.text.length : 0;
-  } else if (type === 'verse') {
-    var pres = h.hly('GetCurrentPresentation');
-    textLength = getVerseLengthByID(pres.data.id);
-  }
-
-  var calculatedTimeout = textLength * 100;
-  var timeoutDuration = calculatedTimeout < timeoutMin ? timeoutMin : calculatedTimeout + 5000;
-
-  h.log(mUID, "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
-    textLength, type, timeoutMin / 1000, timeoutDuration / 1000);
-
-  return timeoutDuration;
-}
-
-
-function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
-  if (time > 0) {
-    clearTimeouts(); // Limpa os timeouts anteriores
+function calculateDisplayDuration(time, type, obj) {
+    var timeoutMin = time * 1000;
+    var textLength = 0;
     
-    var clearType = (type === 'song') ? 'SetF9' : 'SetF8'; // Define qual tecla F será apertada
-    var timeoutDuration = calculateDisplayDuration(time, type, obj); // Calcula o tempo de exibição
+    h.log(mUID, '================== {}', obj);
 
-    if (type === 'verse') {
-      setIntervalVerse(receiverID, scene, item, time); // Configura o intervalo para versículo
+    if (type === "text" || type === "song") {
+        textLength = obj.text ? obj.text.length : 0;
+    } else if (type === 'verse') {
+        var pres = h.hly('GetCurrentPresentation');
+        textLength = getVerseLengthByID(pres.data.id);
     }
 
-    // setIntervalRefresh(); // Configura o intervalo de atualização
+    var calculatedTimeout = textLength * 100;
+    var timeoutDuration = calculatedTimeout < timeoutMin ? timeoutMin : calculatedTimeout + 5000;
 
-    var timeoutID = h.setTimeout(function() {
-      h.hly(clearType, { enable: true }); // Executa o comando F
-      h.log(mUID, '************ Executing timeout');
-      sceneItemEnabled(receiverID, scene, item, false); // Desativa o item da cena
-    }, timeoutDuration); // Define o timeout em milissegundos
-
-    addTimeoutID(timeoutID); // Armazena o ID do timeout
-    h.log(mUID, '++++++ new timeOut {} | {} | {}s | setSceneItemEnabled( "{}", "{}", "{}", false)', 
-      type, clearType, timeoutDuration / 1000, receiverID, scene, item);
-  }
+    h.log(mUID, "calculateDisplayDuration(): Text length: {} | type: {}  | timeOutMin {}s | newTimeOut {}s",
+       textLength, type, timeoutMin / 1000, timeoutDuration / 1000);
+    return timeoutDuration;
 }
 
+function setTimeoutKeyF(receiverID, scene, item, time, type, obj) {
+    if (time > 0) {
+        clearTimeouts();
+        
+        var clearType = (type === 'song') ? 'SetF9' : 'SetF8';
+        var timeoutDuration = calculateDisplayDuration(time, type, obj);
+
+        if (type === 'verse') {
+            setIntervalVerse(receiverID, scene, item, time);
+        }
+
+        var timeoutID = h.setTimeout(function() {
+            h.hly(clearType, { enable: true });
+            h.log(mUID, '************' + jsc.i18n('Executando timeout'));
+            sceneItemEnabled(receiverID, scene, item, false);
+        }, timeoutDuration);
+
+        addTimeoutID(timeoutID);
+        h.log(mUID, '++++++ ' + jsc.i18n('novo timeOut') + ' {} | {} | {}s | setSceneItemEnabled("{}", "{}", "{}", false)', type, clearType, timeoutDuration / 1000, receiverID, scene, item);
+    }
+}
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
@@ -519,9 +537,9 @@ return   {
             id: 'clearTimeout',
             label: '',
             icon : 'timer',
-            hint : 'Cancela o F8 automático programado pelo tempo de exibição do Slide',
+            hint : jsc.i18n('Cancela o F8 automático programado pelo tempo de exibição do Slide'),
             action: function(evt) {
-                  h.notification("F8 automático cancelado para o slide atual",3);
+                  h.notification(jsc.i18n('F8 automático cancelado para o slide atual.'),3);
                   h.hly('SetF8', { enable: false });
                   h.hly('SetF9', { enable: false });
                   h.hly('SetF10', { enable: false });
@@ -531,7 +549,8 @@ return   {
                   var timeouts = h.getGlobal(mUID+"_timeouts") || [];
                   if (timeouts.length>0) {
                   return {
-                        description : '<-Cancel', //h.getCountdown(mID+'TimeOut'),
+                        description : '<-' + jsc.i18n('Cancelar'), //h.getCountdown(mID+'TimeOut'),
+                        hint : jsc.i18n('Timer ativo, pressione para cancelar o timer e/ou reexibir o item'),
                         icon : 'timer_off',
                         background: '790903',   // default = null
                     };

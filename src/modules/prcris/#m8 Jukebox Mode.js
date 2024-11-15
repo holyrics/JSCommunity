@@ -8,17 +8,38 @@ function startup(module) {
   mUID = mID + module.id;
   logState(module.settings.log, mUID, 'startup '+ mID);
 }
-
 function info() {
     return {
         id: mID,
         name: 'Jukebox Mode',
-        description: '<html>'+
-                     '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>'+
+        description: '<html>' +
+                     '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>' +
                      infoVDDMM,
-         allowed_requests: [
-                     allowedPrcrisModuleRequests
-         ]
+        allowed_requests: [
+            allowedPrcrisModuleRequests
+        ],
+        i18n: {
+            name: {
+                en: 'Jukebox Mode',
+                pt: 'Modo Jukebox',
+                es: 'Modo Jukebox',
+                ru: 'Режим Jukebox'
+            },
+            description: {
+                en: '<html>' +
+                    '• When the current song finishes, the next one starts automatically within the same Media tab title<br>' +
+                    infoVDDMM,
+                pt: '<html>' +
+                    '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>' +
+                    infoVDDMM,
+                es: '<html>' +
+                    '• Al finalizar la canción actual, comienza la siguiente automáticamente, dentro del mismo título de la pestaña de Medios<br>' +
+                    infoVDDMM,
+                ru: '<html>' +
+                    '• При завершении текущей песни следующая начинается автоматически, в рамках той же вкладки Медиа<br>' +
+                    infoVDDMM
+            }
+        }
     };
 }
 
@@ -55,7 +76,7 @@ function triggers(module) {
 
                     if (playlist.data[i].type === "song" && titleFound && actualSongFound) {
                         h.showSong(playlist.data[i].song_id);
-                        h.notification("Música "+playlist.data[i].name+' inciada pelo módulo ' + mUID , 5);
+                        h.notification(jsc.i18n("Música")+" "+playlist.data[i].name+" "+jsc.i18n("inciada pelo módulo") + " " + mUID , 5);
                         break;
                     }
                 }

@@ -15,22 +15,82 @@ function info() {
     return {
         id: mID,
         name: 'PC unMute Holyrics+',
-        description: '<html>'+
-                     'Que tal <b><u>liberar o canal de áudio conectado ao PC</u></b> em seu mixer digital sempre que iniciar um áudio no holyrics?<br><hr>'+
-                     'Este módulo cria 3 triggers que fazem todo o trabalho para você, além de adicionar botões de mute e volume ao seu holyrics!<br><br>'+
-                     '• Libera o canal e ajusta o volume nos mixers digitais Behinger e SoundCraft ao inicializar arquivos com áudio.<br>'+
-                     '• Cria um botão exclusivo para gerenciar o mute do canal.<br>'+
-                     '• Cria um fader exclusivo para ajuste do volume do canal.<br>'+
-                     '• Compatível com Vídeo, Áudio e Apresentação Automática.<br>'+
-                     '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Opção de alterar o Volume do VLC do Holyrics<br>'+
-                     '• Aceita as entradas AUX dos mixers.<br>'+
-                     infoVDDMM,
-         allowed_requests: [
-                     allowedPrcrisModuleRequests
-         ]
+        description: '<html>' +
+                    '• Unmutes the audio channel connected to the PC on your digital mixer whenever an audio file is started in Holyrics.<br>' +
+                    '• Creates 3 triggers to do the work for you, in addition to adding mute and volume buttons to your Holyrics!<br><br>' +
+                    '• Unmutes the channel and adjusts the volume on Behringer and SoundCraft digital mixers when initializing audio files.<br>' +
+                    '• Creates a dedicated button to manage the channel mute.<br>' +
+                    '• Creates a dedicated fader to adjust the channel volume.<br>' +
+                    '• Compatible with Video, Audio, and Automatic Presentation.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Option to change VLC Volume from Holyrics.<br>' +
+                    '• Supports AUX inputs from mixers.<br>' +
+                    infoVDDMM,
+        allowed_requests: [
+            allowedPrcrisModuleRequests
+        ],
+        i18n: {
+            name: {
+                en: 'PC unMute Holyrics+',
+                pt: 'PC unMute Holyrics+',
+                es: 'PC unMute Holyrics+',
+                ru: 'PC unMute Holyrics+',
+                it: 'PC unMute Holyrics+'
+            },
+            description: {
+                en: '<html>' +
+                    '• Unmutes the audio channel connected to the PC on your digital mixer whenever an audio file is started in Holyrics.<br>' +
+                    '• Creates 3 triggers to do the work for you, in addition to adding mute and volume buttons to your Holyrics!<br><br>' +
+                    '• Unmutes the channel and adjusts the volume on Behringer and SoundCraft digital mixers when initializing audio files.<br>' +
+                    '• Creates a dedicated button to manage the channel mute.<br>' +
+                    '• Creates a dedicated fader to adjust the channel volume.<br>' +
+                    '• Compatible with Video, Audio, and Automatic Presentation.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Option to change VLC Volume from Holyrics.<br>' +
+                    '• Supports AUX inputs from mixers.<br>' +
+                    infoVDDMM,
+                pt: '<html>' +
+                    '• Libera o canal de áudio conectado ao PC no seu mixer digital sempre que um arquivo de áudio for iniciado no Holyrics.<br>' +
+                    '• Cria 3 triggers que fazem todo o trabalho para você, além de adicionar botões de mute e volume ao seu Holyrics!<br><br>' +
+                    '• Libera o canal e ajusta o volume nos mixers digitais Behringer e SoundCraft ao inicializar arquivos com áudio.<br>' +
+                    '• Cria um botão dedicado para gerenciar o mute do canal.<br>' +
+                    '• Cria um fader dedicado para ajustar o volume do canal.<br>' +
+                    '• Compatível com Vídeo, Áudio e Apresentação Automática.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Opção de alterar o Volume do VLC do Holyrics.<br>' +
+                    '• Aceita as entradas AUX dos mixers.<br>' +
+                    infoVDDMM,
+                es: '<html>' +
+                    '• Desmutea el canal de audio conectado al PC en tu mezclador digital siempre que inicies un archivo de audio en Holyrics.<br>' +
+                    '• Crea 3 triggers para hacer todo el trabajo por ti, además de añadir botones de mute y volumen a tu Holyrics!<br><br>' +
+                    '• Desmutea el canal y ajusta el volumen en los mezcladores digitales Behringer y SoundCraft al iniciar archivos de audio.<br>' +
+                    '• Crea un botón dedicado para gestionar el mute del canal.<br>' +
+                    '• Crea un fader dedicado para ajustar el volumen del canal.<br>' +
+                    '• Compatible con Vídeo, Audio y Presentación Automática.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Opción para cambiar el volumen del VLC desde Holyrics.<br>' +
+                    '• Acepta las entradas AUX de los mezcladores.<br>' +
+                    infoVDDMM,
+                ru: '<html>' +
+                    '• Размутирует аудиоканал, подключенный к ПК, на вашем цифровом микшере каждый раз, когда начинается воспроизведение аудиофайла в Holyrics.<br>' +
+                    '• Создает 3 триггера, которые выполняют всю работу за вас, а также добавляет кнопки mute и регулировки громкости в ваш Holyrics!<br><br>' +
+                    '• Размутирует канал и регулирует громкость на цифровых микшерах Behringer и SoundCraft при инициализации аудиофайлов.<br>' +
+                    '• Создает специальную кнопку для управления mute канала.<br>' +
+                    '• Создает специальный фейдер для регулировки громкости канала.<br>' +
+                    '• Совместим с Видео, Аудио и Автоматической Презентацией.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Опция изменения громкости VLC из Holyrics.<br>' +
+                    '• Поддерживает AUX входы от микшеров.<br>' +
+                    infoVDDMM,
+                it: '<html>' +
+                    '• Disattiva il muto del canale audio collegato al PC sul tuo mixer digitale ogni volta che un file audio viene avviato in Holyrics.<br>' +
+                    '• Crea 3 trigger per fare il lavoro per te, oltre ad aggiungere pulsanti di muto e volume al tuo Holyrics!<br><br>' +
+                    '• Disattiva il muto e regola il volume su mixer digitali Behringer e SoundCraft quando si avviano file audio.<br>' +
+                    '• Crea un pulsante dedicato per gestire il muto del canale.<br>' +
+                    '• Crea un fader dedicato per regolare il volume del canale.<br>' +
+                    '• Compatibile con Video, Audio e Presentazioni Automatiche.<br>' +
+                    '• <span style="background-color: yellow;"><font color="black"><b> ##NEW </b></font></span> Opzione per cambiare il volume di VLC da Holyrics.<br>' +
+                    '• Supporta ingressi AUX dai mixer.<br>' +
+                    infoVDDMM
+            }
+        }
     };
 }
-
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 /// triggers para ocultar / exibir texto no telão e OBS
@@ -56,7 +116,8 @@ function triggers(module) {
           var m2 = s.mixer_channel;
           var m3 = s.mixer_volume;
 
-          h.log(mUID, "Liberando mesa de som, receiver: {} , channel: {}, volume: {}", [m1, m2, m3]);
+          h.log(mUID, jsc.i18n('Releasing mixer') + ', receiver: {} , channel: {}, volume: {}', [m1, m2, m3]);
+
           
           SetPluginSettings(module); 
           unMute(m1, m2, s.channel_type);
@@ -75,8 +136,8 @@ function triggers(module) {
 function settings() {
     return [
         {
-            name: 'Sobre ' + mID,
-            description: "<html><hr>Para mais informações acesse <a href='https://www.youtube.com/watch?v=wW-cZJYV6hg'>youtube.com/@multimidiaverdadebalneario</a></html>",
+            name: jsc.i18n('Sobre') + ' ' + mID,
+            description: infoVDDMM,
             type: 'label'
         }, 
         {
@@ -84,30 +145,30 @@ function settings() {
         },  
         {
             type: 'title',
-            label: 'Configurações mixer digital:'
+            label: jsc.i18n('Configurações do mixer digital') + ':'
         }, 
         {
             id: 'digital_mixer_id',
             name: jsc.i18n('Mixer Digital'),
-            description: '<html><hr>Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute',
+            description: '<html><hr>' + jsc.i18n('Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute'),
             type: 'receiver',
             receiver: 'osc,soundcraft'
         }, 
         {
             id: 'channel_type',
-            name: jsc.i18n('Tipo Entrada'),
+            name: jsc.i18n('Tipo da Entrada'),
             description: '',
             type: 'integer',
-            allowed_values : [
-                             {value: 0,  label: 'Input Channel'},
-                             {value: 1,  label: 'Aux Channel'},
-                             {value: 2,  label: 'Line Channel'},
-                       ],
-            default_value : 0
+            allowed_values: [
+                {value: 0, label: 'Input Channel'},
+                {value: 1, label: 'Aux Channel'},
+                {value: 2, label: 'Line Channel'}
+            ],
+            default_value: 0
         }, 
         {
             id: 'mixer_channel',
-            name: jsc.i18n('Channel number'),
+            name: jsc.i18n('Número do canal'),
             description: '',
             type: 'number',
             min: 1,
@@ -128,16 +189,16 @@ function settings() {
         },  
         {
             type: 'title',
-            label: 'Configurações VLC Player:'
+            label: jsc.i18n('Configurações') + 'VLC Player:'
         },
         {
             id: 'vlc_volume_unmute',
-            label: 'Alterar volume / Mute',
-            type: 'boolean',
+            label: jsc.i18n('Alterar Volume') + '/' + jsc.i18n('Mute'),
+            type: 'boolean'
         },
         {
             id: 'vlc_volume_level',
-            name: jsc.i18n('Volume VLC'),
+            name: jsc.i18n('Volume') + ' VLC',
             description: '',
             type: 'number',
             component: 'slider',
@@ -148,10 +209,10 @@ function settings() {
         }, 
         {
             id: 'log',
-            label: 'Habilitar log',
+            label: jsc.i18n('Habilitar log'),
             type: 'boolean',
             onchange: function(obj) {
-                logState(obj.input.log, mUID,'onchange '+ mID); // Habilita ou desabilita o log de acordo com a configuração  
+                logState(obj.input.log, mUID, 'onchange ' + mID); // Habilita ou desabilita o log de acordo com a configuração  
             }
         }
     ];
@@ -160,7 +221,7 @@ function settings() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
 function getMixerDetails(receiverID, channel_type) {
   if (!receiverID) {
-    h.log(mUID, ': Mixer não configurado!');
+    h.log(mUID, '{%t}: ' + jsc.i18n('Mixer não configurado!'));
     return null;
   }
 
@@ -219,7 +280,7 @@ function getMute(receiverID, channel, channel_type) {
       return jsc.soundcraft.conn(receiverID)[m.channelAction](channel).isMute();
     }
   } catch (e) {
-    h.log(mUID, 'Erro ao obter estado de mute: {}', [e]);
+    h.log(mUID, jsc.i18n('Erro ao obter estado de mute') + ': {}', [e]);
     return null; 
   }
 }
@@ -236,7 +297,7 @@ function getVolume(receiverID, channel, channel_type) {
       return jsc.soundcraft.conn(receiverID)[m.channelAction](channel).getVolume();
     }
   } catch (e) {
-    h.log(mUID, 'Erro ao obter volume: {}', [e]);
+    h.log(mUID, jsc.i18n('Erro ao obter volume') + ': {}', [e]);
     return null; 
   }
 }
@@ -256,7 +317,7 @@ function toggleMute(receiverID, channel, channel_type) {
       isMuted ? conn.unmute() : conn.mute(); 
     }
   } catch (e) {
-    h.log(mUID, 'Erro ao alternar mute: {}', [e]);
+    h.log(mUID, jsc.i18n('Erro ao alternar mute') + ': {}', [e]);
   }
 }
 
@@ -278,9 +339,8 @@ function SetPluginSettings(module) {
       var pMute = player.isMute();
       var pRepeat = player.isRepeat();
       var pVolume = player.getVolume();
-      
-      var message = '<html><img src="icon,warning"/> <b><u>A t e n ç ã o :</u></b><br>';
-
+      var message = '<html><img src="icon,warning"/> <b><u>'+jsc.i18n('Atenção')+':</u></b><br>';
+     
       // gera alertas de segurança
             
       if (pRepeat) {
@@ -292,9 +352,9 @@ function SetPluginSettings(module) {
       if (pMute) { 
          message += '<br><img src="icon,volume_off"/> O <b>mute</b> está ativado.';
       }      
-      
-      h.notification(message,5);
-      
+      if (pRepeat || pVolume < 30 || pMute) {
+         h.notification(message,5);
+      }
    },500);
       
 }
@@ -313,10 +373,10 @@ function actionVolumeChannel(module) {
     var m2 = s.mixer_channel;
     var m3 = s.channel_type;
     return {
-              id: 'Alterar Volume',
+              id: 'changeVolume',
               label: '',
               icon : 'tune',
-              hint : 'Alterar Volume',
+              hint : jsc.i18n('Alterar Volume'),
               action: function(evt) {
                  var inputs = [{
                         id: 'mixer_volume',
@@ -342,7 +402,7 @@ function actionStatusChannel(module) {
     var mute = getMute(m1,m2,m3);
     return {
         id: 'toggleMute',
-        hint: 'Mute on/off',
+        hint: mute ?  jsc.i18n('Desativar Mute') : jsc.i18n('Ativar Mute'),
         icon : mute ?  'volume_off' : 'volume_up',
         action: function(evt) {
           toggleMute(m1,m2,m3);
@@ -355,6 +415,7 @@ function actionStatusChannel(module) {
             var mute = getMute(m1,m2,m3);
             var result = {};
             result.icon = mute ?  'volume_off' : 'volume_up';
+            result.hint = mute ?  jsc.i18n('Desativar Mute') : jsc.i18n('Ativar Mute');
             if (mute) { 
                 result.background = '790903'; 
             }
