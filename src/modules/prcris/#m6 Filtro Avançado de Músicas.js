@@ -346,7 +346,7 @@ function listaMusicas(module, local) {
     var itemDate = new Date(module.item.date);
 
     // Pegar os schedules de acordo com o mês e ano
-    var r = h.hly('GetSchedules', {
+    var r = h.hly(jsc.i18n('GetSchedules'), {
         month: itemDate.getMonth() + 1,
         year: itemDate.getFullYear()
     });
