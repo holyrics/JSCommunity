@@ -14,153 +14,186 @@ logState(module.settings.log, mUID, 'startup '+ mID);
 function info() {
     return {
         id: mID,
-        name: 'Canta Fácil',
+        name: 'Easy Sing',
         description: '<html>'+
-                     '• Permite associar um cantor escalado a cada música da aba Mídia<br>'+
-                     '• Exibe o cantor escalado da música na tela de retorno no slide 1<br>'+
-                     '• Monta uma base de dados de cantores por música para axiliar na montagem de escalas<br>'+
-                     '• Ajusta o volume dos microfones dos cantores, baseado na voz principal da música na escala. (behinger e soundcraft)<BR>'+
-                     '• Gera uma lista das músicas e cantores escalados para você enviar para o grupo<br><br>'+
+                     '• Allows associating a scheduled singer with each song on the Media tab<br>'+
+                     '• Displays the scheduled singer of the song on the return screen on slide 1<br>'+
+                     '• Creates a database of singers by song to assist in schedule creation<br>'+
+                     '• Adjusts the microphones\' volume of the singers based on the main voice of the song on the schedule. (Behringer and Soundcraft)<br>'+
+                     '• Generates a list of scheduled songs and singers for you to send to the group<br><br>'+
                      infoVDDMM,
-         allowed_requests: [
-                     allowedPrcrisModuleRequests
-         ]
+        allowed_requests: [
+            allowedPrcrisModuleRequests
+        ],
+        i18n: {
+            name: {
+                en: 'Easy Sing',
+                pt: 'Canta Fácil',
+                es: 'Canta Fácil',
+                ru: 'Легко Петь'
+            },
+            description: {
+                en: 'Allows associating a scheduled singer with each song on the Media tab.<br>'+
+                    'Displays the scheduled singer of the song on the return screen on slide 1.<br>'+
+                    'Creates a database of singers by song to assist in schedule creation.<br>'+
+                    'Adjusts the microphones\' volume of the singers based on the main voice of the song on the schedule. (Behringer and Soundcraft)<br>'+
+                    'Generates a list of scheduled songs and singers for you to send to the group.<br><br>'+
+                    infoVDDMM,
+                pt: 'Permite associar um cantor escalado a cada música da aba Mídia.<br>'+
+                    'Exibe o cantor escalado da música na tela de retorno no slide 1.<br>'+
+                    'Monta uma base de dados de cantores por música para auxiliar na montagem de escalas.<br>'+
+                    'Ajusta o volume dos microfones dos cantores, baseado na voz principal da música na escala. (Behringer e Soundcraft)<br>'+
+                    'Gera uma lista das músicas e cantores escalados para você enviar para o grupo.<br><br>'+
+                    infoVDDMM,
+                es: 'Permite asociar un cantante programado con cada canción en la pestaña de Medios.<br>'+
+                    'Muestra el cantante programado de la canción en la pantalla de retorno en la diapositiva 1.<br>'+
+                    'Crea una base de datos de cantantes por canción para ayudar en la creación de horarios.<br>'+
+                    'Ajusta el volumen de los micrófonos de los cantantes basado en la voz principal de la canción en el horario. (Behringer y Soundcraft)<br>'+
+                    'Genera una lista de canciones y cantantes programados para que envíes al grupo.<br><br>'+
+                    infoVDDMM,
+                ru: 'Позволяет ассоциировать запланированного певца с каждой песней на вкладке "Медиа".<br>'+
+                    'Отображает запланированного певца песни на экране возврата на слайде 1.<br>'+
+                    'Создает базу данных певцов по песням для помощи в создании расписания.<br>'+
+                    'Регулирует громкость микрофонов певцов, исходя из основного голоса песни в расписании. (Behringer и Soundcraft)<br>'+
+                    'Создает список запланированных песен и певцов для отправки группе.<br><br>'+
+                    infoVDDMM
+            }
+        }
     };
 }
 
-
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e74657874416374696f6e227d
-
 // esta aba é responsável pelo menu clicando o botão direito em cima de uma música para trazer os dados registrados de volume e cantor atual.
+
 
 function contextActions(module) {
     return [
         {
-            name: spanIcon("\ueaca")+ 
-                  "Listar Cantor/Volume Vozes (" + mUID + ')',
+            name: spanIcon("\ueaca ") + jsc.i18n("Listar Cantor/Volume Vozes") + " (" + mUID + ')',
             types: ['song'],
             action: function(module) {
                 var musicID = String(module.item.id);
                 var slideNumber = 1;
                 var leadSinger = getSinger(musicID);
                 var volumeInputs = loadInputsVolume();
-                var mensagem = ["Cantor da música = " + leadSinger, "Volume verso 1:"];
+                var mensagem = [
+                    jsc.i18n("Cantor da música") + " = " + leadSinger, 
+                    jsc.i18n("Volume verso 1:")
+                ];
                 if (volumeInputs[musicID] &&
                     volumeInputs[musicID][leadSinger] &&
                     volumeInputs[musicID][leadSinger].slides[slideNumber]) {
                     var volumes = volumeInputs[musicID][leadSinger].slides[slideNumber];
-                    h.log(mUID, 'contextActionsCantorDaMusica mensagem {} ', [mensagem]);
                     for (var cantor in volumes) {
                         if (volumes.hasOwnProperty(cantor)) {
                             mensagem.push(cantor + " - " + volumes[cantor].volume);
                         }
                     }
+                } else {
+                    mensagem.push(jsc.i18n('Volume não encontrado para o verso 1'));
                 }
-              else
-                  mensagem.push('Volume não encontrado para o verso 1');
-              showMessage(module.item.title, mensagem);
-          }  
+                showMessage(module.item.title, mensagem);
+            }  
         }
     ];
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2253657474696e6773227d
-
 // esta aba é responsável pelo ícone da engrenagem, onde se configuram os parâmetros de funcionamento do módulo
+
 
 function settings(module) {
     var arr = [
         {
-            name: 'Sobre ' + mID,
+            name: jsc.i18n('Sobre') + ' ' + mID,
             description: infoVDDMM,
             type: 'label'
         },
         {
             type: 'separator'
         },
-         {
+        {
             type: 'title',
-            label: 'Configurações mixer digital:',
+            label: jsc.i18n('Configurações mixer digital') + ':',
         },
         {
             id: 'digital_mixer',
             name: jsc.i18n('Receptor'),
-            description: '<html><hr>Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute',
+            description: '<html><hr>' + jsc.i18n('Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute'),
             type: 'receiver',
             receiver: 'osc,soundcraft'
         },
         {
             id: 'vocalname',
-            name: jsc.i18n('<html>Nome <b>função</b> integrantes cantores'),
-            description: '<html><hr>Nome comum que foi dado no cadastro de funções aos cantores cadastrados (todos os cantores precisam ter esta palavra na função ex: (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)',
+            name: '<html>' + jsc.i18n('Nome <b>função</b> integrantes cantores'),
+            description: '<html><hr>' + jsc.i18n('Nome comum que foi dado no cadastro de funções aos cantores cadastrados (todos os cantores precisam ter esta palavra na função ex: (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)'),
             type: 'string',
             default_value: 'Vocal'
         },
         {
             id: 'type_of_rec_play',
             name: jsc.i18n('Capturar/Aplicar volume'),
-            description: '<html><hr>Caso seja escolhido Primeiro Slide, irá salvar a configuração no slide 1 quando chegar ao slide 5, dando tempo para eventuais ajustes.',
+            description: '<html><hr>' + jsc.i18n('Caso seja escolhido Primeiro Slide, irá salvar a configuração no slide 1 quando chegar ao slide 5, dando tempo para eventuais ajustes.'),
             type: 'string',
             default_value: 'first',
             allowed_values: [
                 {value: 'first', label: jsc.i18n('Primeiro Slide')},
                 {value: 'all', label: jsc.i18n('Todos os Slides')}
-                ]
+            ]
         },
         {
             id: 'unmuteChanels',
-            label: 'Desmutar canais dos integrantes escalados',
-            description: '<html><hr>Libera o mute dos canais associados aos cantores escalados ao iniciar uma música.',
+            label: jsc.i18n('Desmutar canais dos integrantes escalados'),
+            description: '<html><hr>' + jsc.i18n('Libera o mute dos canais associados aos cantores escalados ao iniciar uma música.'),
             type: 'boolean'
         },
-
-         {
+        {
             type: 'separator'
         },
-         {
+        {
             type: 'title',
-            label: 'Músicas por Cantor Escalado',
+            label: jsc.i18n('Músicas por Cantor Escalado'),
         },
         {
             id: 'singer_in_registered_services_database',
-            label: 'Utilizar dados dos cultos já registrados',
-            description: '<html><hr>Cada vez que é associado um cantor a uma música, o módulo sabe quem está apto a cantar esta música e inclui na lista como sugestão, mesmo que ele não esteja escalado',
+            label: jsc.i18n('Utilizar dados dos cultos já registrados'),
+            description: '<html><hr>' + jsc.i18n('Cada vez que é associado um cantor a uma música, o módulo sabe quem está apto a cantar esta música e inclui na lista como sugestão, mesmo que ele não esteja escalado'),
             type: 'boolean'
         },
         {
             id: 'singer_in_groups',
-            label: '<html>Identificar <b>cantor</b> no grupo das músicas',
-            description: '<html><hr>Como funciona: Crie grupos de músicas com o nome dos cantores. Ex "C Fulano" e associe este grupo às músicas que o "Fulano" está apto a cantar. Desta maneira, come esta opção ativada, quando você for associar cantores para a música aparecerá somente o nome dos cantores escalados associados nos grupos a esta música',
+            label: '<html>' + jsc.i18n('Identificar <b>cantor</b> no grupo das músicas'),
+            description: '<html><hr>' + jsc.i18n('Como funciona: Crie grupos de músicas com o nome dos cantores. Ex "C Fulano" e associe este grupo às músicas que o "Fulano" está apto a cantar. Desta maneira, com esta opção ativada, quando você for associar cantores para a música aparecerá somente o nome dos cantores escalados associados nos grupos a esta música'),
             type: 'boolean'
         },
         {
             id: 'start_singer_in_category',
-            label: 'Letra ID inicial dos cantores no grupo',
+            label: jsc.i18n('Letra ID inicial dos cantores no grupo'),
             type: 'string',
-            description: '<html><hr>Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo "C Fulano" representa o vocalista "Fulano" da sua equipe.',
+            description: '<html><hr>' + jsc.i18n('Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo "C Fulano" representa o vocalista "Fulano" da sua equipe.'),
             default_value: 'C'
         },
-          {
+        {
             type: 'separator'
         },
-         {
+        {
             type: 'title',
-            label: 'Nome do cantor na tela de retorno',
-            description: '<html><hr>Configuração de qual tela é para ser utilizada para informar no primeiro slide da música quem é o cantor principal da mesma.',
+            label: jsc.i18n('Nome do cantor na tela de retorno'),
+            description: '<html><hr>' + jsc.i18n('Configuração de qual tela é para ser utilizada para informar no primeiro slide da música quem é o cantor principal da mesma.'),
         },
         {
             id: 'test_screen',
-            label: 'Testar nome das telas',
+            label: jsc.i18n('Testar nome das telas'),
             type: 'boolean'
         },
         {
             id: 'line_break',
-            label: 'Quebra de linha',
+            label: jsc.i18n('Quebra de linha'),
             type: 'boolean'
         },
         {
             id: 'screen_id',
-            label: 'Tela a exibir',
+            label: jsc.i18n('Tela a exibir'),
             type: 'string',
             suggested_values: function(obj) {
                 var r = h.hly('GetDisplaySettings');
@@ -171,30 +204,30 @@ function settings(module) {
                 return displayNames;
             }
         },
-          {
+        {
             type: 'separator'
         },
         {
             id: 'log',
-            label: 'Habilitar log',
+            label: jsc.i18n('Habilitar log'),
             type: 'boolean',
-            onchange :  function(obj) {
-                logState(module.settings.log, mUID, 'onchange '+ mID);; //habilita ou desabilita o log de acordo com a configuração  
-              }
+            onchange: function(obj) {
+                logState(module.settings.log, mUID, 'onchange ' + mID);  // habilita ou desabilita o log de acordo com a configuração
+            }
         }
     ];
     return arr;
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226c79726963735265706f7274227d
 
 //esta aba é responsável pelo relatório das músicas que serão cantadas, bem como a lista de integrantes escalados.
 //
-
 function actionServiceLyricsList(module) {
     return {
         id: 'lstSongs', 
-        label: 'Lista Músicas Evento',
-        hint: 'Lista Músicas',
+        label: jsc.i18n('Lista Músicas Evento'),
+        hint: jsc.i18n('Lista Músicas'),
         icon : 'system:insert_page_break',
         action: function(evt) {
 
@@ -202,7 +235,7 @@ function actionServiceLyricsList(module) {
             params.push(
                 {
                     type: 'title',
-                    label: 'Relatório de Músicas do Evento'
+                    label: jsc.i18n('Relatório de Músicas do Evento')
                 },
                 {
                     type: 'separator'
@@ -213,7 +246,7 @@ function actionServiceLyricsList(module) {
                 {
                     key: 'singer',
                     type: 'boolean',
-                    label: 'Incluir cantor principal',
+                    label: jsc.i18n('Incluir cantor principal'),
                     description: '',
                     default_value: true
                 }
@@ -223,17 +256,16 @@ function actionServiceLyricsList(module) {
                 {
                     key: 'scheduled',
                     type: 'boolean',
-                    label: 'Incluir escala',
+                    label: jsc.i18n('Incluir escala'),
                     description: '',
                     default_value: true
                 }
             );
 
-
             var input = h.input(params);
 
             if (input == null) {
-                h.notification("Cancelado pelo usuário");
+                h.notification(jsc.i18n('Cancelado pelo usuário'));
                 return;
             }
 
@@ -263,7 +295,7 @@ function actionServiceLyricsList(module) {
                     var log = lyrics.data.title;
                                        
                     if (input.singer) {
-                        log = log + ' | _voz:_ ' + getSinger(lyrics.data.id);
+                        log = log + ' | _'+jsc.i18n('voz')+':_ ' + getSinger(lyrics.data.id);
                     }
                     currentLog.push(log);
                 }
@@ -283,16 +315,15 @@ function actionServiceLyricsList(module) {
            if (input.scheduled) {
               try {
               listScheduledMembers(schedule);
-              } catch (e) { h.log("",'Erro {}',[e]) };
+              } catch (e) { h.log("",jsc.i18n('Erro {}'),[e]) };
            }  
         }
     }
 }
 
-
 function listScheduledMembers(schedule) {
     h.log('');
-    h.log(addIcon('-- *Escala:*'));
+    h.log(addIcon('-- *' + jsc.i18n('Escala') + ':*'));
     if (schedule && schedule.roles && schedule.roles.length > 0) {
         schedule.roles.forEach(function(role) {
             if (role.member && role.member.name && role.name) {
@@ -302,7 +333,6 @@ function listScheduledMembers(schedule) {
         });
     }
 }
-
 
 function formatDateTime(dateTimeStr) {
     var dateTime = new Date(dateTimeStr);
@@ -330,36 +360,6 @@ function formatDateTime(dateTimeStr) {
 }
 
 
-function addIcon(text) {
-    // Mapeamento de ícones para palavras-chave específicas
-    var iconMap = {
-        "Culto" : "\uD83D\uDDD3\uFE0F", // calendário
-        "_voz" : "\uD83C\uDFBC", // notas musicais
-        "Escala": "\uD83D\uDE4B\u200D\u2642\uFE0F\uD83D\uDE4B\u200D\u2640\uFE0F", // 2 pessoas mao levantada
-        "Baixo": "\uD83C\uDFB8", // Emoji de guitarra baixo
-        "Violão": "\uD83C\uDFBB", // Emoji de microfone e guitarra
-        "Vocal": "\uD83C\uDFA4", // Emoji de microfone
-        "Holyrics": "\uD83D\uDCFD", // Emoji de projetor de filme
-        "Som": "\uD83D\uDD08", // Emoji de controle deslizante
-        "Bateria": "\uD83E\uDD41", // Emoji de bateria
-        "Teclado": "\uD83C\uDFB9", // Emoji de piano
-        "Guitar": "\uD83C\uDFB8", // Emoji de guitarra
-        "Sax": "\uD83C\uDFBA", // Emoji de saxofone
-        "Flauta": "\uD83C\uDFB6", // Emoji de notas musicais
-        "Percussão": "\uD83E\uDD41" // Emoji de bateria
-    };
-    
-    // Procura por palavras-chave no texto e adiciona o ícone correspondente
-    for (var keyword in iconMap) {
-        if (text.indexOf(keyword) !== -1) {
-            return iconMap[keyword] + " " + text;
-        }
-    }
-    
-    // Se nenhuma palavra-chave for encontrada, retorna o texto original
-    return text;
-}
-
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226576656e7453696e67657273227d
 // este código trata apenas da configuração do cantor por música
 
@@ -368,14 +368,13 @@ function textTransform(module) {
         song: function(obj) {
             var add_text = {};
             
-            //h.log(module.settings);
             if (module.settings.test_screen) {
                 add_text.add_end = '<styled><color: #ffff00>' + obj.screen_id + '</color>'; 
             }
 
             if (obj.screen_id == module.settings.screen_id
                 && obj.slide_number == 1) { 
-                add_text.add_start = "<styled><color: #ffff00> Voz: "+getSinger(obj)+"</color> "+(module.settings.line_break ? " \n" : "");
+                add_text.add_start = "<styled><color: #ffff00> " + jsc.i18n("Voz")+": " + getSinger(obj) + "</color> " + (module.settings.line_break ? " \n" : "");
                 add_text.line_break = false;
             }
 
@@ -384,93 +383,88 @@ function textTransform(module) {
     };
 }
 
-
-function actionVocalsOfService(module) {	
+function actionVocalsOfService(module) {    
     return {
         id: 'singers',
         label: '',
-        hint : 'Cantores de cada música',
-        icon : 'system:mic',
+        hint: jsc.i18n("Cantores de cada música"),
+        icon: 'system:mic',
         action: function (evt) {
-          h.log(mUID,'actionVocalsOfService(module) called');
-          var schedule = h.hly('GetCurrentSchedule').data[0];
-          var playlist_id = schedule.datetime;
-          var scheduled = listScheduledSingers(schedule, module);
-          if (schedule.type == 'temporary') {
-            h.log("Indisponível para lista temporária");
-            return;
-          }
-          var inputs = [];
-          var medias = schedule.media_playlist;
-          inputs.push ({
-              type : 'title',
-              label : 'Associe cada música a um cantor escalado'
-          },
-          {
-              type: 'separator'
-          }
-          );
-          for (var i = 0; i < medias.length; i++) {
-            var item = medias[i];
-            if (item.type == 'song') {
-               h.log(mUID,'playlist_id {}, item {}, scheduled {}, module {}',[playlist_id, item, scheduled, module.settings]);
-               inputs.push(createInput(playlist_id, item, scheduled, module));
+            h.log(mUID, 'actionVocalsOfService(module) called');
+            var schedule = h.hly('GetCurrentSchedule').data[0];
+            var playlist_id = schedule.datetime;
+            var scheduled = listScheduledSingers(schedule, module);
+            if (schedule.type == 'temporary') {
+                h.log(jsc.i18n("Indisponível para lista temporária"));
+                return;
             }
-          }
-          if (inputs.length == 0) {
-            h.notification('lista vazia');
-            return;
-          }
-          var result = h.input(inputs);
-          if (result === null) {
-            return;
-          }
-          if (inputs.length == 1) {
-                    changeSingerOfSongByEvent(
-              playlist_id, inputs[0].id, result
+            var inputs = [];
+            var medias = schedule.media_playlist;
+            inputs.push({
+                    type: 'title',
+                    label: jsc.i18n("Associe cada música a um cantor escalado")
+                },
+                {
+                    type: 'separator'
+                }
             );
-            return;
-          }
-          for (var i = 0; i < inputs.length; i++) {
-            var id = inputs[i].id;
-            h.log(mUID,'playlist_id {} , id {},  result[id] {}',[playlist_id, id, result[id]]);
-            changeSingerOfSongByEvent(playlist_id, id, result[id]);
-          }
+            for (var i = 0; i < medias.length; i++) {
+                var item = medias[i];
+                if (item.type == 'song') {
+                    h.log(mUID, 'playlist_id {}, item {}, scheduled {}, module {}', [playlist_id, item, scheduled, module.settings]);
+                    inputs.push(createInput(playlist_id, item, scheduled, module));
+                }
+            }
+            if (inputs.length == 0) {
+                h.notification(jsc.i18n("lista vazia"));
+                return;
+            }
+            var result = h.input(inputs);
+            if (result === null) {
+                return;
+            }
+            if (inputs.length == 1) {
+                changeSingerOfSongByEvent(
+                    playlist_id, inputs[0].id, result
+                );
+                return;
+            }
+            for (var i = 0; i < inputs.length; i++) {
+                var id = inputs[i].id;
+                h.log(mUID, 'playlist_id {} , id {},  result[id] {}', [playlist_id, id, result[id]]);
+                changeSingerOfSongByEvent(playlist_id, id, result[id]);
+            }
         }
     };
 }
-
 
 function getSinger(obj) {
     var schedule = h.hly('GetCurrentSchedule').data[0];
     var playlist_id = schedule.datetime;
 
     if (typeof obj == 'string') {
-        var id = obj
-       }
-    else
-       {
+        var id = obj;
+    } else {
         var id = obj.source_id;
-        }
-   return getSingerOfSongByEvent(playlist_id, id);
+    }
+    return getSingerOfSongByEvent(playlist_id, id);
 }
 
-
 function getPlaylistConfig() {
-  var json = h.restore(mID + '_my_playlist_settings') || {} ;
-  try {
-  var settings = json;
+    var json = h.restore(mID + '_my_playlist_settings') || {};
+    try {
+        var settings = json;
     } catch (e) {}
-  settings = settings || {};
-  h.log(mUID,"getPlaylistConfig() - {} bytes - {} ",[JSON.stringify(settings).length, settings]);  
-  return settings;
+    settings = settings || {};
+    h.log(mUID, "getPlaylistConfig() - {} bytes - {} ", [JSON.stringify(settings).length, settings]);  
+    return settings;
 }
 
 function getSingerOfSongByEvent(playlist_id, song_id) {
     var settings = getPlaylistConfig();
     
     if (!settings) {
-        h.log("Erro: Configurações da playlist não foram obtidas.");
+        h.log(jsc.i18n("Erro: Configurações da playlist não foram obtidas."));
         return '';
     }
     
@@ -483,59 +477,56 @@ function getSingerOfSongByEvent(playlist_id, song_id) {
     }
 }
 
-
 function changeSingerOfSongByEvent(playlist_id, song_id, name) {
-  var settings = getPlaylistConfig();
-  var id = playlist_id + "_" + song_id + '_cantor';
-  settings[id] = name;
-  h.store(mID + '_my_playlist_settings', settings);
+    var settings = getPlaylistConfig();
+    var id = playlist_id + "_" + song_id + '_cantor';
+    settings[id] = name;
+    h.store(mID + '_my_playlist_settings', settings);
 }
 
 function getCurrentEventSinger(song_id) {
-  var playlist_id = h.getPlaylistInfo().datetime;
-  return getSingerOfSongByEvent(playlist_id, song_id);
+    var playlist_id = h.getPlaylistInfo().datetime;
+    return getSingerOfSongByEvent(playlist_id, song_id);
 }
-
 
 function createInput(playlist_id, item, scheduledSingers, module) {
-  var id = item.reference_id;
-  var suggested_values = listSingersScheduledBySong(id, scheduledSingers,module);
-  return {
-    id: id,
-    type: 'string',
-    label: item.name,
-    default_value: getSingerOfSongByEvent(playlist_id, id),
-    suggested_values: suggested_values
-  };
+    var id = item.reference_id;
+    var suggested_values = listSingersScheduledBySong(id, scheduledSingers, module);
+    return {
+        id: id,
+        type: 'string',
+        label: item.name,
+        default_value: getSingerOfSongByEvent(playlist_id, id),
+        suggested_values: suggested_values
+    };
 }
 
-function listScheduledSingers(schedule, module) { // Obter nomes dos cantores escalados
-  var scheduledSingers = [];
-  if (schedule && schedule.roles && schedule.roles.length > 0) {
-       schedule.roles.forEach(function(role) {
-         if (role.member && role.member.name && role.name && role.name.contains(module.settings.vocalname)) {
-             scheduledSingers.push(role.member.name);
+function listScheduledSingers(schedule, module) {
+    var scheduledSingers = [];
+    if (schedule && schedule.roles && schedule.roles.length > 0) {
+        schedule.roles.forEach(function(role) {
+            if (role.member && role.member.name && role.name && role.name.contains(module.settings.vocalname)) {
+                scheduledSingers.push(role.member.name);
             }
         });
     }
-  return scheduledSingers;
+    return scheduledSingers;
 }
 
 function listSingersScheduledBySong(id, scheduledSingers, module) {
-var resultSingers = scheduledSingers;
+    var resultSingers = scheduledSingers;
 
-// verifica quem canta esta música baseado no grupo de músicas e lista apenas os escalados
-if (module.settings.singer_in_groups) { 
-   resultSingers = getSingersByGroups(id, scheduledSingers, module);
-  }
+    if (module.settings.singer_in_groups) { 
+        resultSingers = getSingersByGroups(id, scheduledSingers, module);
+    }
 
-if (module.settings.singer_in_registered_services_database) { 
-   try {
-   var resultSingers = listSingerInServicesDatabase(id, resultSingers);
-   } catch (e) { h.log("",'Erro {}',[e]) };
- }
+    if (module.settings.singer_in_registered_services_database) { 
+        try {
+            var resultSingers = listSingerInServicesDatabase(id, resultSingers);
+        } catch (e) { h.log("", jsc.i18n("Erro")+" {}", [e]); };
+    }
 
-return resultSingers;
+    return resultSingers;
 }
 
 function listSingerInServicesDatabase(musicId, resultSingers) {
@@ -549,15 +540,15 @@ function listSingerInServicesDatabase(musicId, resultSingers) {
             var id = parts[1];
             if (id === musicId) {
                 var singer = data[key];
-                h.log(mUID, 'Data: {} Cantor: {}', [parts[0], singer]);
-                if (singers.indexOf(singer) === -1) { // Verifica se o cantor já existe no array
+                h.log(mUID, jsc.i18n("Data")+": {} "+jsc.i18n("Cantor")+": {}", [parts[0], singer]);
+                if (singers.indexOf(singer) === -1) {
                     singers.push(singer);
                 }
             }
         }
     }
 
-    distinctSingers.push( {type : 'title', value: 'title', label:"<html><b> • Escalados:</b><hr style=\"border: 1px solid black;\">"});//
+    distinctSingers.push({type: 'title', value: 'title', label: "<html><b> • " + jsc.i18n("Escalados") + ":</b><hr style=\"border: 1px solid black;\">"});
     if (resultSingers) {
         for (var i = 0; i < resultSingers.length; i++) {
             distinctSingers.push(resultSingers[i]);
@@ -565,7 +556,7 @@ function listSingerInServicesDatabase(musicId, resultSingers) {
     }
 
     if (singers.length > 0) {
-        distinctSingers.push({type : 'title', value: 'title', label:"<html><b> • Já cantaram: </b><hr style=\"border: 1px solid black;\">"});
+        distinctSingers.push({type: 'title', value: 'title', label: "<html><b> • " + jsc.i18n("Já cantaram") + ": </b><hr style=\"border: 1px solid black;\">"});
         for (var j = 0; j < singers.length; j++) {
             distinctSingers.push(singers[j]);
         }
@@ -575,34 +566,34 @@ function listSingerInServicesDatabase(musicId, resultSingers) {
 }
 
 function getSingersByGroups(id, scheduledSingers, module) {
-  var lyric = h.hly('GetLyrics', {id: id});
-  var groups = lyric.data.groups;
-  var singersBySong = [];
-  for (var j = 0; j < groups.length; j++) {
-    if (groups[j].name.indexOf(module.settings.start_singer_in_category) === 0) {
-      singersBySong.push(groups[j].name.substring(module.settings.start_singer_in_category.length()+1));
+    var lyric = h.hly('GetLyrics', {id: id});
+    var groups = lyric.data.groups;
+    var singersBySong = [];
+    for (var j = 0; j < groups.length; j++) {
+        if (groups[j].name.indexOf(module.settings.start_singer_in_category) === 0) {
+            singersBySong.push(groups[j].name.substring(module.settings.start_singer_in_category.length() + 1));
+        }
     }
-  }
 
-  var singers = [];
-  for (var i = 0; i < singersBySong.length; i++) {
-    for (var j = 0; j < scheduledSingers.length; j++) {
-      if (singersBySong[i] === scheduledSingers[j]) {
-        singers.push(singersBySong[i]);
-        break;
-      }
+    var singers = [];
+    for (var i = 0; i < singersBySong.length; i++) {
+        for (var j = 0; j < scheduledSingers.length; j++) {
+            if (singersBySong[i] === scheduledSingers[j]) {
+                singers.push(singersBySong[i]);
+                break;
+            }
+        }
     }
-  }
-return singers;
+    return singers;
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226368616e6e656c73566f63616c5365747570227d
 
 // este código trata apenas da configuração dos canais da mesa de som para cada cantor e volumes default
-
 function actionChannelVocalSetup(module) {
     return {
         id: 'channels',
-        label: 'Configuração de Canais',
+        label: jsc.i18n('Configuração de Canais'),
         icon : 'system:filter_list',
         action: function(evt) {
             var inputs = [];
@@ -610,14 +601,14 @@ function actionChannelVocalSetup(module) {
             var channels = loadChannels();
             inputs.push({
                 type: 'title',
-                label: 'Preencha os canais abaixo'
+                label: jsc.i18n('Preencha os canais abaixo')
             },
             {
                 type: 'separator'
             });
             for (var i = 0; i < r.data.length; i++) {
                 var role = r.data[i].roles[0];
-                h.log(mUID,'função {} nome {} ', [role.name,r.data[i].name]);
+                h.log(mUID, jsc.i18n('função')+' {} '+jsc.i18n('nome')+' {}', [role.name, r.data[i].name]);
                 if (role && role.name && role.name.contains(module.settings.vocalname)) {
                     inputs.push({
                         id: r.data[i].name,
@@ -639,11 +630,10 @@ function actionChannelVocalSetup(module) {
     };
 }
 
-
 function actionDefaultVolumeSetup(module) {
     return {
         id: 'defaultVolume',
-        label: 'Configuração de Volume Default',
+        label: jsc.i18n('Configuração de Volume Default'),
         icon : 'system:list_alt',
         action: function(evt) {
             var inputs = [];
@@ -651,50 +641,48 @@ function actionDefaultVolumeSetup(module) {
             var channels = loadDefaultVolume();
             inputs.push({
                 type: 'title',
-                label: 'Preencha os volumes Default'
+                label: jsc.i18n('Preencha os volumes Default')
             },
             {
                 type: 'separator'
-            },{
-               type: 'title',
-               label: 'Como Principal'
-            }
-            );
+            }, {
+                type: 'title',
+                label: jsc.i18n('Como Principal')
+            });
             for (var i = 0; i < r.data.length; i++) {
                 var role = r.data[i].roles[0];
                 if (role && role.name && role.name.contains(module.settings.vocalname)) {
                     inputs.push({
-                        id: 'singer_'+r.data[i].name,
+                        id: 'singer_' + r.data[i].name,
                         name: r.data[i].name,
                         description: '',
                         type: 'number',
                         min: 0,
                         max: 100,
-                        default_value: channels['singer_'+r.data[i].name] || 0,  // Use 0 as default if the name is not found
-                        component : 'slider',
+                        default_value: channels['singer_' + r.data[i].name] || 0,  // Use 0 as default if the name is not found
+                        component: 'slider',
                         unit: '%'
                     });
                 }
             }
-           inputs.push({
-            type: 'separator'
-            },{
-               type: 'title',
-               label: 'Como Backing-Vocal'
-            }
-            );
+            inputs.push({
+                type: 'separator'
+            }, {
+                type: 'title',
+                label: jsc.i18n('Como Backing-Vocal')
+            });
             for (var i = 0; i < r.data.length; i++) {
                 var role = r.data[i].roles[0];
                 if (role && role.name && role.name.contains(module.settings.vocalname)) {
                     inputs.push({
-                        id: 'backing_'+r.data[i].name,
+                        id: 'backing_' + r.data[i].name,
                         name: r.data[i].name,
                         description: '',
                         type: 'number',
                         min: 0,
                         max: 100,
-                        default_value: channels['backing_'+r.data[i].name] || 0,  // Use 0 as default if the name is not found
-                        component : 'slider',
+                        default_value: channels['backing_' + r.data[i].name] || 0,  // Use 0 as default if the name is not found
+                        component: 'slider',
                         unit: '%'
                     });
                 }
@@ -707,6 +695,7 @@ function actionDefaultVolumeSetup(module) {
         }
     };
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73536574227d
 
 // esta aba inicializa todos os botões do módulo (actions) e contém o código de algumas. 
@@ -718,7 +707,7 @@ function actions(module) {
         { //menu de configurações extras
         id: 'menu',
         label: '',
-        icon : 'system:menu',
+        icon: 'system:menu',
         action: [
            // actionConvertVolume(module),   // nesta aba
            actionServiceLyricsList(module),  // na aba LyricsReport
@@ -727,90 +716,88 @@ function actions(module) {
            ]
         },
         actionVocalsOfService(module),       // na aba eventSingers
-        actionRec(module),	                  // nesta aba
+        actionRec(module),                   // nesta aba
         actionPlay(module)                   // nesta aba
-        ]
+    ];
 }
-
-
 
 function actionConvertVolume(module) { //função para converter base salva de múltiplos slides para primeiro slide, reduzindo o arquivo
-return   { 
-            id: 'Convert',
-            label: 'Converte base para primeiro slide',
-            icon : 'system:published_with_changes',
-            action: function(evt) {
-               var inputsVolume = loadInputsVolume();
-               var convertedInputsVolume = removeUnwantedSlides(inputsVolume);
-               h.log(mUID,'Conversão: de {} para {} ',[summarySavedSongs(inputsVolume),summarySavedSongs(convertedInputsVolume)]);
-               h.log(mUID,'Conversão: de {}b para {}b ',[JSON.stringify(inputsVolume).length,JSON.stringify(convertedInputsVolume).length]);
-               h.setGlobal(mUID + '_inputs_volume', convertedInputsVolume);
-               h.setGlobal(mUID + '_inputs_volume_changed',true);
-               storeInputsVolume();
-            }
-         }
+    return { 
+        id: 'Convert',
+        label: jsc.i18n('Converte base para primeiro slide'),
+        icon: 'system:published_with_changes',
+        action: function(evt) {
+            var inputsVolume = loadInputsVolume();
+            var convertedInputsVolume = removeUnwantedSlides(inputsVolume);
+            h.log(mUID, jsc.i18n('Conversão: de {} para {}'), [summarySavedSongs(inputsVolume), summarySavedSongs(convertedInputsVolume)]);
+            h.log(mUID, jsc.i18n('Conversão: de {}b para {}b'), [JSON.stringify(inputsVolume).length, JSON.stringify(convertedInputsVolume).length]);
+            h.setGlobal(mUID + '_inputs_volume', convertedInputsVolume);
+            h.setGlobal(mUID + '_inputs_volume_changed', true);
+            storeInputsVolume();
+        }
+    };
 }
 
-function	actionRec(module) {
-return   { 
-            id: 'Rec',
-            label: '',
-            hint: 'Rec',
-            icon : 'system:fiber_manual_record',
-            action: function(evt) {
-                var rec_volume_data = !h.getGlobal(mUID + '_rec_volume_data');
-                h.setGlobal(mUID + '_rec_volume_data', rec_volume_data);
-                if (rec_volume_data) {
-                    module.updatePanel(); 
-                    h.setGlobal(mUID + '_last_slide_number', null);
-                }
-                else
-                  storeInputsVolume();
-            },
-            status: function(evt) {
-                if (h.getGlobal(mUID + '_rec_volume_data')) {
-                    return {
-                        active: true,           // default = false
-                        foreground: 'E6E6E6',   // default = null
-                        background: '790903',   // default = null
-                        iconColor:  'E6E6E6'     // default = null
-                    };
-                } else {
-                    return null; // default values
-                }
+function actionRec(module) {
+    return { 
+        id: 'Rec',
+        label: '',
+        hint: jsc.i18n('Rec'),
+        icon: 'system:fiber_manual_record',
+        action: function(evt) {
+            var rec_volume_data = !h.getGlobal(mUID + '_rec_volume_data');
+            h.setGlobal(mUID + '_rec_volume_data', rec_volume_data);
+            if (rec_volume_data) {
+                module.updatePanel(); 
+                h.setGlobal(mUID + '_last_slide_number', null);
+            } else {
+                storeInputsVolume();
+            }
+        },
+        status: function(evt) {
+            if (h.getGlobal(mUID + '_rec_volume_data')) {
+                return {
+                    active: true,           // default = false
+                    foreground: 'E6E6E6',   // default = null
+                    background: '790903',   // default = null
+                    iconColor: 'E6E6E6'     // default = null
+                };
+            } else {
+                return null; // default values
             }
         }
-}
-function	actionPlay(module) {
-return   { 
-            id: 'Play',
-            label: '',
-            hint : 'Play',
-            icon : 'system:play_arrow',
-            action: function(evt) {
-                var set_volume_data = !h.getGlobal(mUID + '_set_volume_data');
-                h.setGlobal(mUID + '_set_volume_data', set_volume_data);
-                if (set_volume_data) {
-                   // h.setGlobal('rec_volume_data', false); // Desativa o Rec se o Play for ativado
-                    module.updatePanel();
-                    h.setGlobal(mUID + '_last_slide_number', null);
-                }
-            },
-            status: function(evt) {
-                if (h.getGlobal(mUID + '_set_volume_data')) {
-                    return {
-                        active: true,           // default = false
-                        foreground: 'E6E6E6',   // default = null
-                        background: '790903',   // default = null
-                        iconColor: 'E6E6E6'     // default = null
-                    };
-                } else {
-                    return null; // default values
-                }
-            }
-        }
+    };
 }
 
+function actionPlay(module) {
+    return { 
+        id: 'Play',
+        label: '',
+        hint: jsc.i18n('Play'),
+        icon: 'system:play_arrow',
+        action: function(evt) {
+            var set_volume_data = !h.getGlobal(mUID + '_set_volume_data');
+            h.setGlobal(mUID + '_set_volume_data', set_volume_data);
+            if (set_volume_data) {
+                // h.setGlobal('rec_volume_data', false); // Desativa o Rec se o Play for ativado
+                module.updatePanel();
+                h.setGlobal(mUID + '_last_slide_number', null);
+            }
+        },
+        status: function(evt) {
+            if (h.getGlobal(mUID + '_set_volume_data')) {
+                return {
+                    active: true,           // default = false
+                    foreground: 'E6E6E6',   // default = null
+                    background: '790903',   // default = null
+                    iconColor: 'E6E6E6'     // default = null
+                };
+            } else {
+                return null; // default values
+            }
+        }
+    };
+}
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 // todas as triggers do módulo estão aqui
@@ -881,7 +868,7 @@ function applyDefaultInputsVolume(leadSinger, module) {
     var leadSingerVolume = defaultVolumes['singer_' + leadSingerName];
     if (leadSingerVolume !== undefined && leadSingerVolume !== 0) {
         if (channels.hasOwnProperty(leadSingerName)) {
-            h.log(mUID,'applyDefaultInputsVolume() Leader {} {} {}',[leadSingerName, channels[leadSingerName], leadSingerVolume / 100 ]);
+            h.log(mUID, 'applyDefaultInputsVolume() '+jsc.i18n('Leader')+' {} {} {}', [leadSingerName, channels[leadSingerName], leadSingerVolume / 100]);
             setVolume(channels[leadSingerName], leadSingerVolume / 100, module);
         }
     }
@@ -891,7 +878,7 @@ function applyDefaultInputsVolume(leadSinger, module) {
         if (name !== leadSingerName && scheduledSinger(name, module)) {
             var backingVolume = defaultVolumes['backing_' + name];
             if (backingVolume !== undefined && backingVolume !== 0 && scheduledSingers.indexOf(name) !== -1) {
-                h.log(mUID,'applyDefaultInputsVolume() backing {} {} {}',[name, channels[name], backingVolume / 100 ]);
+                h.log(mUID, 'applyDefaultInputsVolume() '+jsc.i18n('backing')+' {} {} {}', [name, channels[name], backingVolume / 100]);
                 setVolume(channels[name], backingVolume / 100, module);
             }
        }
@@ -912,11 +899,11 @@ function haveData(obj) {
     return true;
 }
 
-function applyInputsVolume(obj,module) {
+function applyInputsVolume(obj, module) {
     var musicID = String(obj.id);
 
     if (musicID == 'id') {
-        h.log("sem id");
+        h.log(jsc.i18n('No ID provided'));
         return;
     }
     
@@ -924,23 +911,20 @@ function applyInputsVolume(obj,module) {
     var leadSinger = loadSinger(musicID);
     var inputsVolume = loadInputsVolume();
 
-
     if (slideNumber == 1) {
-          unMuteScheduledSingers(module);
-       }
+        unMuteScheduledSingers(module);
+    }
 
     if (!inputsVolume[musicID] || 
         !inputsVolume[musicID][leadSinger] || 
         !inputsVolume[musicID][leadSinger].slides[slideNumber]) {
        
         if (slideNumber <= 1) {
-            h.log(mUID,'applyInputsVolume() -> calling  applyDefaultInputsVolume(leadSinger)');
+            h.log(mUID, 'applyInputsVolume() -> '+jsc.i18n('calling')+' applyDefaultInputsVolume(leadSinger)');
             applyDefaultInputsVolume(leadSinger, module);
-           }
-        else {
-          h.log(mUID,'applyInputsVolume() - Volumes not applyed for song id_{}|leadSinger_{}|s_{} (volume not recorded) ',[musicID, leadSinger, slideNumber]);
-          }
-          
+        } else {
+            h.log(mUID, 'applyInputsVolume() - '+jsc.i18n('Volumes not applied for song')+' id_{}|leadSinger_{}|s_{} ('+jsc.i18n('volume not recorded')+')', [musicID, leadSinger, slideNumber]);
+        }
         return;
     }
 
@@ -954,17 +938,16 @@ function applyInputsVolume(obj,module) {
             var volume = savedVolumes[name] ? savedVolumes[name].volume : getDefaultBackingVolume(name);
             if (volume == undefined) {
                 applyDefaultInputsVolume(leadSinger, module);
-                return
+                return;
             }
-            h.log(mUID,'volume: {} name: {}',volume, name);
+            h.log(mUID, jsc.i18n('Volume: {} Nome: {}'), [volume, name]);
             if (volume !== null && volume !== 0) {
                 setVolume(channelNumber, volume, module);
             }
         }
     }
     
-    h.log(mUID,'setInputsVolume() - mixer set: id_{}|s_{}|l_{}: {}',[musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
-
+    h.log(mUID, 'setInputsVolume() - mixer set: id_{}|s_{}|l_{}: {}', [musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
 }
 
 
@@ -981,7 +964,7 @@ function storeInputsVolume() {;
  if (h.getGlobal(mUID + '_inputs_volume_changed')) {
     var tmp = loadInputsVolume();
     h.store(mID + '_inputs_volume_vocal_by_slide', tmp);
-    h.log(mUID, 'Base atualizada {}.', [summarySavedSongs(tmp)]);
+    h.log(mUID, jsc.i18n('Base de dados atualizada')+' {}.', [summarySavedSongs(tmp)]);
     h.setGlobal(mUID + '_inputs_volume_changed', null);
    }
 }
@@ -1013,101 +996,94 @@ function countSlides(inputs) {
     return slideCount;
 }
 
-function summarySavedSongs(inputsVolume) {;
-try {
-var distinctMusicIDCount = countDistinctMusicIDs(inputsVolume);
-var totalSlideCount = countSlides(inputsVolume);
-return distinctMusicIDCount + ' músicas ' + totalSlideCount + ' slides '
-} catch(e) 
-  { h.log(mUID, 'Erro {}', [e]);}
+function summarySavedSongs(inputsVolume) {
+    try {
+        var distinctMusicIDCount = countDistinctMusicIDs(inputsVolume);
+        var totalSlideCount = countSlides(inputsVolume);
+        return distinctMusicIDCount + ' ' + jsc.i18n('músicas') + ' ' + totalSlideCount + ' ' + jsc.i18n('slides');
+    } catch (e) {
+        h.log(mUID, jsc.i18n('Erro {}'), [e]);
+    }
 }
 
 function loadInputsVolume() {
-  var tmp = h.getGlobal(mUID + '_inputs_volume');
-  var origem = 'carregado da memória';
-      if (!tmp) {
-         tmp = h.restore(mID + '_inputs_volume_vocal_by_slide') ;
-         origem = 'carregado do arquivo';
-         }
-      if (!tmp) {
-         tmp = {};
-         origem = 'zerado';
-         }
-  var tmp2 = JSON.stringify(tmp);
-  h.log(mUID,"loadInputsVolume() - {} - {} bytes ",[origem, tmp2.length()]);  
-//  h.log(mUID,"loadInputsVolume() {} ",[tmp]);  
-  return tmp;
+    var tmp = h.getGlobal(mUID + '_inputs_volume');
+    var origem = jsc.i18n('carregado da memória');
+    if (!tmp) {
+        tmp = h.restore(mID + '_inputs_volume_vocal_by_slide');
+        origem = jsc.i18n('carregado do arquivo');
+    }
+    if (!tmp) {
+        tmp = {};
+        origem = jsc.i18n('zerado');
+    }
+    var tmp2 = JSON.stringify(tmp);
+    h.log(mUID, "loadInputsVolume() - {} - {} bytes", [origem, tmp2.length()]);
+    return tmp;
 }
 
-function captureVolume(obj,module) {
-
+function captureVolume(obj, module) {
     var musicID = String(obj.id);
-    if (musicID == 'id') { 
-        h.log("sem id");
+    if (musicID == 'id') {
+        h.log(jsc.i18n("sem id"));
         return;
     }
-    
-    if (module.settings.type_of_rec_play == 'first') {
-        var slideNumber = 1;
-    }
-    else {
-        var slideNumber = getLastSlideNumber(obj);
-    }
-    
+
+    var slideNumber = (module.settings.type_of_rec_play == 'first') ? 1 : getLastSlideNumber(obj);
     if (!slideNumber) {
         return;
     }
-    
+
     var leadSinger = loadSinger(musicID);
     h.log(mUID, 'captureVolume() - leadSinger: {}', [leadSinger]);
-    
-    var inputsVolume = loadInputsVolume();
 
+    var inputsVolume = loadInputsVolume();
     var channels = loadChannels();
 
     if (!inputsVolume[musicID]) {
         inputsVolume[musicID] = {};
-        h.log(mUID, 'captureVolume() - inputsVolume[{}] initialized', [musicID]);
+        h.log(mUID, 'captureVolume() - inputsVolume[{}] '+jsc.i18n('initialized'), [musicID]);
     }
 
     try {
         if (!inputsVolume[musicID].hasOwnProperty(leadSinger)) {
             inputsVolume[musicID][leadSinger] = { slides: {} };
-            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}] initialized', [musicID, leadSinger]);
+            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}] '+jsc.i18n('initialized'), [musicID, leadSinger]);
         }
     } catch (e) {
-        h.log(mUID, 'Error initializing inputsVolume[{}][{}]: {}', [musicID, leadSinger, e]);
+        h.log(mUID, jsc.i18n('Error initializing')+' inputsVolume[{}][{}]: {}', [musicID, leadSinger, e]);
     }
 
     try {
         if (!inputsVolume[musicID][leadSinger].slides[slideNumber]) {
             inputsVolume[musicID][leadSinger].slides[slideNumber] = {};
-            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}].slides[{}] initialized', [musicID, leadSinger, slideNumber]);
+            h.log(mUID, 'captureVolume() - inputsVolume[{}][{}].slides[{}] '+jsc.i18n('initialized'), [musicID, leadSinger, slideNumber]);
         }
     } catch (e) {
-        h.log(mUID, 'Error initializing inputsVolume[{}][{}].slides[{}]: {}', [musicID, leadSinger, slideNumber, e]);
+        h.log(mUID, jsc.i18n('Error initializing')+' inputsVolume[{}][{}].slides[{}]: {}', [musicID, leadSinger, slideNumber, e]);
     }
 
     for (var name in channels) {
         try {
-           if (scheduledSinger(name, module)) {
-              var channelNumber = channels[name];
-              var volume = getVolume(channelNumber, module);
-              inputsVolume[musicID][leadSinger].slides[slideNumber][name] = { volume: volume };
-           }
+            if (scheduledSinger(name, module)) {
+                var channelNumber = channels[name];
+                var volume = getVolume(channelNumber, module);
+                inputsVolume[musicID][leadSinger].slides[slideNumber][name] = { volume: volume };
+            }
         } catch (e) {
-           h.log(mUID, 'Error accessing channel {} {}: {}', [name, channelNumber, e]);
+            h.log(mUID, jsc.i18n('Error accessing channel')+' {} {}: {}', [name, channelNumber, e]);
         }
     }
 
     try {
         h.setGlobal(mUID + '_inputs_volume', inputsVolume);
-        h.setGlobal(mUID + '_inputs_volume_changed',true);
-        h.log(mUID, 'captureVolume() - inputsVolume updated: id_{}|s_{}|l_{}={}', [musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
+        h.setGlobal(mUID + '_inputs_volume_changed', true);
+        h.log(mUID, 'captureVolume() - inputsVolume '+jsc.i18n('updated')+': id_{}|s_{}|l_{}={}', [musicID, leadSinger, slideNumber, inputsVolume[musicID][leadSinger].slides[slideNumber]]);
     } catch (e) {
-        h.log(mUID, 'Error updating inputs_volume: {}', [e]);
+        h.log(mUID, jsc.i18n('Error updating')+' inputs_volume: {}', [e]);
     }
 }
+
 
 function getDefaultBackingVolume(name) {
    var defaultVolumes = loadDefaultVolume();
@@ -1217,23 +1193,24 @@ function removeUnwantedSlides(data) {
 
 
 function addIcon(text) {
-    // Mapeamento de ícones para palavras-chave específicas
-    var iconMap = {
-        "Culto" : "\uD83D\uDDD3\uFE0F", // calendário
-        "_voz" : "\uD83C\uDFBC", // notas musicais
-        "Escala": "\uD83D\uDE4B\u200D\u2642\uFE0F\uD83D\uDE4B\u200D\u2640\uFE0F", // 2 pessoas mao levantada
-        "Baixo": "\uD83C\uDFB8", // Emoji de guitarra baixo
-        "Violão": "\uD83C\uDFBB", // Emoji de microfone e guitarra
-        "Vocal": "\uD83C\uDFA4", // Emoji de microfone
-        "Holyrics": "\uD83D\uDCFD", // Emoji de projetor de filme
-        "Som": "\uD83D\uDD08", // Emoji de controle deslizante
-        "Bateria": "\uD83E\uDD41", // Emoji de bateria
-        "Teclado": "\uD83C\uDFB9", // Emoji de piano
-        "Guitar": "\uD83C\uDFB8", // Emoji de guitarra
-        "Sax": "\uD83C\uDFBA", // Emoji de saxofone
-        "Flauta": "\uD83C\uDFB6", // Emoji de notas musicais
-        "Percussão": "\uD83E\uDD41" // Emoji de bateria
-    };
+    // Mapeamento de ícones para palavras-chave específicas com i18n aplicado diretamente
+    var iconMap = {};
+    iconMap[jsc.i18n("Culto")] = "\uD83D\uDDD3\uFE0F"; // calendário
+    iconMap['_'+jsc.i18n("voz")] = "\uD83C\uDFBC"; // notas musicais
+    iconMap[jsc.i18n("Escala")] = "\uD83D\uDE4B\u200D\u2642\uFE0F\uD83D\uDE4B\u200D\u2640\uFE0F"; // 2 pessoas mao levantada
+    iconMap[jsc.i18n("Baixo")] = "\uD83C\uDFB8"; // Emoji de guitarra baixo
+    iconMap[jsc.i18n("Violão")] = "\uD83C\uDFBB"; // Emoji de microfone e guitarra
+    iconMap[jsc.i18n("Vocal")] = "\uD83C\uDFA4"; // Emoji de microfone
+    iconMap[jsc.i18n("Multimídia")] = "\uD83D\uDCFD"; // Emoji de projetor de filme
+    iconMap[jsc.i18n("Projetor")] = "\uD83D\uDCFD"; // Emoji de projetor de filme
+    iconMap.Holyrics = "\uD83D\uDCFD"; // Emoji de projetor de filme
+    iconMap[jsc.i18n("Som")] = "\uD83D\uDD08"; // Emoji de controle deslizante
+    iconMap[jsc.i18n("Bateria")] = "\uD83E\uDD41"; // Emoji de bateria
+    iconMap[jsc.i18n("Teclado")] = "\uD83C\uDFB9"; // Emoji de piano
+    iconMap[jsc.i18n("Guitar")] = "\uD83C\uDFB8"; // Emoji de guitarra
+    iconMap[jsc.i18n("Sax")] = "\uD83C\uDFBA"; // Emoji de saxofone
+    iconMap[jsc.i18n("Flauta")] = "\uD83C\uDFB6"; // Emoji de notas musicais
+    iconMap[jsc.i18n("Percussão")] = "\uD83E\uDD41"; // Emoji de bateria
     
     // Procura por palavras-chave no texto e adiciona o ícone correspondente
     for (var keyword in iconMap) {
@@ -1245,6 +1222,7 @@ function addIcon(text) {
     // Se nenhuma palavra-chave for encontrada, retorna o texto original
     return text;
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22756e7265636f72646564536f6e67735265706f7274227d
 function unrecordedSongsReport(module) {
     return {
@@ -1268,13 +1246,13 @@ function unrecordedSongsReport(module) {
                 }
             }
             if (list.length > 0) {
-                h.log("", "Músicas sem countdown:");
+                h.log("", jsc.i18n("Músicas sem countdown")+":");
                 for (var i = 0; i < list.length; i++) {
                     h.log("", list[i]);
                 }
                 return;
             }
-            h.log("", "Todas as músicas da lista possuem countdown.");
+            h.log("", jsc.i18n("Todas as músicas da lista possuem countdown."));
         }
     };
 }
