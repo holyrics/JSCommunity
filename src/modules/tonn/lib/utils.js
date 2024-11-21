@@ -12,7 +12,7 @@ function replaceLastOccurrence(inputStr, searchStr, replacementStr) {
   searchStr = searchStr.toLowerCase();
   var originalStr = inputStr.toLowerCase();
   var lastIndex = originalStr.lastIndexOf(searchStr);
-  if (!endsWith(inputStr, searchStr)) {
+  if (!inputStr.endsWith(searchStr)) {
     return inputStr; // The substring is not found
   }
 
@@ -23,15 +23,6 @@ function replaceLastOccurrence(inputStr, searchStr, replacementStr) {
   return (
     result
   );
-}
-
-function endsWith(str, search, length) {
-  // Default length to the string's full length if not provided
-  if (length === undefined || length > str.length) {
-    length = str.length;
-  }
-  // Extract the relevant portion of the string and compare
-  return str.substring(length - search.length, length).toLowerCase() === search.toLowerCase();
 }
 
 function toggleLogState(id, log){ 
