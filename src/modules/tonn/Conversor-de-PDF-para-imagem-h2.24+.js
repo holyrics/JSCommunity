@@ -1,4 +1,5 @@
 //#import utils
+//#import module_description_pdf2image_new
 
 var mID = 'X1NvbGkgRGVvIEdsb3JpYV8='
 
@@ -7,11 +8,14 @@ function startup(module) {
 }
 
 function info() {
+  var moduleInfos = getModuleInfo();
+
   return {
     id: mID,
-    name: jsc.i18n('Converter todos os PDFs para imagem'),
-    description: getModuleInfoDescription(mID),
-    min_version: '2.24.0'
+    name: moduleInfos.name,
+    description: moduleInfos.description,
+    min_version: '2.24.0',
+    i18n: moduleInfos.i18n
   };
 }
 
