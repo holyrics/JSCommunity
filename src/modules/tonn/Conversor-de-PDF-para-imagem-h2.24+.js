@@ -26,7 +26,7 @@ function settings(module) {
       type: 'boolean',
       label: jsc.i18n('Desativar leitor de PDF padrão'),
       description: jsc.i18n('Substitui o comportamento original do leitor de PDF por uma conversão seguida de apresentação.'),
-      checked: 'true'
+      default_value: 'true'
     }, {
       type: 'separator'
     }, {
@@ -47,7 +47,7 @@ function settings(module) {
       id: 'EXECUTABLE_EXTRA_ARGS',
       type: 'string',
       label: jsc.i18n('Argumentos extras para o executável'),
-      description: jsc.i18n('Só insira valores aqui se souber o que está fazendo, doc: [doc](https://github.com/SrTonn/PDF2Image/blob/main/README.md)'),
+      description: jsc.i18n('Só insira valores aqui se souber o que está fazendo') + ', doc: [doc](https://github.com/SrTonn/PDF2Image/blob/main/README.md)',
       default_value: '--prefix=[new] ;--clear'
     }, {
       type: 'separator'
@@ -79,7 +79,7 @@ function settings(module) {
       type: 'button',
       name: 'Configurações de permissões',
       button_label: jsc.i18n('Abrir'),
-      action: function() { 
+      action: function () {
         h.openWindow('js_allowed_files');
       }
     }
@@ -87,11 +87,11 @@ function settings(module) {
 }
 
 function actions(module) {
-  var actions = [];
+  var actionArr = [];
 
-  if (!module.settings.ENABLE_CONVERT_ALL_PDFS) return actions;
+  if (!module.settings.ENABLE_CONVERT_ALL_PDFS) return actionArr;
 
-  actions.push({
+  actionArr.push({
     id: 'MultiplesPDF2Image',
     name: jsc.i18n('Converter todos os PDFs para imagem'),
     icon: 'picture_as_pdf',
@@ -118,15 +118,15 @@ function actions(module) {
     }
   });
 
-  return actions;
+  return actionArr;
 }
 
 function contextActions(module) {
-  var arr = [];
+  var ctxActionArr = [];
 
-  if (!module.settings.ENABLE_CONVERT_SELECTED_PDF) return arr;
+  if (!module.settings.ENABLE_CONVERT_SELECTED_PDF) return ctxActionArr;
 
-  arr.push({
+  ctxActionArr.push({
     name: jsc.i18n('Converter para imagem'),
     types: ['file'],
     filter: {
@@ -161,7 +161,7 @@ function contextActions(module) {
     }
   });
 
-  return arr;
+  return ctxActionArr;
 }
 
 // double click handle
