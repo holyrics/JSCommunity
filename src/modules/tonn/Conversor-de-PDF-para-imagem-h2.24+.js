@@ -53,19 +53,6 @@ function settings(module) {
     }, {
       type: 'separator'
     }, {
-      id: 'PDF_TO_IMAGE_EXECUTABLE',
-      type: 'file',
-      name: jsc.i18n('Executável para conversão de PDF para imagens'),
-      default_value: 'PDF2Image\\PDF2Image.exe'
-    }, {
-      id: 'HOLYRICS_INSTALL_PATH_BASE',
-      type: 'string',
-      label: jsc.i18n('Caminho de instalação do Holyrics'),
-      description: jsc.i18n('Define o diretório base de instalação do programa Holyrics.'),
-      default_value: 'C:\\Holyrics\\'
-    }, {
-      type: 'separator'
-    }, {
       id: 'ENABLE_LOG_OPTION',
       label: jsc.i18n('Habilitar log'),
       type: 'boolean',
@@ -74,14 +61,6 @@ function settings(module) {
       }
     }, {
       type: 'separator'
-    }, {
-      id: 'OPEN_ALLOW_FILE_OPTIONS',
-      type: 'button',
-      name: 'Configurações de permissões',
-      button_label: jsc.i18n('Abrir'),
-      action: function () {
-        module.openSettings('allowed_files');
-      }
     }
   ];
 }
@@ -98,11 +77,16 @@ function actions(module) {
     action: function (evt) {
       h.popupWorker({
         action: function (evtFn) {
-          var exeFileName = module.settings.PDF_TO_IMAGE_EXECUTABLE;
-          var installPath = module.settings.HOLYRICS_INSTALL_PATH_BASE;
-          var filePath = installPath + "Holyrics\\files\\media\\file";
-          var imagePath = installPath + "Holyrics\\files\\media\\image";
+          var installPath = h.hly('GetVersion').data.baseDir;
+          var filePath = installPath + "\\Holyrics\\files\\media\\file";
+          var imagePath = installPath + "\\Holyrics\\files\\media\\image";
           var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
+
+          var allowedFiles = module.getAllowedFiles()
+          var isValid = isFileAllowed(allowedFiles);
+          if (!isValid) return;
+
+          var exeFileName = allowedFiles[0];
 
           var allArgs = [filePath, imagePath].concat(extraArgsArr)
           runFileAsync(exeFileName, allArgs)
@@ -137,15 +121,17 @@ function contextActions(module) {
     action: function (evt) {
       h.popupWorker({
         action: function (evtFn) {
-          var exeFileName = module.settings.PDF_TO_IMAGE_EXECUTABLE;
-          var holyricsInstallPathBase = module.settings.HOLYRICS_INSTALL_PATH_BASE;
+          var holyricsInstallPathBase = h.hly('GetVersion').data.baseDir;
           var fileFullName = evt.item.file_fullname;
-          var filePath = holyricsInstallPathBase + "Holyrics\\files\\media\\file\\" + fileFullName;
-          var imagePath = holyricsInstallPathBase + "Holyrics\\files\\media\\image";
+          var filePath = holyricsInstallPathBase + "\\Holyrics\\files\\media\\file\\" + fileFullName;
+          var imagePath = holyricsInstallPathBase + "\\Holyrics\\files\\media\\image";
           var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
 
-          var isValid = validateIfFileExistsAndIsAllowed(exeFileName);
+          var allowedFiles = module.getAllowedFiles()
+          var isValid = isFileAllowed(allowedFiles);
           if (!isValid) return;
+
+          var exeFileName = allowedFiles[0];
 
           var allArgs = [filePath, imagePath].concat(extraArgsArr)
           runFileAsync(exeFileName, allArgs)
@@ -169,16 +155,14 @@ function handleItemAction() {
   return {
     file: function (evt) {
       if (!(module.settings.DISABLE_ORIGINAL_PDF_READER && evt.item.extension.toLowerCase() === "pdf")) return false;
-      var isValid = validateIfFileExistsAndIsAllowed(module.settings.PDF_TO_IMAGE_EXECUTABLE);
-      if (!isValid) return true;
 
       h.popupWorker({
         action: function (evtFn) {
-          var exeFileName = module.settings.PDF_TO_IMAGE_EXECUTABLE;
-          var holyricsInstallPathBase = module.settings.HOLYRICS_INSTALL_PATH_BASE;
+          var holyricsInstallPathBase = h.hly('GetVersion').data.baseDir;
+
           var fileFullName = evt.item.file_fullname;
-          var filePath = holyricsInstallPathBase + "Holyrics\\files\\media\\file\\" + fileFullName;
-          var imagePath = holyricsInstallPathBase + "Holyrics\\files\\media\\image";
+          var filePath = holyricsInstallPathBase + "\\Holyrics\\files\\media\\file\\" + fileFullName;
+          var imagePath = holyricsInstallPathBase + "\\Holyrics\\files\\media\\image";
           var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
 
           var wasFileConvertBefore = validateIfExistsFilesInOutputFolder(evt.item.file_name, extraArgsArr);
@@ -187,6 +171,12 @@ function handleItemAction() {
             h.showImage(imageName);
             return;
           }
+
+          var allowedFiles = module.getAllowedFiles()
+          var isValid = isFileAllowed(allowedFiles);
+          if (!isValid) return;
+
+          var exeFileName = allowedFiles[0];
 
           var allArgs = [filePath, imagePath].concat(extraArgsArr)
           runFileAsync(exeFileName, allArgs, { showImage: true, imageName: imageName })
@@ -241,27 +231,26 @@ function hofSomeFn(arr) {
   return hasSomeFile;
 }
 
-function validateIfFileExistsAndIsAllowed(filePath) {
-  var isAllowed = module.isAllowedFileToExecute(filePath);
-  if (!isAllowed) {
+function isFileAllowed(allowedFiles) {
+  if (allowedFiles.length !== 1) {
     h.setTimeout(function () {
-      if (h.yesNo(jsc.i18n("Configure o arquivo PDF2Image.exe na próxima janela, deseja configurar agora ?"), jsc.i18n("Abrir janela de configurações de arquivos permitidos."))) {
+      if (h.yesNo(jsc.i18n("Configure apenas o arquivo PDF2Image.exe na lista de arquivos permitidos. Deseja ir para as configurações?"), jsc.i18n("Abrir janela de configurações de arquivos permitidos."))) {
         module.openSettings('allowed_files');
       }
     }, 0);
     return false;
   }
-  var fileExists = module.fileExists(filePath);
-  if (!fileExists) {
+
+  var isAllowed = allowedFiles[0].toLowerCase().endsWith("pdf2image.exe")
+  if (!isAllowed) {
     h.setTimeout(function () {
-      if (h.yesNo(jsc.i18n("Configure o caminho do arquivo PDF2Image.exe na próxima janela, deseja configurar agora ?"), jsc.i18n("Abrir janela de configurações do módulo."))) {
-        module.openSettings('settings');
+      if (h.yesNo(jsc.i18n("O arquivo PDF2Image.exe não foi identificado, deseja ir para as configurações?"), jsc.i18n("Abrir janela de configurações de arquivos permitidos."))) {
+        module.openSettings('allowed_files');
       }
-    }, 0)
-    return false;
+    }, 0);
   }
 
-  return isAllowed && fileExists;
+  return isAllowed;
 }
 
 function handleError(err, timeout) {
