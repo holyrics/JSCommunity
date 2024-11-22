@@ -5,7 +5,7 @@ function replaceLastOccurrence(inputStr, searchStr, replacementStr) {
   searchStr = searchStr.toLowerCase();
   var originalStr = inputStr.toLowerCase();
   var lastIndex = originalStr.lastIndexOf(searchStr);
-  if (!inputStr.endsWith(searchStr)) {
+  if (!inputStr.toLowerCase().endsWith(searchStr)) {
     return inputStr; // The substring is not found
   }
 
