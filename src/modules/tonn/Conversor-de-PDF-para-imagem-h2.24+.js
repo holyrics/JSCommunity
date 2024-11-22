@@ -80,7 +80,7 @@ function settings(module) {
       name: 'Configurações de permissões',
       button_label: jsc.i18n('Abrir'),
       action: function () {
-        h.openWindow('js_allowed_files');
+        module.openSettings('allowed_files');
       }
     }
   ];
@@ -242,18 +242,22 @@ function hofSomeFn(arr) {
 }
 
 function validateIfFileExistsAndIsAllowed(filePath) {
-  var isAllowed = h.isAllowedFileToExecute(filePath);
+  var isAllowed = module.isAllowedFileToExecute(filePath);
   if (!isAllowed) {
     h.setTimeout(function () {
       if (h.yesNo(jsc.i18n("Configure o arquivo PDF2Image.exe na próxima janela, deseja configurar agora ?"), jsc.i18n("Abrir janela de configurações de arquivos permitidos."))) {
-        h.openWindow('js_allowed_files');
+        module.openSettings('allowed_files');
       }
     }, 0);
     return false;
   }
-  var fileExists = h.fileExists(filePath);
+  var fileExists = module.fileExists(filePath);
   if (!fileExists) {
-    h.notification(jsc.i18n("O executável não foi encontrado no caminho indicado: {}", [filePath]));
+    h.setTimeout(function () {
+      if (h.yesNo(jsc.i18n("Configure o caminho do arquivo PDF2Image.exe na próxima janela, deseja configurar agora ?"), jsc.i18n("Abrir janela de configurações do módulo."))) {
+        module.openSettings('settings');
+      }
+    }, 0)
     return false;
   }
 
@@ -268,7 +272,7 @@ function handleError(err, timeout) {
 function runFileAsync(exeFileName, argsArr, imgOptions) {
   imgOptions = imgOptions || {};
   imgOptions.showImage = imgOptions.showImage || false;
-  return h.process(exeFileName, {
+  return module.process(exeFileName, {
     cli: argsArr,
     on_message: function (buf) {
       h.log(mID, "[PDF2Image.exe|Message]: " + buf.readString());
