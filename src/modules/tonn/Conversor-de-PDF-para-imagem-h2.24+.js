@@ -145,7 +145,7 @@ function contextActions(module) {
           var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
 
           var isValid = validateIfFileExistsAndIsAllowed(exeFileName);
-          if (!isValid) return result;
+          if (!isValid) return;
 
           var allArgs = [filePath, imagePath].concat(extraArgsArr)
           runFileAsync(exeFileName, allArgs)
@@ -169,6 +169,9 @@ function handleItemAction() {
   return {
     file: function (evt) {
       if (!(module.settings.DISABLE_ORIGINAL_PDF_READER && evt.item.extension.toLowerCase() === "pdf")) return false;
+      var isValid = validateIfFileExistsAndIsAllowed(module.settings.PDF_TO_IMAGE_EXECUTABLE);
+      if (!isValid) return true;
+
       h.popupWorker({
         action: function (evtFn) {
           var exeFileName = module.settings.PDF_TO_IMAGE_EXECUTABLE;
@@ -178,33 +181,22 @@ function handleItemAction() {
           var imagePath = holyricsInstallPathBase + "Holyrics\\files\\media\\image";
           var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
 
-          var result = {
-            fileFullName: fileFullName
-          }
-          var isValid = validateIfFileExistsAndIsAllowed(exeFileName);
-          if (!isValid) return result;
-
           var wasFileConvertBefore = validateIfExistsFilesInOutputFolder(evt.item.file_name, extraArgsArr);
+          var imageName = getOutputFolderName(fileFullName, extraArgsArr);
           if (wasFileConvertBefore) {
-            result.isSuccess = true
-            return result;
+            h.showImage(imageName);
+            return;
           }
 
           var allArgs = [filePath, imagePath].concat(extraArgsArr)
-          result.isSuccess = runFileAsync(exeFileName, allArgs)
+          runFileAsync(exeFileName, allArgs, { showImage: true, imageName: imageName })
 
-          return result;
+          return null;
         },
         callback: function (response, err) {
           if (err) {
             h.log(mID, "err: {}", [err])
             handleError(jsc.i18n("Algo deu errado durante a conversão do arquivo."));
-          }
-          var extraArgsArr = module.settings.EXECUTABLE_EXTRA_ARGS.split(";");
-          if (response.isSuccess) {
-            // var imageName = getPrefixArgument(extraArgsArr) + removeExtension(response.fileFullName)
-            var imageName = getOutputFolderName(response.fileFullName, extraArgsArr);
-            h.showImage(imageName);
           }
         },
       });
@@ -252,12 +244,17 @@ function hofSomeFn(arr) {
 function validateIfFileExistsAndIsAllowed(filePath) {
   var isAllowed = h.isAllowedFileToExecute(filePath);
   if (!isAllowed) {
-    h.openWindow('js_allowed_files');
-    h.notification(jsc.i18n("Adicione o executável a lista de arquivos permitidos do holyrics."));
+    h.setTimeout(function () {
+      if (h.yesNo(jsc.i18n("Configure o arquivo PDF2Image.exe na próxima janela, deseja configurar agora ?"), jsc.i18n("Abrir janela de configurações de arquivos permitidos."))) {
+        h.openWindow('js_allowed_files');
+      }
+    }, 0);
+    return false;
   }
   var fileExists = h.fileExists(filePath);
   if (!fileExists) {
     h.notification(jsc.i18n("O executável não foi encontrado no caminho indicado: {}", [filePath]));
+    return false;
   }
 
   return isAllowed && fileExists;
@@ -268,8 +265,10 @@ function handleError(err, timeout) {
   h.notificationError(String(err), timeout);
 }
 
-function runFileAsync(fileName, argsArr) {
-  return h.process(fileName, {
+function runFileAsync(exeFileName, argsArr, imgOptions) {
+  imgOptions = imgOptions || {};
+  imgOptions.showImage = imgOptions.showImage || false;
+  return h.process(exeFileName, {
     cli: argsArr,
     on_message: function (buf) {
       h.log(mID, "[PDF2Image.exe|Message]: " + buf.readString());
@@ -278,7 +277,11 @@ function runFileAsync(fileName, argsArr) {
       h.log(mID, "[PDF2Image.exe|Error]: " + buf.readString());
     },
     on_finish: function (code) {
-      // h.log(mID, "on_finish " + code);
+      h.log(mID, "[ResultProcessCode]: " + code);
+      var wasSuccess = code === 0;
+      if (wasSuccess && imgOptions.showImage) {
+        h.showImage(imgOptions.imageName);
+      }
     },
     //timeout: 60000
   }).await();
