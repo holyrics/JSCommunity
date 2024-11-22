@@ -15,6 +15,7 @@ function info() {
     name: moduleInfos.name,
     description: moduleInfos.description,
     min_version: '2.24.0',
+    available_in_bible_window: false,
     i18n: moduleInfos.i18n
   };
 }
@@ -53,9 +54,8 @@ function settings(module) {
       type: 'separator'
     }, {
       id: 'PDF_TO_IMAGE_EXECUTABLE',
-      type: 'string',
-      label: jsc.i18n('Executável para conversão de PDF para imagens'),
-      description: jsc.i18n('Caminho do arquivo executável (.exe) usado para converter PDFs em imagens. Valor padrão: PDF2Image/PDF2Image.exe.'),
+      type: 'file',
+      name: jsc.i18n('Executável para conversão de PDF para imagens'),
       default_value: 'PDF2Image\\PDF2Image.exe'
     }, {
       id: 'HOLYRICS_INSTALL_PATH_BASE',
