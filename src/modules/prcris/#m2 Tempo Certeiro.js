@@ -11,42 +11,69 @@ logState(module.settings.log, mUID, 'startup '+ mID);
  
 }
 
+
 function info() {
     return {
         id: mID,
-        name: 'Tempo Certeiro',
-        description: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), '+
-                     'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>'+
-                     '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br>'+
+        name: 'Perfect Timing',
+        description: '• Creates a countdown on the return screen for verses named ##(Instrumental), ' +
+                     'allowing the music performer to know how much time is left for ministry. <br>' + 
+                     '• Recommended for those who use tracks or VS for worship and slides automated via MIDI (to ensure transition timing).<br>' +
                      infoVDDMM,
-         allowed_requests: [
+        allowed_requests: [
                      allowedPrcrisModuleRequests
-         ]
+        ],
+        i18n: {
+            name: {
+                en: 'Perfect Timing',
+                pt: 'Tempo Certeiro',
+                es: 'Tiempo Perfecto',
+                ru: 'Идеальное Время'
+            },
+            description: {
+                en: '• Creates a countdown on the return screen for verses named ##(Instrumental), ' +
+                    'allowing the music performer to know how much time is left for ministry. <br>' +
+                    '• Recommended for those who use tracks or VS for worship and slides automated via MIDI (to ensure transition timing).<br>' +
+                    infoVDDMM,
+                pt: '• Cria uma contagem regressiva na tela de retorno nos versos nomeados como ##(Instrumental), ' +
+                    'permitindo ao intérprete da música saber quanto tempo ele ainda possui para ministrar. <br>' +
+                    '• Recomendado para quem usa tracks ou VS para a adoração e slides automatizados via midi (para garantir o tempo de troca).<br>' +
+                    infoVDDMM,
+                es: '• Crea una cuenta regresiva en la pantalla de retorno para los versos nombrados ##(Instrumental), ' +
+                    'permitiendo al intérprete de la música saber cuánto tiempo le queda para ministrar. <br>' +
+                    '• Recomendado para quienes usan pistas o VS para la adoración y diapositivas automatizadas a través de MIDI (para garantizar el tiempo de transición).<br>' +
+                    infoVDDMM,
+                ru: '• Создает обратный отсчет на экране возврата для стихов, названных ##(Инструментальный), ' +
+                    'позволяя исполнителю музыки узнать, сколько времени осталось для службы. <br>' +
+                    '• Рекомендуется для тех, кто использует треки или VS для поклонения и автоматизированные слайды через MIDI (для обеспечения времени перехода).<br>' +
+                    infoVDDMM
+            }
+        }
     };
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e74657874416374696f6e73227d
 function contextActions(module) {
     return [
-            {
-             name: spanIcon("\ueaca")+ 
-                   "Tempos Instrumentais Salvos - "+'(@prcris#m2)',
-             types: ['song'],
-             action: function(module) {
-             var musicID = String(module.item.id);
-             var instrCtdwn = restoreInstrumentalData();
-             var slideTimes = instrCtdwn[musicID];            
-             var reportData = '';
-             for (var key in slideTimes) {
-                  var slideNumber = ('0' + key).slice(-2); // garante que o número do slide tenha dois dígitos
-                  var time = slideTimes[key];
-                  reportData = reportData +'<br>Slide ' + slideNumber + '= ' + time + 's';
-             }
-             showMessage('Tempos Instrumentais Salvos',['Tempos atuais da música ','<b>'+module.item.title+':</b>', reportData]);
+        {
+            name: spanIcon("\ueaca") + jsc.i18n("Tempos Instrumentais Salvos") + " - " + '(@prcris#m2)',
+            types: ['song'],
+            action: function(module) {
+                var musicID = String(module.item.id);
+                var instrCtdwn = restoreInstrumentalData();
+                var slideTimes = instrCtdwn[musicID];            
+                var reportData = '';
+                for (var key in slideTimes) {
+                    var slideNumber = ('0' + key).slice(-2); // garante que o número do slide tenha dois dígitos
+                    var time = slideTimes[key];
+                    reportData = reportData + '<br>' + jsc.i18n('Slide') + ' ' + slideNumber + ' = ' + time + 's';
+                }
+                showMessage(jsc.i18n('Tempos Instrumentais Salvos'), [jsc.i18n('Tempos atuais da música') + ' ', '<b>' + module.item.title + ':</b>', reportData]);
             }
         }
-       ];
+    ];
 }
+
    
         
         
@@ -96,7 +123,7 @@ function triggers(module) {
       action: function(obj) {
        storeInstrumentalData();
        h.setGlobal('slide_anterior', '');
-       h.log(mUID, 'Encerrando música.');
+       h.log(mUID, "{%t}" + jsc.i18n('Encerrando música.'));
       }
     });
 
@@ -149,7 +176,7 @@ function listUnrecordedCountdownSongs(module) {
     return {
         id: 'UnrecordedCountdownSongs',
         label: '',
-        hint: 'Relatório de músicas sem Countdown',
+        hint: jsc.i18n('Relatório de músicas sem Countdown'),
         icon : 'system:insert_page_break',
         action: function (evt) {
             var schedule = h.hly('GetCurrentSchedule').data[0];
@@ -168,13 +195,13 @@ function listUnrecordedCountdownSongs(module) {
                 }
             }
             if (list.length > 0) {
-                h.log("", "Músicas sem countdown:");
+                h.log("", jsc.i18n("Músicas sem countdown:"));
                 for (var i = 0; i < list.length; i++) {
                     h.log("", list[i]);
                 }
                 return;
             }
-            h.log("", "Todas as músicas da lista possuem countdown.");
+            h.log("", jsc.i18n("Todas as músicas da lista possuem countdown."));
         }
     };
 }
@@ -192,52 +219,53 @@ function settings() {
     //mesma sintaxe de function input
     return [
         {
-            name: 'Sobre ' + mID,
+            name: jsc.i18n('Sobre') + ' ' + mID,
             description: infoVDDMM,
             type: 'label'
         },
         {
             id: 'testScreen',
-            label: 'Testar Nome das Telas',
+            label: jsc.i18n('Testar Nome das Telas'),
             type: 'boolean'
         },
         {
             id: 'line_break',
-            label: 'Quebra de linha',
+            label: jsc.i18n('Quebra de linha'),
             type: 'boolean'
         }, 
         {
             id: 'instrumentalVerseName',
-            label: 'Nome do verso Instrumental',
+            label: jsc.i18n('Nome do verso Instrumental'),
             type: 'string',
-            default_value: 'Instrumental'
+            default_value: jsc.i18n('Instrumental')
         },
         {
             id: 'screen_id',
-            label: 'Tela a Exibir',
+            label: jsc.i18n('Tela a Exibir'),
             type: 'string',
             suggested_values: function(obj) {
-              var r = h.hly('GetDisplaySettings');
-              var displayNames = [];
-              for (var i = 0; i < r.data.length; i++) {
-                   displayNames.push(r.data[i].id);
-                   }
-              return displayNames;
+                var r = h.hly(jsc.i18n('GetDisplaySettings'));
+                var displayNames = [];
+                for (var i = 0; i < r.data.length; i++) {
+                    displayNames.push(r.data[i].id);
+                }
+                return displayNames;
             }
         },
-          {
+        {
             type: 'separator'
         },
         {
             id: 'log',
-            label: 'Habilitar log',
+            label: jsc.i18n('Habilitar log'),
             type: 'boolean',
-            onchange :  function(obj) {
-                logState(obj.input.log, mUID,' onchange '+ mID); //habilita ou desabilita o log de acordo com a configuração  
-              }
+            onchange: function(obj) {
+                logState(obj.input.log, mUID, jsc.i18n(' onchange ') + mID); //habilita ou desabilita o log de acordo com a configuração  
+            }
         }
     ];
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22746578745472616e73666f726d227d
 function textTransform(module) {
     return {
@@ -283,7 +311,7 @@ function getInstrumentalTime(obj) {
       h.log(mUID, 'getInstrumentalTime() instrCtdwn[{}][{}] = {}', [musicID, slideToGet, instrCtdwn[musicID][slideToGet]]);
       return instrCtdwn[musicID][slideToGet];
     } else {
-      h.log(mUID, 'getInstrumentalTime() instrCtdwn[{}][{}] = zerado', [musicID, slideToGet]);
+      h.log(mUID, 'getInstrumentalTime() instrCtdwn[{}][{}] = undefined', [musicID, slideToGet]);
       return 0;
     }
   } catch (e) {
@@ -301,7 +329,7 @@ function saveInstrumentalData(obj, slideTime) {
  }
  var slideToSave = String(obj.slide_show_index - 1);    
  if (slideToSave > obj.slide_show_total -1 || slideToSave < 0  || slideToSave > 100) {
-     h.log(mUID,'saveInstrumentalData() Ignorado slide {} - t{}s',[slideToSave,slideTime]);
+     h.log(mUID,'saveInstrumentalData() ' + jsc.i18n('Ignorado') + ' slide {} - t{}s',[slideToSave,slideTime]);
      return;
  }
  
@@ -309,20 +337,21 @@ function saveInstrumentalData(obj, slideTime) {
  
  if (!instrCtdwn[musicID]) {
     instrCtdwn[musicID] = {};  // Inicializa como um objeto vazio
-    h.log(mUID, 'saveInstrumentalData() instrCtdwn[{}] inicializado []', [musicID]);
+    h.log(mUID, 'saveInstrumentalData() instrCtdwn[{}] '+jsc.i18n('inicializado'), [musicID]);
  }
  
  instrCtdwn[musicID] = repairInstrumentalData(instrCtdwn[musicID]); //remove lixo negativo da base antiga
  
- h.log(mUID,'saveInstrumentalData() dados atuais m{}: {}', [musicID, instrCtdwn[musicID]]);
+ h.log(mUID,'saveInstrumentalData() '+jsc.i18n('dados atuais')+' m{}: {}', [musicID, instrCtdwn[musicID]]);
 
  if (h.getGlobal(mUID + '_rec_interludio_time') || instrCtdwn[musicID][slideToSave] === undefined) {
     instrCtdwn[musicID][slideToSave] = slideTime;
-    h.log(mUID,'saveInstrumentalData() Salvo m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
+    h.log(mUID,'saveInstrumentalData() '+jsc.i18n('Salvo')+' m{}: s{}, t{}', [musicID, slideToSave, slideTime]);
  }
  h.setGlobal(mUID + '_instrCtdwn_addedData', true);
  h.setGlobal(mUID + '_instrCtdwn_data', instrCtdwn);
 }
+
 
 function repairInstrumentalData(data) {
     try {
@@ -334,36 +363,35 @@ function repairInstrumentalData(data) {
         }
         return repairedData;
     } catch (e) {
-        h.log("", "Erro ao reparar dados instrumentais: {}", e);
+        h.log("", jsc.i18n("Erro ao reparar dados instrumentais: {}"), e);
         return {}; // Retorna um objeto vazio em caso de erro
     }
 }
 
 function restoreInstrumentalData() {
-  var tmp = h.getGlobal(mUID + '_instrCtdwn_data');
-  var origin = 'carregado da memória';
+    var tmp = h.getGlobal(mUID + '_instrCtdwn_data');
+    var origin = jsc.i18n('carregado da memória');
 
-      if (!tmp) {
-         tmp = h.restore(mID + '_instrCtdwn_data') ;
-         origin = 'carregado do arquivo';
-      }
-      if (!tmp) {
-         tmp = {};
-         origin = 'zerado';
-      }
-  var tmp2 = JSON.stringify(tmp);
-  h.log(mUID,"restoreInstrumentalData() - {} - {} bytes",[origin, tmp2.length()]);  
-  return tmp;
+    if (!tmp) {
+        tmp = h.restore(mID + '_instrCtdwn_data');
+        origin = jsc.i18n('carregado do arquivo');
+    }
+    if (!tmp) {
+        tmp = {};
+        origin = jsc.i18n('inicializado vazio');
+    }
+    var tmp2 = JSON.stringify(tmp);
+    h.log(mUID, "restoreInstrumentalData() - {} - {} bytes", [origin, tmp2.length()]);
+    return tmp;
 }
 
 function storeInstrumentalData() {
-
-  if (h.getGlobal(mUID + '_instrCtdwn_addedData')) {
-     var instrCtdwn = restoreInstrumentalData();
-     h.store(mID + '_instrCtdwn_data', instrCtdwn);
-     h.log(mUID,'Dados salvos no arquivo: {}',[instrCtdwn]);
-     h.setGlobal(mUID + '_instrCtdwn_addedData',null);
-     }
+    if (h.getGlobal(mUID + '_instrCtdwn_addedData')) {
+        var instrCtdwn = restoreInstrumentalData();
+        h.store(mID + '_instrCtdwn_data', instrCtdwn);
+        h.log(mUID, jsc.i18n('Dados salvos no arquivo: {}'), [instrCtdwn]);
+        h.setGlobal(mUID + '_instrCtdwn_addedData', null);
+    }
 }
 
 function showMessage(title, message) {
@@ -373,14 +401,13 @@ function showMessage(title, message) {
         content.push({ type: 'title', label: message });
     } else if (Array.isArray(message)) {
         for (var i = 0; i < message.length; i++) {
-            content.push({ type: 'title', label: '<html>'+message[i] });
+            content.push({ type: 'title', label: '<html>' + message[i] });
         }
     }
 
     h.input(content);
 }
 
-
-function spanIcon(iconCodePoint){
+function spanIcon(iconCodePoint) {
     return '<html><span style="font-family: Material Icons;">' + iconCodePoint + ' </span>';
 }
