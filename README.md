@@ -140,7 +140,8 @@ Para formatar uma mensagem, utilize a sintaxe:
 ```javascript
 jsc.i18n('Test {}, test 2 {}', ['abc', 'xyz']);
 ```
-O resultado será: __Test abc, test 2 xyz__<br>
+O resultado será: __Test abc, test 2 xyz__
+
 Se o item `Test {}, test 2 {}` estiver traduzido para português e o idioma definido no programa for português:
 ```javascript
 [
