@@ -35,13 +35,13 @@ function settings(module) {
       type: 'boolean',
       label: jsc.i18n('Ativar conversão de todos os PDFs'),
       description: jsc.i18n('Habilita um botão para converter todos os PDFs da pasta de origem para a pasta de destino (em imagens).'),
-      checked: 'true'
+      default_value: 'true'
     }, {
       id: 'ENABLE_CONVERT_SELECTED_PDF',
       type: 'boolean',
       label: jsc.i18n('Ativar conversão de PDF selecionado'),
       description: jsc.i18n('Converte o PDF selecionado para imagens. (não exibe o resultado em seguida)'),
-      checked: 'true'
+      default_value: 'true'
     }, {
       type: 'separator'
     }, {

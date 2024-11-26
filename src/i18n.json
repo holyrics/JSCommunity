@@ -970,26 +970,6 @@
     "uk": "Відео в vMix скасовано, повертаючись до сцени"
   },
   {
-    "key": "Don",
-    "en": "Don",
-    "pt": "Não",
-    "ru": "Не",
-    "es": "No",
-    "it": "Non",
-    "fr": "Ne",
-    "uk": "Не"
-  },
-  {
-    "key": "Panic",
-    "en": "Panic",
-    "pt": "Pânico",
-    "ru": "Паника",
-    "es": "Pánico",
-    "it": "Panico",
-    "fr": "Panic",
-    "uk": "Паніка"
-  },
-  {
     "key": "Select Receivers to use",
     "en": "Select Receivers to use",
     "pt": "Selecionar Receptores para usar",
@@ -2168,5 +2148,2355 @@
     "it": "Per Video {} seleziona solo 1 video e non una cartella. Configurazione rimossa.",
     "fr": "Pour la vidéo {}, sélectionnez uniquement 1 vidéo et non un dossier. Configuration supprimée.",
     "uk": "Для відео {} виберіть лише 1 відео, а не папку. Налаштування видалено."
+  },
+  {
+    "key": "Listar Cantor/Volume Vozes",
+    "en": "List Singer/Volume Voices",
+    "pt": "Listar Cantor/Volume Vozes",
+    "ru": "Список певцов/громкость голосов",
+    "es": "Listar Cantante/Volumen Voces",
+    "it": "Elenca Cantante/Volume Voci",
+    "fr": "Lister Chanteur/Volume Voix",
+    "uk": "Список Співак/Гучність Голосів"
+  },
+  {
+    "key": "Cantor da música",
+    "en": "Singer of the song",
+    "pt": "Cantor da música",
+    "ru": "Певец песни",
+    "es": "Cantante de la canción",
+    "it": "Cantante della canzone",
+    "fr": "Chanteur de la chanson",
+    "uk": "Співак пісні"
+  },
+  {
+    "key": "Volume verso 1:",
+    "en": "Volume verse 1:",
+    "pt": "Volume verso 1:",
+    "ru": "Громкость куплета 1:",
+    "es": "Volumen verso 1:",
+    "it": "Volume verso 1:",
+    "fr": "Volume vers 1 :",
+    "uk": "Гучність куплета 1:"
+  },
+  {
+    "key": "Volume não encontrado para o verso 1",
+    "en": "Volume not found for verse 1",
+    "pt": "Volume não encontrado para o verso 1",
+    "ru": "Громкость не найдена для куплета 1",
+    "es": "Volumen no encontrado para el verso 1",
+    "it": "Volume non trovato per il verso 1",
+    "fr": "Volume non trouvé pour le vers 1",
+    "uk": "Гучність не знайдено для куплета 1"
+  },
+  {
+    "key": "Sobre",
+    "en": "About",
+    "pt": "Sobre",
+    "ru": "О программе",
+    "es": "Sobre",
+    "it": "Informazioni",
+    "fr": "À propos",
+    "uk": "Про"
+  },
+  {
+    "key": "Configurações mixer digital",
+    "en": "Digital mixer settings",
+    "pt": "Configurações do mixer digital",
+    "ru": "Настройки цифрового микшера",
+    "es": "Configuraciones del mezclador digital",
+    "it": "Impostazioni mixer digitale",
+    "fr": "Paramètres du mixeur numérique",
+    "uk": "Налаштування цифрового мікшера"
+  },
+  {
+    "key": "Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute",
+    "en": "Associate with the Behinger/Soundcraft receiver if you have one, so that the volume/mute change routines work",
+    "pt": "Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute",
+    "ru": "Свяжите с приемником Behinger/Soundcraft, если у вас есть, чтобы работали процедуры изменения громкости/выключения звука",
+    "es": "Asocie al receptor de Behinger/Soundcraft si posee uno, para que funcionen las rutinas de cambio de volumen/mute",
+    "it": "Associa al ricevitore Behinger/Soundcraft se ne possiedi uno, affinché funzionino le routine di modifica del volume/mute",
+    "fr": "Associez au récepteur Behinger/Soundcraft si vous en possédez un, afin que les routines de changement de volume/mute fonctionnent.",
+    "uk": "Підключіть до приймача Behinger/Soundcraft, якщо у вас є, щоб працювали процедури зміни гучності/вимкнення"
+  },
+  {
+    "key": "Nome <b>função</b> integrantes cantores",
+    "en": "Name <b>function</b> of singer members",
+    "pt": "Nome <b>função</b> integrantes cantores",
+    "ru": "Имя <b>функции</b> участников певцов",
+    "es": "Nombre <b>función</b> integrantes cantores",
+    "it": "Nome <b>funzione</b> membri cantanti",
+    "fr": "Nom <b>fonction</b> des membres chanteurs",
+    "uk": "Ім'я <b>функції</b> учасників співаків"
+  },
+  {
+    "key": "Nome comum que foi dado no cadastro de funções aos cantores cadastrados (todos os cantores precisam ter esta palavra na função ex: (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)",
+    "en": "Common name given in the function registration for registered singers (all singers must have this word in the function e.g. (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)",
+    "pt": "Nome comum que foi dado no cadastro de funções aos cantores cadastrados (todos os cantores precisam ter esta palavra na função ex: (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)",
+    "ru": "Общее имя, данное при регистрации функций для зарегистрированных певцов (все певцы должны иметь это слово в функции, например: (Вокал 1, Бэкинг-вокал 1, Вокал 2, Вокал 3)",
+    "es": "Nombre común que se le dio en el registro de funciones a los cantores registrados (todos los cantores deben tener esta palabra en la función ej: (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)",
+    "it": "Nome comune dato nella registrazione delle funzioni ai cantanti registrati (tutti i cantanti devono avere questa parola nella funzione es: (Vocale 1, Backing-Vocale 1, Vocale 2, Vocale 3)",
+    "fr": "Nom commun donné lors de l'enregistrement des fonctions aux chanteurs enregistrés (tous les chanteurs doivent avoir ce mot dans leur fonction ex : (Vocal 1, Backing-Vocal 1, Vocal 2, Vocal 3)",
+    "uk": "Загальна назва, яка була надана при реєстрації функцій для зареєстрованих співаків (всі співаки повинні мати це слово у функції, наприклад: (Вокал 1, Бек-вокал 1, Вокал 2, Вокал 3)"
+  },
+  {
+    "key": "Caso seja escolhido Primeiro Slide, irá salvar a configuração no slide 1 quando chegar ao slide 5, dando tempo para eventuais ajustes.",
+    "en": "If First Slide is chosen, it will save the configuration on slide 1 when reaching slide 5, allowing time for any adjustments.",
+    "pt": "Caso seja escolhido Primeiro Slide, irá salvar a configuração no slide 1 quando chegar ao slide 5, dando tempo para eventuais ajustes.",
+    "ru": "Если выбрано Первое слайд, сохранит настройки на слайде 1, когда дойдет до слайда 5, давая время для возможных корректировок.",
+    "es": "Si se elige Primer Slide, guardará la configuración en el slide 1 cuando llegue al slide 5, dando tiempo para eventuales ajustes.",
+    "it": "Se viene scelto Primo Slide, salverà la configurazione nello slide 1 quando arriverà allo slide 5, dando tempo per eventuali aggiustamenti.",
+    "fr": "Si le Premier Slide est choisi, il enregistrera la configuration dans le slide 1 lorsque vous atteindrez le slide 5, laissant le temps pour d'éventuels ajustements.",
+    "uk": "Якщо вибрано Перший слайд, він зберігатиме налаштування на слайді 1, коли досягне слайду 5, даючи час для можливих коригувань."
+  },
+  {
+    "key": "Desmutar canais dos integrantes escalados",
+    "en": "Unmute channels of scheduled members",
+    "pt": "Desmutar canais dos integrantes escalados",
+    "ru": "Включить каналы участников, назначенных на выступление",
+    "es": "Desmutar canales de los integrantes escalados",
+    "it": "Disattivare mute dei canali dei membri assegnati",
+    "fr": "Démuter les canaux des membres sélectionnés",
+    "uk": "Вимкнути канали учасників, які були призначені"
+  },
+  {
+    "key": "Libera o mute dos canais associados aos cantores escalados ao iniciar uma música.",
+    "en": "Unmutes the channels associated with the scheduled singers when starting a song.",
+    "pt": "Libera o mute dos canais associados aos cantores escalados ao iniciar uma música.",
+    "ru": "Снимает отключение звука с каналов, связанных с певцами, при начале песни.",
+    "es": "Libera el mute de los canales asociados a los cantores escalados al iniciar una canción.",
+    "it": "Rimuove il mute dei canali associati ai cantanti assegnati all'inizio di una canzone.",
+    "fr": "Libère le mute des canaux associés aux chanteurs sélectionnés au début d'une chanson.",
+    "uk": "Відкриває вимкнення каналів, пов'язаних зі співаками, при початку пісні."
+  },
+  {
+    "key": "Músicas por Cantor Escalado",
+    "en": "Songs by Scheduled Singer",
+    "pt": "Músicas por Cantor Escalado",
+    "ru": "Песни по назначенному певцу",
+    "es": "Canciones por Cantor Escalado",
+    "it": "Canzoni per Cantante Assegnato",
+    "fr": "Chansons par Chanteur Sélectionné",
+    "uk": "Пісні за призначеним співаком"
+  },
+  {
+    "key": "Utilizar dados dos cultos já registrados",
+    "en": "Use data from already recorded services",
+    "pt": "Utilizar dados dos cultos já registrados",
+    "ru": "Использовать данные уже зарегистрированных служб",
+    "es": "Utilizar datos de los cultos ya registrados",
+    "it": "Utilizzare dati dei culti già registrati",
+    "fr": "Utiliser les données des cultes déjà enregistrés",
+    "uk": "Використовувати дані вже зареєстрованих служб"
+  },
+  {
+    "key": "Cada vez que é associado um cantor a uma música, o módulo sabe quem está apto a cantar esta música e inclui na lista como sugestão, mesmo que ele não esteja escalado",
+    "en": "Each time a singer is associated with a song, the module knows who is eligible to sing this song and includes them in the list as a suggestion, even if they are not scheduled",
+    "pt": "Cada vez que é associado um cantor a uma música, o módulo sabe quem está apto a cantar esta música e inclui na lista como sugestão, mesmo que ele não esteja escalado",
+    "ru": "Каждый раз, когда певец ассоциируется с песней, модуль знает, кто может петь эту песню и включает в список как предложение, даже если он не назначен",
+    "es": "Cada vez que se asocia un cantor a una canción, el módulo sabe quién está apto para cantar esta canción e incluye en la lista como sugerencia, incluso si no está escalado",
+    "it": "Ogni volta che un cantante è associato a una canzone, il modulo sa chi è idoneo a cantare questa canzone e la include nella lista come suggerimento, anche se non è assegnato",
+    "fr": "Chaque fois qu'un chanteur est associé à une chanson, le module sait qui est apte à chanter cette chanson et l'inclut dans la liste comme suggestion, même s'il n'est pas sélectionné.",
+    "uk": "Кожного разу, коли співак асоціюється з піснею, модуль знає, хто може співати цю пісню і включає в список як пропозицію, навіть якщо він не призначений"
+  },
+  {
+    "key": "Identificar <b>cantor</b> no grupo das músicas",
+    "en": "Identify <b>singer</b> in the group of songs",
+    "pt": "Identificar <b>cantor</b> no grupo das músicas",
+    "ru": "Идентифицировать <b>певца</b> в группе песен",
+    "es": "Identificar <b>cantor</b> en el grupo de las canciones",
+    "it": "Identificare <b>cantante</b> nel gruppo delle canzoni",
+    "fr": "Identifier <b>chanteur</b> dans le groupe des chansons",
+    "uk": "Ідентифікувати <b>співака</b> в групі пісень"
+  },
+  {
+    "key": "Como funciona: Crie grupos de músicas com o nome dos cantores. Ex ",
+    "en": "How it works: Create groups of songs with the names of the singers. E.g.",
+    "pt": "Como funciona: Crie grupos de músicas com o nome dos cantores. Ex ",
+    "ru": "Как это работает: создайте группы песен с именами певцов. Например ",
+    "es": "Cómo funciona: Crea grupos de canciones con el nombre de los cantores. Ej ",
+    "it": "Come funziona: Crea gruppi di canzoni con il nome dei cantanti. Es ",
+    "fr": "Comment ça fonctionne : Créez des groupes de chansons avec le nom des chanteurs. Ex",
+    "uk": "Як це працює: створіть групи пісень з іменами співаків. Наприклад"
+  },
+  {
+    "key": "Letra ID inicial dos cantores no grupo",
+    "en": "Initial ID letter of singers in the group",
+    "pt": "Letra ID inicial dos cantores no grupo",
+    "ru": "ID текста начальных певцов в группе",
+    "es": "Letra ID inicial de los cantores en el grupo",
+    "it": "ID iniziale delle lettere dei cantanti nel gruppo",
+    "fr": "ID de la lettre initiale des chanteurs dans le groupe",
+    "uk": "Початковий ID тексту співаків у групі"
+  },
+  {
+    "key": "Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo ",
+    "en": "Works together with the previous parameter, the module looks for singers starting with this character, in the example",
+    "pt": "Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo ",
+    "ru": "Работает вместе с предыдущим параметром, модуль ищет певцов, начинающих с этого символа, в примере ",
+    "es": "Funciona junto con el parámetro anterior, el módulo busca los cantores que comienzan con este carácter, en el ejemplo ",
+    "it": "Funziona insieme al parametro precedente, il modulo cerca i cantanti che iniziano con questo carattere, nell'esempio ",
+    "fr": "Fonctionne avec le paramètre précédent, le module recherche les chanteurs commençant par ce caractère, dans l'exemple",
+    "uk": "Працює разом з попереднім параметром, модуль шукає співаків, які починаються з цього символу, у прикладі"
+  },
+  {
+    "key": "Nome do cantor na tela de retorno",
+    "en": "Singer's name on the return screen",
+    "pt": "Nome do cantor na tela de retorno",
+    "ru": "Имя певца на экране возврата",
+    "es": "Nombre del cantor en la pantalla de retorno",
+    "it": "Nome del cantante nella schermata di ritorno",
+    "fr": "Nom du chanteur à l'écran de retour",
+    "uk": "Ім'я співака на екрані повернення"
+  },
+  {
+    "key": "Configuração de qual tela é para ser utilizada para informar no primeiro slide da música quem é o cantor principal da mesma.",
+    "en": "Configuration of which screen is to be used to inform on the first slide of the song who the main singer is.",
+    "pt": "Configuração de qual tela é para ser utilizada para informar no primeiro slide da música quem é o cantor principal da mesma.",
+    "ru": "Настройка, какой экран должен использоваться для указания на первом слайде песни, кто является основным певцом.",
+    "es": "Configuración de qué pantalla se debe utilizar para informar en el primer slide de la canción quién es el cantor principal de la misma.",
+    "it": "Configurazione di quale schermata deve essere utilizzata per informare nel primo slide della canzone chi è il cantante principale.",
+    "fr": "Configuration de quel écran doit être utilisé pour informer dans le premier slide de la chanson qui est le chanteur principal.",
+    "uk": "Налаштування, який екран використовувати для інформування на першому слайді пісні, хто є головним співаком."
+  },
+  {
+    "key": "Testar nome das telas",
+    "en": "Test screen names",
+    "pt": "Testar nome das telas",
+    "ru": "Проверить имена экранов",
+    "es": "Probar nombre de las pantallas",
+    "it": "Testare nome delle schermate",
+    "fr": "Tester le nom des écrans",
+    "uk": "Перевірити назви екранів"
+  },
+  {
+    "key": "Quebra de linha",
+    "en": "Line break",
+    "pt": "Quebra de linha",
+    "ru": "Перенос строки",
+    "es": "Salto de línea",
+    "it": "Interruzione di riga",
+    "fr": "Saut de ligne",
+    "uk": "Перенос рядка"
+  },
+  {
+    "key": "Tela a exibir",
+    "en": "Screen to display",
+    "pt": "Tela a exibir",
+    "ru": "Экран для отображения",
+    "es": "Pantalla a mostrar",
+    "it": "Schermata da visualizzare",
+    "fr": "Écran à afficher",
+    "uk": "Екран для відображення"
+  },
+  {
+    "key": "Habilitar log",
+    "en": "Enable log",
+    "pt": "Habilitar log",
+    "ru": "Включить логирование",
+    "es": "Habilitar log",
+    "it": "Abilita log",
+    "fr": "Activer le journal",
+    "uk": "Увімкнути журнал"
+  },
+  {
+    "key": "Lista Músicas Evento",
+    "en": "Event Songs List",
+    "pt": "Lista Músicas Evento",
+    "ru": "Список песен события",
+    "es": "Lista Canciones Evento",
+    "it": "Lista Canzoni Evento",
+    "fr": "Liste des Chansons Événement",
+    "uk": "Список Пісень Події"
+  },
+  {
+    "key": "Lista Músicas",
+    "en": "Songs List",
+    "pt": "Lista Músicas",
+    "ru": "Список песен",
+    "es": "Lista Canciones",
+    "it": "Lista Canzoni",
+    "fr": "Liste des Chansons",
+    "uk": "Список Пісень"
+  },
+  {
+    "key": "Relatório de Músicas do Evento",
+    "en": "Event Songs Report",
+    "pt": "Relatório de Músicas do Evento",
+    "ru": "Отчет о песнях события",
+    "es": "Informe de Canciones del Evento",
+    "it": "Rapporto di Canzoni dell'Evento",
+    "fr": "Rapport des Chansons de l'Événement",
+    "uk": "Звіт про Пісні Події"
+  },
+  {
+    "key": "Incluir cantor principal",
+    "en": "Include main singer",
+    "pt": "Incluir cantor principal",
+    "ru": "Добавить основного певца",
+    "es": "Incluir cantor principal",
+    "it": "Includere cantante principale",
+    "fr": "Inclure le chanteur principal",
+    "uk": "Додати головного співака"
+  },
+  {
+    "key": "Incluir escala",
+    "en": "Include schedule",
+    "pt": "Incluir escala",
+    "ru": "Добавить расписание",
+    "es": "Incluir escala",
+    "it": "Includere scaletta",
+    "fr": "Inclure l'échelle",
+    "uk": "Додати розклад"
+  },
+  {
+    "key": "Cancelado pelo usuário",
+    "en": "Cancelled by user",
+    "pt": "Cancelado pelo usuário",
+    "ru": "Отменено пользователем",
+    "es": "Cancelado por el usuario",
+    "it": "Annullato dall'utente",
+    "fr": "Annulé par l'utilisateur",
+    "uk": "Скасовано користувачем"
+  },
+  {
+    "key": "voz",
+    "en": "voice",
+    "pt": "voz",
+    "ru": "голос",
+    "es": "voz",
+    "it": "voce",
+    "fr": "voix",
+    "uk": "голос"
+  },
+  {
+    "key": "Erro {}",
+    "en": "Error {}",
+    "pt": "Erro {}",
+    "ru": "Ошибка {}",
+    "es": "Error {}",
+    "it": "Errore {}",
+    "fr": "Erreur {}",
+    "uk": "Помилка {}"
+  },
+  {
+    "key": "Escala",
+    "en": "Schedule",
+    "pt": "Escala",
+    "ru": "Расписание",
+    "es": "Escala",
+    "it": "Scaletta",
+    "fr": "Échelle",
+    "uk": "Розклад"
+  },
+  {
+    "key": "Voz",
+    "en": "Voice",
+    "pt": "Voz",
+    "ru": "Голос",
+    "es": "Voz",
+    "it": "Voce",
+    "fr": "Voix",
+    "uk": "Голос"
+  },
+  {
+    "key": "Cantores de cada música",
+    "en": "Singers of each song",
+    "pt": "Cantores de cada música",
+    "ru": "Певцы каждой песни",
+    "es": "Cantores de cada canción",
+    "it": "Cantanti di ogni canzone",
+    "fr": "Chanteurs de chaque chanson",
+    "uk": "Співаки кожної пісні"
+  },
+  {
+    "key": "Indisponível para lista temporária",
+    "en": "Unavailable for temporary list",
+    "pt": "Indisponível para lista temporária",
+    "ru": "Недоступно для временного списка",
+    "es": "Indisponible para lista temporal",
+    "it": "Indisponibile per lista temporanea",
+    "fr": "Indisponible pour la liste temporaire",
+    "uk": "Недоступно для тимчасового списку"
+  },
+  {
+    "key": "Associe cada música a um cantor escalado",
+    "en": "Associate each song with a scheduled singer",
+    "pt": "Associe cada música a um cantor escalado",
+    "ru": "Свяжите каждую песню с назначенным певцом",
+    "es": "Asocie cada canción a un cantor escalado",
+    "it": "Associa ogni canzone a un cantante assegnato",
+    "fr": "Associez chaque chanson à un chanteur sélectionné",
+    "uk": "Призначте кожну пісню співака, який був призначений"
+  },
+  {
+    "key": "lista vazia",
+    "en": "empty list",
+    "pt": "lista vazia",
+    "ru": "пустой список",
+    "es": "lista vacía",
+    "it": "lista vuota",
+    "fr": "liste vide",
+    "uk": "пустий список"
+  },
+  {
+    "key": "Erro: Configurações da playlist não foram obtidas.",
+    "en": "Error: Playlist settings were not obtained.",
+    "pt": "Erro: Configurações da playlist não foram obtidas.",
+    "ru": "Ошибка: настройки плейлиста не были получены.",
+    "es": "Error: Configuraciones de la lista de reproducción no fueron obtenidas.",
+    "it": "Errore: Le impostazioni della playlist non sono state ottenute.",
+    "fr": "Erreur : Les paramètres de la playlist n'ont pas été obtenus.",
+    "uk": "Помилка: Налаштування плейлиста не були отримані."
+  },
+  {
+    "key": "Erro",
+    "en": "Error",
+    "pt": "Erro",
+    "ru": "Ошибка",
+    "es": "Error",
+    "it": "Errore",
+    "fr": "Erreur",
+    "uk": "Помилка"
+  },
+  {
+    "key": "Data",
+    "en": "Date",
+    "pt": "Data",
+    "ru": "Дата",
+    "es": "Fecha",
+    "it": "Data",
+    "fr": "Date",
+    "uk": "Дата"
+  },
+  {
+    "key": "Cantor",
+    "en": "Singer",
+    "pt": "Cantor",
+    "ru": "Певец",
+    "es": "Cantor",
+    "it": "Cantante",
+    "fr": "Chanteur",
+    "uk": "Співак"
+  },
+  {
+    "key": "Escalados",
+    "en": "Scheduled",
+    "pt": "Escalados",
+    "ru": "Назначенные",
+    "es": "Escalados",
+    "it": "Assegnati",
+    "fr": "Sélectionnés",
+    "uk": "Призначені"
+  },
+  {
+    "key": "Já cantaram",
+    "en": "Already sung",
+    "pt": "Já cantaram",
+    "ru": "Уже пели",
+    "es": "Ya cantaron",
+    "it": "Già cantato",
+    "fr": "Ont déjà chanté",
+    "uk": "Вже співали"
+  },
+  {
+    "key": "Configuração de Canais",
+    "en": "Channel Configuration",
+    "pt": "Configuração de Canais",
+    "ru": "Настройка каналов",
+    "es": "Configuración de Canales",
+    "it": "Configurazione dei Canali",
+    "fr": "Configuration des Canaux",
+    "uk": "Налаштування Каналів"
+  },
+  {
+    "key": "Preencha os canais abaixo",
+    "en": "Fill in the channels below",
+    "pt": "Preencha os canais abaixo",
+    "ru": "Заполните каналы ниже",
+    "es": "Complete los canales a continuación",
+    "it": "Compila i canali qui sotto",
+    "fr": "Remplissez les canaux ci-dessous",
+    "uk": "Заповніть канали нижче"
+  },
+  {
+    "key": "função",
+    "en": "function",
+    "pt": "função",
+    "ru": "функция",
+    "es": "función",
+    "it": "funzione",
+    "fr": "fonction",
+    "uk": "функція"
+  },
+  {
+    "key": "nome",
+    "en": "name",
+    "pt": "nome",
+    "ru": "имя",
+    "es": "nombre",
+    "it": "nome",
+    "fr": "nom",
+    "uk": "ім'я"
+  },
+  {
+    "key": "Configuração de Volume Default",
+    "en": "Default Volume Configuration",
+    "pt": "Configuração de Volume Default",
+    "ru": "Настройка громкости по умолчанию",
+    "es": "Configuración de Volumen Predeterminado",
+    "it": "Configurazione di Volume Predefinito",
+    "fr": "Configuration de Volume Par Défaut",
+    "uk": "Налаштування Гучності За Замовчуванням"
+  },
+  {
+    "key": "Preencha os volumes Default",
+    "en": "Fill in the Default volumes",
+    "pt": "Preencha os volumes Default",
+    "ru": "Заполните громкости по умолчанию",
+    "es": "Complete los volúmenes Predeterminados",
+    "it": "Compila i volumi Predefiniti",
+    "fr": "Remplissez les volumes par défaut",
+    "uk": "Заповніть гучності За Замовчуванням"
+  },
+  {
+    "key": "Como Principal",
+    "en": "As Main",
+    "pt": "Como Principal",
+    "ru": "Как основной",
+    "es": "Como Principal",
+    "it": "Come Principale",
+    "fr": "Comme Principal",
+    "uk": "Як Головний"
+  },
+  {
+    "key": "Como Backing-Vocal",
+    "en": "As Backing-Vocal",
+    "pt": "Como Backing-Vocal",
+    "ru": "Как бэкинг-вокал",
+    "es": "Como Backing-Vocal",
+    "it": "Come Backing-Vocal",
+    "fr": "Comme Backing-Vocal",
+    "uk": "Як Бек-вокал"
+  },
+  {
+    "key": "Converte base para primeiro slide",
+    "en": "Convert base to first slide",
+    "pt": "Converte base para primeiro slide",
+    "ru": "Конвертировать базу для первого слайда",
+    "es": "Convierte base para primer slide",
+    "it": "Converte base per primo slide",
+    "fr": "Convertir la base pour le premier slide",
+    "uk": "Перетворити базу на перший слайд"
+  },
+  {
+    "key": "Conversão: de {} para {}",
+    "en": "Conversion: from {} to {}",
+    "pt": "Conversão: de {} para {}",
+    "ru": "Конвертация: из {} в {}",
+    "es": "Conversión: de {} a {}",
+    "it": "Conversione: da {} a {}",
+    "fr": "Conversion : de {} à {}",
+    "uk": "Перетворення: з {} на {}"
+  },
+  {
+    "key": "Conversão: de {}b para {}b",
+    "en": "Conversion: from {}b to {}b",
+    "pt": "Conversão: de {}b para {}b",
+    "ru": "Конвертация: из {}b в {}b",
+    "es": "Conversión: de {}b a {}b",
+    "it": "Conversione: da {}b a {}b",
+    "fr": "Conversion : de {}b à {}b",
+    "uk": "Перетворення: з {}b на {}b"
+  },
+  {
+    "key": "Rec",
+    "en": "Rec",
+    "pt": "Rec",
+    "ru": "Запись",
+    "es": "Rec",
+    "it": "Rec",
+    "fr": "Rec",
+    "uk": "Запис"
+  },
+  {
+    "key": "Play",
+    "en": "Play",
+    "pt": "Executar",
+    "ru": "Воспроизвести",
+    "es": "Ejecutar",
+    "it": "Eseguire",
+    "fr": "Éxécuter",
+    "uk": "Відтворити"
+  },
+  {
+    "key": "Leader",
+    "en": "Leader",
+    "pt": "Dirigente",
+    "ru": "Руководитель",
+    "es": "Líder",
+    "it": "Leader",
+    "fr": "Chef",
+    "uk": "Керівник"
+  },
+  {
+    "key": "backing",
+    "en": "backing",
+    "pt": "backing",
+    "ru": "бэкинг",
+    "es": "backing",
+    "it": "backing",
+    "fr": "backing",
+    "uk": "бекінг"
+  },
+  {
+    "key": "No ID provided",
+    "en": "No ID provided",
+    "pt": "Nenhum ID fornecido",
+    "ru": "ID не предоставлен",
+    "es": "No ID proporcionado",
+    "it": "Nessun ID fornito",
+    "fr": "Aucun ID fourni",
+    "uk": "ID не надано"
+  },
+  {
+    "key": "calling",
+    "en": "calling",
+    "pt": "chamando",
+    "ru": "звонок",
+    "es": "llamando",
+    "it": "chiamando",
+    "fr": "appelant",
+    "uk": "виклик"
+  },
+  {
+    "key": "Volumes not applied for song",
+    "en": "Volumes not applied for song",
+    "pt": "Volumes não aplicados para a música",
+    "ru": "Громкости не применены для песни",
+    "es": "Volúmenes no aplicados para la canción",
+    "it": "Volumi non applicati per la canzone",
+    "fr": "Volumes non appliqués pour la chanson",
+    "uk": "Гучності не застосовані для пісні"
+  },
+  {
+    "key": "volume not recorded",
+    "en": "volume not recorded",
+    "pt": "volume não registrado",
+    "ru": "громкость не записана",
+    "es": "volumen no registrado",
+    "it": "volume non registrato",
+    "fr": "volume non enregistré",
+    "uk": "гучність не записана"
+  },
+  {
+    "key": "Volume: {} Nome: {}",
+    "en": "Volume: {} Name: {}",
+    "pt": "Volume: {} Nome: {}",
+    "ru": "Громкость: {} Имя: {}",
+    "es": "Volumen: {} Nombre: {}",
+    "it": "Volume: {} Nome: {}",
+    "fr": "Volume : {} Nom : {}",
+    "uk": "Гучність: {} Ім'я: {}"
+  },
+  {
+    "key": "Base de dados atualizada",
+    "en": "Database updated",
+    "pt": "Base de dados atualizada",
+    "ru": "База данных обновлена",
+    "es": "Base de datos actualizada",
+    "it": "Database aggiornato",
+    "fr": "Base de données mise à jour",
+    "uk": "База даних оновлена"
+  },
+  {
+    "key": "músicas",
+    "en": "songs",
+    "pt": "músicas",
+    "ru": "песни",
+    "es": "canciones",
+    "it": "canzoni",
+    "fr": "chansons",
+    "uk": "пісні"
+  },
+  {
+    "key": "slides",
+    "en": "slides",
+    "pt": "slides",
+    "ru": "слайды",
+    "es": "slides",
+    "it": "slide",
+    "fr": "slides",
+    "uk": "слайди"
+  },
+  {
+    "key": "carregado da memória",
+    "en": "loaded from memory",
+    "pt": "carregado da memória",
+    "ru": "загружено из памяти",
+    "es": "cargado de la memoria",
+    "it": "caricato dalla memoria",
+    "fr": "chargé de la mémoire",
+    "uk": "завантажено з пам'яті"
+  },
+  {
+    "key": "carregado do arquivo",
+    "en": "loaded from file",
+    "pt": "carregado do arquivo",
+    "ru": "загружено из файла",
+    "es": "cargado del archivo",
+    "it": "caricato dal file",
+    "fr": "chargé du fichier",
+    "uk": "завантажено з файлу"
+  },
+  {
+    "key": "zerado",
+    "en": "reset",
+    "pt": "zerado",
+    "ru": "обнулено",
+    "es": "zerado",
+    "it": "azzerato",
+    "fr": "réinitialisé",
+    "uk": "обнулено"
+  },
+  {
+    "key": "sem id",
+    "en": "no id",
+    "pt": "sem id",
+    "ru": "без id",
+    "es": "sin id",
+    "it": "senza id",
+    "fr": "sans id",
+    "uk": "без id"
+  },
+  {
+    "key": "initialized",
+    "en": "initialized",
+    "pt": "inicializado",
+    "ru": "инициализировано",
+    "es": "inicializado",
+    "it": "inizializzato",
+    "fr": "initialisé",
+    "uk": "ініціалізовано"
+  },
+  {
+    "key": "Error initializing",
+    "en": "Error initializing",
+    "pt": "Erro ao inicializar",
+    "ru": "Ошибка инициализации",
+    "es": "Error al inicializar",
+    "it": "Errore durante l'inizializzazione",
+    "fr": "Erreur d'initialisation",
+    "uk": "Помилка ініціалізації"
+  },
+  {
+    "key": "Error accessing channel",
+    "en": "Error accessing channel",
+    "pt": "Erro ao acessar canal",
+    "ru": "Ошибка доступа к каналу",
+    "es": "Error al acceder al canal",
+    "it": "Errore durante l'accesso al canale",
+    "fr": "Erreur d'accès au canal",
+    "uk": "Помилка доступу до каналу"
+  },
+  {
+    "key": "updated",
+    "en": "updated",
+    "pt": "atualizado",
+    "ru": "обновлено",
+    "es": "actualizado",
+    "it": "aggiornato",
+    "fr": "mis à jour",
+    "uk": "оновлено"
+  },
+  {
+    "key": "Error updating",
+    "en": "Error updating",
+    "pt": "Erro ao atualizar",
+    "ru": "Ошибка обновления",
+    "es": "Error al actualizar",
+    "it": "Errore durante l'aggiornamento",
+    "fr": "Erreur de mise à jour",
+    "uk": "Помилка оновлення"
+  },
+  {
+    "key": "Culto",
+    "en": "Service",
+    "pt": "Culto",
+    "ru": "Служба",
+    "es": "Culto",
+    "it": "Culto",
+    "fr": "Culte",
+    "uk": "Служба"
+  },
+  {
+    "key": "Baixo",
+    "en": "Bass",
+    "pt": "Baixo",
+    "ru": "Бас",
+    "es": "Bajo",
+    "it": "Basso",
+    "fr": "Basse",
+    "uk": "Бас"
+  },
+  {
+    "key": "Violão",
+    "en": "Guitar",
+    "pt": "Violão",
+    "ru": "Гитара",
+    "es": "Guitarra",
+    "it": "Chitarra",
+    "fr": "Guitare",
+    "uk": "Гітара"
+  },
+  {
+    "key": "Vocal",
+    "en": "Vocal",
+    "pt": "Vocal",
+    "ru": "Вокал",
+    "es": "Vocal",
+    "it": "Vocale",
+    "fr": "Vocal",
+    "uk": "Вокал"
+  },
+  {
+    "key": "Multimídia",
+    "en": "Multimedia",
+    "pt": "Multimídia",
+    "ru": "Мультимедиа",
+    "es": "Multimedia",
+    "it": "Multimedia",
+    "fr": "Multimédia",
+    "uk": "Мультимедіа"
+  },
+  {
+    "key": "Projetor",
+    "en": "Projector",
+    "pt": "Projetor",
+    "ru": "Проектор",
+    "es": "Proyector",
+    "it": "Proiettore",
+    "fr": "Projecteur",
+    "uk": "Проектор"
+  },
+  {
+    "key": "Som",
+    "en": "Sound",
+    "pt": "Som",
+    "ru": "Звук",
+    "es": "Sonido",
+    "it": "Suono",
+    "fr": "Son",
+    "uk": "Звук"
+  },
+  {
+    "key": "Bateria",
+    "en": "Drum",
+    "pt": "Bateria",
+    "ru": "Барабаны",
+    "es": "Batería",
+    "it": "Batteria",
+    "fr": "Batterie",
+    "uk": "Барабани"
+  },
+  {
+    "key": "Teclado",
+    "en": "Keyboard",
+    "pt": "Teclado",
+    "ru": "Клавиши",
+    "es": "Teclado",
+    "it": "Tastiera",
+    "fr": "Clavier",
+    "uk": "Клавіші"
+  },
+  {
+    "key": "Guitar",
+    "en": "Guitar",
+    "pt": "Guitarra",
+    "ru": "Гитара",
+    "es": "Guitarra",
+    "it": "Chitarra",
+    "fr": "Guitare",
+    "uk": "Гітара"
+  },
+  {
+    "key": "Sax",
+    "en": "Saxophone",
+    "pt": "Sax",
+    "ru": "Саксофон",
+    "es": "Saxofón",
+    "it": "Sassofono",
+    "fr": "Saxophone",
+    "uk": "Саксофон"
+  },
+  {
+    "key": "Flauta",
+    "en": "Flute",
+    "pt": "Flauta",
+    "ru": "Флейта",
+    "es": "Flauta",
+    "it": "Flauto",
+    "fr": "Flûte",
+    "uk": "Флейта"
+  },
+  {
+    "key": "Percussão",
+    "en": "Percussion",
+    "pt": "Percussão",
+    "ru": "Ударные",
+    "es": "Percusión",
+    "it": "Percussione",
+    "fr": "Percussion",
+    "uk": "Ударні інструменти"
+  },
+  {
+    "key": "Músicas sem countdown",
+    "en": "Songs without countdown",
+    "pt": "Músicas sem contagem regressiva",
+    "ru": "Музыка без обратного отсчета",
+    "es": "Músicas sin countdown",
+    "it": "Brani senza countdown",
+    "fr": "Chansons sans compte à rebours",
+    "uk": "Пісні без зворотного відліку"
+  },
+  {
+    "key": "Todas as músicas da lista possuem countdown.",
+    "en": "All songs in the list have a countdown.",
+    "pt": "Todas as músicas da lista possuem contagem regressiva.",
+    "ru": "Все песни в списке имеют обратный отсчет.",
+    "es": "Todas las canciones de la lista tienen countdown.",
+    "it": "Tutti i brani della lista hanno countdown.",
+    "fr": "Toutes les chansons de la liste ont un compte à rebours.",
+    "uk": "Усі пісні в списку мають зворотний відлік."
+  },
+  {
+    "key": "Campo extra alias_background não configurado",
+    "en": "Extra field alias_background not configured",
+    "pt": "Campo extra alias_background não configurado",
+    "ru": "Дополнительное поле alias_background не настроено",
+    "es": "Campo extra alias_background no configurado",
+    "it": "Campo extra alias_background non configurato",
+    "fr": "Champ supplémentaire alias_background non configuré",
+    "uk": "Додаткове поле alias_background не налаштоване"
+  },
+  {
+    "key": "Vídeo configurado",
+    "en": "Video configured",
+    "pt": "Vídeo configurado",
+    "ru": "Видео настроено",
+    "es": "Vídeo configurado",
+    "it": "Video configurato",
+    "fr": "Vidéo configurée",
+    "uk": "Відео налаштоване"
+  },
+  {
+    "key": "Vídeo não encontrado",
+    "en": "Video not found",
+    "pt": "Vídeo não encontrado",
+    "ru": "Видео не найдено",
+    "es": "Vídeo no encontrado",
+    "it": "Video non trovato",
+    "fr": "Vidéo non trouvée",
+    "uk": "Відео не знайдено"
+  },
+  {
+    "key": "Dízimos",
+    "en": "Tithes",
+    "pt": "Dízimos",
+    "ru": "Десятина",
+    "es": "Diezmos",
+    "it": "Decimi",
+    "fr": "Dîmes",
+    "uk": "Десятина"
+  },
+  {
+    "key": "Ceia",
+    "en": "Communion",
+    "pt": "Ceia",
+    "ru": "Вечеря",
+    "es": "Cena",
+    "it": "Cena",
+    "fr": "Cène",
+    "uk": "Вечеря"
+  },
+  {
+    "key": "temaFixo setado para {}",
+    "en": "fixedTheme set to {}",
+    "pt": "temaFixo definido para {}",
+    "ru": "темаFixo установлена на {}",
+    "es": "temaFijo establecido para {}",
+    "it": "temaFisso impostato su {}",
+    "fr": "themeFixo défini sur {}",
+    "uk": "темаFixo встановлено на {}"
+  },
+  {
+    "key": "BPM variável encontrado: {} ",
+    "en": "Variable BPM found: {} ",
+    "pt": "BPM variável encontrado: {} ",
+    "ru": "Найдена переменная BPM: {} ",
+    "es": "BPM variable encontrado: {} ",
+    "it": "BPM variabile trovato: {} ",
+    "fr": "BPM variable trouvé : {} ",
+    "uk": "Знайдено змінне BPM: {} "
+  },
+  {
+    "key": "Sobre ",
+    "en": "About ",
+    "pt": "Sobre ",
+    "ru": "О ",
+    "es": "Sobre ",
+    "it": "Informazioni su ",
+    "fr": "À propos ",
+    "uk": "Про "
+  },
+  {
+    "key": "Saltar Título Músicas (1s)",
+    "en": "Skip Title Songs (1s)",
+    "pt": "Saltar Título Músicas (1s)",
+    "ru": "Пропустить заголовок песен (1с)",
+    "es": "Saltar Título Canciones (1s)",
+    "it": "Salta Titolo Brani (1s)",
+    "fr": "Sauter le titre des chansons (1s)",
+    "uk": "Пропустити заголовок пісень (1с)"
+  },
+  {
+    "key": "Tema Título e artista",
+    "en": "Theme Title and artist",
+    "pt": "Tema Título e artista",
+    "ru": "Тема заголовка и исполнителя",
+    "es": "Tema Título y artista",
+    "it": "Tema Titolo e artista",
+    "fr": "Thème Titre et artiste",
+    "uk": "Тема заголовка та виконавця"
+  },
+  {
+    "key": "Tema Lentas",
+    "en": "Slow Theme",
+    "pt": "Tema Lentas",
+    "ru": "Медленные темы",
+    "es": "Tema Lentas",
+    "it": "Tema Lenti",
+    "fr": "Thème Lent",
+    "uk": "Повільні теми"
+  },
+  {
+    "key": "Tema Rápidas",
+    "en": "Fast Theme",
+    "pt": "Tema Rápidas",
+    "ru": "Быстрые темы",
+    "es": "Tema Rápidas",
+    "it": "Tema Veloci",
+    "fr": "Thème Rapide",
+    "uk": "Швидкі теми"
+  },
+  {
+    "key": "Tema Dízimos",
+    "en": "Tithes Theme",
+    "pt": "Tema Dízimos",
+    "ru": "Тема десятины",
+    "es": "Tema Diezmos",
+    "it": "Tema Decimi",
+    "fr": "Thème Dîmes",
+    "uk": "Тема десятини"
+  },
+  {
+    "key": "Tema Ceia",
+    "en": "Communion Theme",
+    "pt": "Tema Ceia",
+    "ru": "Тема вечерии",
+    "es": "Tema Cena",
+    "it": "Tema Cena",
+    "fr": "Thème Cène",
+    "uk": "Тема вечері"
+  },
+  {
+    "key": "Pré Culto",
+    "en": "Pre-Service",
+    "pt": "Pré Culto",
+    "ru": "Предварительное служение",
+    "es": "Pré Culto",
+    "it": "Pre Culto",
+    "fr": "Pré-Culte",
+    "uk": "Перед служінням"
+  },
+  {
+    "key": "onchange ",
+    "en": "onchange ",
+    "pt": "onchange ",
+    "ru": "onchange ",
+    "es": "onchange ",
+    "it": "onchange ",
+    "fr": "onchange ",
+    "uk": "onchange "
+  },
+  {
+    "key": "Fundo selecionado: {}",
+    "en": "Selected background: {}",
+    "pt": "Fundo selecionado: {}",
+    "ru": "Выбранный фон: {}",
+    "es": "Fondo seleccionado: {}",
+    "it": "Sfondo selezionato: {}",
+    "fr": "Fond sélectionné : {}",
+    "uk": "Вибрано фон: {}"
+  },
+  {
+    "key": "Você precisa criar uma tag para o tema: {} poder funcionar no modo aleatório.",
+    "en": "You need to create a tag for the theme: {} to work in random mode.",
+    "pt": "Você precisa criar uma tag para o tema: {} funcionar no modo aleatório.",
+    "ru": "Вам нужно создать тег для темы: {} чтобы она работала в случайном режиме.",
+    "es": "Necesitas crear una etiqueta para el tema: {} para que funcione en modo aleatorio.",
+    "it": "Devi creare un tag per il tema: {} affinché funzioni in modalità casuale.",
+    "fr": "Vous devez créer une étiquette pour que le thème : {} fonctionne en mode aléatoire.",
+    "uk": "Вам потрібно створити тег для теми: {} щоб вона могла працювати в випадковому режимі."
+  },
+  {
+    "key": "BPM alterado para",
+    "en": "BPM changed to",
+    "pt": "BPM alterado para",
+    "ru": "BPM изменен на",
+    "es": "BPM cambiado a",
+    "it": "BPM modificato a",
+    "fr": "BPM modifié à",
+    "uk": "BPM змінено на"
+  },
+  {
+    "key": "Velocidade será alterada pelo Slide {} para {} depois de {} segundos",
+    "en": "Speed will be changed by Slide {} to {} after {} seconds",
+    "pt": "Velocidade será alterada pelo Slide {} para {} depois de {} segundos",
+    "ru": "Скорость будет изменена с помощью слайда {} на {} через {} секунд",
+    "es": "La velocidad será cambiada por el Slide {} a {} después de {} segundos",
+    "it": "Velocità sarà modificata dallo Slide {} a {} dopo {} secondi",
+    "fr": "La vitesse sera modifiée par le Slide {} à {} après {} secondes",
+    "uk": "Швидкість буде змінена слайдом {} на {} через {} секунд"
+  },
+  {
+    "key": "Executando timeout",
+    "en": "Executing timeout",
+    "pt": "Executando timeout",
+    "ru": "Выполнение таймаута",
+    "es": "Ejecutando timeout",
+    "it": "Esecuzione timeout",
+    "fr": "Exécution du timeout",
+    "uk": "Виконання тайм-ауту"
+  },
+  {
+    "key": "Velocidade Alterada pelo Slide {} para {} depois de {} segundos",
+    "en": "Speed Changed by Slide {} to {} after {} seconds",
+    "pt": "Velocidade Alterada pelo Slide {} para {} depois de {} segundos",
+    "ru": "Скорость изменена с помощью слайда {} на {} через {} секунд",
+    "es": "Velocidad Cambiada por el Slide {} a {} después de {} segundos",
+    "it": "Velocità Modificata dallo Slide {} a {} dopo {} secondi",
+    "fr": "Vitesse modifiée par le Slide {} à {} après {} secondes",
+    "uk": "Швидкість змінена слайдом {} на {} через {} секунд"
+  },
+  {
+    "key": "Altera a cor do destaque para apresentações de texto quando encontra a tag",
+    "en": "Changes the highlight color for text presentations when it finds the tag",
+    "pt": "Altera a cor do destaque para apresentações de texto quando encontra a tag",
+    "ru": "Изменяет цвет выделения для текстовых презентаций, когда находит тег",
+    "es": "Cambia el color del destaque para presentaciones de texto cuando encuentra la etiqueta",
+    "it": "Cambia il colore dell'evidenziazione per le presentazioni di testo quando trova il tag",
+    "fr": "Change la couleur de surbrillance pour les présentations de texte lorsqu'il trouve l'étiquette",
+    "uk": "Змінює колір виділення для текстових презентацій, коли знаходить тег"
+  },
+  {
+    "key": "Releasing mixer",
+    "en": "Releasing mixer",
+    "pt": "Liberando mixer",
+    "ru": "Освобождение микшера",
+    "es": "Releasing mixer",
+    "it": "Rilascio mixer",
+    "fr": "Libération du mélangeur",
+    "uk": "Вивільнення мікшера"
+  },
+  {
+    "key": "Configurações do mixer digital",
+    "en": "Digital mixer settings",
+    "pt": "Configurações do mixer digital",
+    "ru": "Настройки цифрового микшера",
+    "es": "Configuraciones del mixer digital",
+    "it": "Impostazioni del mixer digitale",
+    "fr": "Paramètres du mélangeur numérique",
+    "uk": "Налаштування цифрового мікшера"
+  },
+  {
+    "key": "Tipo da Entrada",
+    "en": "Input Type",
+    "pt": "Tipo da Entrada",
+    "ru": "Тип входа",
+    "es": "Tipo de Entrada",
+    "it": "Tipo di Ingresso",
+    "fr": "Type d'entrée",
+    "uk": "Тип входу"
+  },
+  {
+    "key": "Número do canal",
+    "en": "Channel number",
+    "pt": "Número do canal",
+    "ru": "Номер канала",
+    "es": "Número de canal",
+    "it": "Numero del canale",
+    "fr": "Numéro de canal",
+    "uk": "Номер каналу"
+  },
+  {
+    "key": "Configurações",
+    "en": "Settings",
+    "pt": "Configurações",
+    "ru": "Настройки",
+    "es": "Configuraciones",
+    "it": "Impostazioni",
+    "fr": "Paramètres",
+    "uk": "Налаштування"
+  },
+  {
+    "key": "Alterar Volume",
+    "en": "Change Volume",
+    "pt": "Alterar Volume",
+    "ru": "Изменить громкость",
+    "es": "Cambiar Volumen",
+    "it": "Cambia Volume",
+    "fr": "Modifier le volume",
+    "uk": "Змінити гучність"
+  },
+  {
+    "key": "Mixer não configurado!",
+    "en": "Mixer not configured!",
+    "pt": "Mixer não configurado!",
+    "ru": "Микшер не настроен!",
+    "es": "¡Mixer no configurado!",
+    "it": "Mixer non configurato!",
+    "fr": "Mélangeur non configuré !",
+    "uk": "Мікшер не налаштований!"
+  },
+  {
+    "key": "Erro ao obter estado de mute",
+    "en": "Error getting mute state",
+    "pt": "Erro ao obter estado de mudo",
+    "ru": "Ошибка при получении состояния отключения звука",
+    "es": "Error al obtener estado de mute",
+    "it": "Errore nel recupero dello stato di mute",
+    "fr": "Erreur lors de l'obtention de l'état de sourdine",
+    "uk": "Помилка при отриманні стану беззвучного режиму"
+  },
+  {
+    "key": "Erro ao obter volume",
+    "en": "Error getting volume",
+    "pt": "Erro ao obter volume",
+    "ru": "Ошибка при получении громкости",
+    "es": "Error al obtener volumen",
+    "it": "Errore nel recupero del volume",
+    "fr": "Erreur lors de l'obtention du volume",
+    "uk": "Помилка при отриманні гучності"
+  },
+  {
+    "key": "Erro ao alternar mute",
+    "en": "Error toggling mute",
+    "pt": "Erro ao alternar mudo",
+    "ru": "Ошибка при переключении отключения звука",
+    "es": "Error al alternar mute",
+    "it": "Errore nel passare a mute",
+    "fr": "Erreur lors du changement de sourdine",
+    "uk": "Помилка при перемиканні беззвучного режиму"
+  },
+  {
+    "key": "Atenção",
+    "en": "Attention",
+    "pt": "Atenção",
+    "ru": "Внимание",
+    "es": "Atención",
+    "it": "Attenzione",
+    "fr": "Attention",
+    "uk": "Увага"
+  },
+  {
+    "key": "Desativar Mute",
+    "en": "Disable Mute",
+    "pt": "Desativar Mudo",
+    "ru": "Отключить отключение звука",
+    "es": "Desactivar Mute",
+    "it": "Disattiva Mute",
+    "fr": "Désactiver la sourdine",
+    "uk": "Вимкнути беззвучний режим"
+  },
+  {
+    "key": "Ativar Mute",
+    "en": "Enable Mute",
+    "pt": "Ativar Mudo",
+    "ru": "Включить отключение звука",
+    "es": "Activar Mute",
+    "it": "Attiva Mute",
+    "fr": "Activer la sourdine",
+    "uk": "Увімкнути беззвучний режим"
+  },
+  {
+    "key": "Start Show Now",
+    "en": "Start Show Now",
+    "pt": "Iniciar Show Agora",
+    "ru": "Начать шоу сейчас",
+    "es": "Iniciar Show Ahora",
+    "it": "Inizia Show Ora",
+    "fr": "Démarrer le spectacle maintenant",
+    "uk": "Почати шоу зараз"
+  },
+  {
+    "key": "Configure Show for",
+    "en": "Configure Show for",
+    "pt": "Configurar Show para",
+    "ru": "Настроить шоу для",
+    "es": "Configurar Show para",
+    "it": "Configura Show per",
+    "fr": "Configurer le spectacle pour",
+    "uk": "Налаштувати шоу для"
+  },
+  {
+    "key": "Opening show settings for",
+    "en": "Opening show settings for",
+    "pt": "Abrindo configurações do show para",
+    "ru": "Открытие настроек шоу для",
+    "es": "Abriendo configuraciones del show para",
+    "it": "Apertura impostazioni show per",
+    "fr": "Ouverture des paramètres du spectacle pour",
+    "uk": "Відкриття налаштувань шоу для"
+  },
+  {
+    "key": "Active Show for",
+    "en": "Active Show for",
+    "pt": "Show Ativo para",
+    "ru": "Активное шоу для",
+    "es": "Show Activo para",
+    "it": "Show Attivo per",
+    "fr": "Spectacle actif pour",
+    "uk": "Активне шоу для"
+  },
+  {
+    "key": "Minutes to add to the scheduled opening time for",
+    "en": "Minutes to add to the scheduled opening time for",
+    "pt": "Minutos a adicionar ao horário de abertura programado para",
+    "ru": "Минуты, которые нужно добавить к запланированному времени открытия для",
+    "es": "Minutos a añadir al tiempo de apertura programado para",
+    "it": "Minuti da aggiungere all'orario di apertura programmato per",
+    "fr": "Minutes à ajouter à l'heure d'ouverture prévue pour",
+    "uk": "Хвилини, які потрібно додати до запланованого часу відкриття для"
+  },
+  {
+    "key": "For Video",
+    "en": "For Video",
+    "pt": "Para Vídeo",
+    "ru": "Для видео",
+    "es": "Para Video",
+    "it": "Per Video",
+    "fr": "Pour la vidéo",
+    "uk": "Для відео"
+  },
+  {
+    "key": "select only 1 video and not a folder. Configuration removed.",
+    "en": "select only 1 video and not a folder. Configuration removed.",
+    "pt": "selecione apenas 1 vídeo e não uma pasta. Configuração removida.",
+    "ru": "выберите только 1 видео, а не папку. Настройка удалена.",
+    "es": "selecciona solo 1 video y no una carpeta. Configuración eliminada.",
+    "it": "seleziona solo 1 video e non una cartella. Configurazione rimossa.",
+    "fr": "sélectionnez uniquement 1 vidéo et non un dossier. Configuration supprimée.",
+    "uk": "виберіть лише 1 відео, а не папку. Налаштування видалено."
+  },
+  {
+    "key": "Tempos Instrumentais Salvos",
+    "en": "Saved Instrumental Times",
+    "pt": "Tempos Instrumentais Salvos",
+    "ru": "Сохраненные инструментальные темпы",
+    "es": "Tempos Instrumentales Guardados",
+    "it": "Tempi Strumentali Salvati",
+    "fr": "Tempos instrumentaux sauvegardés",
+    "uk": "Збережені інструментальні темпи"
+  },
+  {
+    "key": "Slide",
+    "en": "Slide",
+    "pt": "Slide",
+    "ru": "Слайд",
+    "es": "Slide",
+    "it": "Slide",
+    "fr": "Diapositive",
+    "uk": "Слайд"
+  },
+  {
+    "key": "Tempos atuais da música",
+    "en": "Current song times",
+    "pt": "Tempos atuais da música",
+    "ru": "Текущие темпы музыки",
+    "es": "Tempos actuales de la canción",
+    "it": "Tempi attuali della musica",
+    "fr": "Tempos actuels de la chanson",
+    "uk": "Актуальні темпи пісні"
+  },
+  {
+    "key": "Encerrando música.",
+    "en": "Ending song.",
+    "pt": "Encerrando música.",
+    "ru": "Завершение музыки.",
+    "es": "Cerrando canción.",
+    "it": "Chiusura della musica.",
+    "fr": "Fin de la chanson.",
+    "uk": "Завершення пісні."
+  },
+  {
+    "key": "Relatório de músicas sem Countdown",
+    "en": "Report of songs without Countdown",
+    "pt": "Relatório de músicas sem Contagem Regressiva",
+    "ru": "Отчет о песнях без обратного отсчета",
+    "es": "Informe de canciones sin Countdown",
+    "it": "Rapporto di brani senza Countdown",
+    "fr": "Rapport de chansons sans compte à rebours",
+    "uk": "Звіт про пісні без зворотного відліку"
+  },
+  {
+    "key": "Músicas sem countdown:",
+    "en": "Songs without countdown:",
+    "pt": "Músicas sem contagem regressiva:",
+    "ru": "Песни без обратного отсчета:",
+    "es": "Canciones sin countdown:",
+    "it": "Brani senza countdown:",
+    "fr": "Chansons sans compte à rebours :",
+    "uk": "Пісні без зворотного відліку:"
+  },
+  {
+    "key": "Testar Nome das Telas",
+    "en": "Test Screen Names",
+    "pt": "Testar Nome das Telas",
+    "ru": "Проверить название экранов",
+    "es": "Probar Nombre de las Pantallas",
+    "it": "Testa Nome delle Schermate",
+    "fr": "Tester le nom des écrans",
+    "uk": "Перевірити назви екранів"
+  },
+  {
+    "key": "Nome do verso Instrumental",
+    "en": "Instrumental verse name",
+    "pt": "Nome do verso Instrumental",
+    "ru": "Название инструментального куплета",
+    "es": "Nombre del verso Instrumental",
+    "it": "Nome del verso Strumentale",
+    "fr": "Nom du verso instrumental",
+    "uk": "Назва інструментального куплета"
+  },
+  {
+    "key": "Instrumental",
+    "en": "Instrumental",
+    "pt": "Instrumental",
+    "ru": "Инструментал",
+    "es": "Instrumental",
+    "it": "Strumentale",
+    "fr": "Instrumental",
+    "uk": "Інструментал"
+  },
+  {
+    "key": "Tela a Exibir",
+    "en": "Screen to Display",
+    "pt": "Tela a Exibir",
+    "ru": "Экран для отображения",
+    "es": "Pantalla a Mostrar",
+    "it": "Schermata da Visualizzare",
+    "fr": "Écran à afficher",
+    "uk": "Екран для відображення"
+  },
+  {
+    "key": " onchange ",
+    "en": " onchange ",
+    "pt": " onchange ",
+    "ru": " onchange ",
+    "es": " onchange ",
+    "it": " onchange ",
+    "fr": " onchange ",
+    "uk": " onchange "
+  },
+  {
+    "key": "Ignorado",
+    "en": "Ignored",
+    "pt": "Ignorado",
+    "ru": "Игнорируется",
+    "es": "Ignorado",
+    "it": "Ignorato",
+    "fr": "Ignoré",
+    "uk": "Ігноровано"
+  },
+  {
+    "key": "inicializado",
+    "en": "initialized",
+    "pt": "inicializado",
+    "ru": "инициализировано",
+    "es": "inicializado",
+    "it": "inizializzato",
+    "fr": "initialisé",
+    "uk": "ініціалізовано"
+  },
+  {
+    "key": "dados atuais",
+    "en": "current data",
+    "pt": "dados atuais",
+    "ru": "текущие данные",
+    "es": "datos actuales",
+    "it": "dati attuali",
+    "fr": "données actuelles",
+    "uk": "актуальні дані"
+  },
+  {
+    "key": "Salvo",
+    "en": "Saved",
+    "pt": "Salvo",
+    "ru": "Сохранено",
+    "es": "Guardado",
+    "it": "Salvato",
+    "fr": "Sauvegardé",
+    "uk": "Збережено"
+  },
+  {
+    "key": "Erro ao reparar dados instrumentais: {}",
+    "en": "Error repairing instrumental data: {}",
+    "pt": "Erro ao reparar dados instrumentais: {}",
+    "ru": "Ошибка при восстановлении инструментальных данных: {}",
+    "es": "Error al reparar datos instrumentales: {}",
+    "it": "Errore nel riparare i dati strumentali: {}",
+    "fr": "Erreur lors de la réparation des données instrumentales : {}",
+    "uk": "Помилка при виправленні інструментальних даних: {}"
+  },
+  {
+    "key": "inicializado vazio",
+    "en": "initialized empty",
+    "pt": "inicializado vazio",
+    "ru": "инициализировано пусто",
+    "es": "inicializado vacío",
+    "it": "inizializzato vuoto",
+    "fr": "initialisé vide",
+    "uk": "ініціалізовано порожньо"
+  },
+  {
+    "key": "Dados salvos no arquivo: {}",
+    "en": "Data saved in file: {}",
+    "pt": "Dados salvos no arquivo: {}",
+    "ru": "Данные сохранены в файле: {}",
+    "es": "Datos guardados en el archivo: {}",
+    "it": "Dati salvati nel file: {}",
+    "fr": "Données sauvegardées dans le fichier : {}",
+    "uk": "Дані збережено у файлі: {}"
+  },
+  {
+    "key": "posição",
+    "en": "position",
+    "pt": "posição",
+    "ru": "позиция",
+    "es": "posición",
+    "it": "posizione",
+    "fr": "position",
+    "uk": "позиція"
+  },
+  {
+    "key": "Associe os objetos da cena base",
+    "en": "Associate the base scene objects",
+    "pt": "Associe os objetos da cena base",
+    "ru": "Свяжите объекты базовой сцены",
+    "es": "Asocia los objetos de la escena base",
+    "it": "Associa gli oggetti della scena base",
+    "fr": "Associez les objets de la scène de base",
+    "uk": "Ассоціюйте об'єкти базової сцени"
+  },
+  {
+    "key": "Letra Música",
+    "en": "Song Lyrics",
+    "pt": "Letra Música",
+    "ru": "Текст песни",
+    "es": "Letra Canción",
+    "it": "Testo della Canzone",
+    "fr": "Paroles de la chanson",
+    "uk": "Текст пісні"
+  },
+  {
+    "key": "Apresentação Automática",
+    "en": "Automatic Presentation",
+    "pt": "Apresentação Automática",
+    "ru": "Автоматическая презентация",
+    "es": "Presentación Automática",
+    "it": "Presentazione Automatica",
+    "fr": "Présentation automatique",
+    "uk": "Автоматична презентація"
+  },
+  {
+    "key": "Ao exibir imagens",
+    "en": "When displaying images",
+    "pt": "Ao exibir imagens",
+    "ru": "При отображении изображений",
+    "es": "Al mostrar imágenes",
+    "it": "Quando si visualizzano immagini",
+    "fr": "Lors de l'affichage d'images",
+    "uk": "При відображенні зображень"
+  },
+  {
+    "key": "(nome precisa conter uma exclamação ",
+    "en": "(name must contain an exclamation ",
+    "pt": "(nome precisa conter uma exclamação ",
+    "ru": "(имя должно содержать восклицательный знак ",
+    "es": "(el nombre debe contener una exclamación ",
+    "it": "(il nome deve contenere un'esclamazione ",
+    "fr": "(le nom doit contenir un point d'exclamation ",
+    "uk": "(назва повинна містити знак оклику "
+  },
+  {
+    "key": "Trigger acionada",
+    "en": "Trigger activated",
+    "pt": "Trigger acionada",
+    "ru": "Сигнал сработал",
+    "es": "Trigger activada",
+    "it": "Trigger attivata",
+    "fr": "Déclencheur activé",
+    "uk": "Тригер активовано"
+  },
+  {
+    "key": "Tipo de dados na tela",
+    "en": "Data type on screen",
+    "pt": "Tipo de dados na tela",
+    "ru": "Тип данных на экране",
+    "es": "Tipo de datos en la pantalla",
+    "it": "Tipo di dati nella schermata",
+    "fr": "Type de données à l'écran",
+    "uk": "Тип даних на екрані"
+  },
+  {
+    "key": "Abortando VerseOBS - tipo da apresentação é blank, black ou wallpaper",
+    "en": "Aborting VerseOBS - presentation type is blank, black or wallpaper",
+    "pt": "Abortando VerseOBS - tipo da apresentação é em branco, preto ou papel de parede",
+    "ru": "Прерывание VerseOBS - тип презентации пустой, черный или обои",
+    "es": "Abortando VerseOBS - tipo de la presentación es blank, black o wallpaper",
+    "it": "Abortendo VerseOBS - tipo della presentazione è blank, black o wallpaper",
+    "fr": "Abandon de VerseOBS - type de présentation est vide, noir ou papier peint",
+    "uk": "Скасування VerseOBS - тип презентації є пустим, чорним або шпалерами"
+  },
+  {
+    "key": "Sem cena para o tipo",
+    "en": "No scene for the type",
+    "pt": "Sem cena para o tipo",
+    "ru": "Нет сцены для типа",
+    "es": "Sin escena para el tipo",
+    "it": "Nessuna scena per il tipo",
+    "fr": "Aucune scène pour le type",
+    "uk": "Немає сцени для типу"
+  },
+  {
+    "key": "Erro OBS",
+    "en": "OBS Error",
+    "pt": "Erro OBS",
+    "ru": "Ошибка OBS",
+    "es": "Error OBS",
+    "it": "Errore OBS",
+    "fr": "Erreur OBS",
+    "uk": "Помилка OBS"
+  },
+  {
+    "key": "Status inicial item",
+    "en": "Initial item status",
+    "pt": "Status inicial item",
+    "ru": "Начальный статус элемента",
+    "es": "Estado inicial item",
+    "it": "Stato iniziale elemento",
+    "fr": "État initial de l'élément",
+    "uk": "Початковий статус елемента"
+  },
+  {
+    "key": "passada",
+    "en": "past",
+    "pt": "passada",
+    "ru": "прошло",
+    "es": "pasada",
+    "it": "passata",
+    "fr": "passé",
+    "uk": "минуле"
+  },
+  {
+    "key": "Número máximo de tentativas atingido. O item da cena pode não ter sido configurado corretamente.",
+    "en": "Maximum number of attempts reached. The scene item may not have been configured correctly.",
+    "pt": "Número máximo de tentativas atingido. O item da cena pode não ter sido configurado corretamente.",
+    "ru": "Достигнуто максимальное количество попыток. Элемент сцены может быть настроен неправильно.",
+    "es": "Número máximo de intentos alcanzado. El item de la escena puede no haber sido configurado correctamente.",
+    "it": "Numero massimo di tentativi raggiunto. L'elemento della scena potrebbe non essere stato configurato correttamente.",
+    "fr": "Nombre maximum de tentatives atteint. L'élément de la scène peut ne pas avoir été configuré correctement.",
+    "uk": "Досягнуто максимальну кількість спроб. Елемент сцени може бути неправильно налаштований."
+  },
+  {
+    "key": "Cancelando timeout",
+    "en": "Cancelling timeout",
+    "pt": "Cancelando timeout",
+    "ru": "Отмена таймаута",
+    "es": "Cancelando timeout",
+    "it": "Cancellando timeout",
+    "fr": "Annulation du timeout",
+    "uk": "Скасування тайм-ауту"
+  },
+  {
+    "key": "Nome da Trigger",
+    "en": "Trigger Name",
+    "pt": "Nome da Trigger",
+    "ru": "Имя триггера",
+    "es": "Nombre de la Trigger",
+    "it": "Nome del Trigger",
+    "fr": "Nom du déclencheur",
+    "uk": "Назва тригера"
+  },
+  {
+    "key": "resultado da limpeza",
+    "en": "cleaning result",
+    "pt": "resultado da limpeza",
+    "ru": "результат очистки",
+    "es": "resultado de la limpieza",
+    "it": "risultato della pulizia",
+    "fr": "résultat du nettoyage",
+    "uk": "результат очищення"
+  },
+  {
+    "key": "novo timeOut",
+    "en": "new timeOut",
+    "pt": "novo timeOut",
+    "ru": "новый таймаут",
+    "es": "nuevo timeOut",
+    "it": "nuovo timeOut",
+    "fr": "nouveau timeOut",
+    "uk": "новий тайм-аут"
+  },
+  {
+    "key": "Cancela o F8 automático programado pelo tempo de exibição do Slide",
+    "en": "Cancels the automatic F8 scheduled by the slide display time",
+    "pt": "Cancela o F8 automático programado pelo tempo de exibição do Slide",
+    "ru": "Отменяет автоматическое F8, запланированное по времени отображения слайда",
+    "es": "Cancela el F8 automático programado por el tiempo de exhibición del Slide",
+    "it": "Cancella il F8 automatico programmato dal tempo di visualizzazione dello Slide",
+    "fr": "Annule le F8 automatique programmé par le temps d'affichage du Slide",
+    "uk": "Скасовує автоматичний F8, запланований за часом відображення слайду"
+  },
+  {
+    "key": "F8 automático cancelado para o slide atual.",
+    "en": "Automatic F8 cancelled for the current slide.",
+    "pt": "F8 automático cancelado para o slide atual.",
+    "ru": "Автоматическое F8 отменено для текущего слайда.",
+    "es": "F8 automático cancelado para el slide actual.",
+    "it": "F8 automatico cancellato per lo slide attuale.",
+    "fr": "F8 automatique annulé pour le slide actuel.",
+    "uk": "Автоматичний F8 скасовано для поточного слайду."
+  },
+  {
+    "key": "Cancelar",
+    "en": "Cancel",
+    "pt": "Cancelar",
+    "ru": "Отменить",
+    "es": "Cancelar",
+    "it": "Cancellare",
+    "fr": "Annuler",
+    "uk": "Скасувати"
+  },
+  {
+    "key": "Timer ativo, pressione para cancelar o timer e/ou reexibir o item",
+    "en": "Active timer, press to cancel the timer and/or re-display the item",
+    "pt": "Timer ativo, pressione para cancelar o timer e/ou reexibir o item",
+    "ru": "Таймер активен, нажмите, чтобы отменить таймер и/или повторно отобразить элемент",
+    "es": "Timer activo, presione para cancelar el timer y/o reexhibir el item",
+    "it": "Timer attivo, premi per cancellare il timer e/o riesporre l'elemento",
+    "fr": "Minuteur actif, appuyez pour annuler le minuteur et/ou réafficher l'élément",
+    "uk": "Таймер активний, натисніть, щоб скасувати таймер і/або повторно відобразити елемент"
+  },
+  {
+    "key": "Letra ID inicial das categorias de música no grupo",
+    "en": "Initial ID letter of music categories in the group",
+    "pt": "Letra ID inicial das categorias de música no grupo",
+    "ru": "Начальная буква ID категорий музыки в группе",
+    "es": "Letra ID inicial de las categorías de música en el grupo",
+    "it": "Lettera ID iniziale delle categorie di musica nel gruppo",
+    "fr": "Lettre ID initiale des catégories de musique dans le groupe",
+    "uk": "Початковий ID тексту категорій музики в групі"
+  },
+  {
+    "key": "O módulo procura grupos iniciando com este caractere.",
+    "en": "The module looks for groups starting with this character.",
+    "pt": "O módulo procura grupos iniciando com este caractere.",
+    "ru": "Модуль ищет группы, начинающиеся с этого символа.",
+    "es": "El módulo busca grupos que comienzan con este carácter.",
+    "it": "Il modulo cerca gruppi che iniziano con questo carattere.",
+    "fr": "Le module recherche des groupes commençant par ce caractère.",
+    "uk": "Модуль шукає групи, які починаються з цього символу."
+  },
+  {
+    "key": "Letra ID inicial dos tipos de trilha/playback",
+    "en": "Initial ID letter of track/playback types",
+    "pt": "Letra ID inicial dos tipos de trilha/playback",
+    "ru": "Начальная буква ID типов трека/воспроизведения",
+    "es": "Letra ID inicial de los tipos de pista/playback",
+    "it": "Lettera ID iniziale dei tipi di traccia/playback",
+    "fr": "Lettre ID initiale des types de piste/playback",
+    "uk": "Початковий ID тексту типів треків/плейбеку"
+  },
+  {
+    "key": "O módulo procura os cantores iniciando com este caractere, no exemplo ",
+    "en": "The module looks for singers starting with this character, in the example ",
+    "pt": "O módulo procura os cantores iniciando com este caractere, no exemplo ",
+    "ru": "Модуль ищет исполнителей, начинающихся с этого символа, в примере ",
+    "es": "El módulo busca los cantores que comienzan con este carácter, en el ejemplo ",
+    "it": "Il modulo cerca i cantanti che iniziano con questo carattere, nell'esempio ",
+    "fr": "Le module recherche les chanteurs commençant par ce caractère, dans l'exemple ",
+    "uk": "Модуль шукає співаків, які починаються з цього символу, у прикладі "
+  },
+  {
+    "key": "Usar Escala para Cantores",
+    "en": "Use Scale for Singers",
+    "pt": "Usar Escala para Cantores",
+    "ru": "Использовать шкалу для исполнителей",
+    "es": "Usar Escala para Cantores",
+    "it": "Usa Scala per Cantanti",
+    "fr": "Utiliser l'échelle pour les chanteurs",
+    "uk": "Використовувати шкалу для співаків"
+  },
+  {
+    "key": "Filtrar Músicas",
+    "en": "Filter Songs",
+    "pt": "Filtrar Músicas",
+    "ru": "Фильтровать песни",
+    "es": "Filtrar Canciones",
+    "it": "Filtra Canzoni",
+    "fr": "Filtrer les chansons",
+    "uk": "Фільтрувати пісні"
+  },
+  {
+    "key": "Marque os grupos",
+    "en": "Mark the groups",
+    "pt": "Marque os grupos",
+    "ru": "Отметьте группы",
+    "es": "Marque los grupos",
+    "it": "Seleziona i gruppi",
+    "fr": "Marquer les groupes",
+    "uk": "Позначте групи"
+  },
+  {
+    "key": "Preencha os parâmetros",
+    "en": "Fill in the parameters",
+    "pt": "Preencha os parâmetros",
+    "ru": "Заполните параметры",
+    "es": "Complete los parámetros",
+    "it": "Compila i parametri",
+    "fr": "Remplir les paramètres",
+    "uk": "Заповніть параметри"
+  },
+  {
+    "key": "Trilha",
+    "en": "Track",
+    "pt": "Trilha",
+    "ru": "Трек",
+    "es": "Ruta",
+    "it": "Traccia",
+    "fr": "Piste",
+    "uk": "Трек"
+  },
+  {
+    "key": "Artista",
+    "en": "Artist",
+    "pt": "Artista",
+    "ru": "Исполнитель",
+    "es": "Artista",
+    "it": "Artista",
+    "fr": "Artiste",
+    "uk": "Артист"
+  },
+  {
+    "key": "BPM Inicial",
+    "en": "Initial BPM",
+    "pt": "BPM Inicial",
+    "ru": "Начальный BPM",
+    "es": "BPM Inicial",
+    "it": "BPM Iniziale",
+    "fr": "BPM initial",
+    "uk": "Початковий BPM"
+  },
+  {
+    "key": "BPM final",
+    "en": "Final BPM",
+    "pt": "BPM Final",
+    "ru": "Конечный BPM",
+    "es": "BPM final",
+    "it": "BPM finale",
+    "fr": "BPM final",
+    "uk": "Кінцевий BPM"
+  },
+  {
+    "key": "Dias sem tocar inicial",
+    "en": "Days without initial touch",
+    "pt": "Dias sem tocar inicial",
+    "ru": "Дни без начального касания",
+    "es": "Días sin tocar inicial",
+    "it": "Giorni senza suonare iniziali",
+    "fr": "Jours sans jouer initial",
+    "uk": "Дні без початку гри"
+  },
+  {
+    "key": "Dias sem tocar final",
+    "en": "Days without final touch",
+    "pt": "Dias sem tocar final",
+    "ru": "Дни без конечного касания",
+    "es": "Días sin tocar final",
+    "it": "Giorni senza suonare finali",
+    "fr": "Jours sans jouer final",
+    "uk": "Дні без кінця гри"
+  },
+  {
+    "key": "Valores escolhidos = {}",
+    "en": "Selected values = {}",
+    "pt": "Valores escolhidos = {}",
+    "ru": "Выбранные значения = {}",
+    "es": "Valores elegidos = {}",
+    "it": "Valori scelti = {}",
+    "fr": "Valeurs choisies = {}",
+    "uk": "Вибрані значення = {}"
+  },
+  {
+    "key": "Listar músicas desta data (log)",
+    "en": "List songs from this date (log)",
+    "pt": "Listar músicas desta data (log)",
+    "ru": "Список песен этой даты (журнал)",
+    "es": "Listar canciones de esta fecha (log)",
+    "it": "Elenca canzoni di questa data (log)",
+    "fr": "Lister les chansons de cette date (journal)",
+    "uk": "Перерахувати пісні цієї дати (лог)"
+  },
+  {
+    "key": "Adicionar músicas desta data na aba Mídia",
+    "en": "Add songs from this date to the Media tab",
+    "pt": "Adicionar músicas desta data na aba Mídia",
+    "ru": "Добавить песни этой даты на вкладку Медиа",
+    "es": "Agregar canciones de esta fecha en la pestaña Medios",
+    "it": "Aggiungi canzoni di questa data nella scheda Media",
+    "fr": "Ajouter des chansons de cette date dans l'onglet Média",
+    "uk": "Додати пісні цієї дати на вкладку Медіа"
+  },
+  {
+    "key": "Schedule encontrado:",
+    "en": "Schedule found:",
+    "pt": "Programação encontrada:",
+    "ru": "Расписание найдено:",
+    "es": "Horario encontrado:",
+    "it": "Programma trovato:",
+    "fr": "Horaire trouvé :",
+    "uk": "Розклад знайдено:"
+  },
+  {
+    "key": "BPM changed to",
+    "en": "BPM changed to",
+    "pt": "BPM alterado para",
+    "ru": "BPM изменен на",
+    "es": "BPM cambiado a",
+    "it": "BPM cambiato in",
+    "fr": "BPM changé en",
+    "uk": "BPM змінено на"
+  },
+  {
+    "key": "Speed will be changed by Slide {} to {} after {} seconds",
+    "en": "Speed will be changed by Slide {} to {} after {} seconds",
+    "pt": "A velocidade será alterada por Deslizamento {} para {} após {} segundos",
+    "ru": "Скорость будет изменена с помощью слайда {} на {} через {} секунд",
+    "es": "La velocidad será cambiada por Slide {} a {} después de {} segundos",
+    "it": "La velocità sarà cambiata da Slide {} a {} dopo {} secondi",
+    "fr": "La vitesse sera changée par Slide {} à {} après {} secondes",
+    "uk": "Швидкість буде змінена слайдом {} на {} через {} секунд"
+  },
+  {
+    "key": "Executing timeout",
+    "en": "Executing timeout",
+    "pt": "Executando tempo limite",
+    "ru": "Выполнение тайм-аута",
+    "es": "Ejecutando tiempo de espera",
+    "it": "Esecuzione timeout",
+    "fr": "Exécution du délai",
+    "uk": "Виконання тайм-ауту"
+  },
+  {
+    "key": "Speed changed by Slide {} to {} after {} seconds",
+    "en": "Speed changed by Slide {} to {} after {} seconds",
+    "pt": "Velocidade alterada por Deslizamento {} para {} após {} segundos",
+    "ru": "Скорость изменена с помощью слайда {} на {} через {} секунд",
+    "es": "Velocidad cambiada por Slide {} a {} después de {} segundos",
+    "it": "Velocità cambiata da Slide {} a {} dopo {} secondi",
+    "fr": "Vitesse changée par Slide {} à {} après {} secondes",
+    "uk": "Швидкість змінено слайдом {} на {} через {} секунд"
+  },
+  {
+    "key": "Cenas em Movimento",
+    "en": "Scenes in Motion",
+    "pt": "Cenas em Movimento",
+    "ru": "Сцены в движении",
+    "es": "Escenas en Movimiento",
+    "it": "Scene in Movimento",
+    "fr": "Scènes en mouvement",
+    "uk": "Сцени в русі"
+  },
+  {
+    "key": "Índice das cenas em movimento, ex: {}",
+    "en": "Index of moving scenes, e.g.: {}",
+    "pt": "Índice das cenas em movimento, ex: {}",
+    "ru": "Индекс сцен в движении, например: {}",
+    "es": "Índice de las escenas en movimiento, ej: {}",
+    "it": "Indice delle scene in movimento, es: {}",
+    "fr": "Index des scènes en mouvement, ex : {}",
+    "uk": "Індекс сцен у русі, наприклад: {}"
+  },
+  {
+    "key": "Cenas Estáticas",
+    "en": "Static Scenes",
+    "pt": "Cenas Estáticas",
+    "ru": "Статические сцены",
+    "es": "Escenas Estáticas",
+    "it": "Scene Statiche",
+    "fr": "Scènes statiques",
+    "uk": "Статичні сцени"
+  },
+  {
+    "key": "Índice das cenas estáticas, ex: {}",
+    "en": "Index of static scenes, e.g.: {}",
+    "pt": "Índice das cenas estáticas, ex: {}",
+    "ru": "Индекс статических сцен, например: {}",
+    "es": "Índice de las escenas estáticas, ej: {}",
+    "it": "Indice delle scene statiche, es: {}",
+    "fr": "Index des scènes statiques, ex : {}",
+    "uk": "Індекс статичних сцен, наприклад: {}"
+  },
+  {
+    "key": "Movimento Requer BPM?",
+    "en": "Movement Requires BPM?",
+    "pt": "Movimento Requer BPM?",
+    "ru": "Движение требует BPM?",
+    "es": "¿Movimiento Requiere BPM?",
+    "it": "Movimento Richiede BPM?",
+    "fr": "Mouvement nécessite BPM ?",
+    "uk": "Рух вимагає BPM?"
+  },
+  {
+    "key": "Define se será executado cenas em movimento mesmo se a música não tiver BPM preenchido",
+    "en": "Defines whether moving scenes will be executed even if the song does not have BPM filled in",
+    "pt": "Define se serão executadas cenas em movimento mesmo se a música não tiver BPM preenchido",
+    "ru": "Определяет, будут ли выполняться сцены в движении, даже если музыка не имеет заполненного BPM",
+    "es": "Define si se ejecutarán escenas en movimiento incluso si la música no tiene BPM completado",
+    "it": "Definisce se verranno eseguite scene in movimento anche se la musica non ha BPM compilato",
+    "fr": "Définit si des scènes en mouvement seront exécutées même si la musique n'a pas de BPM rempli",
+    "uk": "Визначте, чи будуть виконуватись сцени в русі, навіть якщо музика не має заповненого BPM"
+  },
+  {
+    "key": "Cena de Luz Padrão",
+    "en": "Default Light Scene",
+    "pt": "Cena de Luz Padrão",
+    "ru": "Стандартная световая сцена",
+    "es": "Escena de Luz Estándar",
+    "it": "Scena di Luce Standard",
+    "fr": "Scène de lumière par défaut",
+    "uk": "Стандартна світлова сцена"
+  },
+  {
+    "key": "Índice da cena que você deseja acionar quando a música terminar",
+    "en": "Index of the scene you want to trigger when the song ends",
+    "pt": "Índice da cena que você deseja acionar quando a música terminar",
+    "ru": "Индекс сцены, которую вы хотите активировать, когда музыка закончится",
+    "es": "Índice de la escena que deseas activar cuando la música termine",
+    "it": "Indice della scena che desideri attivare quando la musica finisce",
+    "fr": "Index de la scène que vous souhaitez déclencher lorsque la musique se termine",
+    "uk": "Індекс сцени, яку ви хочете активувати, коли музика закінчиться"
+  },
+  {
+    "key": "onchange",
+    "en": "onchange",
+    "pt": "onchange",
+    "ru": "onchange",
+    "es": "onchange",
+    "it": "onchange",
+    "fr": "onchange",
+    "uk": "onchange"
+  },
+  {
+    "key": "Música",
+    "en": "Song",
+    "pt": "Música",
+    "ru": "Музыка",
+    "es": "Música",
+    "it": "Musica",
+    "fr": "Musique",
+    "uk": "Музика"
+  },
+  {
+    "key": "inciada pelo módulo",
+    "en": "initiated by the module",
+    "pt": "iniciada pelo módulo",
+    "ru": "инициирована модулем",
+    "es": "iniciada por el módulo",
+    "it": "iniziata dal modulo",
+    "fr": "initiée par le module",
+    "uk": "ініційована модулем"
+  },
+  {
+    "key": "Desativar leitor de PDF padrão",
+    "en": "Disable default PDF reader",
+    "pt": "Desativar leitor de PDF padrão",
+    "ru": "Отключить стандартный PDF-ридер",
+    "es": "Desactivar lector de PDF predeterminado",
+    "it": "Disattiva lettore PDF predefinito",
+    "fr": "Désactiver le lecteur PDF par défaut",
+    "uk": "Вимкнути стандартний PDF-читач"
+  },
+  {
+    "key": "Substitui o comportamento original do leitor de PDF por uma conversão seguida de apresentação.",
+    "en": "Replaces the original behavior of the PDF reader with a conversion followed by presentation.",
+    "pt": "Substitui o comportamento original do leitor de PDF por uma conversão seguida de apresentação.",
+    "ru": "Заменяет оригинальное поведение PDF-ридера на конвертацию с последующим представлением.",
+    "es": "Sustituye el comportamiento original del lector de PDF por una conversión seguida de presentación.",
+    "it": "Sostituisce il comportamento originale del lettore PDF con una conversione seguita da presentazione.",
+    "fr": "Remplace le comportement original du lecteur PDF par une conversion suivie d'une présentation.",
+    "uk": "Замінює оригінальну поведінку PDF-читача на конвертацію, за якою слідує презентація."
+  },
+  {
+    "key": "Ativar conversão de todos os PDFs",
+    "en": "Enable conversion of all PDFs",
+    "pt": "Ativar conversão de todos os PDFs",
+    "ru": "Активировать конвертацию всех PDF-файлов",
+    "es": "Activar conversión de todos los PDFs",
+    "it": "Attiva conversione di tutti i PDF",
+    "fr": "Activer la conversion de tous les PDF",
+    "uk": "Активувати конвертацію всіх PDF-файлів"
+  },
+  {
+    "key": "Habilita um botão para converter todos os PDFs da pasta de origem para a pasta de destino (em imagens).",
+    "en": "Enables a button to convert all PDFs from the source folder to the destination folder (to images).",
+    "pt": "Habilita um botão para converter todos os PDFs da pasta de origem para a pasta de destino (em imagens).",
+    "ru": "Включает кнопку для конвертации всех PDF-файлов из исходной папки в папку назначения (в изображения).",
+    "es": "Habilita un botón para convertir todos los PDFs de la carpeta de origen a la carpeta de destino (en imágenes).",
+    "it": "Abilita un pulsante per convertire tutti i PDF dalla cartella di origine alla cartella di destinazione (in immagini).",
+    "fr": "Active un bouton pour convertir tous les PDF du dossier source vers le dossier de destination (en images).",
+    "uk": "Дозволяє кнопку для конвертації всіх PDF-файлів з вихідної папки в папку призначення (в зображення)."
+  },
+  {
+    "key": "Ativar conversão de PDF selecionado",
+    "en": "Enable conversion of selected PDF",
+    "pt": "Ativar conversão de PDF selecionado",
+    "ru": "Активировать конвертацию выбранного PDF",
+    "es": "Activar conversión de PDF seleccionado",
+    "it": "Attiva conversione di PDF selezionato",
+    "fr": "Activer la conversion du PDF sélectionné",
+    "uk": "Активувати конвертацію вибраного PDF"
+  },
+  {
+    "key": "Converte o PDF selecionado para imagens. (não exibe o resultado em seguida)",
+    "en": "Converts the selected PDF to images. (does not display the result afterwards)",
+    "pt": "Converte o PDF selecionado para imagens. (não exibe o resultado em seguida)",
+    "ru": "Конвертирует выбранный PDF в изображения. (не отображает результат сразу)",
+    "es": "Convierte el PDF seleccionado a imágenes. (no muestra el resultado a continuación)",
+    "it": "Converte il PDF selezionato in immagini. (non mostra il risultato successivamente)",
+    "fr": "Convertit le PDF sélectionné en images. (n'affiche pas le résultat ensuite)",
+    "uk": "Конвертує вибраний PDF у зображення. (не показує результат одразу)"
+  },
+  {
+    "key": "Argumentos extras para o executável",
+    "en": "Extra arguments for the executable",
+    "pt": "Argumentos extras para o executável",
+    "ru": "Дополнительные аргументы для исполняемого файла",
+    "es": "Argumentos extra para el ejecutable",
+    "it": "Argomenti extra per l'eseguibile",
+    "fr": "Arguments supplémentaires pour l'exécutable",
+    "uk": "Додаткові аргументи для виконуваного файлу"
+  },
+  {
+    "key": "Só insira valores aqui se souber o que está fazendo",
+    "en": "Only enter values here if you know what you are doing",
+    "pt": "Só insira valores aqui se souber o que está fazendo",
+    "ru": "Вводите значения здесь только если знаете, что делаете",
+    "es": "Solo ingresa valores aquí si sabes lo que estás haciendo",
+    "it": "Inserisci valori qui solo se sai cosa stai facendo",
+    "fr": "N'entrez des valeurs ici que si vous savez ce que vous faites",
+    "uk": "Вводьте значення тут лише якщо знаєте, що робите"
+  },
+  {
+    "key": "Converter todos os PDFs para imagem",
+    "en": "Convert all PDFs to image",
+    "pt": "Converter todos os PDFs para imagem",
+    "ru": "Конвертировать все PDF в изображения",
+    "es": "Convertir todos los PDFs a imagen",
+    "it": "Converti tutti i PDF in immagine",
+    "fr": "Convertir tous les PDF en image",
+    "uk": "Конвертувати всі PDF у зображення"
+  },
+  {
+    "key": "Algo deu errado durante a conversão dos arquivos.",
+    "en": "Something went wrong during the conversion of the files.",
+    "pt": "Algo deu errado durante a conversão dos arquivos.",
+    "ru": "Что-то пошло не так во время конвертации файлов.",
+    "es": "Algo salió mal durante la conversión de los archivos.",
+    "it": "Qualcosa è andato storto durante la conversione dei file.",
+    "fr": "Quelque chose a mal tourné lors de la conversion des fichiers.",
+    "uk": "Щось пішло не так під час конвертації файлів."
+  },
+  {
+    "key": "Converter para imagem",
+    "en": "Convert to image",
+    "pt": "Converter para imagem",
+    "ru": "Конвертировать в изображение",
+    "es": "Convertir a imagen",
+    "it": "Converti in immagine",
+    "fr": "Convertir en image",
+    "uk": "Конвертувати в зображення"
+  },
+  {
+    "key": "Algo deu errado durante a conversão do arquivo.",
+    "en": "Something went wrong during the conversion of the file.",
+    "pt": "Algo deu errado durante a conversão do arquivo.",
+    "ru": "Что-то пошло не так во время конвертации файла.",
+    "es": "Algo salió mal durante la conversión del archivo.",
+    "it": "Qualcosa è andato storto durante la conversione del file.",
+    "fr": "Quelque chose a mal tourné lors de la conversion du fichier.",
+    "uk": "Щось пішло не так під час конвертації файлу."
+  },
+  {
+    "key": "Configure apenas o arquivo PDF2Image.exe na lista de arquivos permitidos. Deseja ir para as configurações?",
+    "en": "Only configure the PDF2Image.exe file in the allowed files list. Do you want to go to the settings?",
+    "pt": "Configure apenas o arquivo PDF2Image.exe na lista de arquivos permitidos. Deseja ir para as configurações?",
+    "ru": "Настройте только файл PDF2Image.exe в списке разрешенных файлов. Хотите перейти к настройкам?",
+    "es": "Configure solo el archivo PDF2Image.exe en la lista de archivos permitidos. ¿Desea ir a la configuración?",
+    "it": "Configura solo il file PDF2Image.exe nell'elenco dei file consentiti. Vuoi andare alle impostazioni?",
+    "fr": "Configurez uniquement le fichier PDF2Image.exe dans la liste des fichiers autorisés. Voulez-vous aller aux paramètres ?",
+    "uk": "Налаштуйте лише файл PDF2Image.exe у списку дозволених файлів. Бажаєте перейти до налаштувань?"
+  },
+  {
+    "key": "Abrir janela de configurações de arquivos permitidos.",
+    "en": "Open allowed files settings window.",
+    "pt": "Abrir janela de configurações de arquivos permitidos.",
+    "ru": "Открыть окно настроек разрешенных файлов.",
+    "es": "Abrir ventana de configuración de archivos permitidos.",
+    "it": "Apri finestra delle impostazioni dei file consentiti.",
+    "fr": "Ouvrir la fenêtre des paramètres des fichiers autorisés.",
+    "uk": "Відкрити вікно налаштувань дозволених файлів."
+  },
+  {
+    "key": "O arquivo PDF2Image.exe não foi identificado, deseja ir para as configurações?",
+    "en": "The PDF2Image.exe file was not identified, do you want to go to the settings?",
+    "pt": "O arquivo PDF2Image.exe não foi identificado, deseja ir para as configurações?",
+    "ru": "Файл PDF2Image.exe не был идентифицирован, хотите перейти к настройкам?",
+    "es": "El archivo PDF2Image.exe no fue identificado, ¿desea ir a la configuración?",
+    "it": "Il file PDF2Image.exe non è stato identificato, vuoi andare alle impostazioni?",
+    "fr": "Le fichier PDF2Image.exe n'a pas été identifié, voulez-vous aller aux paramètres ?",
+    "uk": "Файл PDF2Image.exe не був ідентифікований, бажаєте перейти до налаштувань?"
+  },
+  {
+    "key": "Como funciona: Crie grupos de músicas com o nome dos cantores. Ex \"C Fulano\" e associe este grupo às músicas que o \"Fulano\" está apto a cantar. Desta maneira, com esta opção ativada, quando você for associar cantores para a música aparecerá somente o nome dos cantores escalados associados nos grupos a esta música",
+    "en": "How it works: Create music groups with the names of the singers. For example, \"C Fulano\" and associate this group with the songs that \"Fulano\" is able to sing. This way, with this option enabled, when you associate singers to the song, only the names of the assigned singers associated with the groups for this song will appear.",
+    "pt": "Como funciona: Crie grupos de músicas com o nome dos cantores. Ex \"C Fulano\" e associe este grupo às músicas que o \"Fulano\" está apto a cantar. Desta maneira, com esta opção ativada, quando você for associar cantores para a música aparecerá somente o nome dos cantores escalados associados nos grupos a esta música",
+    "ru": "Как это работает: создайте группы песен с именами исполнителей. Например, \"C Fulano\" и свяжите эту группу с песнями, которые \"Fulano\" может исполнять. Таким образом, с этой опцией, когда вы будете связывать исполнителей с песней, будет отображаться только имя исполнителей, назначенных в группах для этой песни.",
+    "es": "Cómo funciona: Crea grupos de canciones con el nombre de los cantantes. Ejemplo \"C Fulano\" y asocia este grupo a las canciones que \"Fulano\" está apto a cantar. De esta manera, con esta opción activada, cuando vayas a asociar cantantes a la canción aparecerá solamente el nombre de los cantantes escalados asociados a los grupos de esta canción.",
+    "it": "Come funziona: Crea gruppi di canzoni con il nome dei cantanti. Es \"C Fulano\" e associa questo gruppo alle canzoni che \"Fulano\" è in grado di cantare. In questo modo, con questa opzione attivata, quando assocerai cantanti alla canzone apparirà solo il nome dei cantanti selezionati associati ai gruppi di questa canzone.",
+    "fr": "Comment ça fonctionne : Créez des groupes de chansons avec le nom des chanteurs. Par exemple \"C Fulano\" et associez ce groupe aux chansons que \"Fulano\" est capable de chanter. De cette manière, avec cette option activée, lorsque vous associerez des chanteurs à la chanson, seul le nom des chanteurs sélectionnés associés à ce groupe apparaîtra.",
+    "uk": "Як це працює: створіть групи пісень з іменами співаків. Наприклад, \"C Fulano\" і асоціюйте цю групу з піснями, які \"Fulano\" може виконати. Таким чином, з активованою цією опцією, коли ви будете асоціювати співаків з піснею, з'явиться лише ім'я співаків, які призначені в групах до цієї пісні."
+  },
+  {
+    "key": "Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo \"C Fulano\" representa o vocalista \"Fulano\" da sua equipe.",
+    "en": "It works together with the previous parameter, the module searches for singers starting with this character, in the example \"C Fulano\" represents the vocalist \"Fulano\" from your team.",
+    "pt": "Funciona junto com o parâmetro anterior, o módulo procura os cantores iniciando com este caractere, no exemplo \"C Fulano\" representa o vocalista \"Fulano\" da sua equipe.",
+    "ru": "Работает вместе с предыдущим параметром, модуль ищет исполнителей, начинающихся с этого символа, в примере \"C Fulano\" представляет вокалиста \"Fulano\" из вашей команды.",
+    "es": "Funciona junto con el parámetro anterior, el módulo busca a los cantantes que comienzan con este carácter, en el ejemplo \"C Fulano\" representa al vocalista \"Fulano\" de tu equipo.",
+    "it": "Funziona insieme al parametro precedente, il modulo cerca i cantanti che iniziano con questo carattere, nell'esempio \"C Fulano\" rappresenta il cantante \"Fulano\" della tua squadra.",
+    "fr": "Fonctionne avec le paramètre précédent, le module recherche les chanteurs commençant par ce caractère, dans l'exemple \"C Fulano\" représente le chanteur \"Fulano\" de votre équipe.",
+    "uk": "Це працює разом з попереднім параметром, модуль шукає співаків, які починаються з цього символу, у прикладі \"C Fulano\" представляє вокаліста \"Fulano\" з вашої команди."
+  },
+  {
+    "key": "media name contains '!'",
+    "en": "media name contains '!'",
+    "pt": "nome da mídia contém '!'",
+    "ru": "имя медиа содержит '!'",
+    "es": "el nombre del medio contiene '!'",
+    "it": "il nome del media contiene '!'",
+    "fr": "le nom du média contient '!'",
+    "uk": "ім'я медіа містить '!'"
+  },
+  {
+    "key": "Video not sent to OBS as it does NOT contain '!' in the name",
+    "en": "Video not sent to OBS as it does NOT contain '!' in the name",
+    "pt": "Vídeo não enviado para o OBS pois não contém '!' no nome",
+    "ru": "Видео не отправлено в OBS, так как оно не содержит '!' в имени",
+    "es": "Video no enviado a OBS ya que NO contiene '!' en el nombre",
+    "it": "Video non inviato a OBS poiché non contiene '!' nel nome",
+    "fr": "Vidéo non envoyée à OBS car elle ne contient PAS '!' dans le nom",
+    "uk": "Відео не надіслано в OBS, оскільки воно не містить '!' в імені"
+  },
+  {
+    "key": "Video not sent to OBS as it contains '!' in the name",
+    "en": "Video not sent to OBS as it contains '!' in the name",
+    "pt": "Vídeo não enviado para o OBS pois contém '!' no nome",
+    "ru": "Видео не отправлено в OBS, так как оно содержит '!' в имени",
+    "es": "Video no enviado a OBS ya que contiene '!' en el nombre",
+    "it": "Video non inviato a OBS poiché contiene '!' nel nome",
+    "fr": "Vidéo non envoyée à OBS car elle contient '!' dans le nom",
+    "uk": "Відео не надіслано в OBS, оскільки воно містить '!' в імені"
+  },
+  {
+    "key": "OBS \"Media Source\" name",
+    "en": "OBS \"Media Source\" name",
+    "pt": "Nome da \"Fonte de Mídia\" do OBS",
+    "ru": "Имя \"Media Source\" OBS",
+    "es": "Nombre de \"Fuente de Medios\" en OBS",
+    "it": "Nome \"Media Source\" di OBS",
+    "fr": "Nom de la \"source média\" OBS",
+    "uk": "Ім'я \"Медіа джерела\" OBS"
+  },
+  {
+    "key": "The script interacts directly with a \"media source\" object in the selected scene, dynamically configuring it for the video Holyrics is displaying.",
+    "en": "The script interacts directly with a \"media source\" object in the selected scene, dynamically configuring it for the video Holyrics is displaying.",
+    "pt": "O script interage diretamente com um objeto \"fonte de mídia\" na cena selecionada, configurando-o dinamicamente para o vídeo que o Holyrics está exibindo.",
+    "ru": "Скрипт взаимодействует напрямую с объектом \"media source\" в выбранной сцене, динамически настраивая его для видео, которое отображает Holyrics.",
+    "es": "El script interactúa directamente con un objeto de \"fuente de medios\" en la escena seleccionada, configurándolo dinámicamente para el video que Holyrics está mostrando.",
+    "it": "Lo script interagisce direttamente con un oggetto \"media source\" nella scena selezionata, configurandolo dinamicamente per il video che Holyrics sta visualizzando.",
+    "fr": "Le script interagit directement avec un objet \"source média\" dans la scène sélectionnée, le configurant dynamiquement pour la vidéo que Holyrics affiche.",
+    "uk": "Скрипт взаємодіє безпосередньо з об'єктом \"медіа джерела\" в обраній сцені, динамічно налаштовуючи його для відео, яке відображає Holyrics."
+  },
+  {
+    "key": "Don't panic, there is no video to be canceled!",
+    "en": "Don't panic, there is no video to be canceled!",
+    "pt": "Não entre em pânico, não há vídeo para ser cancelado!",
+    "ru": "Не паникуйте, видео, которое нужно отменить, отсутствует!",
+    "es": "¡No entres en pánico, no hay video para cancelar!",
+    "it": "Non farti prendere dal panico, non c'è video da annullare!",
+    "fr": "Ne paniquez pas, il n'y a pas de vidéo à annuler !",
+    "uk": "Не панікуйте, немає відео, яке потрібно скасувати!"
+  },
+  {
+    "key": "Panic",
+    "en": "Panic",
+    "pt": "Pânico",
+    "ru": "Паника",
+    "es": "Pánico",
+    "it": "Panico",
+    "fr": "Paniquer",
+    "uk": "Паніка"
+  },
+  {
+    "key": "The script interacts directly with a \"media source\" object in the selected scene, dynamically configuring it for the video that Holyrics is displaying.",
+    "en": "The script interacts directly with a \"media source\" object in the selected scene, dynamically configuring it for the video that Holyrics is displaying.",
+    "pt": "O script interage diretamente com um objeto \"fonte de mídia\" na cena selecionada, configurando-o dinamicamente para o vídeo que o Holyrics está exibindo.",
+    "ru": "Скрипт взаимодействует напрямую с объектом \"media source\" в выбранной сцене, динамически настраивая его для видео, которое отображает Holyrics.",
+    "es": "El script interactúa directamente con un objeto de \"fuente de medios\" en la escena seleccionada, configurándolo dinámicamente para el video que Holyrics está mostrando.",
+    "it": "Lo script interagisce direttamente con un oggetto \"media source\" nella scena selezionata, configurandolo dinamicamente per il video che Holyrics sta visualizzando.",
+    "fr": "Le script interagit directement avec un objet \"source média\" dans la scène sélectionnée, le configurant dynamiquement pour la vidéo que Holyrics affiche.",
+    "uk": "Скрипт взаємодіє безпосередньо з об'єктом \"медіа джерела\" в обраній сцені, динамічно налаштовуючи його для відео, яке відображає Holyrics."
+  },
+  {
+    "key": "(nome precisa conter uma exclamação \"!\")",
+    "en": "(name must contain an exclamation mark \"!\")",
+    "pt": "(nome precisa conter uma exclamação \"!\")",
+    "ru": "(имя должно содержать восклицательный знак \"!\")",
+    "es": "(el nombre debe contener una exclamación \"!\")",
+    "it": "(il nome deve contenere un'esclamazione \"!\")",
+    "fr": "(le nom doit contenir un point d'exclamation \"!\")",
+    "uk": "(ім'я повинно містити знак оклику \"!\")"
+  },
+  {
+    "key": "O módulo procura os cantores iniciando com este caractere, no exemplo \"C Fulano\" representa o vocalista \"Fulano\" da sua equipe.",
+    "en": "The module searches for singers starting with this character, in the example \"C Fulano\" represents the vocalist \"Fulano\" from your team.",
+    "pt": "O módulo procura os cantores iniciando com este caractere, no exemplo \"C Fulano\" representa o vocalista \"Fulano\" da sua equipe.",
+    "ru": "Модуль ищет исполнителей, начинающихся с этого символа, в примере \"C Fulano\" представляет вокалиста \"Fulano\" из вашей команды.",
+    "es": "El módulo busca a los cantantes que comienzan con este carácter, en el ejemplo \"C Fulano\" representa al vocalista \"Fulano\" de tu equipo.",
+    "it": "Il modulo cerca i cantanti che iniziano con questo carattere, nell'esempio \"C Fulano\" rappresenta il cantante \"Fulano\" della tua squadra.",
+    "fr": "Le module recherche les chanteurs commençant par ce caractère, dans l'exemple \"C Fulano\" représente le chanteur \"Fulano\" de votre équipe.",
+    "uk": "Модуль шукає співаків, які починаються з цього символу, у прикладі \"C Fulano\" представляє вокаліста \"Fulano\" з вашої команди."
   }
 ]
