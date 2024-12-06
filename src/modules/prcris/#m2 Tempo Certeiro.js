@@ -244,7 +244,7 @@ function settings() {
             label: jsc.i18n('Tela a Exibir'),
             type: 'string',
             suggested_values: function(obj) {
-                var r = h.hly(jsc.i18n('GetDisplaySettings'));
+                var r = h.hly('GetDisplaySettings');
                 var displayNames = [];
                 for (var i = 0; i < r.data.length; i++) {
                     displayNames.push(r.data[i].id);
