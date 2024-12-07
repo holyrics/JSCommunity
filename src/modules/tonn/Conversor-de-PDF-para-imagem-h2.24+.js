@@ -16,6 +16,12 @@ function info() {
     description: moduleInfos.description,
     min_version: '2.24.0',
     available_in_bible_window: false,
+    permissions: [
+      {
+        type: 'advanced',
+        key: 'allowed_files'
+      }
+    ],
     i18n: moduleInfos.i18n
   };
 }
