@@ -117,16 +117,16 @@ function settings() {
         {
             id: 'movingScene',
             name: jsc.i18n('Cenas em Movimento'),
-            description: jsc.i18n('Índice das cenas em movimento, ex: {}'),
+            description: jsc.i18n('Índice das cenas em movimento {}')+' (page|scene)',
             type: 'string',
-            default_value: '9,13,14,15,16'
+            default_value: '1|9,1|13,1|14,1|15,1|16'
         },
         {
             id: 'staticScene',
             name: jsc.i18n('Cenas Estáticas'),
-            description: jsc.i18n('Índice das cenas estáticas, ex: {}'),
+            description: jsc.i18n('Índice das cenas estáticas {}')+' (page|scene)',
             type: 'string',
-            default_value: '1,2,3,4,5,6,7'
+            default_value: '1|1,1|2,1|3,1|4,1|5,1|6,1|7'
         },
         {
             id: 'movementRequiresBpm',
@@ -138,9 +138,9 @@ function settings() {
         {
             id: 'defaultLightScene',
             name: jsc.i18n('Cena de Luz Padrão'),
-            description: jsc.i18n('Índice da cena que você deseja acionar quando a música terminar'),
+            description: jsc.i18n('Índice da cena que você deseja acionar quando a música terminar')+' (page|scene)',
             type: 'string',
-            default_value: '7'
+            default_value: '1|7'
         },
         {
             type: 'separator'
@@ -191,8 +191,12 @@ function triggers(module) {
                 code = randomizeLight(staticScenes);
             }
             h.setGlobal(mUID + '_movementActive', movingScenes.indexOf(code) > -1);
-            h.log(mUID, 'Luz sorteada: {} ', code); 
-            jsc.lumikit.setActiveScene(receiverID, 1, code);
+            
+            var ps = code.split('|');
+            var page = ps.length > 1 ? ps[0] : 1;
+            var scene = ps[1] || code;
+            h.log(mUID,'{%t}  page {} scene {} ', page, scene);
+            jsc.lumikit.setActiveScene(receiverID, page, scene);
         }
     });
 
@@ -230,7 +234,13 @@ function triggers(module) {
         item: 'any_song',
         action: function (obj) {    
             h.setGlobal(mUID + '_movementActive', false);
-            jsc.lumikit.setActiveScene(module.settings.receiverID, 1, module.settings.defaultLightScene);
+            var s = module.settings;
+            var code = s.defaultLightScene;
+            var ps = code.split('|');
+            var page = ps.length > 1 ? ps[0] : 1;
+            var scene = ps[1] || code;
+            h.log(mUID,'{%t}  page {} scene {} ', page, scene);
+            jsc.lumikit.setActiveScene(s.receiverID, page, scene);
         }
     });
 
