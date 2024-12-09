@@ -13,7 +13,7 @@ function info() {
         id: mID,
         name: 'Jukebox Mode',
         description: '<html>' +
-                     '• Ao finalizar a música atual, inicia a próxima automaticamente, dentro do mesmo título da aba Mídia<br>' +
+                     '• When the current song finishes, the next one starts automatically within the same Media tab title<br>' +
                      infoVDDMM,
         allowed_requests: [
             allowedPrcrisModuleRequests
