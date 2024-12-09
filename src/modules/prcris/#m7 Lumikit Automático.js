@@ -99,6 +99,25 @@ function setTimeoutBPM(module, bpm, slide, time) {
     }, timeoutDuration, mUID + '_alterBPM'); // Tempo em milissegundos
 }
 
+function lumikitSetActiveScene(receiverID, pageAndScene) {
+var code = pageAndScene.toUpperCase();
+var page = 1, scene = code;
+if (/^\d[A-Z]$/.test(code)) {
+    page = parseInt(code[0], 10);  
+    page = page === 0 ? 10 : page;
+    var sceneTable = 'ASDFGHJKLZXCVBNM';
+    scene = sceneTable.indexOf(code[1]) + 1;
+    if (scene === -1) {
+        h.log('', '{%t} {i18n|Código de Cena Lumikit inválido}: {}', code);
+        return;
+    }
+}
+
+h.log(mUID, '{%t} code {} page {} scene {}', code, page, scene);
+
+jsc.lumikit.setActiveScene(receiverID, page, scene);
+
+}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
 function settings() {
     return [
@@ -117,16 +136,16 @@ function settings() {
         {
             id: 'movingScene',
             name: jsc.i18n('Cenas em Movimento'),
-            description: jsc.i18n('Índice das cenas em movimento {}')+' (page|scene)',
+            description: jsc.i18n('Índice das cenas em movimento {}'),
             type: 'string',
-            default_value: '1|9,1|13,1|14,1|15,1|16'
+            default_value: '1L,1C,1V,1B,1N,1M'
         },
         {
             id: 'staticScene',
             name: jsc.i18n('Cenas Estáticas'),
-            description: jsc.i18n('Índice das cenas estáticas {}')+' (page|scene)',
+            description: jsc.i18n('Índice das cenas estáticas {}'),
             type: 'string',
-            default_value: '1|1,1|2,1|3,1|4,1|5,1|6,1|7'
+            default_value: '1A,1S,1D,1F,1G,1H'
         },
         {
             id: 'movementRequiresBpm',
@@ -138,9 +157,9 @@ function settings() {
         {
             id: 'defaultLightScene',
             name: jsc.i18n('Cena de Luz Padrão'),
-            description: jsc.i18n('Índice da cena que você deseja acionar quando a música terminar')+' (page|scene)',
+            description: jsc.i18n('Índice da cena que você deseja acionar quando a música terminar'),
             type: 'string',
-            default_value: '1|7'
+            default_value: '1J'
         },
         {
             type: 'separator'
@@ -157,7 +176,7 @@ function settings() {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
-// Triggers
+s// Triggers
 
 function triggers(module) {
     var arr = [];
@@ -192,11 +211,7 @@ function triggers(module) {
             }
             h.setGlobal(mUID + '_movementActive', movingScenes.indexOf(code) > -1);
             
-            var ps = code.split('|');
-            var page = ps.length > 1 ? ps[0] : 1;
-            var scene = ps[1] || code;
-            h.log(mUID,'{%t}  page {} scene {} ', page, scene);
-            jsc.lumikit.setActiveScene(receiverID, page, scene);
+            lumikitSetActiveScene(receiverID, code);
         }
     });
 
@@ -240,7 +255,7 @@ function triggers(module) {
             var page = ps.length > 1 ? ps[0] : 1;
             var scene = ps[1] || code;
             h.log(mUID,'{%t}  page {} scene {} ', page, scene);
-            jsc.lumikit.setActiveScene(s.receiverID, page, scene);
+            lumikitSetActiveScene(receiverID, code);
         }
     });
 

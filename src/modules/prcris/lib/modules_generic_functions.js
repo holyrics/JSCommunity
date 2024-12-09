@@ -67,4 +67,21 @@ function isModuleSuspended() {
     return status ;
 }
 
-var defaultLang = 'en';
+function checkOS() {
+   var gVersion = h.hly('GetVersion').data.platform;
+   if (gVersion != 'win') {
+      showMessage(i18n('This module was designed to run only on the "Windows" operating system'));
+      return false
+   }
+return true
+}
+
+function convertBars(path) {
+    if (typeof path !== 'string') return '';
+    return path.replace(/\\/g, '/');
+}
+
+
+function mediaPath(path) {
+   return convertBars(h.hly('GetVersion').data.baseDir + '/Holyrics/files/media/' + (path ? path + '/' : ''));
+}
