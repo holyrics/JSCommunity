@@ -76,11 +76,16 @@ function checkOS() {
 return true
 }
 
-function convertBars(path) {
-    if (typeof path !== 'string') return '';
-    return path.replace(/\\/g, '/');
+function convertBars(path, back) {
+  if (typeof path !== 'string') return '';
+  
+  if (back) {
+     return path.replace(/\//g, '\\');
+     }
+  else {
+     return path.replace(/\\/g, '/');
+  } 
 }
-
 
 function mediaPath(path) {
    return convertBars(h.hly('GetVersion').data.baseDir + '/Holyrics/files/media/' + (path ? path + '/' : ''));
