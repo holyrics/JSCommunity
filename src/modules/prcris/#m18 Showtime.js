@@ -93,6 +93,181 @@ function info() {
     };
 }
 
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e636c756465227d
+////////////// modules_generic_functions.js
+
+function getInfoVDDMM() {
+    var translations = {
+        pt: "<hr><br>@ Para dicas sobre automação com Holyrics, visite meu canal no YouTube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Em caso de dúvidas, fale comigo no tópico 'Automatização & JavaScript' no grupo de suporte do Telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, marque @prcris que terei prazer em ajudar - #juntos pelo Rei e pelo Reino!<br></p>",
+        en: "<hr><br>@ For automation tips with Holyrics, visit my YouTube channel:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>For questions, contact me in the 'Automation & JavaScript' topic in the Telegram support group <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, mention @prcris and I'll be happy to help - #together for the King and the Kingdom!<br></p>",
+        ru: "<hr><br>@ Для советов по автоматизации с Holyrics посетите мой канал на YouTube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiавerdadebalneario</a></p><br><p style='padding-left: 20px;'>По вопросам обращайтесь ко мне в теме 'Автоматизация и JavaScript' в группе поддержки Telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, упомяните @prcris, и я буду рад помочь - #вместе для Короля и Королевства!<br></p>",
+        es: "<hr><br>@ Para consejos de automatización con Holyrics, visita mi canal de YouTube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Para preguntas, contáctame en el tema 'Automatización & JavaScript' en el grupo de soporte de Telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, menciona @prcris y estaré encantado de ayudar - #juntos por el Rey y el Reino!<br></p>",
+        it: "<hr><br>@ Per consigli sull'automazione con Holyrics, visita il mio canale YouTube:<br><p style='padding-left: 20px;'><a href='https://youtube.com/@multimidiaverdadebalneario'>@multimidiaverdadebalneario</a></p><br><p style='padding-left: 20px;'>Per domande, contattami nel topic 'Automatizzazione e JavaScript' nel gruppo di supporto Telegram <a href='https://t.me/HolyricsBR/97904'>HolyricsBR</a>, menziona @prcris e sarò felice di aiutarti - #insieme per il Re e il Regno!<br></p>"
+    };
+    
+    var lang = h.getLanguage();
+    return translations[lang] || translations['en']; // padrão para inglês caso o idioma não esteja definido
+}
+
+var infoVDDMM = getInfoVDDMM();
+
+var allowedPrcrisModuleRequests =  ['https://www.youtube.com','https://t.me'];
+
+
+function isValidVersion(targetVersion) {
+    // Divide as versões em partes (ex: "2.24.0" -> [2, 24, 0])
+    var currentVersion = h.getVersion().data.version; 
+    var currentParts = currentVersion.split('.').map(Number);
+    var targetParts = targetVersion.split('.').map(Number);
+
+    // Compara cada parte da versão (maior prioridade para os números da esquerda)
+    for (var i = 0; i < Math.max(currentParts.length, targetParts.length); i++) {
+        var current = currentParts[i] || 0; // Preenche com 0 se faltar parte
+        var target = targetParts[i] || 0;
+
+        if (current > target) {
+            return true; // Versão atual é maior
+        } else if (current < target) {
+            return false; // Versão atual é menor
+        }
+    }
+    return true; // Versões são iguais ou maior
+}
+
+function isDev() {
+  return h.getRE() == h.sec('m5r3t6y7u8').decrypt('EUCkq90DCYkaH6DQgIH4Pg==');
+}
+
+function logState(log, id, caller){ 
+    h.log.setEnabled(id, log);
+    if (!isDev()){return;}
+    if (h.log.isEnabled(id)) { 
+       h.log("","Log {} ativado por: {} ", id, caller);
+    }
+    else {
+       //h.log['setPr'+'intTime'](false,id);
+       h.log("","Log {} desativado por: {} ", id, caller);
+    }
+}
+
+function spanIcon(iconCodePoint){
+    return '<html><span style="font-family: Material Icons;">' + iconCodePoint + ' </span>';
+}
+
+function showMessage(title, message) {
+    var content = [{ type: 'title', label: title }, { type: 'separator' }];
+
+    if (typeof message === 'string') {
+        content.push({ type: 'title', label: message });
+    } else if (Array.isArray(message)) {
+        for (var i = 0; i < message.length; i++) {
+            content.push({ type: 'title', label: message[i] });
+        }
+    }
+
+    h.input(content);
+}
+
+// pause media
+jsc.obs_v5.pauseMedia = function(receiverID, mediaSourceName) {
+    var requestData = {
+        inputName: mediaSourceName,
+        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
+    };
+    
+    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
+    h.log('jsc.obs_v5', 'Pause media response: {}', response);
+}
+
+// resume/start media
+jsc.obs_v5.playMedia = function (receiverID, mediaSourceName) {
+    var requestData = {
+        inputName: mediaSourceName,
+        mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY"
+    };
+    
+    var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
+    h.log('jsc.obs_v5', 'Resume media response: {}', response);
+}
+
+
+////////////////////// plugin_video_resources.js
+
+function getPluginSettings() {
+  var arr = ['~\u0024', ''];
+  for (var i in arr) {
+    try {
+      var json = h.readFileAsText(arr[i] + '.plugin_system_settings.txt');
+      return JSON.parse(json);
+    } catch (e) {}
+  }
+  return {};
+}
+
+function createURL(settings, path, samePC) {
+  var token = h.sha256(path + "#" + settings.token);
+  token = h.base64Encode(token);
+  token = token.replaceAll("[^a-zA-Z0-9]", "");
+  token = token.substring(0, Math.min(20, token.length()));
+     
+  return "http://" + (samePC ? 'localhost' : settings.ip) + (settings.port == '80' ? "" : ":" + settings.port)
+         + "/get_video"
+         + "?path=" + encodeURIComponent(path)
+         + "&token=" + token;
+}
+
+function suspendConflictingModules(status, conflictModules) {
+    if (!status) {
+       conflictModules = h.getGlobal(mID+'ConflictModules') || [];
+    }
+    else
+    {
+      h.setGlobal(mID+'ConflictModules', conflictModules);
+    }
+
+    for (var i = 0; i < conflictModules.length; i++) {
+      var moduleName = '@prcris#m' + conflictModules[i];
+      h.setGlobal('suspendConflictingModules' + moduleName, status);    
+      h.log(mUID,'{%t} Módulo {}{}', moduleName , status ? ' temporariamente desativado.' : ' reativado.');
+    }   
+}
+
+function isModuleSuspended() {
+    
+    var status = h.getGlobal('suspendConflictingModules' + mID) == true;
+    if (status) {
+       h.log(mUID,'{%t} Módulo {} temporariamente suspenso por outro processo.', mID);
+    }  
+    return status ;
+}
+
+
+function checkOS() {
+   var gVersion = h.hly('GetVersion').data.platform;
+   if (gVersion != 'win') {
+      showMessage(i18n('This module was designed to run only on the "Windows" operating system'));
+      return false
+   }
+return true
+}
+
+function convertBars(path, back) {
+  if (typeof path !== 'string') return '';
+  
+  if (back) {
+     return path.replace(/\//g, '\\');
+     }
+  else {
+     return path.replace(/\\/g, '/');
+  } 
+}
+
+function mediaPath(path) {
+   return convertBars(h.hly('GetVersion').data.baseDir + '/Holyrics/files/media/' + (path ? path + '/' : ''));
+}
+
+
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2273657474696e6773227d
 function settings() {
     return [
@@ -959,8 +1134,9 @@ function mute(receiverID, channel, channel_type, state) {
     if (m.type == 'osc') {
       jsc.x32['set' + m.channelAction + 'Mute'](receiverID, channel, state); 
     } else if (m.type == 'soundcraft') {
-      var mute = state ? 'mute' : 'unMute';
+      var mute = state ? 'mute' : 'unmute';
       jsc.soundcraft.conn(receiverID)[m.channelAction](channel)[mute]();
+      h.log(mUID,'{%t} SoundCraft Alterado {}{} para {}', m.channelAction, channel, state );
     }
   } catch (e) {
     h.log(mUID, '{%t} Erro {}', [e]);
@@ -975,7 +1151,7 @@ function setVolume(receiverID, channel, volume, channel_type) {
     if (m.type == 'osc') {
       jsc.x32['set' + m.channelAction + 'Volume'](receiverID, channel, volume); 
     } else if (m.type == 'soundcraft') {
-      jsc.soundcraft.conn(receiverID)[m.channelAction](channel).setVolume(volume); 
+       jsc.soundcraft.conn(receiverID)[m.channelAction](channel).setVolume(volume); 
     }
   } catch (e) {
     h.log(mUID, '{%t} Erro {}', [e]);
