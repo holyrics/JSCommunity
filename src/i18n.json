@@ -4498,5 +4498,25 @@
     "it": "Il modulo cerca i cantanti che iniziano con questo carattere, nell'esempio \"C Fulano\" rappresenta il cantante \"Fulano\" della tua squadra.",
     "fr": "Le module recherche les chanteurs commençant par ce caractère, dans l'exemple \"C Fulano\" représente le chanteur \"Fulano\" de votre équipe.",
     "uk": "Модуль шукає співаків, які починаються з цього символу, у прикладі \"C Fulano\" представляє вокаліста \"Fulano\" з вашої команди."
+  },
+  {
+    "key": "Índice das cenas em movimento {}",
+    "en": "Index of moving scenes {}",
+    "pt": "Índice das cenas em movimento {}",
+    "ru": "Индекс движущихся сцен {}",
+    "es": "Índice de escenas en movimiento {}",
+    "it": "Indice delle scene in movimento {}",
+    "fr": "Index des scènes en mouvement {}",
+    "uk": "Індекс рухомих сцен {}"
+  },
+  {
+    "key": "Índice das cenas estáticas {}",
+    "en": "Index of static scenes {}",
+    "pt": "Índice das cenas estáticas {}",
+    "ru": "Индекс статичных сцен {}",
+    "es": "Índice de escenas estáticas {}",
+    "it": "Indice delle scene statiche {}",
+    "fr": "Index des scènes statiques {}",
+    "uk": "Індекс статичних сцен {}"
   }
 ]

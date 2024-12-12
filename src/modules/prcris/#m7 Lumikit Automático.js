@@ -102,7 +102,7 @@ function setTimeoutBPM(module, bpm, slide, time) {
 function lumikitSetActiveScene(receiverID, pageAndScene) {
 var code = pageAndScene.toUpperCase();
 var page = 1, scene = code;
-if (/^\d[A-Z]$/.test(code)) {
+if (new RegExp("^\\d[A-Z]\u0024").test(code)) {
     page = parseInt(code[0], 10);  
     page = page === 0 ? 10 : page;
     var sceneTable = 'ASDFGHJKLZXCVBNM';
@@ -176,7 +176,7 @@ function settings() {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
-s// Triggers
+// Triggers
 
 function triggers(module) {
     var arr = [];
