@@ -69,7 +69,7 @@ function info() {
 function contextActions(module) {
     return [
         {
-            name: spanIcon("\ueaca ") + jsc.i18n("Listar Cantor/Volume Vozes") + " (" + mUID + ')',
+            name: spanIcon("\ueaca ") + jsc.i18n("Listar Cantor/Volume Vozes") + " (" + mID + ')',
             types: ['song'],
             action: function(module) {
                 var musicID = String(module.item.id);
