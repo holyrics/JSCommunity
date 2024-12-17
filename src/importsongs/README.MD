@@ -76,6 +76,10 @@ function extract(files, settings) {
 ```
 
 ## JSFile
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `name` | _String_ | Nome do arquivo (sem extensão) |
+| `extension` | _String_ | Extensão do arquivo (sem ponto) |
 ### getTitleAndArtistFromName()
 Identifica o possível título e artista a partir do nome do arquivo.<br>Regras:<br>Se o nome do arquivo tiver `' - '`, separa o nome do arquivo, sendo a primeira parte o título e a segunda parte o artista.<br>Exemplo: `title - artist.txt`<br>`['title', 'artist']`<br><br>Se o nome do arquivo tiver parênteses, extrai o valor de dentro do parênteses como artista.<br>Exemplo: `title (artist).txt`<br>`['title', 'artist']`<br><br>Retorna o nome do arquivo inteiro como título caso não seja identificada uma regra.
 
