@@ -1,7 +1,7 @@
 // Documentação
 // https://github.com/holyrics/JSCommunity/tree/main/src/modules
 
-//#import i18n
+//#import utils
 
 function info() {
     return {
@@ -20,13 +20,13 @@ function settings(module) {
 
     arr.push({
         id: 'settings_1',
-        name: i18n('Nome') + ' 1',
+        name: jsc.i18n('Nome') + ' 1',
         type: 'string'
     });
 
     arr.push({
         id: 'settings_2',
-        name: i18n('Nome') + ' 2',
+        name: jsc.i18n('Nome') + ' 2',
         type: 'number',
         min: 1,
         max: 100,
@@ -43,7 +43,7 @@ function actions(module) {
     var simpleActionFlag = module.id + "#simple_action_enabled";
     arr.push({
         id: 'simple_action',
-        name: i18n('Ação Simples'),
+        name: jsc.i18n('Ação Simples'),
         icon: 'play_arrow',
         action: function (evt) {
             h.setGlobalNext(simpleActionFlag, [true, false]);
@@ -60,7 +60,7 @@ function actions(module) {
 
     arr.push({
         id: 'show_quick_message',
-        name: i18n('Exibir Mensagem Rápida'),
+        name: jsc.i18n('Exibir Mensagem Rápida'),
         icon: 'message',
         action: function (evt) {
             if (!evt.input.message) {
@@ -79,10 +79,10 @@ function actions(module) {
             {
               id: 'message',
               type: 'string',
-              name: i18n('Message')
+              name: jsc.i18n('Message')
             }, {
                 id: 'duration',
-                name: i18n('Duração'),
+                name: jsc.i18n('Duração'),
                 type: 'number',
                 min: 1,
                 max: 120,
@@ -93,18 +93,18 @@ function actions(module) {
 
     arr.push({
         id: 'folder_example',
-        name: i18n('Pasta'),
+        name: jsc.i18n('Pasta'),
         icon: 'folder_open',
         action: [
             {
                 id: 'folder_simple_action_1',
-                name: i18n('Ação Simples') + ' 1',
+                name: jsc.i18n('Ação Simples') + ' 1',
                 action: function (evt) {
                     //implementation
                 }
             }, {
                 id: 'folder_simple_action_2',
-                name: i18n('Ação Simples') + ' 2',
+                name: jsc.i18n('Ação Simples') + ' 2',
                 action: function (evt) {
                     //implementation
                 }
@@ -115,7 +115,7 @@ function actions(module) {
     var longPressActionFlag = module.id + "#long_press_flag";
     arr.push({
         id: 'long_press_action',
-        label: i18n('Ação Pressionar/Soltar'),
+        label: jsc.i18n('Ação Pressionar/Soltar'),
         mouse_pressed: function (evt) {
             h.setGlobal(longPressActionFlag, true);
         },
@@ -211,12 +211,12 @@ function contextActions(module) {
     var arr = [];
 
     arr.push({
-        name: i18n('Iniciar do Coro'),
+        name: jsc.i18n('Iniciar do Coro'),
         types: ['song'],
         action: function (evt) {
             var r = h.hly('GetSong', {id: evt.item.id});
             if (!r.data) {
-                var error = i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
+                var error = jsc.i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
                 h.notificationError(error, 7);
                 return;
             }
@@ -241,13 +241,13 @@ function contextActions(module) {
                 });
                 return;
             }
-            var error = i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
+            var error = jsc.i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
             h.notificationError(error, 7);
         }
     });
 
     arr.push({
-        name: i18n('Exibir por {} segundos', [10]),
+        name: jsc.i18n('Exibir por {} segundos', [10]),
         types: ['image', 'image_folder'],
         action: function (evt) {
             h.hly('ShowImage', {
@@ -350,21 +350,21 @@ function lineBreakRules(module) {
 function customMessageInApp(module) {
     var arr = [];
     arr.push({
-        name: i18n('Mensagem Personalizada no App'),
-        description: i18n('Descrição'),
+        name: jsc.i18n('Mensagem Personalizada no App'),
+        description: jsc.i18n('Descrição'),
         input: [
             {
                 id: 'example_1',
-                label: i18n('Nome') + ' 1'
+                label: jsc.i18n('Nome') + ' 1'
             }, {
                 id: 'example_2',
-                label: i18n('Nome') + ' 2',
+                label: jsc.i18n('Nome') + ' 2',
                 suggestions: [
                     'Item 1', 'Item 2', 'Item 3'
                 ]
             }, {
                 id: 'example_3',
-                label: i18n('Nome') + ' 3',
+                label: jsc.i18n('Nome') + ' 3',
                 only_number: true
             }
         ],
@@ -373,11 +373,31 @@ function customMessageInApp(module) {
             //evt.input.example_2
             //evt.input.example_3
             //evt.note
-            var msg = '<html>' + i18n('Mensagem recebida do app')
+            var msg = '<html>' + jsc.i18n('Mensagem recebida do app')
                         + '<br><code>' + h.toPrettyJson(evt.input) + '</code>'
                         + '<br>note: ' + evt.note;
             h.notification(msg, 7);
         }
     });
     return arr;
+}
+
+function handleItemAction(module) {
+    var obj = {};
+    
+    obj.file = function(evt) {
+        if (evt.consumed) {
+            return false;
+        }
+        if (evt.item.extension.equalsIgnoreCase("txt")) {
+            var text = h.readFileAsText(evt.item.file_fullname);
+            h.hly('ShowQuickPresentation', {
+                text: text
+            });
+            return true;
+        }
+        return false;
+    };
+
+    return obj;
 }

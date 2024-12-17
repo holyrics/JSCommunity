@@ -170,12 +170,12 @@ function settings(module) {
   var arr = [];
   arr.push({
     id: 'settings_1',
-    name: i18n('Name 1'),
+    name: jsc.i18n('Name 1'),
     type: 'string'
   });
   arr.push({
     id: 'settings_2',
-    name: i18n('Name 2'),
+    name: jsc.i18n('Name 2'),
     type: 'number',
     min: 1,
     max: 100,
@@ -214,7 +214,7 @@ function actions(module) {
   var simpleActionFlag = module.id + "#simple_action_enabled";
   arr.push({
     id: 'simple_action',
-    name: i18n('Simple Action'),
+    name: jsc.i18n('Simple Action'),
     icon: 'play_arrow',
     action: function (evt) {
       h.setGlobalNext(simpleActionFlag, [true, false]);
@@ -231,7 +231,7 @@ function actions(module) {
 
   arr.push({
     id: 'show_quick_message',
-    name: i18n('Show Quick Message'),
+    name: jsc.i18n('Show Quick Message'),
     icon: 'message',
     action: function (evt) {
       if (!evt.input.message) {
@@ -250,11 +250,11 @@ function actions(module) {
       {
         id: 'message',
         type: 'string',
-        name: i18n('Message')
+        name: jsc.i18n('Message')
       }, {
         id: 'duration',
         type: 'number',
-        name: i18n('Duração'),
+        name: jsc.i18n('Duration'),
         min: 1,
         max: 120,
         default_value: 30
@@ -264,18 +264,18 @@ function actions(module) {
 
   arr.push({
     id: 'folder_example',
-    name: i18n('Folder'),
+    name: jsc.i18n('Folder'),
     icon: 'folder_open',
     action: [
       {
         id: 'folder_simple_action_1',
-        name: i18n('Simple Action 1'),
+        name: jsc.i18n('Simple Action 1'),
         action: function (evt) {
           //todo
         }
       }, {
         id: 'folder_simple_action_2',
-        name: i18n('Simple Action 2'),
+        name: jsc.i18n('Simple Action 2'),
         action: function (evt) {
           //todo
         }
@@ -508,12 +508,12 @@ function contextActions(module) {
   var arr = [];
 
   arr.push({
-    name: i18n('Iniciar do Coro'),
+    name: jsc.i18n('Iniciar do Coro'),
     types: ['song'],
     action: function (evt) {
       var r = h.hly('GetSong', {id: evt.item.id});
       if (!r.data) {
-        var error = i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
+        var error = jsc.i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
         h.notificationError(error, 3);
         return;
       }
@@ -538,13 +538,13 @@ function contextActions(module) {
         });
         return;
       }
-      var error = i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
+      var error = jsc.i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
       h.notificationError(error, 3);
     }
   });
 
   arr.push({
-    name: i18n('Exibir por {} segundos', [10]),
+    name: jsc.i18n('Exibir por {} segundos', [10]),
     types: ['image', 'image_folder'],
     filter: {
       item: {
@@ -750,21 +750,21 @@ Cria itens do tipo 'Mensagem Personalizada' para exibição no app celular.<br>I
 function customMessageInApp(module) {
   var arr = [];
   arr.push({
-    name: i18n('Mensagem Personalizada no App'),
-    description: i18n('Descrição'),
+    name: jsc.i18n('Mensagem Personalizada no App'),
+    description: jsc.i18n('Descrição'),
     input: [
       {
         id: 'example_1',
-        label: i18n('Nome') + ' 1'
+        label: jsc.i18n('Nome') + ' 1'
       }, {
         id: 'example_2',
-        label: i18n('Nome') + ' 2',
+        label: jsc.i18n('Nome') + ' 2',
         suggestions: [
           'Item 1', 'Item 2', 'Item 3'
         ]
       }, {
         id: 'example_3',
-        label: i18n('Nome') + ' 3',
+        label: jsc.i18n('Nome') + ' 3',
         only_number: true
       }
     ],
@@ -773,7 +773,7 @@ function customMessageInApp(module) {
      //evt.input.example_2
      //evt.input.example_3
      //evt.note
-     var msg = '<html>' + i18n('Mensagem recebida do app')
+     var msg = '<html>' + jsc.i18n('Mensagem recebida do app')
          + '<br><code>' + h.toPrettyJson(evt.input) + '</code>'
          + '<br>note: ' + evt.note;
      h.notification(msg, 3);
