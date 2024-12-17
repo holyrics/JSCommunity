@@ -1,5 +1,6 @@
 # JSCommunity
-Modelos de código javascript para uso no programa Holyrics.
+Repositório de códigos utilizados no ecossistema JavaScript do programa Holyrics.<br>
+[holyrics.com.br](https://holyrics.com.br).
 
 ---
 
