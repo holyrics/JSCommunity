@@ -62,7 +62,27 @@ function info() {
 É possível utilizar o botão `include` no programa Holyrics como forma de administrar esses códigos externos.<br>
 Ao criar e testar seus módulos no programa Holyrics, na janela `include` crie uma nova aba para cada possível arquivo diferente e mantenha os códigos dentro dessas abas em `include`, em vez de deixar no código do próprio módulo.<br>
 **Bug na `v2.23.0`** - foi identificado que ao editar o include, os módulos não utilizam o include atualizado, então é necessário editar qualquer coisa mínima no código do módulo (um simples espaço) pra forçar a reinicialização do módulo e utilizar o include atualizado.<br>
-Será corrigido na `v2.24.0`
+Corrigido na `v2.24.0`
+
+Na versão `2.24.0` foi adicionada uma variável global chamada `module` que estará disponível por padrão no contexto do código JavaScript de um módulo.<br>
+Evitando a necessidade de repassar o objeto `module` recebido na declaração da function original, por exemplo, `function actions(module) {`
+
+### Internationalization (I18N)
+Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas [Saiba mais](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md).<br>
+Exemplo:<br>
+```javascript
+function actions(module) {
+  var arr = [];
+
+  arr.push({
+    id: 'simple_action',
+    name: jsc.i18n('Simple Action'),
+    ...
+  });
+
+  return arr;
+}
+```
 
 ## Functions
 
@@ -78,8 +98,14 @@ Retorna as informações do módulo.
 | `id` | _String_ | ID do módulo. `unique` |
 | `name` | _String_ | Nome do módulo |
 | `description` | _String_ | Descrição do módulo.Compatível com formatação `html`. |
-| `allowed_requests` | _Array&lt;String&gt; (opcional)_ | Lista de hosts e/ou IPs adicionados na lista de requisições permitidas.<br>Possibilita realizar requisições via `h.apiRequest` passando o host ou ip diretamente, sem precisar ter um receptor criado para a comunicação. |
+| `allowed_requests` | _Array&lt;String&gt; (opcional)_ | Lista de hosts e/ou IPs adicionados na lista de requisições permitidas.<br>Possibilita realizar requisições via `module.apiRequest, module.ws, ...` passando o host ou ip diretamente, sem precisar ter um receptor criado para a comunicação. |
 | `min_version` | _String (opcional)_ | Versão mínima requerida do programa |
+| `max_version` | _String (opcional)_ | Versão máxima requerida do programa `v2.24.0+` |
+| `i18n` | _Object (opcional)_ | Tradução para nome e descrição do módulo `v2.24.0+` |
+| `permissions` | _String (opcional)_ | Permissões avançadas requeridas para o módulo ([Permissões](#permission)) `v2.24.0+` |
+| `os_required` | _String (opcional)_ | Se declarado, o módulo estará disponível apenas para o sistema operacional informado. Separe múltiplos valores com vírgula.<br>Pode ser: `windows` `unix` `osx` `v2.24.0+` |
+| `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
+| `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
 
 
 **Exemplo:**
@@ -87,15 +113,35 @@ Retorna as informações do módulo.
 ```javascript
 function info() {
   return {
-    id: 'ID do módulo',
-    name: 'Nome do módulo',
-    description: 'Descrição do <b>módulo</b>',
+    id: 'xyz',
+    name: 'Module name',
+    description: '<b>Module</b> description',
     allowed_requests: [
       'https://www.holyrics.com.br/v1/api_example/'
     ],
-    min_version: '2.23.0'
+    min_version: '2.23.0',
+    max_version: '2.24.0',
+    i18n: {
+      name: {
+        pt: 'Nome do módulo',
+        es: '...'
+      },
+      description: {
+        pt: 'Descrição do <b>módulo</b>',
+        es: '...'
+      }
+    },
+    permissions: [
+      {
+         type: 'blacklist_request',
+          key: 'obs_v5',
+        value: 'SetInputSettings'
+      }
+    ]
   };
 }
+//Observação: o recomendado é definir o nome e descrição do módulo em inglês e criar as traduções para outros idiomas (pt, en, ...)
+//Dessa forma, o idioma padrão exibido para o usuário será inglês, caso o respectivo valor não esteja traduzido para o idioma definido no programa do usuário.
 ```
 
 ---
@@ -143,7 +189,7 @@ function settings(module) {
 ---
 
 ### actions(module)
-Retorna a lista de ações que serão exibidas na janela do programa, no painel de módulo, abaixo da barra de favoritos.<br>Um item de ação pode executar ações ao clicar, mas também abrir um submenu com outros itens de ação, se comportando como uma pasta.<br>Pode ter `inputs` que serão exibidos ao clicar com o botão direito do mouse no item, opção "editar".<br>E pode ter itens de menu que serão exibidos ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`.
+Retorna a lista de ações que serão exibidas na janela do programa, no painel de módulo, abaixo da barra de favoritos.<br>Um item de ação pode executar ações ao clicar, mas também abrir um submenu com outros itens de ação, se comportando como uma pasta.<br>Pode ter `inputs` que serão exibidos ao clicar com o botão direito do mouse no item, opção "editar".<br>E pode ter itens de menu que serão exibidos ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.utils.module.fixActions(module, arr);`<br>antes de `return`.<br>Corrigido na `v2.24.0`
 
 **Parâmetros:**
 
@@ -418,21 +464,21 @@ Este é o método correspondente do `menu arquivo > configurações > avan�
 
 ```javascript
 function systemVariables(module) {
-  var arr = {};
+  var obj = {};
   
   //   text: 123 @js{test} xyz
   // result: 123 abc xyz
-  arr.test = function() {
+  obj.test = function() {
     return 'abc';
   };
   
   //   text: 3 + 4 = @js{sum(3, 4)}
   // result: 3 + 4 = 7
-  arr.sum = function(a, b) {
+  obj.sum = function(a, b) {
     return a + b;
   };
   
-  return arr;
+  return obj;
 }
 ```
 
@@ -500,6 +546,13 @@ function contextActions(module) {
   arr.push({
     name: i18n('Exibir por {} segundos', [10]),
     types: ['image', 'image_folder'],
+    filter: {
+      item: {
+        extension: 'png'
+        //regex
+        //extension: '--rgx (jpg|png)'
+      }
+    },
     action: function (evt) {
       h.hly('ShowImage', {
         file: evt.item.file_fullname,
@@ -732,12 +785,53 @@ function customMessageInApp(module) {
 
 ---
 
+### handleItemAction(module)
+- v2.24.0
+
+Captura a ação de um item executado.<br>Se declarado, ao executar o tipo de item correspondente, as informações do item serão redirecionadas para a `function` implementada aqui, antes do item ser executado de fato no fluxo padrão do programa.<br> <br>Retorne `true` nas respectivas `functions` para bloquear a ação padrão do programa para o item executado.<br>Se algum valor diferente de `true` for retornado, o item será executado pelo programa da maneira padrão.<br>A execução da `function` tem um `timeout` de 1 segundo, ou seja, deve retornar um valor rapidamente.<br>Para iniciar um processo longo, utilize `h.popupWorker(...)` ou `h.setTimeout(...)` para gerar uma tarefa em segundo plano de forma assíncrona.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `file` | _Function (opcional)_ | Ação originada da aba **Arquivo** da biblioteca do programa.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandleItemActionInfo](#modulehandleitemactioninfo) |
+
+
+**Exemplo:**
+
+```javascript
+function handleItemAction() {
+  return {
+    file: function(evt) {
+      if (evt.item.extension.equalsIgnoreCase("txt")) {
+        //do action
+        return true;
+      }
+      return false;
+    }
+  };
+}
+```
+
+---
+
 # Classes 
 ## Module
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `id` | _String_ | ID do objeto módulo no programa.<br>Não é o id definido em `function info()`, mas o ID do objeto no programa. |
 | `settings` | _Object_ | Objeto com as configurações do módulo.<br>Cada `InputParam` retornado em `function settings()` estará disponível no campo `settings`. |
+| `global` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.setGlobal()<br>Exemplo<br>`var n = module.global.abc;`<br>`var n = module.getGlobal('abc');`<br>...<br>`module.global.abc = 'xyz';`<br>`module.setGlobal('abc', 'xyz');` `v2.24.0+` |
+| `store` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.store()<br>Exemplo<br>`var n = module.store.abc;`<br>`var n = module.restore('abc');`<br>...<br>`module.store.abc = 'xyz';`<br>`module.store('abc', 'xyz');` `v2.24.0+` |
+| `device` | _Object_ | Salva e recupera um objeto salvo em disco, que pode ser recuperado mesmo após reiniciar o programa<br>Funciona como `h.store()` e `h.restore()`, porém o valor salvo não é compartilhado na sincronização em nuvem, ou seja, os dados são salvos apenas para o dispositivo local. `v2.24.0+` |
+| `files` | _[FileUtils](https://github.com/holyrics/jslib/blob/main/doc/null/FileUtils.md)_ | Classe utilitária para alguns métodos de manipulação de arquivos. `v2.24.0+` |
 ### getName()
 Retorna o nome do módulo.
 
@@ -814,6 +908,22 @@ _Método sem retorno_
 
 ---
 
+### openSettings(id = 'settings')
+- v2.24.0
+
+Abre a janela de configuração do módulo.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
+
+
+_Método sem retorno_
+
+---
+
 ### registerSettings(id, inputs)
 ### loadSettings(id, inputs)
 Carrega no campo `settings` do módulo configurações extras que não estão declaradas em `function settings()`.<br>Útil para armazenar configurações extras diretamente no módulo, e também evita o acesso ao conteúdo armazenado por outros códigos.<br>Chame este método em `function startup(module)` para que o campo `settings` seja preenchido com os valores salvos no módulo, ou pelo menos com os valores definidos em `default_value` de cada `InputParam`.
@@ -826,7 +936,12 @@ Carrega no campo `settings` do módulo configurações extras que não estão de
 | `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ |  |
 
 
-_Método sem retorno_
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Objeto com os valores previamente armazenados, onde cada chave é o `id` do respectivo `input`.<br>O valor definido em `default_value` de cada item será retornado caso não exista valor previamente armazenado |
+
 
 **Exemplo:**
 
@@ -860,13 +975,357 @@ Exibir uma janela com campos de entrada para receber informações de forma inte
 | `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | Pode ser `null` se `registerSettings(id, inputs)` ou `loadSettings(id, inputs)` tiver sido chamado anteriormente em qualquer momento |
 
 
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Objeto com as entradas informadas ou `null` se a janela foi fechada/cancelada |
+
+
+**Exemplo:**
+
+```javascript
+module.inputSettings('sets_name', null);
+```
+
+---
+
+### relativeMethods
+- v2.24.0
+
+Todos os métodos a seguir têm a mesma documentação do respectivo método original.
+```
+store(key, value)
+
+restore(key, default = null)
+
+setGlobal(key, value, ttl = 0)
+
+getGlobal(key, default = null)
+
+setGlobalNext(key, values, ttl = 0)
+
+getGlobalAndSet(key, default = null, newValue)
+
+getGlobalAndSet(key, newValue)
+
+getGlobalAndSetNext(key, values)
+
+setGlobalNextAndGet(key, values)
+```
+
+
+
+
 _Método sem retorno_
 
 **Exemplo:**
 
 ```javascript
-h.inputSettings('sets_name', null);
+module.store('key', 'value');
+var n = module.restore('key');
+
+module.setGlobal('abc', 'xyz');
+var n = module.getGlobal('abc');
 ```
+
+---
+
+### apiRequest(id, raw)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.apiRequest(id, raw)](https://github.com/holyrics/jslib#apirequestid-raw)
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Retorno da requisição ou NULL para erro/timeout |
+
+
+**Exemplo:**
+
+```javascript
+module.apiRequest('receiver_id', {});
+```
+
+---
+
+### getApiRequestLastError()
+- v2.24.0
+
+Mesma sintaxe de: [jslib.getApiRequestLastError()](https://github.com/holyrics/jslib#getapirequestlasterror)
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | Erro da última requisição ou NULL se não houver erro |
+
+
+**Exemplo:**
+
+```javascript
+var err = module.getApiRequestLastError();
+```
+
+---
+
+### apiRequestAsync(id, raw, callback = null)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.apiRequestAsync(id, raw, callback = null)](https://github.com/holyrics/jslib#apirequestasyncid-raw-callback--null)
+
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var callback = function(response, error) {
+    //
+};
+module.apiRequestAsync('receiver_id', {}, callback);
+```
+
+---
+
+### apiRequestEx(id, raw)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.apiRequestEx(id, raw)](https://github.com/holyrics/jslib#apirequestexid-raw)
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Retorno da requisição |
+
+
+**Exemplo:**
+
+```javascript
+module.apiRequestEx('receiver_id', {});
+```
+
+---
+
+### tcp(receiver, cacheID, modelToCreate)
+### tcp(receiver, cacheIDOrModelToCreate)
+### tcp(receiver)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.tcp(receiver, cacheID, modelToCreate)](https://github.com/holyrics/jslib#tcpreceiver-cacheid-modeltocreate)
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[TCPClient](https://github.com/holyrics/jslib/blob/main/doc/null/TCPClient.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var tcp = module.tcp('receiver_id', modelToCreate);
+```
+
+---
+
+### ws(receiver, cacheID, modelToCreate)
+### ws(receiver, cacheIDOrModelToCreate)
+### ws(receiver)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.ws(receiver, cacheID, modelToCreate)](https://github.com/holyrics/jslib#wsreceiver-cacheid-modeltocreate)
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[WebSocketClient](https://github.com/holyrics/jslib/blob/main/doc/null/WebSocketClient.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ws = module.ws('receiver_id', modelToCreate);
+```
+
+---
+
+### process(file, input = null)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.process(file, input = null)](https://github.com/holyrics/jslib#process(file-input--null))
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[Process](https://github.com/holyrics/jslib/blob/main/doc/null/Process.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var p = module.process('filename.exe', {
+  cli: ['param 1', 'param 2'],
+  on_message: function(msg) {
+    h.log(msg.readString());
+  },
+  on_error: function(msg) {
+    h.log("error: " + msg.readString());
+  },
+  on_finish: function(code) {
+    //todo
+  },
+  timeout: 10000
+});
+p.send('example');
+p.await();
+```
+
+---
+
+### executeCmdAndWait(file, cli = null, timeout = 5000)
+- v2.24.0
+
+Mesma sintaxe de: [jslib.executeCmdAndWait(file, cli = null, timeout = 5000)](https://github.com/holyrics/jslib#executecmdandwaitfile-cli--null-timeout--5000)
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `data` | _Object_ |  |
+| `data.status` | _Object_ | Pode ser: `ok` `error` |
+| `data.data` | _Object_ | `data.code` Código de saída ou mensagem de erro<br>`data.output` Texto completo recebido do processo executado `stdout`<br>`data.error` Texto completo recebido do processo executado `stderr` |
+| `data.error` | _Object_ | Mensagem de erro |
+
+
+**Exemplo:**
+
+```javascript
+var r = module.executeCmdAndWait('filename.exe', ['param 1', 'param 2'], 3000);
+//r.status
+//r.error //can be null
+//r.data //can be null
+//r.data.code
+//r.data.output
+//r.data.error
+```
+
+---
+
+### updateAction(...id)
+- v2.24.0
+
+Força a atualização do status de uma action
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do item |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+module.updateAction('id');
+module.updateAction('id1', 'id2');
+```
+
+---
+
+### getRuntimeID()
+- v2.24.0
+
+ID temporário que é válido somente durante a execução atual do programa
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _String_ | 
+
+
+---
+
+### getAllowedFiles()
+- v2.24.0
+
+Lista de arquivos permitidos para execução
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;String&gt;_ | 
+
+
+---
+
+### isAllowedExtensionToExecute(extension)
+- v2.24.0
+
+Verifica se a extensão está na lista de permissão para execução
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `extension` | _String_ |  |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### isAllowedFileToExecute(file)
+- v2.24.0
+
+Verifica se um arquivo da aba de arquivos está na lista de permissão para execução
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `file` | _String_ | Nome do arquivo (incluindo subpasta) |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
 
 ---
 
@@ -879,11 +1338,11 @@ h.inputSettings('sets_name', null);
 | `icon` | _String (opcional)_ | Ícone padrão do item.<br>Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
 | `icon_color` | _String (opcional)_ | Cor do ícone no formato hexadecimal. |
 | `hint` | _String (opcional)_ | Texto de dica que será exibido ao deixar o mouse parado em cima do item |
-| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.module.fixActions(module, arr);`<br>antes de `return`. |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de configurações do item.<br>Disponível para o usuário editar ao clicar com o botão direito do mouse no item.<br><br>**bug na v2.23.0**<br>O valor do input alterado pelo usuário na janela de diálogo não está sendo atualizado ao clicar em OK.<br>Para corrigir o problema, adicione a linha:<br>`jsc.utils.module.fixActions(module, arr);`<br>antes de `return`.<br>Corrigido na `v2.24.0` |
 | `status` | _Object (opcional)_ | Retornar o estado atual de exibição do item.<br>Define as configurações de visualização do item em tempo de execução, como ícone, cor, etc.<br>Utiliza a sintaxe de [StatusView](https://github.com/holyrics/Scripts/blob/main/StatusView.md). |
 | `action` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar e soltar o item. |
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
-| `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Será corrigido na atualização `v2.24.0` |
+| `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Corrigido na `v2.24.0` |
 | `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
 
@@ -899,8 +1358,10 @@ h.inputSettings('sets_name', null);
 | ---- | :---: | ------------|
 | `id` | _String (opcional)_ | ID do item |
 | `when` | _String_ | `displaying` `closing` `change` `event` |
-| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue`<br><br>**when=event**: `new_message_chat` |
+| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` |
 | `action` | _Function_ | Ação que será executada |
+| `name` | _String (opcional)_ | Nome do item. Valor compatível para exibição no **JavaScript Monitor** `v2.23.0+` |
+| `filter` | _Object (opcional)_ | Executar ação somente se o objeto que gerou o gatilho corresponder ao objeto filter `v2.24.0+` |
 <details>
   <summary>Ver exemplo</summary>
 
@@ -910,7 +1371,8 @@ h.inputSettings('sets_name', null);
   "when": "displaying",
   "item": "any_song",
   "action": function(obj) { /* TODO */ },
-  "name": "name"
+  "name": "name",
+  "filter": {}
 }
 ```
 </details>
@@ -920,8 +1382,11 @@ h.inputSettings('sets_name', null);
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `chat_message` |
+| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
+| `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
+| `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
+| `allow_multiple_items` | _Boolean (opcional)_ | Permitir seleção múltipla de itens `Padrão: false` `v2.24.0+` |
 
 ## ModuleTextTransformInfo
 Contém as informações da origem da requisição
@@ -1046,12 +1511,39 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 | ---- | :---: | ------------|
 | `id` | _String_ | ID do item |
 | `label` | _String_ | Nome do item |
+| `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). `v2.24.0+` |
 | `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
 | `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`<br>`evt.popup_menu_id` contém o id do respectivo `PopupMenuItem`. |
 | `items` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Disponível se `type = menu` |
 | `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
 
+## ModuleHandleItemActionInfo
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `item` | _String_ | **file:** [FileInfo](https://github.com/holyrics/jslib#fileinfo) |
+| `consumed` | _Boolean_ | Será `true` se a ação tiver sido capturada por qualquer outro módulo |
 
+
+
+## Permission
+
+```javascript
+{
+   type: 'blacklist_request',
+    key: 'obs_v5',
+  value: 'SetInputSettings' //OBS WebSocket V5 - Request Type
+}
+```
+
+```javascript
+{
+  type: 'advanced',
+   key: 'allowed_files'
+}
+```
+
+Valores disponíveis para `key`:
+`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`
 
 # Exemplo
 
