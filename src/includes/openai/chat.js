@@ -2,12 +2,12 @@
 function request(receiverID, body) {
     jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     jsc.err.safeNullOrEmpty(body, 'body');
-    var json = h.apiRequest(receiverID, {
+    var json = h.apiRequestEx(receiverID, {
         url_suffix: 'chat/completions',
         data: JSON.stringify(body)
     });
     if (json == null) {
-        throw h.getApiRequestLastError();
+        throw 'unknown';
     }
     return JSON.parse(json);
 }

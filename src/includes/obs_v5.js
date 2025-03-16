@@ -18,9 +18,9 @@ function request(receiverID, requestType, requestData) {
     if (requestData != null) {
         d.requestData = requestData;
     }
-    var json = h.apiRequest(receiverID, {op: 6, d: d});
+    var json = h.apiRequestEx(receiverID, {op: 6, d: d});
     if (json == null) {
-        throw h.getApiRequestLastError();
+        throw 'unknown';
     }
     var response = JSON.parse(json);
     if (response.d.requestStatus.result) {
@@ -33,9 +33,9 @@ function request(receiverID, requestType, requestData) {
 function requestBatch(receiverID, requests) {
     jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     var d = {"requests": requests};
-    var json = h.apiRequest(receiverID, {op: 8, d: d});
+    var json = h.apiRequestEx(receiverID, {op: 8, d: d});
     if (json == null) {
-        throw h.getApiRequestLastError();
+        throw 'unknown';
     }
     var response = JSON.parse(json);
     if (response.d.results) {
