@@ -2,9 +2,18 @@
 function request(receiverID, body) {
     jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     jsc.err.safeNullOrEmpty(body, 'body');
+    var copy = {};
+    h.stream(body)
+        .forEach(function(e) {
+            var k = e.getKey();
+            var v = e.getValue();
+            if (typeof v !== 'function') {
+                copy[k] = v;
+            }
+        });
     var json = h.apiRequestEx(receiverID, {
         url_suffix: 'chat/completions',
-        data: JSON.stringify(body)
+        data: JSON.stringify(copy)
     });
     if (json == null) {
         throw 'unknown';
@@ -21,7 +30,7 @@ function requestAndGetContent(receiverID, body) {
 // 
 function builder(model, userMessage) {
     var obj = {
-        model: (model !== undefined) ? model : "gpt-3.5-turbo",
+        model: (model !== undefined) ? model : "gpt-4o-mini",
         messages: [],
         max_tokens: h.getGlobal('chatgpt_default_max_tokens', 1024),
         temperature: h.getGlobal('chatgpt_default_temperature', 0)
@@ -58,7 +67,7 @@ function builder(model, userMessage) {
 
 // 
 function gpt(userMessage) {
-    var model = h.getGlobal('chatgpt_default_model', "gpt-3.5-turbo");
+    var model = h.getGlobal('chatgpt_default_model', "gpt-4o-mini");
     return jsc.openai.chat.builder(model, userMessage);
 }
 
@@ -80,4 +89,14 @@ function gpt4(userMessage) {
 // 
 function gpt4_32k(userMessage) {
     return jsc.openai.chat.builder("gpt-4-32k", userMessage);
+}
+
+// 
+function gpt4o(userMessage) {
+    return jsc.openai.chat.builder("gpt-4o", userMessage);
+}
+
+// 
+function gpt4o_mini(userMessage) {
+    return jsc.openai.chat.builder("gpt-4o-mini", userMessage);
 }
