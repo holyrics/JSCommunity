@@ -444,7 +444,7 @@ function triggers(module) {
 ---
 
 ### systemVariables(module)
-Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br>Observação: há um cachê de 1 segundo para reutilizar o último valor retornado pela `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 @js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=@js{sum(3,4)}` será exibido como `3+4=7`.<br>
+Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 @js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=@js{sum(3,4)}` será exibido como `3+4=7`.<br>
 
 **Parâmetros:**
 
@@ -457,7 +457,7 @@ Este é o método correspondente do `menu arquivo > configurações > avan�
 
 | Tipo  | Descrição |
 | :---: | ------------|
-| _Object_ | Mapa chave/valor onde cada chave é o nome da variável do sistema criada e o valor é uma `function` que retorna o valor correspondente da variável do sistema |
+| _Object_ | Mapa chave/valor<br>Cada chave é o nome da variável do sistema criada<br> <br> Cada valor é uma `function` que retorna o valor correspondente da variável do sistema, ou um objeto do tipo: [ModuleSystemVariableAction](#modulesystemvariableaction) |
 
 
 **Exemplo:**
@@ -822,6 +822,44 @@ function handleItemAction() {
 
 ---
 
+### style(module)
+- v2.25.0
+
+Retorna uma lista de estilos que poderão ser utilizados nas formatações baseadas em [Styled Text](https://github.com/holyrics/Scripts/blob/main/StyledText.md).<br> <br>Se o retorno desse método for um valor dinãmico (volátil), é necessário chamar `module.fireStyleChanged()` para forçar a atualização dos dados.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Mapa chave/valor onde cada chave é o nome do estilo e o valor um mapa chave/valor com as respectivas propriedades do estilo |
+
+
+**Exemplo:**
+
+```javascript
+var r = h.style(module);
+function style() {
+  var obj = {};
+  
+  obj.example = {
+    i: true,
+    font: 'Arial',
+    size: 70
+  };
+  
+  return obj;
+}
+```
+
+---
+
 # Classes 
 ## Module
 | Nome | Tipo  | Descrição |
@@ -831,7 +869,7 @@ function handleItemAction() {
 | `global` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.setGlobal()<br>Exemplo<br>`var n = module.global.abc;`<br>`var n = module.getGlobal('abc');`<br>...<br>`module.global.abc = 'xyz';`<br>`module.setGlobal('abc', 'xyz');` `v2.24.0+` |
 | `store` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.store()<br>Exemplo<br>`var n = module.store.abc;`<br>`var n = module.restore('abc');`<br>...<br>`module.store.abc = 'xyz';`<br>`module.store('abc', 'xyz');` `v2.24.0+` |
 | `device` | _Object_ | Salva e recupera um objeto salvo em disco, que pode ser recuperado mesmo após reiniciar o programa<br>Funciona como `h.store()` e `h.restore()`, porém o valor salvo não é compartilhado na sincronização em nuvem, ou seja, os dados são salvos apenas para o dispositivo local. `v2.24.0+` |
-| `files` | _[FileUtils](https://github.com/holyrics/jslib/blob/main/doc/null/FileUtils.md)_ | Classe utilitária para alguns métodos de manipulação de arquivos. `v2.24.0+` |
+| `files` | _[FileUtils](https://github.com/holyrics/jslib/blob/main/doc/pt/FileUtils.md)_ | Classe utilitária para alguns métodos de manipulação de arquivos. `v2.24.0+` |
 ### getName()
 Retorna o nome do módulo.
 
@@ -1130,7 +1168,7 @@ Mesma sintaxe de: [jslib.tcp(receiver, cacheID, modelToCreate)](https://github.c
 
 | Tipo  |
 | :---: |
-| _[TCPClient](https://github.com/holyrics/jslib/blob/main/doc/null/TCPClient.md)_ | 
+| _[TCPClient](https://github.com/holyrics/jslib/blob/main/doc/pt/TCPClient.md)_ | 
 
 
 **Exemplo:**
@@ -1154,7 +1192,7 @@ Mesma sintaxe de: [jslib.ws(receiver, cacheID, modelToCreate)](https://github.co
 
 | Tipo  |
 | :---: |
-| _[WebSocketClient](https://github.com/holyrics/jslib/blob/main/doc/null/WebSocketClient.md)_ | 
+| _[WebSocketClient](https://github.com/holyrics/jslib/blob/main/doc/pt/WebSocketClient.md)_ | 
 
 
 **Exemplo:**
@@ -1176,7 +1214,7 @@ Mesma sintaxe de: [jslib.process(file, input = null)](https://github.com/holyric
 
 | Tipo  |
 | :---: |
-| _[Process](https://github.com/holyrics/jslib/blob/main/doc/null/Process.md)_ | 
+| _[Process](https://github.com/holyrics/jslib/blob/main/doc/pt/Process.md)_ | 
 
 
 **Exemplo:**
@@ -1329,6 +1367,79 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
 
 ---
 
+### hly(action, input)
+### hly(action)
+- v2.25.0
+
+Mesma sintaxe de: `jslib.hly(...)`
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var r = h.hly('GetSong', { id: '123' });
+```
+
+---
+
+### hlyOrThrow(action, input)
+### hlyOrThrow(action)
+- v2.25.0
+
+Mesma sintaxe de: `jslib.hlyOrThrow(...)`
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var r = h.hlyOrThrow('GetSong', { id: '123' });
+```
+
+---
+
+### fireStyleChanged()
+- v2.25.0
+
+Força a limpeza de cache das propriedades `style`.<br>Necessário chamar quando o conteúdo retornado por `function style()` for alterado.
+
+
+
+_Método sem retorno_
+
+---
+
+### isAllowedEditImportantData()
+- v2.25.0
+
+Verifica se a permissão para editar dados importantes do programa (letra de música, tema, etc) está liberada.
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
 
 ## ModuleAction
 | Nome | Tipo  | Descrição |
@@ -1371,18 +1482,23 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
   "when": "displaying",
   "item": "any_song",
   "action": function(obj) { /* TODO */ },
-  "name": "name",
-  "filter": {}
+  "name": "name"
 }
 ```
 </details>
+
+## ModuleSystemVariableAction
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `action` | _Function_ | Função que será executada |
+| `cache_delay` | _Number (opcional)_ | A duração (em milissegundos) que o valor retornado ficará em cache para reutilização sem invocar a `function` novamente.<br>`500 ~ 60000` `Padrão: 1000` |
 
 ## ModuleContextAction
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` |
+| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 | `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
 | `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
@@ -1543,7 +1659,7 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 ```
 
 Valores disponíveis para `key`:
-`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`
+`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`  `edit_important_data`
 
 # Exemplo
 
