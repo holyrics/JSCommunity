@@ -2,7 +2,7 @@
 function request(receiverID, body) {
     jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
     jsc.err.safeNullOrEmpty(body, 'body');
-    var copy = {};
+    var copy = {}; //fix
     h.stream(body)
         .forEach(function(e) {
             var k = e.getKey();
