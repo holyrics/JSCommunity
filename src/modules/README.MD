@@ -104,8 +104,8 @@ Retorna as informações do módulo.
 | `i18n` | _Object (opcional)_ | Tradução para nome e descrição do módulo `v2.24.0+` |
 | `permissions` | _String (opcional)_ | Permissões avançadas requeridas para o módulo ([Permissões](#permission)) `v2.24.0+` |
 | `os_required` | _String (opcional)_ | Se declarado, o módulo estará disponível apenas para o sistema operacional informado. Separe múltiplos valores com vírgula.<br>Pode ser: `windows` `unix` `osx` `v2.24.0+` |
-| `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
-| `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
+| `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
+| `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
 
 
 **Exemplo:**
@@ -955,7 +955,7 @@ Abre a janela de configuração do módulo.
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
+| `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
 
 
 _Método sem retorno_
@@ -1454,7 +1454,7 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | `action` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar e soltar o item. |
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
 | `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Corrigido na `v2.24.0` |
-| `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
+| `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
 
 ## ModuleLoop
@@ -1491,7 +1491,7 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `action` | _Function_ | Função que será executada |
-| `cache_delay` | _Number (opcional)_ | A duração (em milissegundos) que o valor retornado ficará em cache para reutilização sem invocar a `function` novamente.<br>`500 ~ 60000` `Padrão: 1000` |
+| `cache_delay` | _Number (opcional)_ | A duração (em milissegundos) que o valor retornado ficará em cache para reutilização sem invocar a `function` novamente.<br>`500 ~ 60000` `Padrão: 1000` |
 
 ## ModuleContextAction
 | Nome | Tipo  | Descrição |
@@ -1501,8 +1501,8 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 | `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
-| `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
-| `allow_multiple_items` | _Boolean (opcional)_ | Permitir seleção múltipla de itens `Padrão: false` `v2.24.0+` |
+| `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
+| `allow_multiple_items` | _Boolean (opcional)_ | Permitir seleção múltipla de itens `Padrão: false` `v2.24.0+` |
 
 ## ModuleTextTransformInfo
 Contém as informações da origem da requisição
@@ -1540,7 +1540,7 @@ Define os valores que serão utilizados para adicionar ou substituir o texto do 
 | ---- | :---: | ------------|
 | `add_start` | _String (opcional)_ | Valor que será adicionado no início do texto do slide atual |
 | `add_end` | _String (opcional)_ | Valor que será adicionado no final do texto do slide atual |
-| `line_break` | _Boolean (opcional)_ | Adiciona o texto com uma quebra de linha `Padrão: true` |
+| `line_break` | _Boolean (opcional)_ | Adiciona o texto com uma quebra de linha `Padrão: true` |
 | `replace` | _String (opcional)_ | Valor para substituir o texto do slide atual |
 
 ## ModuleCustomThemeSongInfo
@@ -1628,10 +1628,10 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 | `id` | _String_ | ID do item |
 | `label` | _String_ | Nome do item |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). `v2.24.0+` |
-| `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
+| `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
 | `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`<br>`evt.popup_menu_id` contém o id do respectivo `PopupMenuItem`. |
 | `items` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Disponível se `type = menu` |
-| `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
+| `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
 
 ## ModuleHandleItemActionInfo
 | Nome | Tipo  | Descrição |
