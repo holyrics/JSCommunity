@@ -48,7 +48,7 @@ if `obj.type == 'trigger'`:<br>
 
 The file `*_functions.js` contains the script that is on the right side of the script editing window (optional methods).<br>
 To create/organize the more complex methods needed for executing the main script.<br>
-It is possible to implement the features of [Function Input](https://github.com/holyrics/Scripts/blob/main/i18n/en/FunctionInput.md) and [Item Status](https://github.com/holyrics/Scripts/blob/main/i18n/en/ItemStatus.md) in this file.<br>
+It is possible to implement the features of [Function Input](https://github.com/holyrics/Scripts/blob/main/i18n/en/FunctionInput.md) and [Item Status](https://github.com/holyrics/Scripts/blob/main/i18n/en/StatusView.md) in this file.<br>
 Example:
 ```javascript
 function hGetItemInputParams() {
