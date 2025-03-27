@@ -1,4 +1,4 @@
-# Licença sobre recursos e códigos disponíveis em [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules)
+# Licença sobre recursos e códigos disponíveis em [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules/README.md)
 
 **PT** | [EN](LICENSE-en.md)
 

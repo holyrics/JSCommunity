@@ -2,9 +2,9 @@
 
 Disponível a partir da versão `2.23.0` do programa Holyrics.
 
-A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
+A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README.md) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
 
-Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib) aumentou.<br>
+Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib/tree/main/README.md) aumentou.<br>
 Com isso, algumas soluções criadas necessitavam interagir com diferentes recursos do programa, sendo necessário acessar e adicionar/editar códigos JavaScript em vários locais diferentes do programa.<br>
 A funcionalidade **Módulos** resolve isso permitindo interagir com diversas funcionalidades e recursos diferentes do programa em um único código JavaScript.<br>
 Podendo até criar botões de ação na janela do programa, sem que o usuário precise ficar criando e administrando diversos botões e códigos JavaScript diferentes.
@@ -27,7 +27,7 @@ Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalid
 # Tutorial
 
 ## Criar um módulo
-Os módulos deverão ser criados dentro de uma subpasta de [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules).<br>
+Os módulos deverão ser criados dentro de uma subpasta de [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules/README.md).<br>
 Cada pessoa ou organização deve criar sua própria subpasta para seus módulos.<br>
 Por exemplo: `modules/holyrics`
 
