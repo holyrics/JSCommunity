@@ -1,5 +1,10 @@
 # Modules
 
+**EN** | [PT](README.md)
+
+---
+
+
 Available from version `2.23.0` of the Holyrics program.
 
 The **Modules** feature allows the creation of solutions using JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README-en.md) that interact with various resources of the program, enabling the modification and/or adaptation of the program's functionality, creating buttons that execute custom actions, real-time triggers, among other possibilities, all in one place.
@@ -27,7 +32,7 @@ More details about the licensing of the codes provided in the **Modules** featur
 # Tutorial
 
 ## Create a module
-The modules should be created within a subfolder of [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules/README-en.md).<br>
+The modules should be created within a subfolder of [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules).<br>
 Each person or organization should create their own subfolder for their modules.<br>
 For example: `modules/holyrics`
 
@@ -102,7 +107,7 @@ Returns the information of the module.
 | `min_version` | _String (optional)_ | Minimum required version of the program |
 | `max_version` | _String (optional)_ | Maximum required version of the program `v2.24.0+` |
 | `i18n` | _Object (optional)_ | Translation for module name and description `v2.24.0+` |
-| `permissions` | _String (optional)_ | Advanced permissions required for the module ([Permissions](#permission)) `v2.24.0+` |
+| `permissions` | _Array&lt;[Permission](#permission)&gt; (optional)_ | Advanced permissions required for the module `v2.24.0+` |
 | `os_required` | _String (optional)_ | If declared, the module will be available only for the specified operating system. Separate multiple values with a comma.<br>Can be: `windows` `unix` `osx` `v2.24.0+` |
 | `available_in_main_window` | _Boolean (optional)_ | Display the module in the module bar of the main window `Default: true` `v2.24.0+` |
 | `available_in_bible_window` | _Boolean (optional)_ | Display the module in the module bar of the Bible window `Default: true` `v2.24.0+` |
@@ -841,7 +846,6 @@ Returns a list of styles that can be used in formatting based on [Styled Text](h
 **Example:**
 
 ```javascript
-var r = h.style(module);
 function style() {
   var obj = {};
   
@@ -1638,7 +1642,7 @@ Represents a parameter (input) used by `ModuleCustomMessageInApp`
 
 
 
-## Permissions
+## Permission
 
 ```javascript
 {

@@ -1,5 +1,10 @@
 # Módulos
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 Disponível a partir da versão `2.23.0` do programa Holyrics.
 
 A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README.md) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
@@ -27,7 +32,7 @@ Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalid
 # Tutorial
 
 ## Criar um módulo
-Os módulos deverão ser criados dentro de uma subpasta de [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules/README.md).<br>
+Os módulos deverão ser criados dentro de uma subpasta de [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules).<br>
 Cada pessoa ou organização deve criar sua própria subpasta para seus módulos.<br>
 Por exemplo: `modules/holyrics`
 
@@ -102,7 +107,7 @@ Retorna as informações do módulo.
 | `min_version` | _String (opcional)_ | Versão mínima requerida do programa |
 | `max_version` | _String (opcional)_ | Versão máxima requerida do programa `v2.24.0+` |
 | `i18n` | _Object (opcional)_ | Tradução para nome e descrição do módulo `v2.24.0+` |
-| `permissions` | _String (opcional)_ | Permissões avançadas requeridas para o módulo ([Permissões](#permission)) `v2.24.0+` |
+| `permissions` | _Array&lt;[Permission](#permission)&gt; (opcional)_ | Permissões avançadas requeridas para o módulo `v2.24.0+` |
 | `os_required` | _String (opcional)_ | Se declarado, o módulo estará disponível apenas para o sistema operacional informado. Separe múltiplos valores com vírgula.<br>Pode ser: `windows` `unix` `osx` `v2.24.0+` |
 | `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
 | `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
@@ -841,7 +846,6 @@ Retorna uma lista de estilos que poderão ser utilizados nas formatações basea
 **Exemplo:**
 
 ```javascript
-var r = h.style(module);
 function style() {
   var obj = {};
   
@@ -1638,7 +1642,7 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 
 
 
-## Permissões
+## Permission
 
 ```javascript
 {

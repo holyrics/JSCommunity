@@ -203,7 +203,7 @@ Reads the file in XML format but returns a relative `JavaScript Object` based on
 **Example:**
 
 ```javascript
-//considerando que o arquivo XML seja
+//considering that the XML file is
 //
 //<?xml version="1.0" encoding="utf-8"?>
 //<song>
