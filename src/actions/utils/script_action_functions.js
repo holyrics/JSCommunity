@@ -2,7 +2,7 @@ function hGetItemInputParams() {
     return [
         {
             id: 'script',
-            name: jsc.i18n('Script'),
+            name: 'Script',
             description: '',
             type: 'string',
             allowed_values: function() {

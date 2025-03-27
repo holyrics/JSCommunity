@@ -1,0 +1,14 @@
+{
+    "id": "send_midi_by_bg_tag",
+    "name": "Send MIDI from a Tag",
+    "description": "Send MIDI from a Tag",
+    "i18n": {
+        "name": {
+            "pt": "Enviar MIDI a partir de uma Tag"
+        },
+        "description": {
+            "pt": "Enviar MIDI a partir de uma Tag"
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'any_theme' || obj.item == 'any_background') "
+}

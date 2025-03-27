@@ -22,7 +22,7 @@ O módulo será considerado "desativado" se a execução condicional atual for `
 
 Reservamo-nos o direito de negar a aprovação de qualquer módulo por qualquer motivo, a nosso exclusivo critério.
 
-Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.MD)
+Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.md)
 
 # Tutorial
 
@@ -68,7 +68,7 @@ Na versão `2.24.0` foi adicionada uma variável global chamada `module` que est
 Evitando a necessidade de repassar o objeto `module` recebido na declaração da function original, por exemplo, `function actions(module) {`
 
 ### Internationalization (I18N)
-Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas [Saiba mais](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md).<br>
+Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas. [(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)<br>
 Exemplo:<br>
 ```javascript
 function actions(module) {
@@ -709,14 +709,11 @@ function lineBreakRules(module) {
       // e for uma apresentação de letra de música
       // e não houver palavras restantes além da palavra atual
       // 
-      // retorna -1 para que a última palavra da linha atual
-      // seja movida para a próxima linha
+      // retorna -1 para que a última palavra da linha atual seja movida para a próxima linha
       // 
-      // isso evita com que uma quebra de linha
-      // seja criada com apenas uma palavra sozinha
+      // isso evita com que uma quebra de linha seja criada com apenas uma palavra sozinha
       //
-      // caso fosse retornado 1, a palavra atual ficaria na linha atual
-      // evitando a quebra de linha
+      // caso fosse retornado 1, a palavra atual ficaria na linha atual, evitando a quebra de linha
       // porém nesse caso o tamanho da fonte do slide é reduzido
       return -1;
     }
@@ -1641,7 +1638,7 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 
 
 
-## Permission
+## Permissões
 
 ```javascript
 {

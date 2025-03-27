@@ -1,5 +1,10 @@
 # Modelos de código
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 Para criar novos modelos de código, adicione os arquivos em uma subpasta daqui (actions).<br>
 Selecione uma subpasta existente que se encaixe melhor no objetivo do modelo ou, se necessário, crie novas subpastas.
 
@@ -15,15 +20,15 @@ O arquivo `*.json` contém as informações do modelo:<br>
 {
     "id": "id_único_do_item",
     "name": "Nome do item",
-    "description": "Descrição do que o item faz. Pode conter tags HTML para melhor formatação. <b>bold</b>, <i>italic</i>, etc...",
+    "description": "Descrição do que o item faz. Pode conter tags HTML para melhor formatação. <b>bold</b>, <i>italic</i>, ...",
     "i18n": {
         "name": {
             "pt": "Nome traduzido para o idioma correspondente",
-            "es": "..."
+            "??": "..."
         },
         "description": {
             "pt": "Descrição traduzida para o idioma correspondente",
-            "es": "..."
+            "??": "..."
         }
     },
     "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && obj.item == 'image' "

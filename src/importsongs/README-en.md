@@ -1,24 +1,24 @@
-# Importar letra de música via JavaScript
+# Import song lyrics via JavaScript
 
-**PT** | [EN](README-en.md)
+**EN** | [PT](README.md)
 
 ---
 
 
-`menu música > importar`
+`music menu > import`
 
-Na `v2.23.0` foi disponibilizada uma opção para importar letras de música de arquivos do computador utilizando implementação JavaScript como "parser" (input/output).
+In `v2.23.0`, an option was made available to import song lyrics from files on the computer using a JavaScript implementation as a "parser" (input/output).
 
-Aqui está a documentação de como aplicar essa conversão.<br>
-E aqui também estão listados modelos prontos que são disponibilizados no programa para uso por outros usuários.
+Here is the documentation on how to apply this conversion.<br>
+And here are also listed ready-made models that are available in the program for use by other users.
 
-# Documentação
+# Documentation
 
 ## info()
 
-Deve retornar as informações do modelo, como id, nome, descrição, etc.
+It should return the model information, such as id, name, description, etc.
 
-Exemplo:
+Example:
 ```javascript
 function info() {
   return {
@@ -36,13 +36,13 @@ function info() {
 
 ## settings()
 
-__Opcional__<br>
-Exibe na janela de importação componentes de configuração para ser utilizado em `function extract(files, settings)`<br>
-Por exemplo, exibir uma lista de `charset` para o usuário poder selecionar qual `charset` utilizar na leitura dos arquivos de texto.
-Deve retornar um array de [InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md).<br>
-O valor de cada item estará disponível no parâmetro `settings` recebido em `function extract(...)`, por exemplo, `settings.charset`.
+__Optional__<br>
+Displays configuration components in the import window to be used in `function extract(files, settings)`<br>
+For example, display a list of `charset` for the user to select which `charset` to use when reading text files.
+Must return an array of [InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md).<br>
+The value of each item will be available in the `settings` parameter received in `function extract(...)`, for example, `settings.charset`.
 
-Exemplo:
+Example:
 ```javascript
 function settings() {
   return [
@@ -57,11 +57,11 @@ function settings() {
 
 ## extract(files, settings)
 
-Recebe a lista de arquivos selecionados pelo usuário e o valor das configurações criadas para este módulo em `function settings()` (opcional).<br>
-Deve retornar um objeto com o campo `songs` que contém a lista de músicas obtidas de todos os arquivos lidos.<br>
+Receives the list of files selected by the user and the value of the settings created for this module in `function settings()` (optional).<br>
+It should return an object with the `songs` field that contains the list of songs obtained from all the read files.<br>
 `files` typeof Array<[JSFile](#jsfile)>
 
-Exemplo:
+Example:
 ```javascript
 function extract(files, settings) {
     var songs = [];
@@ -81,23 +81,23 @@ function extract(files, settings) {
 ```
 
 ## JSFile
-| Nome | Tipo  | Descrição |
+| Name | Type  | Description |
 | ---- | :---: | ------------|
-| `name` | _String_ | Nome do arquivo (sem extensão) |
-| `extension` | _String_ | Extensão do arquivo (sem ponto) |
+| `name` | _String_ | File name (sem extensão) |
+| `extension` | _String_ | File extension (sem ponto) |
 ### getTitleAndArtistFromName()
-Identifica o possível título e artista a partir do nome do arquivo.<br>Regras:<br>Se o nome do arquivo tiver `' - '`, separa o nome do arquivo, sendo a primeira parte o título e a segunda parte o artista.<br>Exemplo: `title - artist.txt`<br>`['title', 'artist']`<br><br>Se o nome do arquivo tiver parênteses, extrai o valor de dentro do parênteses como artista.<br>Exemplo: `title (artist).txt`<br>`['title', 'artist']`<br><br>Retorna o nome do arquivo inteiro como título caso não seja identificada uma regra.
+Identifies the possible title and artist from the filename.<br>Rules:<br>If the filename contains `' - '`, it separates the filename, with the first part being the title and the second part the artist.<br>Example: `title - artist.txt`<br>`['title', 'artist']`<br><br>If the filename has parentheses, it extracts the value inside the parentheses as the artist.<br>Example: `title (artist).txt`<br>`['title', 'artist']`<br><br>Returns the entire filename as the title if no rule is identified.
 
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  | Descrição |
+| Type  | Description |
 | :---: | ------------|
-| _Array&lt;String&gt;_ | Retorna um array sempre com 2 elementos |
+| _Array&lt;String&gt;_ | Returns an array always with 2 elements |
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {
@@ -111,18 +111,18 @@ files.forEach(function(f) {
 ---
 
 ### readBytes()
-Retorna os bytes do arquivo
+Returns the bytes of the file
 
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _Array&lt;Byte&gt;_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {
@@ -133,23 +133,23 @@ files.forEach(function(f) {
 ---
 
 ### readString(charset = 'utf-8')
-Retorna o arquivo em formato de texto
+Returns the file in text format
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome | Tipo  | Descrição |
+| Name | Type  | Description |
 | ---- | :---: | ------------|
-| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
+| `charset` | _String (optional)_ |  `Default: utf-8` |
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _String_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {
@@ -161,18 +161,18 @@ files.forEach(function(f) {
 
 ### readJson()
 ### readJSON()
-Lê o arquivo em formato JSON e retorna como `JavaScript Object`
+Reads the file in JSON format and returns it as a `JavaScript Object`
 
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _Object_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {
@@ -184,23 +184,23 @@ files.forEach(function(f) {
 
 ### readXml(charset = 'utf-8')
 ### readXML(charset = 'utf-8')
-Lê o arquivo em formato XML, mas retorna um `JavaScript Object` relativo, baseado na estrutura XML lida.<br>Todos os nós da estrutura XML serão considerados um array (exceto o primeiro nó raiz).<br>Cada nó terá o campo `content` com seu respectivo conteúdo e os campos de atributo.<br>Por praticidade, é possível chamar o content do primeiro item do array de forma direta com a sintaxe `r.song.title0` em vez de `r.song.title[0].content`
+Reads the file in XML format but returns a relative `JavaScript Object` based on the read XML structure.<br>All nodes of the XML structure will be considered an array (except for the first root node).<br>Each node will have the `content` field with its respective content and the attribute fields.<br>For convenience, it is possible to directly access the content of the first item in the array using the syntax `r.song.title0` instead of `r.song.title[0].content`
 
-**Parâmetros:**
+**Parameters:**
 
-| Nome | Tipo  | Descrição |
+| Name | Type  | Description |
 | ---- | :---: | ------------|
-| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
+| `charset` | _String (optional)_ |  `Default: utf-8` |
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _Object_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 //considerando que o arquivo XML seja
@@ -260,18 +260,18 @@ files.forEach(function(f) {
 ---
 
 ### readDoc()
-Lê o conteúdo de um documento, por exemplo: `.doc` `.docx`.<br>Retorna o texto completo do documento lido.
+Reads the content of a document, for example: `.doc` `.docx`.<br>Returns the full text of the read document.
 
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _String_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {
@@ -282,18 +282,18 @@ files.forEach(function(f) {
 ---
 
 ### readPpt()
-Lê o conteúdo de uma apresentação, por exemplo: `.ppt` `.pptx`.<br>Retorna um array com o texto de cada slide lido.
+Reads the content of a presentation, for example: `.ppt` `.pptx`.<br>Returns an array with the text of each slide read.
 
 
 
-**Resposta:**
+**Response:**
 
-| Tipo  |
+| Type  |
 | :---: |
 | _Array&lt;String&gt;_ | 
 
 
-**Exemplo:**
+**Example:**
 
 ```javascript
 files.forEach(function(f) {

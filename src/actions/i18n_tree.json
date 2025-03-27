@@ -21,5 +21,8 @@
     }, {
         "key": "soundcraft",
         "": "Soundcraft Ui Series"
+    }, {
+        "key": "midi",
+        "": "MIDI"
     }
 ]

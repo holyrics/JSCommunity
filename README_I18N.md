@@ -1,5 +1,10 @@
 # Internationalization (I18N)
 
+**PT** | [EN](README_I18N-en.md)
+
+---
+
+
 O método `jsc.i18n(...)` está disponível para compatibilidade do código em diferentes idiomas.<br>
 Para adicionar uma string no código que pode ser traduzida:
 ```javascript

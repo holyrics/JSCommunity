@@ -1,4 +1,9 @@
 # JSCommunity
+
+**PT** | [EN](README-en.md)
+
+---
+
 Repositório de códigos utilizados no ecossistema JavaScript do programa Holyrics.<br>
 [holyrics.com.br](https://holyrics.com.br).
 
@@ -30,7 +35,7 @@ Repositório de códigos utilizados no ecossistema JavaScript do programa Holyri
 
 ## Internationalization (I18N)
 
-[README](README_I18N.md)
+[(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)
 
 ## Licença
 
