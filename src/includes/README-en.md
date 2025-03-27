@@ -5,7 +5,7 @@
 ---
 
 
-It is possible to create methods for reuse in any JavaScript code executed by the program, like a library, avoiding repeated code in code templates, and also facilitating the creation of custom code within the program itself, using this library integrated with the [jslib](https://github.com/holyrics/jslib/tree/main/README-en.md) available in the program.<br>
+It is possible to create methods for reuse in any JavaScript code executed by the program, like a library, avoiding repeated code in code templates, and also facilitating the creation of custom code within the program itself, using this library integrated with the [jslib](https://github.com/holyrics/jslib/tree/main/README-en.md) library available in the program.<br>
 The library files are located here in this folder (includes).
 
 The library can be accessed through the variable `jsc` _(JavaScript Community)_.<br>

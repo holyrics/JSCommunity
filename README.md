@@ -35,7 +35,7 @@ Repositório de códigos utilizados no ecossistema JavaScript do programa Holyri
 
 ## Internationalization (I18N)
 
-[(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)
+[(Saiba mais)](README_I18N.md)
 
 ## Licença
 

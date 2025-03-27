@@ -39,7 +39,7 @@ function info() {
 __Optional__<br>
 Displays configuration components in the import window to be used in `function extract(files, settings)`<br>
 For example, display a list of `charset` for the user to select which `charset` to use when reading text files.
-Must return an array of [InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md).<br>
+It should return an array of [InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md).<br>
 The value of each item will be available in the `settings` parameter received in `function extract(...)`, for example, `settings.charset`.
 
 Example:
@@ -86,7 +86,7 @@ function extract(files, settings) {
 | `name` | _String_ | File name (sem extensão) |
 | `extension` | _String_ | File extension (sem ponto) |
 ### getTitleAndArtistFromName()
-Identifies the possible title and artist from the filename.<br>Rules:<br>If the filename contains `' - '`, it separates the filename, with the first part being the title and the second part the artist.<br>Example: `title - artist.txt`<br>`['title', 'artist']`<br><br>If the filename has parentheses, it extracts the value inside the parentheses as the artist.<br>Example: `title (artist).txt`<br>`['title', 'artist']`<br><br>Returns the entire filename as the title if no rule is identified.
+Identifies the possible title and artist from the filename.<br>Rules:<br>If the filename contains `' - '`, separate the filename, with the first part being the title and the second part the artist.<br>Example: `title - artist.txt`<br>`['title', 'artist']`<br><br>If the filename contains parentheses, extract the value inside the parentheses as the artist.<br>Example: `title (artist).txt`<br>`['title', 'artist']`<br><br>Returns the entire filename as the title if no rule is identified.
 
 
 
@@ -184,7 +184,7 @@ files.forEach(function(f) {
 
 ### readXml(charset = 'utf-8')
 ### readXML(charset = 'utf-8')
-Reads the file in XML format but returns a relative `JavaScript Object` based on the read XML structure.<br>All nodes of the XML structure will be considered an array (except for the first root node).<br>Each node will have the `content` field with its respective content and the attribute fields.<br>For convenience, it is possible to directly access the content of the first item in the array using the syntax `r.song.title0` instead of `r.song.title[0].content`
+Reads the file in XML format but returns a relative `JavaScript Object` based on the read XML structure.<br>All nodes of the XML structure will be considered an array (except for the first root node).<br>Each node will have the `content` field with its respective content and the attribute fields.<br>For convenience, it is possible to directly call the content of the first item in the array using the syntax `r.song.title0` instead of `r.song.title[0].content`
 
 **Parameters:**
 

@@ -5,7 +5,7 @@
 ---
 
 
-To create new code templates, add the files in a subfolder from here (actions).<br>
+To create new code models, add the files in a subfolder from here (actions).<br>
 Select an existing subfolder that best fits the model's objective or, if necessary, create new subfolders.
 
 Each model needs 3 files containing the same prefix, for example:<br>
@@ -27,7 +27,7 @@ The `*.json` file contains the model information:<br>
             "??": "..."
         },
         "description": {
-            "en": "Description translated into the corresponding language",
+            "en": "Description translated to the corresponding language",
             "??": "..."
         }
     },
@@ -47,7 +47,7 @@ if `obj.type == 'trigger'`:<br>
 <br>
 
 The file `*_functions.js` contains the script that is on the right side of the script editing window (optional methods).<br>
-To create/organize the more complex methods needed for executing the main script.<br>
+To create/organize the more complex methods needed for the execution of the main script.<br>
 It is possible to implement the features of [Function Input](https://github.com/holyrics/Scripts/blob/main/i18n/en/FunctionInput.md) and [Item Status](https://github.com/holyrics/Scripts/blob/main/i18n/en/StatusView.md) in this file.<br>
 Example:
 ```javascript

@@ -9,18 +9,18 @@ Available from version `2.23.0` of the Holyrics program.
 
 The **Modules** feature allows the creation of solutions using JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README-en.md) that interact with various resources of the program, enabling the modification and/or adaptation of the program's functionality, creating buttons that execute custom actions, real-time triggers, among other possibilities, all in one place.
 
-Since August 2022 `v2.18.0`, several features related to JavaScript have been added to the program, and the number of resources and possibilities available in the library [jslib](https://github.com/holyrics/jslib/tree/main/README-en.md) has increased.<br>
+Since August 2022 `v2.18.0`, several features related to JavaScript have been added to the program, and the number of resources and possibilities available in the [jslib](https://github.com/holyrics/jslib/tree/main/README-en.md) library has increased.<br>
 As a result, some solutions created needed to interact with different resources of the program, requiring access to and adding/editing JavaScript code in various different locations of the program.<br>
 The **Modules** feature solves this by allowing interaction with various functionalities and different resources of the program in a single JavaScript code.<br>
-Even allowing the creation of action buttons in the program window, without the user needing to create and manage various different buttons and JavaScript codes.
+Even allowing the creation of action buttons in the program window, without the user needing to create and manage various buttons and different JavaScript codes.
 
 This repository organizes the modules created by the community that will be made available in the program so that any user can search for and "install" these modules for use in the **Modules** window in the program.
 
 # Resources
 
-A module is based on several `functions` that return the corresponding content for use and execution in the program.<br>
+A module is based on several `function` that return the corresponding content for use and execution in the program.<br>
 The actions will only be performed if the module is added and activated by the user.<br>
-Note: In the module window, each item can have conditional executions, such as only in certain services or in a specific execution environment.<br>
+Note: In the module window, each item can have conditional executions, such as only during certain services or in a specific execution environment.<br>
 The module will be considered "disabled" if the current conditional execution is `false`, even if the checkbox is checked.<br>
 
 # Availability and License
@@ -32,7 +32,7 @@ More details about the licensing of the codes provided in the **Modules** featur
 # Tutorial
 
 ## Create a module
-The modules should be created within a subfolder of [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules).<br>
+The modules should be created inside a subfolder of [modules](https://github.com/holyrics/JSCommunity/tree/main/src/modules).<br>
 Each person or organization should create their own subfolder for their modules.<br>
 For example: `modules/holyrics`
 
@@ -41,7 +41,7 @@ For example: `modules/abc/example.js`<br>
 The name of the file is irrelevant; the `name` and `id` of the module will be obtained from `function info()` within each module.
 
 If you create more than one module and have the same codes in different modules, it is possible to use a basic structure of dependency/import.<br>
-Add reusable codes in `*.js` files inside the `lib` subfolder.<br>
+Add the reusable codes in `*.js` files inside the `lib` subfolder.<br>
 For example: `modules/abc/lib/utils.js`<br>
 And in each module, add the line `//#import utils` (anywhere).
 
@@ -70,7 +70,7 @@ When creating and testing your modules in the Holyrics program, in the `include`
 Fixed in `v2.24.0`
 
 In version `2.24.0`, a global variable called `module` was added, which will be available by default in the JavaScript code context of a module.<br>
-Avoiding the need to pass the `module` object received in the original function declaration, for example, `function actions(module) {`
+Avoiding the need to pass the `module` object received in the declaration of the original function, for example, `function actions(module) {`
 
 ### Internationalization (I18N)
 Use `jsc.i18n(...)` to internationalize the module for different languages. [(Know more)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N-en.md)<br>
@@ -165,7 +165,7 @@ Returns the list of module configurations.<br>Displays various components such a
 
 | Type  |
 | :---: |
-| _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | 
+| _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md)&gt;_ | 
 
 
 **Example:**
@@ -403,7 +403,7 @@ function shutdown(module) {
 ---
 
 ### triggers(module)
-This is the corresponding method of `h.addTriggerListener(input)` and `tools menu > various > triggers`.<br>Allows creating triggers that will be executed when a corresponding action occurs in the program.<br>For example, create a trigger to be executed whenever a song lyric is displayed, or a trigger to be executed whenever the slide of a song lyric changes.
+This is the corresponding method of `h.addTriggerListener(input)` and `tools menu > various > triggers`.<br>Allows you to create triggers that will be executed when a corresponding action occurs in the program.<br>For example, create a trigger to be executed whenever a song lyric is displayed, or a trigger to be executed whenever the slide of a song lyric changes.
 
 **Parameters:**
 
@@ -449,7 +449,7 @@ function triggers(module) {
 ---
 
 ### systemVariables(module)
-This is the corresponding method from `file menu > settings > advanced > javascript > system variables`.<br>Allows the creation of methods that can be used within texts that will be displayed in the projection, control panel, alert, etc.<br>The variable defined in the text will be replaced in real time by the value returned in the respective `function`.<br><br>For example:<br>`test: function() { return 'abc'; }`<br>The typed text `123 @js{test} xyz` will be displayed as `123 abc xyz`.<br><br>It is also possible to use `function` with parameters:<br>`sum: function(a, b) { return a + b; }`<br>The typed text `3+4=@js{sum(3,4)}` will be displayed as `3+4=7`.<br>
+This is the corresponding method of `file menu > settings > advanced > javascript > system variables`.<br>Allows the creation of methods that can be used within texts that will be displayed in the projection, control panel, alert, etc.<br>The variable defined in the text will be replaced in real time by the value returned in the respective `function`.<br><br>For example:<br>`test: function() { return 'abc'; }`<br>The typed text `123 @js{test} xyz` will be displayed as `123 abc xyz`.<br><br>It is also possible to use `function` with parameters:<br>`sum: function(a, b) { return a + b; }`<br>The typed text `3+4=@js{sum(3,4)}` will be displayed as `3+4=7`.<br>
 
 **Parameters:**
 
@@ -490,7 +490,7 @@ function systemVariables(module) {
 ---
 
 ### contextActions(module)
-This is the corresponding method of `tools menu > miscellaneous > context actions`.<br>Creates items in the context menu (right-click) of a respective item, allowing specific actions to be performed for an item.<br>For example, create an action called `Mute` that plays a video without sound.<br>By right-clicking on a video item in the program, in the `Context Action` submenu, selecting the `Mute` item, the video information will be redirected to the respective `function`.<br>And then the `function` can implement setting the program's player to `mute = true` and then execute the respective video.
+This is the corresponding method of `tools menu > miscellaneous > context actions`.<br>Creates items in the context menu (right-click) of a respective item, allowing specific actions to be performed for an item.<br>For example, create an action called `No Audio` that plays a video without sound.<br>By right-clicking on a video item in the program, in the `Context Action` submenu, selecting the `Mute` item, the video information will be redirected to the respective `function`.<br>And then the `function` can implement setting the program's player to `mute = true` and then execute the respective video.
 
 **Parameters:**
 
@@ -619,7 +619,7 @@ function textTransform(module) {
 ---
 
 ### customTheme(module)
-This is the corresponding method of `Theme Menu > Automation`.<br>Allows defining the Themes that will be used in the slides at runtime.<br>For example, when playing a song, the `function` defined for the `song` field will be executed for all slides of the song.<br>The theme (or background) used for the respective slide will be according to the settings returned in the method.<br>If the defined parameters generate multiple items as a result, one item from the results will be randomly selected.<br>If the return is `null`, the current slide theme will not be changed.
+This is the corresponding method of `Theme Menu > Automation`.<br>Allows defining the Themes that will be used in the slides at runtime.<br>For example, when playing a song, the `function` defined for the `song` field will be executed for all the slides of the song.<br>The theme (or background) used for the respective slide will be according to the settings returned in the method.<br>If the defined parameters generate multiple items as a result, one item from the results will be randomly selected.<br>If the return is `null`, the current slide theme will not be changed.
 
 **Parameters:**
 
@@ -647,7 +647,7 @@ function customTheme(module) {
     var textlc = evt.text.toLowerCase();
     if (textlc.contains('fogo') && textlc.contains('chuva')) {
       // if the slide text contains the words 'fire' and 'rain'
-      // set a video as a background
+      // define a video as a background
       // that has the tags 'Fire' and 'Rain'
       // (both due to 'intersection: true')
       return {
@@ -712,7 +712,7 @@ function lineBreakRules(module) {
           && evt.nextWords.length == 0) {
       // if it is the 'public' screen
       // it's for a song lyrics presentation
-      // and there are no remaining words beyond the current word
+      // and there are no remaining words besides the current word
       // 
       // returns -1 so that the last word of the current line is moved to the next line
       // 
@@ -827,7 +827,7 @@ function handleItemAction() {
 ### style(module)
 - v2.25.0
 
-Returns a list of styles that can be used in formatting based on [Styled Text](https://github.com/holyrics/Scripts/blob/main/StyledText.md).<br> <br>If the return of this method is a dynamic (volatile) value, it is necessary to call `module.fireStyleChanged()` to force the data update.
+Returns a list of styles that can be used in formatting based on [Styled Text](https://github.com/holyrics/Scripts/blob/main/i18n/en/StyledText.md).<br> <br>If the return of this method is a dynamic (volatile) value, it is necessary to call `module.fireStyleChanged()` to force the data update.
 
 **Parameters:**
 
@@ -921,7 +921,7 @@ module.log('item: {}, item 2: {}', ['value', 'value 2']);
 ---
 
 ### updatePanel()
-Forces the restart of the action panel of the current module in the module panel.<br>Useful for cases where the number of buttons returned in `function actions(module)` changes.<br>For example, if the module displays action buttons dynamically and the number of buttons can vary at runtime.
+Forces the restart of the current module's action panel in the module panel.<br>Useful for cases where the number of buttons returned in `function actions(module)` changes.<br>For example, if the module displays action buttons dynamically and the number of buttons can vary at runtime.
 
 
 
@@ -930,7 +930,7 @@ _Method does not return value_
 ---
 
 ### repaintPanel()
-Force the update of the module panel buttons.<br>Useful for cases where an action button has its status changed, such as activated/deactivated.<br>The buttons are usually updated every 2 seconds, or when clicked.<br>Use this method only if you need to force the button to update without waiting for the standard update triggers.
+Force the update of the module panel buttons.<br>Useful for cases where an action button has its status changed, such as activated/deactivated.<br>The buttons are usually updated every 2 seconds, or when clicked.<br>Use this method only if you need to force the button update without waiting for the standard update triggers.
 
 
 
@@ -972,7 +972,7 @@ Loads in the `settings` field of the extra configurations module that are not de
 | Name | Type  | Description |
 | ---- | :---: | ------------|
 | `id` | _String_ | Configuration ID, which is the name of the field that will be defined in `settings`. Be careful with the id defined here, as it may create a conflict with the `id` defined in an `InputParam` returned in `function settings()`. |
-| `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ |  |
+| `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md)&gt;_ |  |
 
 
 **Response:**
@@ -1011,7 +1011,7 @@ Display a window with input fields to receive information interactively.<br>The 
 | Name | Type  | Description |
 | ---- | :---: | ------------|
 | `id` | _String_ | Configuration ID, which is the name of the field that will be defined in `settings`. Be careful with the id defined here, as it may create a conflict with the `id` defined in an `InputParam` returned in `function settings()`. |
-| `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | It can be `null` if `registerSettings(id, inputs)` or `loadSettings(id, inputs)` has been called at any time before |
+| `inputs` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md)&gt;_ | It can be `null` if `registerSettings(id, inputs)` or `loadSettings(id, inputs)` has been called at any time before |
 
 
 **Response:**
@@ -1274,7 +1274,7 @@ var r = module.executeCmdAndWait('filename.exe', ['param 1', 'param 2'], 3000);
 ### updateAction(...id)
 - v2.24.0
 
-Force the update of an action's status
+Force the status update of an action
 
 **Parameters:**
 
@@ -1417,7 +1417,7 @@ var r = h.hlyOrThrow('GetSong', { id: '123' });
 ### fireStyleChanged()
 - v2.25.0
 
-Forces the cache cleaning of the `style` properties.<br>It is necessary to call when the content returned by `function style()` is changed.
+Forces the cache cleaning of `style` properties.<br>It is necessary to call when the content returned by `function style()` is changed.
 
 
 
@@ -1450,12 +1450,12 @@ Check if the permission to edit important program data (song lyrics, theme, etc.
 | `icon` | _String (optional)_ | Default item icon.<br>Uses the syntax of [Icon](https://github.com/holyrics/Scripts/blob/main/i18n/en/Icon.md). |
 | `icon_color` | _String (optional)_ | Icon color in hexadecimal format. |
 | `hint` | _String (optional)_ | Tooltip text that will be displayed when the mouse hovers over the item |
-| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (optional)_ | Item configuration list.<br>Available for the user to edit by right-clicking on the item.<br><br>**bug in v2.23.0**<br>The value of the input changed by the user in the dialog window is not being updated when clicking OK.<br>To fix the problem, add the line:<br>`jsc.utils.module.fixActions(module, arr);`<br>before `return`.<br>Fixed in `v2.24.0` |
-| `status` | _Object (optional)_ | Return the current display state of the item.<br>Defines the display settings of the item at runtime, such as icon, color, etc.<br>Uses the syntax of [StatusView](https://github.com/holyrics/Scripts/blob/main/StatusView.md). |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md)&gt; (optional)_ | Item configuration list.<br>Available for the user to edit by right-clicking on the item.<br><br>**bug in v2.23.0**<br>The value of the input changed by the user in the dialog window is not being updated when clicking OK.<br>To fix the problem, add the line:<br>`jsc.utils.module.fixActions(module, arr);`<br>before `return`.<br>Fixed in `v2.24.0` |
+| `status` | _Object (optional)_ | Return the current display state of the item.<br>Define the display settings of the item at runtime, such as icon, color, etc.<br>Uses the syntax of [StatusView](https://github.com/holyrics/Scripts/blob/main/i18n/en/StatusView.md). |
 | `action` | _Function (optional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contains the id of the respective `action`<br>`evt.input` contains the saved values obtained from the `input` field of the respective `action`.<br>Executed when clicking and dragging the item. |
 | `mouse_pressed` | _Function (optional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contains the id of the respective `action`<br>`evt.input` contains the saved values obtained from the `input` field of the respective `action`.<br>Executed when clicking on the item. |
 | `mouse_released` | _Function (optional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contains the id of the respective `action`<br>`evt.input` contains the saved values obtained from the `input` field of the respective `action`.<br>Executed upon releasing the item.<br>**Attention:** mouse_pressed in `v2.23.0` is being executed when right-clicking on the item.<br>Fixed in `v2.24.0` |
-| `available_in_app` | _Boolean (optional)_ | Indicates whether the action item will be available and listed in the Holyrics mobile app.<br>Items marked as `true` will be displayed in the `Favorites` tab of the app.<br>The mobile phone also needs to have the `Module` permission enabled in the Holyrics settings, under the `manage remote access without password` button `Default: false` |
+| `available_in_app` | _Boolean (optional)_ | Indicates whether the action item will be available and listed in the Holyrics mobile app.<br>Items marked as `true` will be displayed in the `Favorites` tab of the app.<br>The phone also needs to have the `Module` permission enabled in the Holyrics settings, on the `manage remote access without password` button `Default: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (optional)_ | Items displayed in the context menu when right-clicking on the item.<br>It can be a `function` that returns Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contains the current `ModuleAction` object. |
 
 ## ModuleLoop
@@ -1582,13 +1582,13 @@ Define filter parameters for theme and background selection.
 
 | Name | Type  | Description |
 | ---- | :---: | ------------|
-| `name` | _String (optional)_ | Theme or background name |
+| `name` | _String (optional)_ | Theme name or background |
 | `tag` | _String (optional)_ | Theme or background tag |
 | `tags` | _Array&lt;String&gt; (optional)_ | Theme or background tags |
 | `intersection` | _Boolean (optional)_ | Available if `tags` is declared.<br>If `true`, only items that contain all the tags declared in `tags` will be returned.<br>If `false`, items that contain any of the tags declared in `tags` will be returned. |
 | `type` | _String (optional)_ | Filter only items of the declared type.<br>`theme` `my_video` `my_image` |
 | `cache_key` | _String (optional)_ | Cache key to reuse the Theme or background for the following slides with the same `cache_key`.<br>For example, if a slide returns `cache_key: 'abc'`, the following slides that return `cache_key: 'abc'` will use the same Theme or background as the first slide that returned `cache_key: 'abc'`.<br>It is useful so that even when returning a filter that results in multiple items, the same item will be used for the respective slide, instead of selecting one randomly |
-| `base_theme` | _Object (optional)_ | Define what the base theme will be used.<br>It is useful for cases where the filtered item will be a video or image, and you want to ensure which base Theme will be used, instead of relying on the Theme selected by the user.<br>It can be the Theme id, Theme name, or a [Theme](https://github.com/holyrics/jslib/blob/main/README-en.md#theme) object |
+| `base_theme` | _Object (optional)_ | Define what the base theme will be used.<br>It is useful for cases where the filtered item will be a video or image, and you want to ensure which base Theme will be used, instead of relying on the Theme selected by the user.<br>It can be the Theme id, Theme name, or an object [Theme](https://github.com/holyrics/jslib/blob/main/README-en.md#theme) |
 | `base_theme_edit` | _[Theme](https://github.com/holyrics/jslib/blob/main/README-en.md#theme) (optional)_ | Settings to modify the selected Theme for display |
 | `custom_theme` | _[Theme](https://github.com/holyrics/jslib/blob/main/README-en.md#theme) (optional)_ | Define a specific theme as a result.All other parameters will be ignored, except `cache_key`. |
 
@@ -1599,7 +1599,7 @@ Request origin data
 | ---- | :---: | ------------|
 | `screen.id` | _String_ | `public` `screen_2` `screen_3` `...` |
 | `presentation.type` | _String_ | `song` `text` `announcement`,  `automatic_presentation` `...` |
-| `word` | _String_ | Current word that is causing a new line break.<br>This is the candidate value to start the new line. |
+| `word` | _String_ | Current word that is generating a new line break.<br>This is the candidate value to start the new line. |
 | `previousWords` | _Array&lt;String&gt;_ | List of words from the current line |
 | `nextWords` | _Array&lt;String&gt;_ | List of remaining words. (After the current word). |
 
@@ -1659,7 +1659,7 @@ Represents a parameter (input) used by `ModuleCustomMessageInApp`
 }
 ```
 
-Values available for `key`:
+Available values for `key`:
 `allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`  `edit_important_data`
 
 # Example

@@ -35,7 +35,7 @@ Repository of codes used in the JavaScript ecosystem of the Holyrics program.<br
 
 ## Internationalization (I18N)
 
-[(Know more)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N-en.md)
+[(Know more)](README_I18N-en.md)
 
 ## License
 
