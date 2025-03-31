@@ -62,10 +62,17 @@ function getSceneList(receiverID) {
     return names;
 }
 
-// Set the active scene
+// Get the active scene
 function getActiveScene(receiverID) {
     var response = jsc.obs_v5.request(receiverID, 'GetCurrentProgramScene');
     h.log('jsc.obs_v5', 'GetCurrentProgramScene response: {}', response);
+    return response.currentProgramSceneName || response.sceneName;
+}
+
+//  Get the active preview scene
+function getPreviewScene(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetCurrentPreviewScene');
+    h.log('jsc.obs_v5', 'GetCurrentPreviewScene response: {}', response);
     return response.currentProgramSceneName || response.sceneName;
 }
 
