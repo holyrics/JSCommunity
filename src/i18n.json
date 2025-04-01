@@ -4848,5 +4848,15 @@
     "it": "Numero del canale",
     "fr": "Numéro de canal",
     "uk": "Номер каналу"
+  },
+  {
+    "key": "Use the preview scene when finishing the video",
+    "en": "Use the preview scene when completing the video",
+    "pt": "Use a cena de pré-visualização ao finalizar o vídeo",
+    "ru": "Используйте предварительный просмотр сцены при завершении видео",
+    "es": "Utiliza la escena de vista previa al finalizar el video",
+    "it": "Usa la scena di anteprima quando finisci il video",
+    "fr": "Utilisez la scène de prévisualisation lors de la finalisation de la vidéo",
+    "uk": "Використовуйте попередній перегляд сцени при завершенні відео"
   }
 ]
