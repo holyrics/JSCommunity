@@ -48,3 +48,22 @@ function stringToMidiAction(str) {
   return arr;
 }
 
+function fixInputParamTimeout() {
+  if (h.isMinVersion('2.25.2')
+        || h.getGlobalAndSet('hly#GetBGs#fixInputParamTimeout', false, true)) {
+    return;
+  }
+
+  var done = false;
+  h.setTimeout(function() {
+    h.hly('GetBackgrounds');
+    done = true;
+  }, 0);
+  var started = Date.now();
+  while (!done && Math.abs(Date.now() - started) < 4000) {
+    h.sleep(50);
+  }
+}
+
+fixInputParamTimeout();
+
