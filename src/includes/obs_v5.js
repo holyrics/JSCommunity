@@ -195,6 +195,13 @@ function stopStream(receiverID) {
     return response;
 }
 
+// Get a Stream Status
+function getStreamStatus(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetStreamStatus');
+    h.log('jsc.obs_v5', 'GetStreamStatus response: {}', response);
+    return response;
+}
+
 // Start recording
 function startRecord(receiverID) {
     var response = jsc.obs_v5.request(receiverID, 'StartRecord');
@@ -208,6 +215,14 @@ function stopRecord(receiverID) {
     h.log('jsc.obs_v5', 'stopRecord response: {}', response);
     return response;
 }
+
+// Get a Record Status
+function getRecordStatus(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetRecordStatus');
+    h.log('jsc.obs_v5', 'getRecordStatus response: {}', response);
+    return response;
+}
+
 
 // Trigger Hotkey by name
 function triggerHotkeyByName(receiverID, keyName) {
