@@ -233,6 +233,13 @@ function triggerHotkeyByName(receiverID, keyName) {
     return response;
 }
 
+// Get Hotkey List
+function getHotkeyList(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetHotkeyList');
+    h.log('jsc.obs_v5', 'GetHotkeyList response: {}', response);
+    return response.hotkeys;
+}
+
 // Get a list of sources
 function getSourceList(receiverID) {
     // Get a list of sources from all scenes
