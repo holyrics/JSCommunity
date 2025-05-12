@@ -1,6 +1,11 @@
 # Includes (biblioteca)
 
-É possível criar métodos para reutilização em qualquer código javascript executado pelo programa, como uma biblioteca, evitando códigos repetidos nos modelos de código, e também facilitando a criação de códigos personalizados no próprio programa, utilizando esta biblioteca integrada à biblioteca [jslib](https://github.com/holyrics/jslib) disponível no programa.<br>
+**PT** | [EN](README-en.md)
+
+---
+
+
+É possível criar métodos para reutilização em qualquer código javascript executado pelo programa, como uma biblioteca, evitando códigos repetidos nos modelos de código, e também facilitando a criação de códigos personalizados no próprio programa, utilizando esta biblioteca integrada à biblioteca [jslib](https://github.com/holyrics/jslib/tree/main/README.md) disponível no programa.<br>
 Os arquivos da biblioteca ficam aqui nesta pasta (includes).
 
 A biblioteca pode ser acessada pela variável `jsc` _(JavaScript Community)_.<br>
@@ -17,7 +22,7 @@ jsc.err.example();
 jsc.utils.array.example();
 ```
 
-Exemplo de um include utils.js:
+Exemplo de um include `utils.js`:
 ```javascript
 function example() {
     h.log('jsc.utils.example OK');

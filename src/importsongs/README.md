@@ -1,5 +1,10 @@
 # Importar letra de música via JavaScript
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 `menu música > importar`
 
 Na `v2.23.0` foi disponibilizada uma opção para importar letras de música de arquivos do computador utilizando implementação JavaScript como "parser" (input/output).
@@ -54,7 +59,7 @@ function settings() {
 
 Recebe a lista de arquivos selecionados pelo usuário e o valor das configurações criadas para este módulo em `function settings()` (opcional).<br>
 Deve retornar um objeto com o campo `songs` que contém a lista de músicas obtidas de todos os arquivos lidos.<br>
-`files` é um Array<[JSFile](#jsfile)>
+`files` typeof Array<[JSFile](#jsfile)>
 
 Exemplo:
 ```javascript
@@ -134,7 +139,7 @@ Retorna o arquivo em formato de texto
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
+| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
 
 
 **Resposta:**
@@ -185,7 +190,7 @@ Lê o arquivo em formato XML, mas retorna um `JavaScript Object` relativo, basea
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
+| `charset` | _String (opcional)_ |  `Padrão: utf-8` |
 
 
 **Resposta:**

@@ -1,10 +1,15 @@
 # Módulos
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 Disponível a partir da versão `2.23.0` do programa Holyrics.
 
-A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
+A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README.md) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
 
-Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib) aumentou.<br>
+Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib/tree/main/README.md) aumentou.<br>
 Com isso, algumas soluções criadas necessitavam interagir com diferentes recursos do programa, sendo necessário acessar e adicionar/editar códigos JavaScript em vários locais diferentes do programa.<br>
 A funcionalidade **Módulos** resolve isso permitindo interagir com diversas funcionalidades e recursos diferentes do programa em um único código JavaScript.<br>
 Podendo até criar botões de ação na janela do programa, sem que o usuário precise ficar criando e administrando diversos botões e códigos JavaScript diferentes.
@@ -22,7 +27,7 @@ O módulo será considerado "desativado" se a execução condicional atual for `
 
 Reservamo-nos o direito de negar a aprovação de qualquer módulo por qualquer motivo, a nosso exclusivo critério.
 
-Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.MD)
+Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.md)
 
 # Tutorial
 
@@ -68,7 +73,7 @@ Na versão `2.24.0` foi adicionada uma variável global chamada `module` que est
 Evitando a necessidade de repassar o objeto `module` recebido na declaração da function original, por exemplo, `function actions(module) {`
 
 ### Internationalization (I18N)
-Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas [Saiba mais](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md).<br>
+Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas. [(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)<br>
 Exemplo:<br>
 ```javascript
 function actions(module) {
@@ -102,7 +107,7 @@ Retorna as informações do módulo.
 | `min_version` | _String (opcional)_ | Versão mínima requerida do programa |
 | `max_version` | _String (opcional)_ | Versão máxima requerida do programa `v2.24.0+` |
 | `i18n` | _Object (opcional)_ | Tradução para nome e descrição do módulo `v2.24.0+` |
-| `permissions` | _String (opcional)_ | Permissões avançadas requeridas para o módulo ([Permissões](#permission)) `v2.24.0+` |
+| `permissions` | _Array&lt;[Permission](#permission)&gt; (opcional)_ | Permissões avançadas requeridas para o módulo `v2.24.0+` |
 | `os_required` | _String (opcional)_ | Se declarado, o módulo estará disponível apenas para o sistema operacional informado. Separe múltiplos valores com vírgula.<br>Pode ser: `windows` `unix` `osx` `v2.24.0+` |
 | `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
 | `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
@@ -709,14 +714,11 @@ function lineBreakRules(module) {
       // e for uma apresentação de letra de música
       // e não houver palavras restantes além da palavra atual
       // 
-      // retorna -1 para que a última palavra da linha atual
-      // seja movida para a próxima linha
+      // retorna -1 para que a última palavra da linha atual seja movida para a próxima linha
       // 
-      // isso evita com que uma quebra de linha
-      // seja criada com apenas uma palavra sozinha
+      // isso evita com que uma quebra de linha seja criada com apenas uma palavra sozinha
       //
-      // caso fosse retornado 1, a palavra atual ficaria na linha atual
-      // evitando a quebra de linha
+      // caso fosse retornado 1, a palavra atual ficaria na linha atual, evitando a quebra de linha
       // porém nesse caso o tamanho da fonte do slide é reduzido
       return -1;
     }
@@ -844,7 +846,6 @@ Retorna uma lista de estilos que poderão ser utilizados nas formatações basea
 **Exemplo:**
 
 ```javascript
-var r = h.style(module);
 function style() {
   var obj = {};
   

@@ -4518,5 +4518,345 @@
     "it": "Indice delle scene statiche {}",
     "fr": "Index des scènes statiques {}",
     "uk": "Індекс статичних сцен {}"
+  },
+  {
+    "key": "Item not found: {}",
+    "en": "Item not found: {}",
+    "pt": "Item não encontrado: {}",
+    "ru": "Элемент не найден: {}",
+    "es": "Elemento no encontrado: {}",
+    "it": "Elemento non trovato: {}",
+    "fr": "Élément non trouvé : {}",
+    "uk": "Елемент не знайдено: {}"
+  },
+  {
+    "key": "Name",
+    "en": "Name",
+    "pt": "Nome",
+    "ru": "Имя",
+    "es": "Nombre",
+    "it": "Nome",
+    "fr": "Nom",
+    "uk": "Назва"
+  },
+  {
+    "key": "Simple Action",
+    "en": "Simple Action",
+    "pt": "Ação Simples",
+    "ru": "Простое действие",
+    "es": "Acción Simple",
+    "it": "Azione semplice",
+    "fr": "Action simple",
+    "uk": "Проста дія"
+  },
+  {
+    "key": "Show Quick Message",
+    "en": "Show Quick Message",
+    "pt": "Mostrar Mensagem Rápida",
+    "ru": "Показать быстрое сообщение",
+    "es": "Mostrar Mensaje Rápido",
+    "it": "Mostra messaggio rapido",
+    "fr": "Afficher un message rapide",
+    "uk": "Показати швидке повідомлення"
+  },
+  {
+    "key": "Message",
+    "en": "Message",
+    "pt": "Mensagem",
+    "ru": "Сообщение",
+    "es": "Mensaje",
+    "it": "Messaggio",
+    "fr": "Message",
+    "uk": "Повідомлення"
+  },
+  {
+    "key": "Duration",
+    "en": "Duration",
+    "pt": "Duração",
+    "ru": "Продолжительность",
+    "es": "Duración",
+    "it": "Durata",
+    "fr": "Durée",
+    "uk": "Тривалість"
+  },
+  {
+    "key": "Folder",
+    "en": "Folder",
+    "pt": "Pasta",
+    "ru": "Папка",
+    "es": "Carpeta",
+    "it": "Cartella",
+    "fr": "Dossier",
+    "uk": "Папка"
+  },
+  {
+    "key": "Press/Release Action",
+    "en": "Press/Release Action",
+    "pt": "Ação de Pressionar/Libertar",
+    "ru": "Действие нажать/отпустить",
+    "es": "Acción de Presionar/Soltar",
+    "it": "Azione di pressione/rilascio",
+    "fr": "Action de pression/release",
+    "uk": "Дія натискання/відпускання"
+  },
+  {
+    "key": "Choir Start",
+    "en": "Choir Start",
+    "pt": "Início do Coral",
+    "ru": "Начало хора",
+    "es": "Inicio del Coro",
+    "it": "Inizio del coro",
+    "fr": "Début de chœur",
+    "uk": "Початок хору"
+  },
+  {
+    "key": "Display for {} seconds",
+    "en": "Display for {} seconds",
+    "pt": "Exibir por {} segundos",
+    "ru": "Отображать в течение {} секунд",
+    "es": "Mostrar durante {} segundos",
+    "it": "Visualizza per {} secondi",
+    "fr": "Afficher pendant {} secondes",
+    "uk": "Відображати протягом {} секунд"
+  },
+  {
+    "key": "Custom Message in the App",
+    "en": "Custom Message in the App",
+    "pt": "Mensagem Personalizada no App",
+    "ru": "Пользовательское сообщение в приложении",
+    "es": "Mensaje Personalizado en la App",
+    "it": "Messaggio personalizzato nell'app",
+    "fr": "Message personnalisé dans l'application",
+    "uk": "Користувацьке повідомлення в додатку"
+  },
+  {
+    "key": "Description",
+    "en": "Description",
+    "pt": "Descrição",
+    "ru": "Описание",
+    "es": "Descripción",
+    "it": "Descrizione",
+    "fr": "Description",
+    "uk": "Опис"
+  },
+  {
+    "key": "Nome",
+    "en": "Name",
+    "pt": "Nome",
+    "ru": "Имя",
+    "es": "Nombre",
+    "it": "Nome",
+    "fr": "Nom",
+    "uk": "Ім'я"
+  },
+  {
+    "key": "Message received from the app",
+    "en": "Message received from the app",
+    "pt": "Mensagem recebida do app",
+    "ru": "Сообщение получено из приложения",
+    "es": "Mensaje recibido de la app",
+    "it": "Messaggio ricevuto dall'app",
+    "fr": "Message reçu de l'application",
+    "uk": "Повідомлення отримано з додатку"
+  },
+  {
+    "key": "Cenas de Movimento",
+    "en": "Movement Scenes",
+    "pt": "Cenas de Movimento",
+    "ru": "Сцены движения",
+    "es": "Escenas de Movimiento",
+    "it": "Scene di movimento",
+    "fr": "Scènes de mouvement",
+    "uk": "Сцени руху"
+  },
+  {
+    "key": "Movimento exige BPM?",
+    "en": "Does movement require BPM?",
+    "pt": "Movimento exige BPM?",
+    "ru": "Движение требует BPM?",
+    "es": "¿El movimiento requiere BPM?",
+    "it": "Il movimento richiede BPM?",
+    "fr": "Le mouvement nécessite-t-il un BPM ?",
+    "uk": "Рух вимагає BPM?"
+  },
+  {
+    "key": "Define se executará cenas em movimento mesmo que a música não possua BPM preenchido",
+    "en": "Define whether to execute movement scenes even if the music does not have BPM filled in",
+    "pt": "Defina se executará cenas em movimento mesmo que a música não possua BPM preenchido",
+    "ru": "Определите, будут ли выполняться сцены движения, даже если музыка не имеет заполненного BPM",
+    "es": "Define si se ejecutarán escenas en movimiento incluso si la música no tiene BPM llenado",
+    "it": "Definisci se eseguirà scene in movimento anche se la musica non ha BPM compilato",
+    "fr": "Définir si des scènes en mouvement seront exécutées même si la musique n'a pas de BPM rempli",
+    "uk": "Визначте, чи виконуватимуться сцени руху, навіть якщо музика не має заповненого BPM"
+  },
+  {
+    "key": "Enter the MIDI code and velocity associated with each Tag.",
+    "en": "Enter the MIDI code and velocity associated with each Tag.",
+    "pt": "Insira o código MIDI e a velocidade associados a cada Tag.",
+    "ru": "Введите MIDI-код и скорость, связанные с каждой меткой.",
+    "es": "Ingresa el código MIDI y la velocidad asociada con cada Etiqueta.",
+    "it": "Inserisci il codice MIDI e la velocità associati a ciascun Tag.",
+    "fr": "Entrez le code MIDI et la vélocité associés à chaque Tag.",
+    "uk": "Введіть MIDI-код і швидкість, пов'язані з кожним тегом."
+  },
+  {
+    "key": "Example",
+    "en": "Example",
+    "pt": "Exemplo",
+    "ru": "Пример",
+    "es": "Ejemplo",
+    "it": "Esempio",
+    "fr": "Exemple",
+    "uk": "Приклад"
+  },
+  {
+    "key": "If only the code is provided, speed 127 will be used by default.",
+    "en": "If only the code is provided, speed 127 will be used by default.",
+    "pt": "Se apenas o código for fornecido, a velocidade 127 será usada por padrão.",
+    "ru": "Если предоставлен только код, по умолчанию будет использоваться скорость 127.",
+    "es": "Si solo se proporciona el código, se usará la velocidad 127 por defecto.",
+    "it": "Se viene fornito solo il codice, la velocità 127 verrà utilizzata per impostazione predefinita.",
+    "fr": "Si seul le code est fourni, la vitesse 127 sera utilisée par défaut.",
+    "uk": "Якщо надано лише код, за замовчуванням буде використано швидкість 127."
+  },
+  {
+    "key": "Destination",
+    "en": "Destination",
+    "pt": "Destino",
+    "ru": "Назначение",
+    "es": "Destino",
+    "it": "Destinazione",
+    "fr": "Destination",
+    "uk": "Призначення"
+  },
+  {
+    "key": "MIDI codes",
+    "en": "MIDI codes",
+    "pt": "Códigos MIDI",
+    "ru": "MIDI-коды",
+    "es": "Códigos MIDI",
+    "it": "Codici MIDI",
+    "fr": "Codes MIDI",
+    "uk": "MIDI-коди"
+  },
+  {
+    "key": "Optional",
+    "en": "Optional",
+    "pt": "Opcional",
+    "ru": "Дополнительный",
+    "es": "Opcional",
+    "it": "Opzionale",
+    "fr": "Facultatif",
+    "uk": "Додатковий"
+  },
+  {
+    "key": "Location of the folder with videos on the computer where OBS Studio is open",
+    "en": "Location of the folder with videos on the computer where OBS Studio is open",
+    "pt": "Localização da pasta com vídeos no computador onde o OBS Studio está aberto",
+    "ru": "Местоположение папки с видео на компьютере, где открыт OBS Studio",
+    "es": "Ubicación de la carpeta con videos en la computadora donde OBS Studio está abierto",
+    "it": "Posizione della cartella con i video sul computer dove è aperto OBS Studio",
+    "fr": "Emplacement du dossier avec des vidéos sur l'ordinateur où OBS Studio est ouvert",
+    "uk": "Місцезнаходження папки з відео на комп'ютері, де відкрито OBS Studio"
+  },
+  {
+    "key": "Input name",
+    "en": "Input name",
+    "pt": "Nome de entrada",
+    "ru": "Имя ввода",
+    "es": "Nombre de entrada",
+    "it": "Nome di input",
+    "fr": "Nom d'entrée",
+    "uk": "Ім'я вводу"
+  },
+  {
+    "key": "Alterar o Papel de Parede?",
+    "en": "Change Wallpaper?",
+    "pt": "Alterar o Papel de Parede?",
+    "ru": "Изменить обои?",
+    "es": "¿Cambiar el Fondo de Pantalla?",
+    "it": "Cambia lo sfondo?",
+    "fr": "Changer le fond d'écran ?",
+    "uk": "Змінити шпалери?"
+  },
+  {
+    "key": "Define se o papel de parede com o nome do evento deverá ser configurado.",
+    "en": "Define whether the wallpaper with the event name should be set.",
+    "pt": "Defina se o papel de parede com o nome do evento deverá ser configurado.",
+    "ru": "Определите, должны ли обои с именем события быть настроены.",
+    "es": "Define si el fondo de pantalla con el nombre del evento debe ser configurado.",
+    "it": "Definisci se lo sfondo con il nome dell'evento deve essere configurato.",
+    "fr": "Définir si le fond d'écran avec le nom de l'événement doit être configuré.",
+    "uk": "Визначте, чи потрібно налаштувати шпалери з назвою події."
+  },
+  {
+    "key": "Pasta - papel de parede",
+    "en": "Folder - wallpaper",
+    "pt": "Pasta - papel de parede",
+    "ru": "Папка - обои",
+    "es": "Carpeta - fondo de pantalla",
+    "it": "Cartella - sfondo",
+    "fr": "Dossier - fond d'écran",
+    "uk": "Папка - шпалери"
+  },
+  {
+    "key": "Define a pasta padrão onde estão as imagens de papel de parede. Se estiver vazio, as imagens serão procuradas na pasta raiz.",
+    "en": "Define the default folder where the wallpaper images are located. If empty, images will be searched in the root folder.",
+    "pt": "Defina a pasta padrão onde estão as imagens de papel de parede. Se estiver vazia, as imagens serão procuradas na pasta raiz.",
+    "ru": "Определите стандартную папку, где находятся изображения обоев. Если она пуста, изображения будут искаться в корневой папке.",
+    "es": "Define la carpeta predeterminada donde están las imágenes de fondo de pantalla. Si está vacía, las imágenes se buscarán en la carpeta raíz.",
+    "it": "Definisci la cartella predefinita dove si trovano le immagini di sfondo. Se è vuota, le immagini verranno cercate nella cartella radice.",
+    "fr": "Définir le dossier par défaut où se trouvent les images de fond d'écran. S'il est vide, les images seront recherchées dans le dossier racine.",
+    "uk": "Визначте стандартну папку, де знаходяться зображення шпалер. Якщо вона порожня, зображення будуть шукатися в кореневій папці."
+  },
+  {
+    "key": "Auxiliary Channel",
+    "en": "Auxiliary Channel",
+    "pt": "Canal Auxiliar",
+    "ru": "Вспомогательный канал",
+    "es": "Canal Auxiliar",
+    "it": "Canale ausiliario",
+    "fr": "Canal auxiliaire",
+    "uk": "Допоміжний канал"
+  },
+  {
+    "key": "Volume ",
+    "en": "Volume ",
+    "pt": "Volume ",
+    "ru": "Громкость ",
+    "es": "Volumen ",
+    "it": "Volume ",
+    "fr": "Volume ",
+    "uk": "Гучність "
+  },
+  {
+    "key": "Aux Channel",
+    "en": "Aux Channel",
+    "pt": "Canal Auxiliar",
+    "ru": "Вспомогательный канал",
+    "es": "Canal Auxiliar",
+    "it": "Canale ausiliario",
+    "fr": "Canal auxiliaire",
+    "uk": "Допоміжний канал"
+  },
+  {
+    "key": "Channel Number",
+    "en": "Channel Number",
+    "pt": "Número do Canal",
+    "ru": "Номер канала",
+    "es": "Número de Canal",
+    "it": "Numero del canale",
+    "fr": "Numéro de canal",
+    "uk": "Номер каналу"
+  },
+  {
+    "key": "Use the preview scene when finishing the video",
+    "en": "Use the preview scene when completing the video",
+    "pt": "Use a cena de pré-visualização ao finalizar o vídeo",
+    "ru": "Используйте предварительный просмотр сцены при завершении видео",
+    "es": "Utiliza la escena de vista previa al finalizar el video",
+    "it": "Usa la scena di anteprima quando finisci il video",
+    "fr": "Utilisez la scène de prévisualisation lors de la finalisation de la vidéo",
+    "uk": "Використовуйте попередній перегляд сцени при завершенні відео"
   }
 ]

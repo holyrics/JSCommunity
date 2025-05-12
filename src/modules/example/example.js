@@ -1,17 +1,35 @@
-// Documentação
+// Documentation
 // https://github.com/holyrics/JSCommunity/tree/main/src/modules
 
 //#import utils
 
 function info() {
     return {
-        id: 'ID do módulo',
-        name: 'Nome do módulo',
-        description: 'Descrição do <b>módulo</b>',
+        id: 'Module ID',
+        name: 'Module name',
+        description: '<b>Module</b> description',
         allowed_requests: [
             'https://www.holyrics.com.br/v1/api_example/'
         ],
-        min_version: '2.23.0'
+        min_version: '2.23.0',
+        //max_version: '2.24.0'
+        i18n: {
+            name: {
+                pt: "Nome do módulo"
+            },
+            description: {
+                pt: "Descrição do <b>módulo</b>"
+            }
+        },
+        permissions: [
+            {
+                type: 'advanced',
+                key: 'allowed_files'
+            }
+        ],
+        os_required: 'windows',
+        available_in_main_window: true,
+        available_in_bible_window: false
     };
 }
 
@@ -20,13 +38,13 @@ function settings(module) {
 
     arr.push({
         id: 'settings_1',
-        name: jsc.i18n('Nome') + ' 1',
+        name: jsc.i18n('Name') + ' 1',
         type: 'string'
     });
 
     arr.push({
         id: 'settings_2',
-        name: jsc.i18n('Nome') + ' 2',
+        name: jsc.i18n('Name') + ' 2',
         type: 'number',
         min: 1,
         max: 100,
@@ -43,7 +61,7 @@ function actions(module) {
     var simpleActionFlag = module.id + "#simple_action_enabled";
     arr.push({
         id: 'simple_action',
-        name: jsc.i18n('Ação Simples'),
+        name: jsc.i18n('Simple Action'),
         icon: 'play_arrow',
         action: function (evt) {
             h.setGlobalNext(simpleActionFlag, [true, false]);
@@ -60,7 +78,7 @@ function actions(module) {
 
     arr.push({
         id: 'show_quick_message',
-        name: jsc.i18n('Exibir Mensagem Rápida'),
+        name: jsc.i18n('Show Quick Message'),
         icon: 'message',
         action: function (evt) {
             if (!evt.input.message) {
@@ -82,7 +100,7 @@ function actions(module) {
               name: jsc.i18n('Message')
             }, {
                 id: 'duration',
-                name: jsc.i18n('Duração'),
+                name: jsc.i18n('Duration'),
                 type: 'number',
                 min: 1,
                 max: 120,
@@ -93,18 +111,18 @@ function actions(module) {
 
     arr.push({
         id: 'folder_example',
-        name: jsc.i18n('Pasta'),
+        name: jsc.i18n('Folder'),
         icon: 'folder_open',
         action: [
             {
                 id: 'folder_simple_action_1',
-                name: jsc.i18n('Ação Simples') + ' 1',
+                name: jsc.i18n('Simple Action') + ' 1',
                 action: function (evt) {
                     //implementation
                 }
             }, {
                 id: 'folder_simple_action_2',
-                name: jsc.i18n('Ação Simples') + ' 2',
+                name: jsc.i18n('Simple Action') + ' 2',
                 action: function (evt) {
                     //implementation
                 }
@@ -115,7 +133,7 @@ function actions(module) {
     var longPressActionFlag = module.id + "#long_press_flag";
     arr.push({
         id: 'long_press_action',
-        label: jsc.i18n('Ação Pressionar/Soltar'),
+        label: jsc.i18n('Press/Release Action'),
         mouse_pressed: function (evt) {
             h.setGlobal(longPressActionFlag, true);
         },
@@ -128,11 +146,6 @@ function actions(module) {
             };
         }
     });
-
-    // bug fix v2.23.0
-    jsc.utils.module.fixActions(module, arr);
-    // arr pode ser um array ou um item action individual
-    // jsc.utils.module.fixActions(module, arr[0]);
 
     return arr;
 }
@@ -186,6 +199,17 @@ function triggers(module) {
             // obj.new_value
         }
     });
+    arr.push({
+        name: 'displaying specific video',
+        when: 'displaying',
+        item: 'any_video',
+        filter: {
+            file_fullname: 'folder/video name.mp4'
+        },
+        action: function (obj) {
+            // video displayed
+        }
+    });
     return arr;
 }
 
@@ -211,12 +235,12 @@ function contextActions(module) {
     var arr = [];
 
     arr.push({
-        name: jsc.i18n('Iniciar do Coro'),
+        name: jsc.i18n('Choir Start'),
         types: ['song'],
         action: function (evt) {
             var r = h.hly('GetSong', {id: evt.item.id});
             if (!r.data) {
-                var error = jsc.i18n("Item não encontrado: {}", ["Song by ID: " + evt.item.id]);
+                var error = jsc.i18n("Item not found: {}", ["Song by ID: " + evt.item.id]);
                 h.notificationError(error, 7);
                 return;
             }
@@ -241,13 +265,13 @@ function contextActions(module) {
                 });
                 return;
             }
-            var error = jsc.i18n("Item não encontrado: {}", ["Chorus - Song: " + evt.item.title]);
+            var error = jsc.i18n("Item not found: {}", ["Chorus - Song: " + evt.item.title]);
             h.notificationError(error, 7);
         }
     });
 
     arr.push({
-        name: jsc.i18n('Exibir por {} segundos', [10]),
+        name: jsc.i18n('Display for {} seconds', [10]),
         types: ['image', 'image_folder'],
         action: function (evt) {
             h.hly('ShowImage', {
@@ -259,7 +283,7 @@ function contextActions(module) {
             });
         }
     });
-
+    
     return arr;
 }
 
@@ -268,10 +292,10 @@ function textTransform(module) {
 
     obj.extra_slides = function(evt) {
         if (evt.screen_id == 'public' && evt.slide_type == 'blank' && evt.source_type == 'music') {
-            // Isso faz com que na tela 'public'
-            // quando a opção F9 (sem texto) estiver ativada
-            // e for uma apresentação de letra de música
-            // o texto '♪' seja exibido
+            // This causes the 'public' screen to
+            // when the F9 (no text) option is activated
+            // and it is a presentation of song lyrics
+            // the text '♪' is displayed
             return {
                 add_end: '♪'
             };
@@ -287,20 +311,20 @@ function customTheme(module) {
     obj.song = function (evt) {
         var textlc = evt.text.toLowerCase();
         if (textlc.contains('fogo') && textlc.contains('chuva')) {
-            // se o texto do slide tiver as palavras 'fogo' e 'chuva'
-            // define um vídeo como plano de fundo
-            // que tenha as tags 'Fogo' e 'Chuva'
-            // (as duas por conta de 'intersection: true')
+            // if the slide text has the words 'fire' and 'rain'
+            // set a video as background
+            // that has the tags 'Fire' and 'Rain'
+            // (both because of 'intersection: true')
             return {
-                tags: ['Fogo', 'Chuva'],
+                tags: ['Fire', 'Rain'],
                 intersection: true,
                 type: 'my_videos'
             };
         }
         if (textlc.equals("azul")) {
-            // se o texto do slide for igual a 'azul'
-            // define um tema criado em tempo real
-            // com as configurações a seguir
+            // if slide text equals 'blue'
+            // defines a theme created on the fly
+            // with the following settings
             return {
                 custom_theme: {
                     background: {
@@ -328,19 +352,16 @@ function lineBreakRules(module) {
         if (evt.screen.id == 'public'
                 && evt.presentation.type == 'song'
                 && evt.nextWords.length == 0) {
-            // se for a tela 'public'
-            // e for uma apresentação de letra de música
-            // e não houver palavras restantes além da palavra atual
-            // 
-            // retorna -1 para que a última palavra da linha atual
-            // seja movida para a próxima linha
-            // 
-            // isso evita com que uma quebra de linha
-            // seja criada com apenas uma palavra sozinha
+            // if it is the 'public' screen
+            // and it is a presentation of song lyrics
+            // and there are no remaining words besides the current word
             //
-            // caso fosse retornado 1, a palavra atual ficaria na linha atual
-            // evitando a quebra de linha
-            // porém nesse caso o tamanho da fonte do slide é reduzido
+            // returns -1 so that the last word of the current line is moved to the next line
+            //
+            // this prevents a line break from being created with just one word alone
+            //
+            // if 1 were returned, the current word would remain on the current line, avoiding the line break
+            // but in this case the font size of the slide is reduced
             return -1;
         }
         return 0;
@@ -350,15 +371,15 @@ function lineBreakRules(module) {
 function customMessageInApp(module) {
     var arr = [];
     arr.push({
-        name: jsc.i18n('Mensagem Personalizada no App'),
-        description: jsc.i18n('Descrição'),
+        name: jsc.i18n('Custom Message in the App'),
+        description: jsc.i18n('Description'),
         input: [
             {
                 id: 'example_1',
-                label: jsc.i18n('Nome') + ' 1'
+                label: jsc.i18n('Name') + ' 1'
             }, {
                 id: 'example_2',
-                label: jsc.i18n('Nome') + ' 2',
+                label: jsc.i18n('Name') + ' 2',
                 suggestions: [
                     'Item 1', 'Item 2', 'Item 3'
                 ]
@@ -373,7 +394,7 @@ function customMessageInApp(module) {
             //evt.input.example_2
             //evt.input.example_3
             //evt.note
-            var msg = '<html>' + jsc.i18n('Mensagem recebida do app')
+            var msg = '<html>' + jsc.i18n('Message received from the app')
                         + '<br><code>' + h.toPrettyJson(evt.input) + '</code>'
                         + '<br>note: ' + evt.note;
             h.notification(msg, 7);
@@ -399,5 +420,17 @@ function handleItemAction(module) {
         return false;
     };
 
+    return obj;
+}
+
+function style(module) {
+    var obj = {};
+  
+    obj.example = {
+      i: true,
+      font: 'Arial',
+      size: 70
+    };
+    
     return obj;
 }
