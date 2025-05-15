@@ -466,8 +466,12 @@ function actionSelectOverlay() {
 
         h.log(mUID, '{%t} api{}: {}', i, apiKey);
 
-        if (overlay && apiKey) {
-            (function(overlay, apiKey, timeOut, i) {
+        if (!overlay || !apiKey) {
+             h.log(mUID, '{%t} Dados incompletos para overlay{} — Ignorado', i);
+             continue
+        }
+        
+        (function(overlay, apiKey, timeOut, i) {
                 h.log(mUID, '{%t} Adicionando item de menu para overlay{}: {}', i, overlay.name);
                 menu.action.push({
                     label: o['nickname' + i] || overlay.name || ('Overlay ' + i),
@@ -501,10 +505,7 @@ function actionSelectOverlay() {
                         }
                     }
                 });
-            })(overlay, apiKey, timeOut, i);
-        } else {
-            h.log(mUID, '{%t} Dados incompletos para overlay{} — Ignorado', i);
-        }
+       })(overlay, apiKey, timeOut, i);
     }
 
     h.logp(mUID, '{%t} Menu final: {}', menu);
