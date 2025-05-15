@@ -141,7 +141,7 @@ function addToTimeline(eventName) {
     var scheduleKey = h.hly('GetCurrentSchedule').data[0].datetime_millis; // Current schedule key
     var timeline = h.restore(storeKey) || {}; // Restore or create empty object
     
-    h.logp(mUID,jsc.i18n('{%t} timeline {}'),timeline);
+    h.logp(mUID,'{%t} timeline {}',timeline);
     
     if (!timeline[scheduleKey]) {
         timeline[scheduleKey] = []; // Initialize array if not exists
@@ -198,7 +198,7 @@ function addToTimeline(eventName) {
             return;
         }
     }
-    h.logp(mUID,jsc.i18n('{%t} timeline {}'),timeline);
+    h.logp(mUID,'{%t} timeline {}',timeline);
     // Save the actual event
     saveEvent(eventName);
 }
@@ -215,10 +215,10 @@ function printTimeline() {
     }
 
     var timeline = timeLogs[scheduleKey];
-    h.logp(mUID,jsc.i18n('{%t} timeline {}'), timeline);
+    h.logp(mUID,'{%t} timeline {}', timeline);
     
     if (!timeline || timeline.length === 0) {
-       h.log('',jsc.i18n('{%t} Nenhum registro de timeline para este evento.'));
+       h.log('','{%t} Nenhum registro de timeline para este evento.');
        return
     }
         

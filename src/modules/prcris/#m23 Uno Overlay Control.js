@@ -30,9 +30,6 @@ function info() {
                      'This integration brings agility and organization to the visual presentation of information, reducing errors and simplifying operation during the service.<br><br>' +
                      infoVDDMM +
                      '</div>',
-        allowed_requests: [
-            'https://app.overlays.uno/apiv2/controlapps/'
-        ],
         i18n: {
             name: {
                 en: 'UNO Overlay Control',
@@ -205,7 +202,7 @@ function settings() {
                 var inputs = [
                     {
                         type: 'title',
-                        name: 'Selecione os itens de interesse'
+                        name: jsc.i18n('Selecione os itens de interesse')
                     },
                     {
                         type: 'separator'
@@ -226,7 +223,7 @@ function settings() {
                         h.log('', '{%t} ');
                         inputs.push({
                             type: 'title',
-                            name: 'Conteúdo do overlay vazio ou nulo'
+                            name: jsc.i18n('Conteúdo do overlay vazio ou nulo')
                         });
                         return;
                     }
@@ -357,7 +354,7 @@ function settings() {
                         var innerInputs = [
                             {
                                 type: 'title',
-                                name: 'Associe o item aos dados do Holyrics'
+                                name: jsc.i18n('Associe o item aos dados do Holyrics')
                             },
                             {
                                 type: 'separator'
@@ -423,7 +420,7 @@ function actions(module) {
                  for (var i = 0; i < qtd; i++) {
                         var h_apiKey = o['api'+i];
                         var h_overlayid = module.restore('overlay' + i).id;                   
-                        h.logp(mUID,jsc.i18n('{%t} {} {} {}'),h_apiKey, h_overlayid, jsc.uno.getOverlayVisibility(h_apiKey, h_overlayid));      
+                        h.logp(mUID, '{%t} {} {} {}', h_apiKey, h_overlayid, jsc.uno.getOverlayVisibility(h_apiKey, h_overlayid));      
                  }
             }
        });
@@ -533,13 +530,13 @@ function triggers(module) {
                   showOverlayTitle( data ); 
               }
               if (title.indexOf('+')) {  
-                  h.log(mUID,jsc.i18n('{%t} Título ignorado por possuir "+" {}'),title);
+                  h.log(mUID, '{%t} Título ignorado por possuir "+" {}', title);
               }
           }
 
           // exibe overlay com o nome da pessoa escalada para aquele título
           var data = getPersonForTitle(title);
-          h.logp(mUID,jsc.i18n('{%t} getPersonForTitle(title) {}'), data);
+          h.logp(mUID,'{%t} getPersonForTitle(title) {}', data);
           if (data && data.name) {
             if (isNewTitle(title+data.name)) {   
                h.logp(mUID,'{%t} Persona recebida: {}', data);
@@ -586,12 +583,12 @@ function triggers(module) {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2246756e6374696f6e73227d
 function refreshTitleOverlayDatabase() {
  
-  h.log(mUID,jsc.i18n('{%t} Executando refreshTitleOverlayDatabase {}'));  
+  h.log(mUID,'{%t} Executando refreshTitleOverlayDatabase {}');  
   
   var runAT = module.restore('runAT')
   if (runAT) {
      h.cancelRunAt(runAT);
-     h.log(mUID,jsc.i18n('{%t} Execução do evento cancelada {}'), runAT); 
+     h.log(mUID,'{%t} Execução do evento cancelada {}', runAT); 
      module.store('runAT',null);
      module.store('unoOn',false);
   }
@@ -599,13 +596,13 @@ function refreshTitleOverlayDatabase() {
  
   if (isTodaySchedule()) {
     var rAT = getScheduleTime();
-    h.log(mUID,jsc.i18n('{%t} Evento agendado para {}'), rAT); 
+    h.log(mUID,'{%t} Evento agendado para {}', rAT); 
     var id = h.runAt({
        name: mUID,
        datetime: rAT,
        action: function() {
             isNewTitle(null, true);
-            h.log(mUID,jsc.i18n('{%t} Registro de repetição de títulos inicializado.'));
+            h.log(mUID,'{%t} Registro de repetição de títulos inicializado.');
             module.store('unoOn',true);
             module.store('runAT',null);
        }
@@ -618,7 +615,7 @@ function refreshTitleOverlayDatabase() {
 function getScheduleTime() {
     var r = h.hly('GetCurrentSchedule');
     var s = r.data[0];   
-    h.log(mUID,jsc.i18n('{%t} GetCurrentSchedule.datetime:{} '),s.datetime);
+    h.log(mUID,'{%t} GetCurrentSchedule.datetime:{} ',s.datetime);
     return s.datetime;
 }
 
@@ -636,7 +633,7 @@ function isTodaySchedule() {
         scheduleDate.getDate() === today.getDate()
     );
     
-    h.log(mUID,jsc.i18n('{%t} scheduleDate:{} isToday:{}'),scheduleDate, isToday);
+    h.log(mUID,'{%t} scheduleDate:{} isToday:{}',scheduleDate, isToday);
     
     return isToday;
 }
@@ -645,7 +642,7 @@ function showOverlayBySong(obj) {
    var data = {name : '🎶'+obj.title, 
                info: obj.artist
    };
-   h.logp(mUID,jsc.i18n('{%t} showOverlayBySong {}'), data);
+   h.logp(mUID,'{%t} showOverlayBySong {}', data);
    showOverlayTitle(data);
 }
 
@@ -659,12 +656,12 @@ function showOverlayByTitle(title) {
         module.setGlobal('showOverlayByTitle',null);
     }
     
-    h.log(mUID,jsc.i18n('{%t} title {}'),title);
+    h.log(mUID,'{%t} title {}',title);
     for (var i = 0; i < qtd; i++) {
         var nicknameKey = "nickname" + i;
-        h.log(mUID,jsc.i18n('{%t} nicknameKey {}:{}'),nicknameKey, o[nicknameKey]);
+        h.log(mUID,'{%t} nicknameKey {}:{}',nicknameKey, o[nicknameKey]);
         if (o[nicknameKey] === title) {
-            h.log(mUID,jsc.i18n('{%t} Encontrado {}'),i);   
+            h.log(mUID,'{%t} Encontrado {}',i);   
             var apiKey = o['api' + i];
             var overlay = module.restore('overlay' + i) || [];
             jsc.uno.showOverlay(apiKey, overlay.id);
@@ -739,7 +736,7 @@ function showOverlay(cfgID, apiKey, overlayid, data, timeToWait) {
         } catch (err) {
             h.log("", 'Erro {}', [err]);
         }
-        h.log(mUID, jsc.i18n('{%t} id RunAT {}'), id);
+        h.log(mUID, '{%t} id RunAT {}', id);
     }
 }
 
@@ -748,13 +745,13 @@ function runOverlay(item) {
     jsc.uno.setOverlayContent(item.apiKey, item.overlayid, item.data);
     jsc.uno.showOverlay(item.apiKey, item.overlayid);
 
-    h.log(mUID, jsc.i18n('{%t} Overlay Ativado {}: {}'), item.overlayid, item.data);
+    h.log(mUID, '{%t} Overlay Ativado {}: {}', item.overlayid, item.data);
 
     var duration = item.end - item.start;
 
     h.setTimeout(function () {
         jsc.uno.hideOverlay(item.apiKey, item.overlayid);
-        h.log(mUID, jsc.i18n('{%t} Overlay desativado {}: {}'), item.overlayid, item.data);
+        h.log(mUID, '{%t} Overlay desativado {}: {}', item.overlayid, item.data);
 
         var overlayQueue = module.getGlobal('overlayQueue' + apiKey) || [];
         if (overlayQueue.length > 0 && overlayQueue[0].start === item.start && overlayQueue[0].overlayid === item.overlayid) {
@@ -781,26 +778,26 @@ function isNewTitle(title, clear) {
     // Se clear for true, limpa o registro
     if (clear) {
         h.setGlobal(key, []);
-        h.log(mUID, jsc.i18n('{%t} Lista de títulos reiniciada.'));
+        h.log(mUID, '{%t} Lista de títulos reiniciada.');
         return true;
     }
 
     // Se já existe, retorna false
     if (used.indexOf(title) !== -1) {
-        h.log(mUID, jsc.i18n('{%t} Título repetido ignorado: {}'), title);
+        h.log(mUID, '{%t} Título repetido ignorado: {}', title);
         return false;
     }
 
     // Se for novo, adiciona e salva
     used.push(title);
     h.setGlobal(key, used);
-    h.log(mUID, jsc.i18n('{%t} Título novo registrado: {}'), title);
+    h.log(mUID, '{%t} Título novo registrado: {}', title);
     return true;
 }
 
 function showOverlayTitle(data, timeToWait) {
     if (!data || !data.name) {
-        h.log(mUID, jsc.i18n('{%t} Dados inválidos fornecidos ao overlay.'));
+        h.log(mUID, '{%t} Dados inválidos fornecidos ao overlay.');
         return;
     }
 
@@ -839,7 +836,7 @@ function getPersonForTitle(title) {
     }
 
     if (!role) {
-        h.logp(mUID, jsc.i18n('{%t} Nenhum pessoa escalada para o título: {}'), title);
+        h.logp(mUID, '{%t} Nenhum pessoa escalada para o título: {}', title);
         return null;
     }
 
@@ -855,15 +852,15 @@ function getPersonForTitle(title) {
                     name: members[j].name,
                     info: members[j].skills
                 };
-                h.log(mUID, jsc.i18n('{%t} Pessoa escalada para "{}": {} (função: {})'), title, person.name, person.skills);
+                h.log(mUID, '{%t} Pessoa escalada para "{}": {} (função: {})', title, person.name, person.skills);
                 return person;
             }
         }
 
-        h.log(mUID, jsc.i18n('{%t} Membro com ID "{}" não encontrado em GetMembers.'), memberId);
+        h.log(mUID, '{%t} Membro com ID "{}" não encontrado em GetMembers.', memberId);
         return null;
     } else {
-        h.log(mUID, jsc.i18n('{%t} A função "{}" não possui ninguém escalado.'), title);
+        h.log(mUID, '{%t} A função "{}" não possui ninguém escalado.', title);
         return null;
     }
 }

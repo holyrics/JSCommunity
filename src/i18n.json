@@ -4858,5 +4858,335 @@
     "it": "Usa la scena di anteprima quando finisci il video",
     "fr": "Utilisez la scène de prévisualisation lors de la finalisation de la vidéo",
     "uk": "Використовуйте попередній перегляд сцени при завершенні відео"
+  },
+  {
+    "key": "OBS audio input name",
+    "en": "OBS audio input name",
+    "pt": "Nome de entrada de áudio do OBS",
+    "ru": "Имя аудиовхода OBS",
+    "es": "OBS nombre de entrada de audio",
+    "it": "Nome input audio OBS",
+    "fr": "Nom d'entrée audio OBS",
+    "uk": "Назва аудіовходу OBS"
+  },
+  {
+    "key": "Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene. This input will be automatically muted during the ShowTime video and unmuted after it finishes.",
+    "en": "Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene. This input will be automatically muted during the ShowTime video and unmuted after it finishes.",
+    "pt": "Especifica o nome da fonte de entrada de áudio (por exemplo, microfone ou mixer) na cena selecionada. Esta entrada será automaticamente silenciada durante o vídeo do ShowTime e desmutada após o término.",
+    "ru": "Указывает имя источника аудиовхода (например, микрофон или микшер) в выбранной сцене. Этот вход будет автоматически отключен во время видео ShowTime и включен после его завершения.",
+    "es": "Especifica el nombre de la fuente de entrada de audio (por ejemplo, micrófono o mezclador) en la escena seleccionada. Esta entrada se silenciará automáticamente durante el video de ShowTime y se activará después de que termine.",
+    "it": "Specifica il nome della sorgente audio (ad es. microfono o mixer) nella scena selezionata. Questo input sarà automaticamente disattivato durante il video di ShowTime e riattivato dopo la sua conclusione.",
+    "fr": "Spécifie le nom de la source d'entrée audio (par exemple, microphone ou mixeur) dans la scène sélectionnée. Cette entrée sera automatiquement mise en sourdine pendant la vidéo ShowTime et rétablie après la fin.",
+    "uk": "Вказує назву джерела аудіовходу (наприклад, мікрофон або мікшер) у вибраній сцені. Цей вхід буде автоматично вимкнений під час відео ShowTime і знову увімкнений після його завершення."
+  },
+  {
+    "key": "Start live streaming in OBS",
+    "en": "Start live streaming in OBS",
+    "pt": "Iniciar transmissão ao vivo no OBS",
+    "ru": "Начать прямую трансляцию в OBS",
+    "es": "Iniciar transmisión en vivo en OBS",
+    "it": "Inizia lo streaming live in OBS",
+    "fr": "Commencer le streaming en direct dans OBS",
+    "uk": "Почати пряму трансляцію в OBS"
+  },
+  {
+    "key": "Enable this if you want to send the command to start streaming.",
+    "en": "Enable this if you want to send the command to start streaming.",
+    "pt": "Ative isso se você quiser enviar o comando para iniciar a transmissão.",
+    "ru": "Включите это, если хотите отправить команду на начало трансляции.",
+    "es": "Habilita esto si deseas enviar el comando para comenzar la transmisión.",
+    "it": "Abilita questo se vuoi inviare il comando per iniziare lo streaming.",
+    "fr": "Activez ceci si vous souhaitez envoyer la commande pour commencer le streaming.",
+    "uk": "Увімкніть це, якщо хочете надіслати команду для початку трансляції."
+  },
+  {
+    "key": "Start recording in OBS",
+    "en": "Start recording in OBS",
+    "pt": "Iniciar gravação no OBS",
+    "ru": "Начать запись в OBS",
+    "es": "Iniciar grabación en OBS",
+    "it": "Inizia la registrazione in OBS",
+    "fr": "Commencer l'enregistrement dans OBS",
+    "uk": "Почати запис в OBS"
+  },
+  {
+    "key": "Enable this if you want to send the command to start recording.",
+    "en": "Enable this if you want to send the command to start recording.",
+    "pt": "Ative isso se você quiser enviar o comando para iniciar a gravação.",
+    "ru": "Включите это, если хотите отправить команду на начало записи.",
+    "es": "Habilita esto si deseas enviar el comando para comenzar la grabación.",
+    "it": "Abilita questo se vuoi inviare il comando per iniziare la registrazione.",
+    "fr": "Activez ceci si vous souhaitez envoyer la commande pour commencer l'enregistrement.",
+    "uk": "Увімкніть це, якщо хочете надіслати команду для початку запису."
+  },
+  {
+    "key": "The show will start now!",
+    "en": "The show will start now!",
+    "pt": "O show começará agora!",
+    "ru": "Шоу начнется сейчас!",
+    "es": "¡El espectáculo comenzará ahora!",
+    "it": "Lo spettacolo inizierà ora!",
+    "fr": "Le spectacle va commencer maintenant!",
+    "uk": "Шоу почнеться зараз!"
+  },
+  {
+    "key": "Print Timeline",
+    "en": "Print Timeline",
+    "pt": "Imprimir Linha do Tempo",
+    "ru": "Печать временной шкалы",
+    "es": "Imprimir línea de tiempo",
+    "it": "Stampa Cronologia",
+    "fr": "Imprimer la chronologie",
+    "uk": "Друк Хронології"
+  },
+  {
+    "key": "Clear Timeline",
+    "en": "Clear Timeline",
+    "pt": "Limpar Linha do Tempo",
+    "ru": "Очистить временную шкалу",
+    "es": "Borrar línea de tiempo",
+    "it": "Cancella Cronologia",
+    "fr": "Effacer la chronologie",
+    "uk": "Очистити Хронологію"
+  },
+  {
+    "key": "Quantidade de overlays a controlar:",
+    "en": "Number of overlays to control:",
+    "pt": "Quantidade de overlays a controlar:",
+    "ru": "Количество наложений для управления:",
+    "es": "Cantidad de superposiciones a controlar:",
+    "it": "Numero di overlay da controllare:",
+    "fr": "Nombre de superpositions à contrôler :",
+    "uk": "Кількість накладок для контролю:"
+  },
+  {
+    "key": "Configurar",
+    "en": "Configure",
+    "pt": "Configurar",
+    "ru": "Настроить",
+    "es": "Configurar",
+    "it": "Configura",
+    "fr": "Configurer",
+    "uk": "Налаштувати"
+  },
+  {
+    "key": "Chaves API / Tempo Exibição",
+    "en": "API Keys / Display Time",
+    "pt": "Chaves API / Tempo de Exibição",
+    "ru": "API ключи / Время показа",
+    "es": "Claves API / Tiempo de exhibición",
+    "it": "Chiavi API / Tempo di Visualizzazione",
+    "fr": "Clés API / Temps d'affichage",
+    "uk": "API ключі / Час показу"
+  },
+  {
+    "key": "Apelido",
+    "en": "Nickname",
+    "pt": "Apelido",
+    "ru": "Псевдоним",
+    "es": "Apodo",
+    "it": "Soprannome",
+    "fr": "Surnom",
+    "uk": "Псевдонім"
+  },
+  {
+    "key": "Chave API",
+    "en": "API Key",
+    "pt": "Chave API",
+    "ru": "API ключ",
+    "es": "Clave API",
+    "it": "Chiave API",
+    "fr": "Clé API",
+    "uk": "API ключ"
+  },
+  {
+    "key": "Output URL",
+    "en": "Output URL",
+    "pt": "URL de Saída",
+    "ru": "URL-адрес вывода",
+    "es": "URL de salida",
+    "it": "URL di output",
+    "fr": "URL de sortie",
+    "uk": "URL виходу"
+  },
+  {
+    "key": "Tempo de Exibição (s)",
+    "en": "Display Time (s)",
+    "pt": "Tempo de Exibição (s)",
+    "ru": "Время показа (с)",
+    "es": "Tiempo de exhibición (s)",
+    "it": "Tempo di Visualizzazione (s)",
+    "fr": "Temps d'affichage (s)",
+    "uk": "Час показу (с)"
+  },
+  {
+    "key": "Itens a alterar",
+    "en": "Items to change",
+    "pt": "Itens a alterar",
+    "ru": "Элементы для изменения",
+    "es": "Elementos a cambiar",
+    "it": "Elementi da modificare",
+    "fr": "Éléments à modifier",
+    "uk": "Елементи для зміни"
+  },
+  {
+    "key": "Selecione os itens de interesse",
+    "en": "Select the items of interest",
+    "pt": "Selecione os itens de interesse",
+    "ru": "Выберите интересующие элементы",
+    "es": "Selecciona los elementos de interés",
+    "it": "Seleziona gli elementi di interesse",
+    "fr": "Sélectionnez les éléments d'intérêt",
+    "uk": "Виберіть елементи інтересу"
+  },
+  {
+    "key": "Conteúdo do overlay vazio ou nulo",
+    "en": "Empty or null overlay content",
+    "pt": "Conteúdo do overlay vazio ou nulo",
+    "ru": "Содержимое наложения пустое или нулевое",
+    "es": "Contenido de la superposición vacío o nulo",
+    "it": "Contenuto dell'overlay vuoto o nullo",
+    "fr": "Contenu de la superposition vide ou nul",
+    "uk": "Вміст накладки порожній або нульовий"
+  },
+  {
+    "key": "Overlay automatizado com a escala",
+    "en": "Automated overlay with the scale",
+    "pt": "Overlay automatizado com a escala",
+    "ru": "Автоматизированное наложение с масштабом",
+    "es": "Superposición automatizada con la escala",
+    "it": "Overlay automatizzato con la scala",
+    "fr": "Superposition automatisée avec l'échelle",
+    "uk": "Автоматизована накладка з масштабом"
+  },
+  {
+    "key": "No primeiro item exibido de cada título da programação, ativa o Overlay padrão com os dados encontrados na escala do evento que corresponderem ao título.",
+    "en": "On the first item displayed of each program title, activates the default overlay with the data found in the event scale that matches the title.",
+    "pt": "No primeiro item exibido de cada título da programação, ativa o Overlay padrão com os dados encontrados na escala do evento que corresponderem ao título.",
+    "ru": "В первом элементе, отображаемом для каждого названия программы, активирует стандартное наложение с данными, найденными в масштабе события, соответствующем названию.",
+    "es": "En el primer elemento mostrado de cada título de la programación, activa la superposición predeterminada con los datos encontrados en la escala del evento que correspondan al título.",
+    "it": "Nel primo elemento visualizzato di ogni titolo del programma, attiva l'Overlay predefinito con i dati trovati nella scala dell'evento che corrispondono al titolo.",
+    "fr": "Pour le premier élément affiché de chaque titre de la programmation, activez la superposition par défaut avec les données trouvées dans l'échelle de l'événement correspondant au titre.",
+    "uk": "У першому елементі, що відображається з кожного заголовка програми, активує стандартну накладку з даними, знайденими в масштабі події, які відповідають заголовку."
+  },
+  {
+    "key": "Exibir \"lower third\" para título de mídia (\"+\" inibe)",
+    "en": "Show \"lower third\" for media title (\"+\" inhibits)",
+    "pt": "Exibir \"lower third\" para título de mídia (\"+\" inibe)",
+    "ru": "Показать \"нижнюю треть\" для названия медиа (\"+\" отключает)",
+    "es": "Mostrar \"lower third\" para título de medios (\"+\" inhibe)",
+    "it": "Mostra \"lower third\" per il titolo del media (\"+\" inibisce)",
+    "fr": "Afficher \"lower third\" pour le titre de média (\"+\" inhibe)",
+    "uk": "Показати \"нижню третину\" для заголовка медіа (\"+\" заважає)"
+  },
+  {
+    "key": "Exibir \"lower third\" para música apresentada (Título/Artista)",
+    "en": "Show \"lower third\" for presented music (Title/Artist)",
+    "pt": "Exibir \"lower third\" para música apresentada (Título/Artista)",
+    "ru": "Показать \"нижнюю треть\" для представленной музыки (Название/Исполнитель)",
+    "es": "Mostrar \"lower third\" para música presentada (Título/Artista)",
+    "it": "Mostra \"lower third\" per la musica presentata (Titolo/Artista)",
+    "fr": "Afficher \"lower third\" pour la musique présentée (Titre/Artiste)",
+    "uk": "Показати \"нижню третину\" для представленої музики (Заголовок/Артист)"
+  },
+  {
+    "key": "Exibir \"lower third\" para escalados por título de mídia",
+    "en": "Show \"lower third\" for scheduled by media title",
+    "pt": "Exibir \"lower third\" para escalados por título de mídia",
+    "ru": "Показать \"нижнюю треть\" для названий медиа",
+    "es": "Mostrar \"lower third\" para escalados por título de medios",
+    "it": "Mostra \"lower third\" per i titoli di media programmati",
+    "fr": "Afficher \"lower third\" pour les titres de média programmés",
+    "uk": "Показати \"нижню третину\" для заголовків медіа"
+  },
+  {
+    "key": "Atrasar exibição do nome",
+    "en": "Delay display of the name",
+    "pt": "Atrasar exibição do nome",
+    "ru": "Задержать отображение имени",
+    "es": "Retrasar la exhibición del nombre",
+    "it": "Ritarda la visualizzazione del nome",
+    "fr": "Retarder l'affichage du nom",
+    "uk": "Затримати показ імені"
+  },
+  {
+    "key": "Intervalo entre exibições",
+    "en": "Interval between displays",
+    "pt": "Intervalo entre exibições",
+    "ru": "Интервал между показами",
+    "es": "Intervalo entre exhibiciones",
+    "it": "Intervallo tra le visualizzazioni",
+    "fr": "Intervalle entre les affichages",
+    "uk": "Інтервал між показами"
+  },
+  {
+    "key": "Preenchimento automático",
+    "en": "Auto-fill",
+    "pt": "Preenchimento automático",
+    "ru": "Автозаполнение",
+    "es": "Relleno automático",
+    "it": "Compilazione automatica",
+    "fr": "Remplissage automatique",
+    "uk": "Автозаповнення"
+  },
+  {
+    "key": "Overlay não encontrado",
+    "en": "Overlay not found",
+    "pt": "Overlay não encontrado",
+    "ru": "Наложение не найдено",
+    "es": "Superposición no encontrada",
+    "it": "Overlay non trovato",
+    "fr": "Superposition non trouvée",
+    "uk": "Накладка не знайдена"
+  },
+  {
+    "key": "Associe o item aos dados do Holyrics",
+    "en": "Associate the item with Holyrics data",
+    "pt": "Associe o item aos dados do Holyrics",
+    "ru": "Свяжите элемент с данными Holyrics",
+    "es": "Asocia el elemento a los datos de Holyrics",
+    "it": "Associa l'elemento ai dati di Holyrics",
+    "fr": "Associez l'élément aux données de Holyrics",
+    "uk": "Прив'яжіть елемент до даних Holyrics"
+  },
+  {
+    "key": "Habilidades/Artista",
+    "en": "Skills/Artist",
+    "pt": "Habilidades/Artista",
+    "ru": "Навыки/Исполнитель",
+    "es": "Habilidades/Artista",
+    "it": "Competenze/Artista",
+    "fr": "Compétences/Artiste",
+    "uk": "Навички/Артист"
+  },
+  {
+    "key": "action name on hint",
+    "en": "action name on hint",
+    "pt": "nome da ação na dica",
+    "ru": "имя действия на подсказке",
+    "es": "nombre de acción en pista",
+    "it": "nome dell'azione su suggerimento",
+    "fr": "nom de l'action sur l'indice",
+    "uk": "назва дії на підказці"
+  },
+  {
+    "key": "Overlays disponíveis",
+    "en": "Available overlays",
+    "pt": "Overlays disponíveis",
+    "ru": "Доступные наложения",
+    "es": "Superposiciones disponibles",
+    "it": "Overlay disponibili",
+    "fr": "Superpositions disponibles",
+    "uk": "Доступні накладки"
+  },
+  {
+    "key": "Many items found",
+    "en": "Many items found",
+    "pt": "Muitos itens encontrados",
+    "ru": "Найдено много элементов",
+    "es": "Se encontraron muchos elementos",
+    "it": "Molti elementi trovati",
+    "fr": "De nombreux éléments trouvés",
+    "uk": "Знайдено багато елементів"
   }
 ]
