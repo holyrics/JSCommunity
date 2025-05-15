@@ -4,30 +4,25 @@
 
 // Sends a command to the Uno API and returns the result or payload
 function request(apiKey, dataObj, fullReturn) {
-  var url = "https://app.overlays.uno/apiv2/controlapps/" + apiKey + "/api";
 
-  var options = {
-    url: url,
-    type: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    data: JSON.stringify(dataObj),
-    timeout: 5000,
-    response_data_type: 'string;utf-8'
-  };
+   var options = {
+      url_suffix: "controlapps/" + apiKey + "/api",
+      type: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify(dataObj),
+      timeout: 5000,
+      response_data_type: 'string;utf-8'
+   };
 
-  var response = h.apijsc.uno.request(url, options);
-  
-  
+   try {
+    var response = h.httpRequest('https://app.overlays.uno/apiv2/', options);
+   } catch (err) { h.log("",'Erro {}',[err]) };
 
-  if (!response) {
-    h.log('uno', "API → Erro ou timeout: " + JSON.stringify(dataObj));
-    return null;
-  }
 
   try {
     var parsed = JSON.parse(response);
     
-	h.logp('uno', "Result of {}: {}", dataObj.command, parsed);
+	h.logp('jsc.uno', "Result of {}: {}", dataObj.command, parsed);
 
     if (parsed.status === 200 && parsed.result === "ok" && fullReturn) {
       return parsed || null;
@@ -36,12 +31,12 @@ function request(apiKey, dataObj, fullReturn) {
     if (parsed.status === 200 && parsed.result === "ok") {
       return parsed.payload || null;
     } else {
-      h.log('uno', "API → Erro na resposta: " + response);
+      h.log('jsc.uno', "API → Erro na resposta: " + response);
       return null;
     }
 
   } catch (e) {
-    h.log('uno', "API → Erro ao interpretar JSON de resposta: " + response);
+    h.log('jsc.uno', "API → Erro ao interpretar JSON de resposta: " + response);
     return null;
   }
 }

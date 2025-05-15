@@ -97,23 +97,24 @@ function info() {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2253657474696e6773227d
 function settings() {
     var sv = [];
+
     sv.push(
         {
             name: jsc.i18n('About') + ' ' + mID,
             description: infoVDDMM,
             type: 'label'
-        },{
+        },
+        {
             type: 'separator'
-
         },
         {
             id: 'qtdOverlays',
             type: 'number',
-            name: jsc.i18n('Quantidade de Overlays a Controlar:'),
+            name: jsc.i18n('Quantidade de overlays a controlar:'),
             min: 1,
             max: 10,
             default_value: 4,
-            component: 'spinner',
+            component: 'combobox',
             decimal: false
         },
         {
@@ -130,13 +131,12 @@ function settings() {
                     {
                         type: 'title',
                         name: 'Preencha as chaves e tempo de exibição de API'
-                    },
-                    {
-                        type: 'separator'
                     }
                 ];
 
                 for (var i = 0; i < qtd; i++) {
+                    inputs.push({ type: 'separator' });
+
                     inputs.push({
                         id: 'nickname' + i,
                         name: jsc.i18n('Apelido') + ' ' + (i + 1),
@@ -147,12 +147,13 @@ function settings() {
                         name: jsc.i18n('Chave API') + ' ' + (i + 1),
                         type: 'string'
                     });
-/*                    inputs.push({
+                    /*
+                    inputs.push({
                         id: 'url' + i,
                         name: jsc.i18n('Output URL') + ' ' + (i + 1),
                         type: 'string'
                     });
-*/                   
+                    */
                     inputs.push({
                         id: 'timeOut' + i,
                         name: jsc.i18n('Tempo de Exibição (s)') + ' ' + (i + 1),
@@ -160,30 +161,34 @@ function settings() {
                         min: 1,
                         max: 500,
                         default_value: 15,
-                        //component: 'slider',
+                        component: 'combobox',
                         decimal: false
                     });
                 }
 
                 var q = module.inputSettings('cfg_uno_overlay', inputs);
-                if (q !== null) {
-                    var s = module.settings;
-                    var o = s.cfg_uno_overlay;
-                    h.notification(jsc.i18n('Atualizando dados dos Overlays do site uno'), 10);
-                    for (var i = 0; i < s.qtdOverlays; i++) {
-                        var apiKey = o['api' + i];
-                        if (apiKey) {
-                            var overlayInfo = jsc.uno.getOverlays(apiKey)[0];
-                            var overlayData = jsc.uno.getOverlayContent(apiKey, overlayInfo.id);
-                            h.logp(mUID,'{%t} overlayInfo {} {}',i, overlayInfo);
-                            h.logp(mUID,'{%t} overlayData {} {}',i, overlayData);
-                            module.store('overlay' + i, overlayInfo);
-                            module.store('overlayData'+i, overlayData);
-                            h.log(mUID,'{%t} overlayInfo {} : {} ', i , overlayInfo);
-                            h.log(mUID,'{%t} overlayData {} : {} ', i , overlayData);
+                h.popupWorker({
+                    title: 'Carregando dados dos overlays do site uno...',
+                    action: function(evt) {
+                        if (q !== null) {
+                            var s = module.settings;
+                            var o = s.cfg_uno_overlay;
+                            for (var i = 0; i < s.qtdOverlays; i++) {
+                                var apiKey = o['api' + i];
+                                if (apiKey) {
+                                    var overlayInfo = jsc.uno.getOverlays(apiKey)[0];
+                                    var overlayData = jsc.uno.getOverlayContent(apiKey, overlayInfo.id);
+                                    h.logp(mUID, '{%t} overlayInfo {} {}', i, overlayInfo);
+                                    h.logp(mUID, '{%t} overlayData {} {}', i, overlayData);
+                                    module.store('overlay' + i, overlayInfo);
+                                    module.store('overlayData' + i, overlayData);
+                                    h.log(mUID, '{%t} overlayInfo {} : {} ', i, overlayInfo);
+                                    h.log(mUID, '{%t} overlayData {} : {} ', i, overlayData);
+                                }
+                            }
                         }
                     }
-                }
+                });
             }
         },
         {
@@ -249,7 +254,7 @@ function settings() {
             id: 'btnOverlayTitleSchedule',
             type: 'button',
             button_label: jsc.i18n('Configurar'),
-            name: jsc.i18n('Overlay Automatizado com a Escala'),
+            name: jsc.i18n('Overlay automatizado com a escala'),
             description: jsc.i18n('No primeiro item exibido de cada título da programação, ativa o Overlay padrão com os dados encontrados na escala do evento que corresponderem ao título.'),
             action: function(obj) {
                 var s = module.settings;
@@ -277,32 +282,32 @@ function settings() {
                 inputs.push({
                     id: 'title',
                     type: 'boolean',
-                    name: jsc.i18n('Exibir Lowerthird para título de mídia ("+" inibe)')
+                    name: jsc.i18n('Exibir "lower third" para título de mídia ("+" inibe)')
                 });
 
                 inputs.push({
                     id: 'song',
                     type: 'boolean',
-                    name: jsc.i18n('Exibir Lowerthird para música apresentada (Título/Artista)')
+                    name: jsc.i18n('Exibir "lower third" para música apresentada (Título/Artista)')
                 });
                 
                 inputs.push({
                     id: 'title',
                     type: 'boolean',
-                    name: jsc.i18n('Exibir Lowerthird Escalados por Título de Mídia')
+                    name: jsc.i18n('Exibir "lower third" para escalados por título de mídia')
                 });
                 
                 inputs.push({
                     id: 'delay',
                     type: 'number',
-                    name: jsc.i18n('Atrasar Exibição Nome (s)'),
+                    name: jsc.i18n('Atrasar exibição do nome')+' (s)',
                     default_value : 5
                 });
                 
                 inputs.push({
                     id: 'interval',
                     type: 'number',
-                    name: jsc.i18n('Intervalo entre Exibições (s)'),
+                    name: jsc.i18n('Intervalo entre exibições')+' (s)',
                     default_value : 1
                 });
 
