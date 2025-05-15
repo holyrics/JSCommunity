@@ -195,6 +195,13 @@ function stopStream(receiverID) {
     return response;
 }
 
+// Get a Stream Status
+function getStreamStatus(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetStreamStatus');
+    h.log('jsc.obs_v5', 'GetStreamStatus response: {}', response);
+    return response;
+}
+
 // Start recording
 function startRecord(receiverID) {
     var response = jsc.obs_v5.request(receiverID, 'StartRecord');
@@ -209,6 +216,14 @@ function stopRecord(receiverID) {
     return response;
 }
 
+// Get a Record Status
+function getRecordStatus(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetRecordStatus');
+    h.log('jsc.obs_v5', 'getRecordStatus response: {}', response);
+    return response;
+}
+
+
 // Trigger Hotkey by name
 function triggerHotkeyByName(receiverID, keyName) {
     var response = jsc.obs_v5.request(receiverID, 'TriggerHotkeyByName', {
@@ -216,6 +231,13 @@ function triggerHotkeyByName(receiverID, keyName) {
     });
     h.log('jsc.obs_v5', 'triggerHotkeyByName response: {}', response);
     return response;
+}
+
+// Get Hotkey List
+function getHotkeyList(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetHotkeyList');
+    h.log('jsc.obs_v5', 'GetHotkeyList response: {}', response);
+    return response.hotkeys;
 }
 
 // Get a list of sources

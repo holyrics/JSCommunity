@@ -15,8 +15,9 @@ module.settings.timeSimulation = null;
 refreshShowTimeSchedules(module);
 
 h.log(mUID,'{%t} Module Settings: {}', module.settings);
+
 if (isDev() && module.settings.log && module.isEnabled()) { 
-   h.openWindow('js_monitor');    
+   h.openWindow('js_monitor');     
    }
 }
 
@@ -28,6 +29,8 @@ function info() {
                      '> <b>Showtime</b> is an automated module for event synchronization, designed to create an impressive opening presentation. By integrating various systems and devices, it offers full control over lighting, special effects, audio, and video scenes in real-time.<br>' +
                      '<br>' +
                      '<b>Main Features</b><br>' +
+                     '• <b>Automatic Live Start (NEW):</b> Starts the live stream exactly when the show begins, ensuring perfect timing with the opening scene.<br>' +
+                     '• <b>Main Audio Source Mute/Unmute (NEW):</b> Automatically mutes the main audio source from the mixer during the opening show and reactivates it at the programmed moment.<br>' +
                      '• <b>Coordinated Timers:</b> Set and synchronize multiple timers to ensure the exact start of each effect during the event opening.<br>' +
                      '• <b>Integration with Lumikit for DMX:</b> Control lights, special effect devices (smoke machine, bubbles, confetti), and other show equipment.<br>' +
                      '• <b>Integration with Home Assistant:</b> Allows triggering of smart home devices such as lights and screen motors, expanding automation possibilities.<br>' +
@@ -56,6 +59,8 @@ function info() {
                     '> <b>Showtime</b> is an automated module for event synchronization, designed to create an impressive opening presentation. By integrating various systems and devices, it offers full control over lighting, special effects, audio, and video scenes in real-time.<br>' +
                     '<br>' +
                     '<b>Main Features</b><br>' +
+                    '• <b>Automatic Live Start (NEW):</b> Starts the live stream exactly when the show begins, ensuring perfect timing with the opening scene.<br>' +
+                    '• <b>Main Audio Source Mute/Unmute (NEW):</b> Automatically mutes the main audio source from the mixer during the opening show and reactivates it at the programmed moment.<br>' +
                     '• <b>Coordinated Timers:</b> Set and synchronize multiple timers to ensure the exact start of each effect during the event opening.<br>' +
                     '• <b>Integration with Lumikit for DMX:</b> Control lights, special effect devices (smoke machine, bubbles, confetti), and other show equipment.<br>' +
                     '• <b>Integration with Home Assistant:</b> Allows triggering of smart home devices such as lights and screen motors, expanding automation possibilities.<br>' +
@@ -65,6 +70,8 @@ function info() {
                     '> <b>Hora do Show</b> é um módulo automatizado para sincronização de eventos, projetado para criar uma impressionante apresentação de abertura. Integrando diversos sistemas e dispositivos, ele oferece total controle sobre iluminação, efeitos especiais, áudio e cenas de vídeo em tempo real.<br>' +
                     '<br>' +
                     '<b>Recursos Principais</b><br>' +
+                    '• <b>Início Automático da Live (NOVO):</b> Inicia a transmissão ao vivo exatamente quando o show começa, garantindo sincronia perfeita com a cena de abertura.<br>' +
+                    '• <b>Mudo Automático da Fonte de Áudio Principal (NOVO):</b> Silencia automaticamente a fonte de áudio principal do mixer durante o show de abertura e reativa no momento programado.<br>' +
                     '• <b>Timers Coordenados:</b> Define e sincroniza múltiplos timers para garantir o início exato de cada efeito na abertura do evento.<br>' +
                     '• <b>Integração com Lumikit para DMX:</b> Controle de luzes, dispositivos de efeitos especiais (máquina de fumaça, bolhas, confete) e outros equipamentos de show.<br>' +
                     '• <b>Integração com Home Assistant:</b> Permite acionar dispositivos domésticos inteligentes, como lâmpadas e motores de telão, ampliando as possibilidades de automação.<br>' +
@@ -74,6 +81,8 @@ function info() {
                     '> <b>Showtime</b> es un módulo automatizado para la sincronización de eventos, diseñado para crear una impresionante presentación de apertura. Al integrar diversos sistemas y dispositivos, ofrece control total sobre la iluminación, los efectos especiales, el audio y las escenas de video en tiempo real.<br>' +
                     '<br>' +
                     '<b>Características Principales</b><br>' +
+                    '• <b>Inicio Automático del En Vivo (NUEVO):</b> Inicia la transmisión en vivo exactamente cuando comienza el espectáculo, asegurando sincronización perfecta con la escena de apertura.<br>' +
+                    '• <b>Silenciado Automático de la Fuente de Audio Principal (NUEVO):</b> Silencia automáticamente la fuente de audio principal del mezclador durante el show de apertura y la reactiva en el momento programado.<br>' +
                     '• <b>Temporizadores Coordinados:</b> Configura y sincroniza varios temporizadores para garantizar el inicio exacto de cada efecto durante la apertura del evento.<br>' +
                     '• <b>Integración con Lumikit para DMX:</b> Controla luces, dispositivos de efectos especiales (máquina de humo, burbujas, confeti) y otros equipos de espectáculo.<br>' +
                     '• <b>Integración con Home Assistant:</b> Permite activar dispositivos inteligentes del hogar, como luces y motores de pantallas, ampliando las posibilidades de automatización.<br>' +
@@ -83,6 +92,8 @@ function info() {
                     '> <b>Шоутайм</b> — это автоматизированный модуль для синхронизации событий, предназначенный для создания впечатляющей вступительной презентации. Интегрируя различные системы и устройства, он обеспечивает полный контроль над освещением, спецэффектами, аудио и видеосценами в реальном времени.<br>' +
                     '<br>' +
                     '<b>Основные характеристики</b><br>' +
+                    '• <b>Автоматический запуск трансляции (NEW):</b> Запускает прямую трансляцию точно в момент начала шоу, обеспечивая идеальную синхронизацию с открывающей сценой.<br>' +
+                    '• <b>Автоматическое отключение основного звукового источника (NEW):</b> Автоматически выключает основной аудиоканал с микшера во время вступительного шоу и включает его в запланированный момент.<br>' +
                     '• <b>Согласованные таймеры:</b> Устанавливает и синхронизирует несколько таймеров, чтобы гарантировать точное начало каждого эффекта при открытии мероприятия.<br>' +
                     '• <b>Интеграция с Lumikit для DMX:</b> Управление светом, спецэффектами (дым-машина, пузыри, конфетти) и другим оборудованием для шоу.<br>' +
                     '• <b>Интеграция с Home Assistant:</b> Позволяет запускать умные устройства, такие как светильники и моторы экрана, расширяя возможности автоматизации.<br>' +
@@ -92,6 +103,7 @@ function info() {
         }
     };
 }
+
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e636c756465227d
 ////////////// modules_generic_functions.js
@@ -314,6 +326,11 @@ function settings() {
         {
             type: 'separator'
         },        
+        {
+            id: 'samePC',
+            label: jsc.i18n('Holyrics and OBS on the same computer'),
+            type: 'boolean'
+        },
         {       
             id: 'video_scene',
             name: jsc.i18n('OBS Scene for videos'),
@@ -332,6 +349,27 @@ function settings() {
                 return jsc.obs_v5.getSceneItemList(obj.input.streaming_id, obj.input.video_scene);
             }
         },         
+        {
+            id: 'obs_audio_input_name',
+            name: jsc.i18n('OBS audio input name'),
+            description: jsc.i18n('Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene. This input will be automatically muted during the ShowTime video and unmuted after it finishes.'),
+            type: 'string',
+            suggested_values: function(obj) {
+                return jsc.obs_v5.getAudioInputList(obj.input.streaming_id);
+            }
+        },
+        {
+            id: 'obs_start_streaming',
+            name: jsc.i18n('Start live streaming in OBS'),
+            description: jsc.i18n('Enable this if you want to send the command to start streaming.'),
+            type: 'boolean'
+        },
+        {
+            id: 'obs_start_recording',
+            name: jsc.i18n('Start recording in OBS'),
+            description: jsc.i18n('Enable this if you want to send the command to start recording.'),
+            type: 'boolean'
+        },
         {
             type: 'separator'
         },
@@ -929,7 +967,7 @@ function startSchedulesShow(module) {
     if (d.startShow < 0) {
         return;
     }
-
+    h.notification(jsc.i18n('The show will start now!'), 10);
     h.log(mUID, "{%t} " + jsc.i18n("Event times in MS") + ": {}", h.toPrettyJson(d));
 
     timingCheckAndSet(s, d.c);
@@ -959,13 +997,34 @@ function scVideosLocal(s, d) {
 
 function scVideosLive(s, d) {
     var cfg = s[d.c];
-    setShowRunAt(function() { playOBS(s, cfg.liveVideo0, true); }, d.startShow, 'liveLoop');
+   
+    setShowRunAt(function() {
+                             if (s.obs_start_streaming) { // inicia a live no horário programado
+                                h.log(mUID,'{%t} Iniciando a transmissão');
+                                try {
+                                jsc.obs_v5.startStream(s.streaming_id);
+                                } catch (err) { h.log("",'Atenção, erro ao iniciar a live: {}',[err]) };
+                             }
+                             try {
+                             h.log(mUID,'{%t} Mutando som ambiente, dispositivo {}',s.obs_audio_input_name);
+                             jsc.obs_v5.setInputMute(s.streaming_id, s.obs_audio_input_name, true); // muta a entrada de áudio da mesa de som
+                             h.log(mUID,'{%t} iniciando o primeiro vídeo da live {}',cfg.liveVideo0);
+                             playOBS(s, cfg.liveVideo0, true); // inicia o primeiro vídeo na live
+                             } catch (err) { h.log("",'Erro {}',[err]) };
+
+                            }, d.startShow, 'liveLoop'); 
     setShowRunAt(function() { playOBS(s, cfg.liveVideo0, false); }, d.startLiveVideoLastRepeat, 'liveLastRepeat'); // ensures the last video run is complete
     setShowRunAt(function() { playOBS(s, cfg.liveVideo1, false); }, d.startLiveVideo1, 'liveFinal');
     setShowRunAt(function() { 
-        //h.log(mUID, '{%t} s.streaming_id {}, cfg.cam_scene {}',s.streaming_id,cfg.cam_scene);
+        jsc.obs_v5.setInputSettings(s.streaming_id, s.obs_audio_input_name, false);
+        if (s.obs_start_recording) {
+           jsc.obs_v5.startRecord(s.streaming_id);
+        }
         jsc.obs_v5.setActiveScene(s.streaming_id, cfg.cam_scene); 
-    }, d.endShow - (s[d.c].stop_obs_at * 1000), 'liveCAM'); 
+        try {
+        setActiveScene(s.streaming_id, cfg.cam_scene); 
+        } catch (err) { return };
+        }, d.endShow - (s[d.c].stop_obs_at * 1000), 'liveCAM'); 
 }
 
 function sc(s, d) {
@@ -1082,9 +1141,9 @@ function playOBS(s, mediaName, repeat) {
       h.log(jsc.i18n("Video settings for the plugin not found. Please configure the Holyrics plugin"));
       return;
     }
-    
     var url = createURL(pSettings, mediaName.name, s.samePC);
-
+   
+    jsc.obs_v5.setInputMute(p1, s.obs_audio_input_name, true);
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
     jsc.obs_v5.setInputSettings(p1, p3, {
         input: 'about:blank',
@@ -1441,8 +1500,9 @@ function refreshShowTimeSchedules(module) {
      var timeToEndShow = getFurthestFutureTime(d, s, true);
      
      if (timeToStartShow - 10000 > -1) {
-        setShowRunAt(function() { startSchedulesShow(module); }, timeToStartShow -10000, 'The show will start now!', true);
-        h.notification(jsc.i18n('Opening show scheduled to start at')  + ' ' +  timeToStart(timeToStartShow), 5);
+        setShowRunAt(function() { startSchedulesShow(module); }, timeToStartShow -10000, jsc.i18n('The show will start now!'));
+        //h.notification(jsc.i18n('The show will start now!'),20);
+        h.notification(jsc.i18n('Opening show scheduled to start at')  + ' ' +  timeToStart(timeToStartShow), 20);
      } else {
         h.notification(jsc.i18n('The minimum time for event programming has passed by')  + ' ' +  formatDuration(d.startShow * -1) + '!', 5);
 }
