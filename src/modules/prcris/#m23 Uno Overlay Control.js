@@ -110,7 +110,7 @@ function settings() {
             name: jsc.i18n('Quantidade de overlays a controlar:'),
             min: 1,
             max: 10,
-            default_value: 4,
+            default_value: 1,
             component: 'combobox',
             decimal: false
         },
@@ -173,8 +173,10 @@ function settings() {
                             for (var i = 0; i < s.qtdOverlays; i++) {
                                 var apiKey = o['api' + i];
                                 if (apiKey) {
+                                    try {
                                     var overlayInfo = jsc.uno.getOverlays(apiKey)[0];
                                     var overlayData = jsc.uno.getOverlayContent(apiKey, overlayInfo.id);
+                                    } catch (err) { h.log("",'Erro {}',[err]) };
                                     h.logp(mUID, '{%t} overlayInfo {} {}', i, overlayInfo);
                                     h.logp(mUID, '{%t} overlayData {} {}', i, overlayData);
                                     module.store('overlay' + i, overlayInfo);
@@ -183,6 +185,7 @@ function settings() {
                                     h.log(mUID, '{%t} overlayData {} : {} ', i, overlayData);
                                 }
                             }
+                         module.updatePanel(); 
                         }
                     }
                 });
