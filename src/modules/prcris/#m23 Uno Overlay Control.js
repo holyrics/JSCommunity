@@ -181,8 +181,6 @@ function settings() {
                                     h.logp(mUID, '{%t} overlayData {} {}', i, overlayData);
                                     module.store('overlay' + i, overlayInfo);
                                     module.store('overlayData' + i, overlayData);
-                                    h.log(mUID, '{%t} overlayInfo {} : {} ', i, overlayInfo);
-                                    h.log(mUID, '{%t} overlayData {} : {} ', i, overlayData);
                                 }
                             }
                          module.updatePanel(); 
@@ -246,7 +244,7 @@ function settings() {
 
                 var q = module.inputSettings('cfg_uno_overlay', inputs);
                 if (q !== null) {
-                    var s = module.settings;
+                    module.updatePanel(); 
                 }
             }
         },
@@ -382,7 +380,7 @@ function settings() {
 
                 var q = module.inputSettings('cfg_uno_auto_overlay', inputs);
                 if (q !== null) {
-                    var s = module.settings;
+                    module.updatePanel(); 
                 }
             }
         },
