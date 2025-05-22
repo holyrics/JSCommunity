@@ -252,8 +252,8 @@ function settings() {
             id: 'btnOverlayTitleSchedule',
             type: 'button',
             button_label: jsc.i18n('Configurar'),
-            name: jsc.i18n('Overlay automatizado com a escala'),
-            description: jsc.i18n('No primeiro item exibido de cada título da programação, ativa o Overlay padrão com os dados encontrados na escala do evento que corresponderem ao título.'),
+            name: jsc.i18n('Overlay automatizado'),
+            description: jsc.i18n('No primeiro item que for exibido de cada título da programação, ativa o Overlay padrão com os dados personalizados.'),
             action: function(obj) {
                 var s = module.settings;
                 var qtd = parseInt(s.qtdOverlays, 10);
@@ -290,7 +290,7 @@ function settings() {
                 });
                 
                 inputs.push({
-                    id: 'title',
+                    id: 'scheduled',
                     type: 'boolean',
                     name: jsc.i18n('Exibir "lower third" para escalados por título de mídia')
                 });
@@ -536,14 +536,16 @@ function triggers(module) {
           }
 
           // exibe overlay com o nome da pessoa escalada para aquele título
-          var data = getPersonForTitle(title);
-          h.logp(mUID,'{%t} getPersonForTitle(title) {}', data);
-          if (data && data.name) {
-            if (isNewTitle(title+data.name)) {   
-               h.logp(mUID,'{%t} Persona recebida: {}', data);
-               showOverlayTitle(data, parseInt(module.settings.cfg_uno_auto_overlay.delay) * 1000);
-            } 
-          }
+          if (module.settings.cfg_uno_auto_overlay.scheduled) {
+            var data = getPersonForTitle(title);
+            h.logp(mUID,'{%t} getPersonForTitle(title) {}', data);
+            if (data && data.name) {
+              if (isNewTitle(title+data.name)) {   
+                 h.logp(mUID,'{%t} Persona recebida: {}', data);
+                 showOverlayTitle(data, parseInt(module.settings.cfg_uno_auto_overlay.delay) * 1000);
+              } 
+            }
+          } 
           
           if (!module.restore('unoOn')) {
              h.log(mUID,'{%t} Não iniciou evento, registro de título ignorado {}');
