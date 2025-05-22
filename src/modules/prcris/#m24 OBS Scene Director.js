@@ -117,6 +117,12 @@ function settings() {
             type: 'boolean'
         },
         {
+            id: 'triggerSceneName',
+            label: jsc.i18n('Usar o título de mídia para troca de cena'),
+            description: jsc.i18n('Quando o título acima de um item de mídia possuir o mesmo nome de uma cena, efetua a troca para a cena ao acionar o item. Exemplo: Ao projetar a imagem que está abaixo do Título "Avisos", aciona a cena "Avisos" se ela existir no OBS.'),
+            type: 'boolean'
+        },
+        {
             id: 'btnConfigurarCenasEmBotões',
             type: 'button',
             button_label: jsc.i18n('Configurar'),
@@ -559,11 +565,9 @@ function triggers(module) {
       when: "displaying",
       item: "any_title_subitem",
       action: function(obj) {
-          var title = obj.title;
-         
-          // exibe a cena que possuir o mesmo nome do título
-          setSceneByTitle(obj.title); 
-         
+         if (module.settings.triggerSceneName) {
+             setSceneByTitle(obj.title); 
+         }
       }
     });
     
