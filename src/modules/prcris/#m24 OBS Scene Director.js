@@ -6,6 +6,7 @@ var mUID = mID + '';
 
 function startup(module) { 
   mUID = mID + module.id;
+  refreshTitleOverlayDatabase();
   logState(module.settings.log, mUID, 'startup '+ mID); 
 }
 
@@ -19,7 +20,8 @@ function info() {
             '• Automatic highlight of the active scene<br>' +
             '• Compact menu for fast access to multiple scenes<br>' +
             '• Experimental integration with Home Assistant<br>' +
-            '• PTZ camera control via OBS plugin, including focus adjustment buttons<br><br>' +
+            '• PTZ camera control via OBS plugin, including focus adjustment buttons<br>' +
+            '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
             infoVDDMM,
         allowed_requests: [],
         i18n: {
@@ -36,7 +38,8 @@ function info() {
                     '• Automatic highlight of the active scene<br>' +
                     '• Compact menu for fast access to multiple scenes<br>' +
                     '• Experimental integration with Home Assistant<br>' +
-                    '• PTZ camera control via OBS plugin, including focus adjustment buttons<br><br>' +
+                    '• PTZ camera control via OBS plugin, including focus adjustment buttons<br>' +
+                    '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
                     infoVDDMM,
                 pt: '<html>' +
                     'Módulo para controle inteligente e visual das cenas no OBS, com integração opcional ao Home Assistant e suporte a câmeras PTZ.<br><br>' +
@@ -44,7 +47,8 @@ function info() {
                     '• Destaque automático da cena ativa<br>' +
                     '• Menu compacto com acesso a várias cenas<br>' +
                     '• Integração experimental com Home Assistant<br>' +
-                    '• Controle de câmeras PTZ via plugin do OBS, incluindo botões de foco<br><br>' +
+                    '• Controle de câmeras PTZ via plugin do OBS, incluindo botões de foco<br>' +
+                    '• Ativa automaticamente a cena no OBS que possuir o mesmo nome do título em que a mídia está inserida<br><br>' +
                     infoVDDMM,
                 es: '<html>' +
                     'Módulo para control inteligente y visual de escenas en OBS, con integración opcional con Home Assistant y soporte para cámaras PTZ.<br><br>' +
@@ -52,7 +56,8 @@ function info() {
                     '• Resaltado automático de la escena activa<br>' +
                     '• Menú compacto para acceder rápidamente a múltiples escenas<br>' +
                     '• Integración experimental con Home Assistant<br>' +
-                    '• Control de cámaras PTZ vía plugin de OBS, con botones para enfocar<br><br>' +
+                    '• Control de cámaras PTZ vía plugin de OBS, con botones para enfocar<br>' +
+                    '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título de la media insertada<br><br>' +
                     infoVDDMM,
                 ru: '<html>' +
                     'Модуль для умного и наглядного управления сценами OBS, с возможной интеграцией с Home Assistant и поддержкой камер PTZ.<br><br>' +
@@ -60,12 +65,14 @@ function info() {
                     '• Автоматическое выделение активной сцены<br>' +
                     '• Компактное меню для быстрого доступа к сценам<br>' +
                     '• Экспериментальная интеграция с Home Assistant<br>' +
-                    '• Управление PTZ-камерами через плагин OBS, включая кнопки фокусировки<br><br>' +
+                    '• Управление PTZ-камерами через плагин OBS, включая кнопки фокусировки<br>' +
+                    '• Автоматически активирует сцену OBS с тем же именем, что и заголовок вставленного медиа<br><br>' +
                     infoVDDMM
             }
         }
     };
 }
+
 
 
 
@@ -101,7 +108,6 @@ function settings() {
             component: 'combobox',
             decimal: false,
             onchange: function(obj) {
-                module.repaintPanel();
                 module.updatePanel();
             }
         },
@@ -155,8 +161,7 @@ function settings() {
                     max: 20
                 })
                 module.inputSettings('cfg_cenas', inputs);
-                module.updatePanel();
-                module.repaintPanel();
+                module.updatePanel();               
             }
         },
         {
@@ -245,7 +250,6 @@ function settings() {
                     }
                     ];
                  module.inputSettings('cfg_ha_rf', inputs);  
-                 module.repaintPanel();
                  module.updatePanel();            
                 }
         },
@@ -272,6 +276,8 @@ function settings() {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
+
+
 function setPTZfocus(focusType) {  
 
 
@@ -421,12 +427,7 @@ function actionBtnScenes() {
         },
         status: function(evt) {
           if (module.global.cenaAtual === sceneName) {
-            return {
-              active: true,
-              foreground: 'E6E6E6',
-              background: '790903',
-              iconColor: 'E6E6E6'
-            };
+              return jsc.utils.ui.item_status.danger();
           } else {
             return null;
           }
@@ -519,7 +520,7 @@ function createPTZFocusActions() {
   var actions = [];
 
   for (var i = 0; i < focusOptions.length; i++) {
-    (function(opt) {
+    var fn = function(opt) {
       actions.push({
         id: opt.id,
         label: '',
@@ -542,8 +543,138 @@ function createPTZFocusActions() {
           }
         }
       });
-    })(focusOptions[i]);
+    };
+    fn(focusOptions[i]);
   }
 
   return actions;
+}
+
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
+function triggers(module) {
+    var arr = [];    
+
+    arr.push({
+      id: "cena_titulo_item_midia_"+ mUID,
+      when: "displaying",
+      item: "any_title_subitem",
+      action: function(obj) {
+          var title = obj.title;
+         
+          // exibe a cena que possuir o mesmo nome do título
+          setSceneByTitle(obj.title); 
+         
+      }
+    });
+    
+    arr.push({
+     id: mUID + "_rel"+"oad_schedule",
+     when: "change",
+     item: "playlist",
+     action: function(obj) {
+         refreshTitleOverlayDatabase();
+     }
+    });
+   
+    return arr;
+}
+
+
+
+function setSceneByTitle(title) {
+    if (!module.restore('autoSceneByTitle')){
+        isNewTitle(null,true);
+    }
+    
+    if (!isNewTitle(title)) return
+    
+    var r = jsc.obs_v5.getSceneList(module.settings.receiver_id);
+    for (var i = 0; i < r.length; i++) {
+        h.log(mUID,'{%t} Procurando cena: {}',r[i]);
+        if (r[i] === title) {
+            h.log(mUID,'{%t} Título com cena encontrado: {}',r[i]);
+            jsc.obs_v5.setActiveScene(module.settings.receiver_id, title);
+            break;
+        }
+    }
+}
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e7320747269676765727469746c65227d
+function refreshTitleOverlayDatabase() {
+ 
+  h.log(mUID,'{%t} Executando refreshTitleOverlayDatabase {}');  
+  
+  var runAT = module.restore('runAT')
+  if (runAT) {
+     h.cancelRunAt(runAT);
+     h.log(mUID,'{%t} Execução do evento cancelada {}', runAT); 
+     module.store('runAT',null);
+  }
+ 
+ 
+  if (isTodaySchedule()) {
+    var rAT = getScheduleTime();
+    h.log(mUID,'{%t} Evento agendado para {}', rAT); 
+    var id = h.runAt({
+       name: mUID,
+       datetime: rAT,
+       action: function() {
+            isNewTitle(null, true);
+            h.log(mUID,'{%t} Registro de repetição de títulos inicializado.');
+            module.store('runAT',null);
+            module.store('autoSceneByTitle', true);
+       }
+    });
+    module.store('runAT',id);
+  }
+}
+
+
+function getScheduleTime() {
+    var r = h.hly('GetCurrentSchedule');
+    var s = r.data[0];   
+    h.log(mUID,'{%t} GetCurrentSchedule.datetime:{} ',s.datetime);
+    return s.datetime;
+}
+
+
+function isTodaySchedule() {
+      
+    var scheduleDateTime = getScheduleTime();
+    
+    var scheduleDate = new Date(scheduleDateTime);
+    var today = new Date();
+    
+    var isToday = (
+        scheduleDate.getFullYear() === today.getFullYear() &&
+        scheduleDate.getMonth() === today.getMonth() &&
+        scheduleDate.getDate() === today.getDate()
+    );
+    
+    h.log(mUID,'{%t} scheduleDate:{} isToday:{}',scheduleDate, isToday);
+    
+    return isToday;
+}
+
+function isNewTitle(title, clear) {
+    var key = mUID + '_used_titles';
+    var used = h.getGlobal(key) || [];
+
+    // Se clear for true, limpa o registro
+    if (clear) {
+        h.setGlobal(key, []);
+        h.log(mUID, '{%t} Lista de títulos reiniciada.');
+        return true;
+    }
+
+    // Se já existe, retorna false
+    if (used.indexOf(title) !== -1) {
+        h.log(mUID, '{%t} Título repetido ignorado: {}', title);
+        return false;
+    }
+
+    // Se for novo, adiciona e salva
+    used.push(title);
+    h.setGlobal(key, used);
+    h.log(mUID, '{%t} Título novo registrado: {}', title);
+    return true;
 }
