@@ -154,7 +154,7 @@ function settings() {
                         name: jsc.i18n('Cena ') + ' ' + (i + 1),
                         type: 'string',
                         allowed_values: allowedValues
-                    });
+                     });
                 }
                 inputs.push({type: 'separator'});
                 inputs.push({
@@ -177,6 +177,28 @@ function settings() {
             type: 'title',
             name: jsc.i18n('Funções Experimentais')
         },
+        {
+             id: 'ia_tracking',
+             label: jsc.i18n('Habilitar IA Tracking nativo da PTZ'),
+             description: jsc.i18n('Caso sua PTZ possua comandos para seguir objetos, ao habilitar esta função irá aparecer um ícone para habilitar/desabilitar a função. Para que tudo funcione, você precisa usar um emissor IR com cenas programadas no Home Assistant ou descobrir a URL que ativa e desativa o comando na sua câmera. (Eu descobri o comando da minha usando o depurador do Chrome(f12) e analisando os objetos existentes)'), 
+             type: 'boolean'
+
+        },
+        {
+             id: 'ia_tracking_scene' ,
+             name: jsc.i18n('Cena IA Tracking'),
+             type: 'string',
+             //suggested_values: function(obj) {
+             //   return jsc.obs_v5.getSceneList(obj.input.receiver_id);
+             allowed_values: function(obj) {
+                var sceneList = jsc.obs_v5.getSceneList(obj.input.receiver_id);
+                return [{ value: '', label: '' }].concat(
+                    sceneList.map(function(scene) {
+                      return { value: scene, label: scene };
+                    })
+                );
+             }
+        },  
         {
             id: 'ha_id',
             name: jsc.i18n('Home Assistant (Para comandos em PTZ)'),
@@ -260,8 +282,32 @@ function settings() {
                 }
         },
         {
+            id: 'btnConfigurarHTML',
+            type: 'button',
+            button_label: jsc.i18n('Configurar'),
+            name: jsc.i18n('Comandos Via HTML para funções específicas'),
+            action: function(obj) {
+
+            var inputs =[
+                    {
+                        id: 'ia_tracking_on',
+                        name: jsc.i18n('IA Auto Tracking On'),
+                        type: 'string'
+                    },
+                    {
+                        id: 'ia_tracking_off',
+                        name: jsc.i18n('IA Auto Tracking Off'),
+                        type: 'string'
+                    }
+                    ];
+                 module.inputSettings('cfg_html', inputs);  
+                 module.updatePanel();            
+                }
+        },
+        {
             type: 'separator'
-        },{
+        }
+        ,{
              id: 'ptzFocusActions',
              label: jsc.i18n('Habilitar os botões de foco OBS PTZ Plugin'),
              type: 'boolean'
@@ -282,8 +328,6 @@ function settings() {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-
-
 function setPTZfocus(focusType) {  
 
 
@@ -292,7 +336,12 @@ function setPTZfocus(focusType) {
   jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.SelectNext'); //seleciona a próxima câmera
   
   var atualFocus = h.getGlobal('focusType') || 'manual';
+  h.log(mUID,'{%t} foco atual: {} | novo foco:{}', atualFocus, focusType);
  
+  if (atualFocus === 'auto') {   // se o foco atual é o auto, precisa enviar novamente o comando para desativar o mesmo
+      jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.FocusAutoFocus'); //envia o comando de efetuar o foco
+  } 
+
   if (focusType === 'auto') {
       jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.FocusAutoFocus'); //envia o comando de efetuar o foco
 
@@ -338,37 +387,63 @@ function setPTZfocus(focusType) {
 }
 
 function setActiveScene(scene) {
- var s = module.settings;
- 
- if (scene != 'ia_tracking_off' 
-     && h.getGlobal('iaTrackingActive')
-     && !s.cfg_ha_rf.Scenes) {
-         h.log(mUID,'{%t} desativando autotracking'); 
-         setActiveScene('ia_tracking_off');
-     }
- 
- if (scene === 'ia_tracking_off') {
-    jsc.ha.activateScene(s.ha_id,s.cfg_ha_rf.ia_tracking_off);
-    h.setGlobal('iaTrackingActive',false);
-    return;
- }
+  var s = module.settings;
 
- if (scene === 'ia_tracking_on') {
-    jsc.obs_v5.setActiveScene(s.receiver_id, 'ia_tracking_on');
-    jsc.ha.activateScene(module.settings.ha_id,module.settings.cfg_ha_rf.ia_tracking_on);
-    module.setGlobal('iaTrackingActive',true);
- }
- 
- jsc.obs_v5.setActiveScene(s.receiver_id, scene);
- 
- if (s.cfg_ha_rf.Scenes) {
-    h.setGlobal('focusType','auto');
+  if (scene != 'ia_tracking_off' 
+      && h.getGlobal('iaTrackingActive')
+      && !(s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.Scenes)) {
+    h.log(mUID, '{%t} desativando autotracking'); 
+    setActiveScene('ia_tracking_off');
+  }
+
+  if (scene === 'ia_tracking_off') {
+
+    if (s.ha_id && s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.ia_tracking_off) {
+      jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.ia_tracking_off);
+    }
+
+    if (s.cfg_html && typeof s.cfg_html === 'object' && s.cfg_html.ia_tracking_off) {
+      setHtmlPTZfunction(s.cfg_html.ia_tracking_off);
+    }
+
+    var lastIAScene = module.getGlobal('lastIAScene');
+    if (lastIAScene) {
+      jsc.obs_v5.setActiveScene(s.receiver_id, lastIAScene);
+    }
+
+    h.log(mUID, '{%t} iaTrackingActive {}', false);
+    h.setGlobal('iaTrackingActive', false);
+    return;
+  }
+
+  if (scene === 'ia_tracking_on') {
+
+    module.setGlobal('lastIAScene', jsc.obs_v5.getActiveScene(s.receiver_id));
+
+    jsc.obs_v5.setActiveScene(s.receiver_id, s.ia_tracking_scene);
+
+    if (s.ha_id && s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.ia_tracking_on) {
+      jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.ia_tracking_on);
+    }
+
+    if (s.cfg_html && typeof s.cfg_html === 'object' && s.cfg_html.ia_tracking_on) {
+      setHtmlPTZfunction(s.cfg_html.ia_tracking_on);
+    }
+
+    h.log(mUID, '{%t} iaTrackingActive {}', true);
+    h.setGlobal('iaTrackingActive', true);
+  }
+
+  jsc.obs_v5.setActiveScene(s.receiver_id, scene);
+
+  if (s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.Scenes) {
+    h.setGlobal('focusType', 'auto');
     var ha_sceneId = 'scene.ptz_' + scene.toLowerCase().replace(/ /g, '_');
-    h.setGlobal('iaTrackingActive',false);
-    jsc.ha.activateScene(module.settings.ha_id, ha_sceneId);
- }
- 
- module.repaintPanel();
+    h.setGlobal('iaTrackingActive', false);
+    jsc.ha.activateScene(s.ha_id, ha_sceneId);
+  }
+
+  module.repaintPanel();
 }
 
 
@@ -378,19 +453,38 @@ function getHotkeyList(receiverID) {
     return response.hotkeys;
 }
 
+
+function setHtmlPTZfunction(url) {
+     
+     h.log(mUID,'{%t} setHtmlPTZfunction url {}', url);
+    
+    var options = {
+      headers: { 'Content-Type': 'application/json' },
+      timeout: 5000
+    };
+
+   try {
+    var response = h.apiRequest(url, options);
+   } catch (err) { h.log("",'Erro {}',[err]) };
+
+   h.log(mUID,'{%t} response URL {}', response); 
+}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
   var act = [];
 
   if (module.settings.ptzFocusActions) {
      act.push.apply(act, createPTZFocusActions());
+     act.push(actSeparator());
   }
-  
-  if (module.settings.cfg_ha_rf.ia_tracking_on) {
+
+  if (module.settings.ia_tracking) {
       act.push(actionPTZAutoTracking());
+      act.push(actSeparator());
   }
   
   act.push.apply(act, actionBtnScenes());
+  act.push(actSeparator());
   act.push(actionScenesMenu());
 
   return act;
@@ -465,13 +559,8 @@ return   {
                  module.repaintPanel();         
             },
             status: function(evt) {
-              if (h.getGlobal('iaTrackingActive')) {
-                return {
-                    active: true,           // default = false
-                    foreground: 'E6E6E6',   // default = null
-                    background: '790903',   // default = null
-                    iconColor: 'E6E6E6'     // default = null
-                };
+              if (h.getGlobal('iaTrackingActive')) {              
+                 return jsc.utils.ui.item_status.danger();
               } else {
                 return null; // default values
               }
@@ -538,12 +627,7 @@ function createPTZFocusActions() {
         status: function(evt) {
           var atualFocus = h.getGlobal('focusType') || 'manual';
           if (atualFocus === opt.type) {
-            return {
-              active: true,
-              foreground: 'E6E6E6',
-              background: '790903',
-              iconColor: 'E6E6E6'
-            };
+            return jsc.utils.ui.item_status.danger();
           } else {
             return null;
           }
@@ -556,6 +640,12 @@ function createPTZFocusActions() {
   return actions;
 }
 
+
+function actSeparator() {
+    return {icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="940" zoomAndPan="magnify" viewBox="0 0 705 591.000005" height="788" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="e4f0dd6e04"><path d="M 331.507812 0 L 373.492188 0 L 373.492188 590 L 331.507812 590 Z M 331.507812 0 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#e4f0dd6e04)"><path fill="#ffffff" d="M 331.507812 0 L 373.492188 0 L 373.492188 590.070312 L 331.507812 590.070312 Z M 331.507812 0 " fill-opacity="1" fill-rule="nonzero"/></g></svg>',
+            hint : 'separator'
+            };
+}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 function triggers(module) {
     var arr = [];    
