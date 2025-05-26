@@ -82,9 +82,9 @@ var booksAliases = {
 };
 
 var slideDescriptionMap = {
-    verse: ['verse', 'verso', 'стих', 'versetto'],
-    chorus: ['chorus', 'coro', 'refrao', 'припев', 'coro'],
-    instrumental: ['instrumental', 'инструментальный', 'strumentale']
+    verse: ['verse', 'verso', 'стих', 'versetto', 'вірш'],
+    chorus: ['chorus', 'coro', 'refrao', 'припев', 'coro', 'приспів'],
+    instrumental: ['instrumental', 'инструментальный', 'strumentale', 'інструментальний']
 };
 
 var styles = {
