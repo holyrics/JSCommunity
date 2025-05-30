@@ -218,6 +218,10 @@ function settings() {
                 return jsc.obs_v5.getSceneItemList(obj.input.receiver_id, obj.input.scene_name);
             }
         }, {
+            id: 'hide_title',
+            label: jsc.i18n('Desbilitar exibição de título da música no OBS'),
+            type: 'boolean',
+        }, {
             id: 'timerTexto',
             name: jsc.i18n('F8 automático') + ' (' + jsc.i18n('segundos') + ')',
             description: '<html>' + jsc.i18n('Tempo mínimo de exibição de um slide antes de ativar a tecla F8 e ocultar o item') + '.<br>' +
@@ -298,7 +302,10 @@ function clearIntervalVerse() {
 function verseOBS(show, obj, module) {
   var trigg = obj.metadata.trigger.id;
   h.log(mUID, '==== ' + jsc.i18n('Trigger acionada') + ': {}', trigg);
-
+  
+ 
+  //h.logp(mUID,'{%t} dados do OBJ {}',obj);
+     
   var type = typePres();
   var typeTrigg = typeOfTrigger(trigg);
 
@@ -325,6 +332,12 @@ function verseOBS(show, obj, module) {
   var item = module.settings['scene_item_name_' + type];
   var time = module.settings.timerTexto;
 
+  if (module.settings.hide_title && obj.slide_show_index == -1 && obj.metadata && obj.metadata.trigger && obj.metadata.trigger.item === 'any_song_slide') {
+     sceneItemEnabled(receiverID, scene, item, false);
+     module.setGlobal('wait_first_slide',true);
+     return null;
+  }
+  
   h.log(mUID, "keyItem: {} | item: {}", 'scene_item_name_' + type, item);
 
   if (!scene) {
@@ -337,7 +350,12 @@ function verseOBS(show, obj, module) {
   }
 
   h.log(mUID, 'type: {} setSceneItemEnabled( "{}", "{}", "{}", {})', type, receiverID, scene, item, show);
-  sceneItemEnabled(receiverID, scene, item, show);
+  var wait = 0;
+  if (module.getGlobal('wait_first_slide')) {
+     wait = 100;
+     module.setGlobal('wait_first_slide', false);
+  }
+  h.setTimeout(sceneItemEnabled(receiverID, scene, item, show), wait);
 }
 
 function sceneItemEnabled(receiverID, sceneName, sceneItemNameOrID, show) {
