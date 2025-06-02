@@ -5,6 +5,12 @@ var mUID = mID+'';
 
 function startup(module) { 
    mUID = mID + module.id;
+   h.setTimeout( function (evt) { 
+       if (module.isEnabled()) { 
+              onPlaylistChange()
+       }
+    }
+  , 200);
 }
 
 function info() {
@@ -23,10 +29,6 @@ function info() {
                 ru: 'Автоматическая загрузка плейлиста'
             },
             description: {
-                en: 'Automate your preparation! This module automatically loads the playlist that has the same name as the selected event in Holyrics.<br>' +
-                    'Perfect for media teams seeking agility, organization, and excellence in worship services and events.<br>' +
-                    'Eliminate repetitive tasks and gain time to focus on what truly matters: ministering with quality and purpose.<br>' +
-                    infoVDDMM,
                 pt: 'Automatize a sua preparação! Este módulo carrega automaticamente a playlist que tiver o mesmo nome do evento selecionado no Holyrics.<br>' +
                     'Ideal para equipes de mídia que desejam agilidade, organização e excelência nos cultos e eventos.<br>' +
                     'Elimine tarefas repetitivas e ganhe tempo para o que realmente importa: ministrar com qualidade e foco no Reino.<br>' +
@@ -65,7 +67,9 @@ function settings() {
             id: 'wallpaperPathPrefix',
             name: jsc.i18n('Pasta - papel de parede'),
             description: jsc.i18n('Define a pasta padrão onde estão as imagens de papel de parede. Se estiver vazio, as imagens serão procuradas na pasta raiz.'),
-            type: 'string'
+            type: 'image',
+            accept_folder: true,
+            accept_file: false
         }
     ];
 }
@@ -73,7 +77,7 @@ function settings() {
 function triggers(module) {
     var arr = [];    
     arr.push({
-         id: "kRY9vGYQ",
+         id: "playlist_change",
          when: "change",
          item: "playlist",
          action: function(obj) {
