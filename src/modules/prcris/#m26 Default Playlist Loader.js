@@ -5,8 +5,6 @@ var mUID = mID+'';
 
 function startup(module) { 
    mUID = mID + module.id;
-   onPlaylistChange();
-   logState(module.settings.log, mUID, 'startup '+ mID);
 }
 
 function info() {
