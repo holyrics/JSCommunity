@@ -77,6 +77,7 @@ function settings() {
 function triggers(module) {
     var arr = [];    
     arr.push({
+         name: mUID + "_playlist_change",
          when: "change",
          item: "playlist",
          action: function(obj) {
