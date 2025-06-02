@@ -105,7 +105,7 @@ function onPlaylistChange() {
         h.setGlobal(key, false);
         jsc.playlist.loadSavedPlaylistByEventName();
          if (module.settings.changeWallpaper) {
-            jsc.playlist.setupWallpaperByEventName(module.settings.wallpaperPathPrefix || '');
+            jsc.playlist.setupWallpaperByEventName(module.settings.wallpaperPathPrefix.name || '');
          }
     }, 1000);
 }
