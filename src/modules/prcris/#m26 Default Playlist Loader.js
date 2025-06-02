@@ -77,7 +77,6 @@ function settings() {
 function triggers(module) {
     var arr = [];    
     arr.push({
-         id: "playlist_change",
          when: "change",
          item: "playlist",
          action: function(obj) {
@@ -105,7 +104,7 @@ function onPlaylistChange() {
         h.setGlobal(key, false);
         jsc.playlist.loadSavedPlaylistByEventName();
          if (module.settings.changeWallpaper) {
-            jsc.playlist.setupWallpaperByEventName(module.settings.wallpaperPathPrefix || '');
+            jsc.playlist.setupWallpaperByEventName(module.settings.wallpaperPathPrefix.file_fullname || '');
          }
     }, 1000);
 }
