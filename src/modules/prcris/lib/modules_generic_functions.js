@@ -90,3 +90,9 @@ function convertBars(path, back) {
 function mediaPath(path) {
    return convertBars(h.hly('GetVersion').data.baseDir + '/Holyrics/files/media/' + (path ? path + '/' : ''));
 }
+
+function actSeparator() {
+    return {icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="940" zoomAndPan="magnify" viewBox="0 0 705 591.000005" height="788" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="e4f0dd6e04"><path d="M 331.507812 0 L 373.492188 0 L 373.492188 590 L 331.507812 590 Z M 331.507812 0 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#e4f0dd6e04)"><path fill="#ffffff" d="M 331.507812 0 L 373.492188 0 L 373.492188 590.070312 L 331.507812 590.070312 Z M 331.507812 0 " fill-opacity="1" fill-rule="nonzero"/></g></svg>',
+            hint : 'separator'
+            };
+}

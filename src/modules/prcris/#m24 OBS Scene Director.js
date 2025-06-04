@@ -18,12 +18,28 @@ function info() {
             'Module for smart and visual control of OBS scenes, with optional integration to Home Assistant and support for PTZ cameras.<br><br>' +
             '• Customizable buttons for quick scene switching<br>' +
             '• Automatic highlight of the active scene<br>' +
+            '• Button to start/stop live streaming<br>' +
+            '• Button to start/stop recording<br>' +
+            '• Button to mute/unmute OBS audio input<br>' +
             '• Compact menu for fast access to multiple scenes<br>' +
-            '• Experimental integration with Home Assistant<br>' +
-            '• PTZ camera control via OBS plugin, including focus adjustment buttons<br>' +
             '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
+            '<b>== To work, you need to allow SetInputSettings and GetStreamServiceSettings in the OBS receiver blacklist</b><br><br>' +
             infoVDDMM,
-        allowed_requests: [],
+        allowed_requests: [
+            allowedPrcrisModuleRequests
+        ],
+        permissions: [
+            {
+                type: 'blacklist_request',
+                key: 'obs_v5',
+                value: 'SetInputSettings'
+            },
+            {
+                type: 'blacklist_request',
+                key: 'obs_v5',
+                value: 'GetStreamServiceSettings'
+            }
+        ],
         i18n: {
             name: {
                 en: 'OBS Scene Director',
@@ -32,46 +48,45 @@ function info() {
                 ru: 'Режиссёр Сцен OBS'
             },
             description: {
-                en: '<html>' +
-                    'Module for smart and visual control of OBS scenes, with optional integration to Home Assistant and support for PTZ cameras.<br><br>' +
-                    '• Customizable buttons for quick scene switching<br>' +
-                    '• Automatic highlight of the active scene<br>' +
-                    '• Compact menu for fast access to multiple scenes<br>' +
-                    '• Experimental integration with Home Assistant<br>' +
-                    '• PTZ camera control via OBS plugin, including focus adjustment buttons<br>' +
-                    '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
-                    infoVDDMM,
                 pt: '<html>' +
                     'Módulo para controle inteligente e visual das cenas no OBS, com integração opcional ao Home Assistant e suporte a câmeras PTZ.<br><br>' +
                     '• Botões customizáveis para troca rápida de cena<br>' +
                     '• Destaque automático da cena ativa<br>' +
+                    '• Botão para iniciar/encerrar a transmissão ao vivo<br>' +
+                    '• Botão para iniciar/encerrar a gravação<br>' +
+                    '• Botão ligar/desligar a entrada de áudio do OBS<br>' +
                     '• Menu compacto com acesso a várias cenas<br>' +
-                    '• Integração experimental com Home Assistant<br>' +
-                    '• Controle de câmeras PTZ via plugin do OBS, incluindo botões de foco<br>' +
                     '• Ativa automaticamente a cena no OBS que possuir o mesmo nome do título em que a mídia está inserida<br><br>' +
+                    '<b>== Para funcionar, você precisa liberar os recursos SetInputSettings e GetStreamServiceSettings na blacklist do receptor do OBS</b><br><br>' +
                     infoVDDMM,
                 es: '<html>' +
                     'Módulo para control inteligente y visual de escenas en OBS, con integración opcional con Home Assistant y soporte para cámaras PTZ.<br><br>' +
                     '• Botones personalizables para cambio rápido de escena<br>' +
                     '• Resaltado automático de la escena activa<br>' +
+                    '• Botón para iniciar/detener la transmisión en vivo<br>' +
+                    '• Botón para iniciar/detener la grabación<br>' +
+                    '• Botón para activar/desactivar la entrada de audio de OBS<br>' +
                     '• Menú compacto para acceder rápidamente a múltiples escenas<br>' +
-                    '• Integración experimental con Home Assistant<br>' +
-                    '• Control de cámaras PTZ vía plugin de OBS, con botones para enfocar<br>' +
-                    '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título de la media insertada<br><br>' +
+                    '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título del medio insertado<br><br>' +
+                    '<b>== Para que funcione, necesitas permitir SetInputSettings y GetStreamServiceSettings en la blacklist del receptor de OBS</b><br><br>' +
                     infoVDDMM,
                 ru: '<html>' +
                     'Модуль для умного и наглядного управления сценами OBS, с возможной интеграцией с Home Assistant и поддержкой камер PTZ.<br><br>' +
                     '• Настраиваемые кнопки для быстрой смены сцен<br>' +
                     '• Автоматическое выделение активной сцены<br>' +
+                    '• Кнопка для начала/остановки прямой трансляции<br>' +
+                    '• Кнопка для начала/остановки записи<br>' +
+                    '• Кнопка для включения/выключения аудиовхода OBS<br>' +
                     '• Компактное меню для быстрого доступа к сценам<br>' +
-                    '• Экспериментальная интеграция с Home Assistant<br>' +
-                    '• Управление PTZ-камерами через плагин OBS, включая кнопки фокусировки<br>' +
                     '• Автоматически активирует сцену OBS с тем же именем, что и заголовок вставленного медиа<br><br>' +
+                    '<b>== Чтобы работало, необходимо разрешить SetInputSettings и GetStreamServiceSettings в черном списке OBS-приемника</b><br><br>' +
                     infoVDDMM
             }
         }
     };
 }
+
+
 
 
 
@@ -94,6 +109,33 @@ function settings() {
             description: '',
             type: 'receiver',
             receiver: 'obs_v5'
+        },
+        {
+            type: 'separator'
+        },
+        {
+            id: 'show_stream_controls',
+            label: jsc.i18n('Exibir botão de transmissão'),
+            type: 'boolean'
+        },
+        {
+            id: 'show_record_controls',
+            label: jsc.i18n('Exibir botão de gravação'),
+            type: 'boolean'
+        },
+        {
+            id: 'show_mute_controls',
+            label: jsc.i18n('Exibir botão de mute'),
+            type: 'boolean'
+        },
+        {
+            id: 'obs_audio_input_name',
+            name: jsc.i18n('OBS audio input name'),
+            description: jsc.i18n('Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene.'),
+            type: 'string',
+            suggested_values: function(obj) {
+                   return jsc.obs_v5.getAudioInputList(obj.input.receiver_id);
+            }
         },
         {
             type: 'separator'
@@ -169,150 +211,7 @@ function settings() {
                 module.inputSettings('cfg_cenas', inputs);
                 module.updatePanel();               
             }
-        },
-        {
-            type: 'separator'
-        },
-        {
-            type: 'title',
-            name: jsc.i18n('Funções Experimentais')
-        },
-        {
-             id: 'ia_tracking',
-             label: jsc.i18n('Habilitar IA Tracking nativo da PTZ'),
-             description: jsc.i18n('Caso sua PTZ possua comandos para seguir objetos, ao habilitar esta função irá aparecer um ícone para habilitar/desabilitar a função. Para que tudo funcione, você precisa usar um emissor IR com cenas programadas no Home Assistant ou descobrir a URL que ativa e desativa o comando na sua câmera. (Eu descobri o comando da minha usando o depurador do Chrome(f12) e analisando os objetos existentes)'), 
-             type: 'boolean'
-
-        },
-        {
-             id: 'ia_tracking_scene' ,
-             name: jsc.i18n('Cena IA Tracking'),
-             type: 'string',
-             //suggested_values: function(obj) {
-             //   return jsc.obs_v5.getSceneList(obj.input.receiver_id);
-             allowed_values: function(obj) {
-                var sceneList = jsc.obs_v5.getSceneList(obj.input.receiver_id);
-                return [{ value: '', label: '' }].concat(
-                    sceneList.map(function(scene) {
-                      return { value: scene, label: scene };
-                    })
-                );
-             }
-        },  
-        {
-            id: 'ha_id',
-            name: jsc.i18n('Home Assistant (Para comandos em PTZ)'),
-            description: '<html><hr>' + jsc.i18n('Associate with the Home Assistant receiver'),
-            type: 'receiver',
-            receiver: 'ha'                        
-        },
-        {
-            id: 'btnConfigurarHA_RF',
-            type: 'button',
-            button_label: jsc.i18n('Configurar'),
-            name: jsc.i18n('Comandos PTZ via Infravermelho no HA'),
-            action: function(obj) {
-
-            var sceneList = jsc.ha.getSceneList(obj.ha_id);	
-            var allowedValues = [{ value: '', label: '' }].concat(
-                  sceneList.map(function(scene) {
-                    return { value: scene, label: scene };
-                  })
-            );
-            var inputs =[
-                    {
-                        id: 'ia_tracking_on',
-                        name: jsc.i18n('IA Auto Tracking On'),
-                        description: jsc.i18n('Cena Emissor Infravermelho para habilitar IA Auto Tracking'),
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'ia_tracking_off',
-                        name: jsc.i18n('IA Auto Tracking Off'),
-                        description: jsc.i18n('Cena Emissor Infravermelho para desabilitar IA Auto Tracking'),
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'autofocus',
-                        name: jsc.i18n('Auto Focus'),
-                        description: jsc.i18n('Cena Emissor Infravermelho para habilitar Foco Automático'),
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'manualfocus',
-                        name: jsc.i18n('Manual Focus'),
-                        description: jsc.i18n('Cena Emissor Infravermelho para desabilitar Foco Automático'),
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'focus_up',
-                        name: jsc.i18n('Manual Focus')+' +',
-                        description: jsc.i18n('Ajuste do foco manual')+' +',
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'focus_down',
-                        name: jsc.i18n('Manual Focus')+' -',
-                        description: jsc.i18n('Ajuste do foco manual')+' -',
-                        type: 'string',
-                        allowed_values: allowedValues
-                    },
-                    {
-                        id: 'atrasoHA',
-                        name: jsc.i18n('Tempo médio de execução HA (ms)'),
-                        description: jsc.i18n('Tempo de resposta do Home Assistant, para aguardar terminar e enviar o próximo comando'),
-                        type: 'string',
-                        default_value : 4000
-                        
-                    },
-                    {
-                        id: 'Scenes',
-                        label: jsc.i18n('Troca de cena por IR com cena do OBS'),
-                        description: jsc.i18n('Quando trocar de cena pelo holyrics, envia um comando para o HA, executando a cena iniciando com "ptz_" seguido do mesmo nome da cena do OBS '),
-                        type: 'boolean'
-                    }
-                    ];
-                 module.inputSettings('cfg_ha_rf', inputs);  
-                 module.updatePanel();            
-                }
-        },
-        {
-            id: 'btnConfigurarHTML',
-            type: 'button',
-            button_label: jsc.i18n('Configurar'),
-            name: jsc.i18n('Comandos Via HTML para funções específicas'),
-            action: function(obj) {
-
-            var inputs =[
-                    {
-                        id: 'ia_tracking_on',
-                        name: jsc.i18n('IA Auto Tracking On'),
-                        type: 'string'
-                    },
-                    {
-                        id: 'ia_tracking_off',
-                        name: jsc.i18n('IA Auto Tracking Off'),
-                        type: 'string'
-                    }
-                    ];
-                 module.inputSettings('cfg_html', inputs);  
-                 module.updatePanel();            
-                }
-        },
-        {
-            type: 'separator'
-        }
-        ,{
-             id: 'ptzFocusActions',
-             label: jsc.i18n('Habilitar os botões de foco OBS PTZ Plugin'),
-             type: 'boolean'
-
-        },     
+        },            
         {
             type: 'separator'
         },
@@ -328,131 +227,9 @@ function settings() {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
-function setPTZfocus(focusType) {  
-
-
-  var s = module.settings;
-
-  jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.SelectNext'); //seleciona a próxima câmera
-  
-  var atualFocus = h.getGlobal('focusType') || 'manual';
-  h.log(mUID,'{%t} foco atual: {} | novo foco:{}', atualFocus, focusType);
- 
-  if (atualFocus === 'auto') {   // se o foco atual é o auto, precisa enviar novamente o comando para desativar o mesmo
-      jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.FocusAutoFocus'); //envia o comando de efetuar o foco
-  } 
-
-  if (focusType === 'auto') {
-      jsc.obs_v5.triggerHotkeyByName(module.settings.receiver_id, 'PTZ.FocusAutoFocus'); //envia o comando de efetuar o foco
-
-      if (s.cfg_ha_rf.Scenes) {
-         h.log(mUID,'{%t} s.cfg_ha_rf.autofocus {}',s.cfg_ha_rf.autofocus);
-         jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.autofocus)
-      }
-  } 
-
-  if (focusType === 'manual') {
-      jsc.obs_v5.triggerHotkeyByName(s.receiver_id, 'PTZ.FocusOneTouch'); //envia o comando de efetuar o foco
-
-      if (s.cfg_ha_rf.Scenes) {
-          h.log(mUID,'{%t} s.cfg_ha_rf.manualfocus {}',s.cfg_ha_rf.manualfocus);
-          jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.manualfocus);        
-      }
-  } 
-
-  if (focusType === 'far') {
-      jsc.obs_v5.triggerHotkeyByName(s.receiver_id, 'PTZ.FocusFar'); //envia o comando de efetuar o foco
-
-      if (s.cfg_ha_rf.Scenes) {
-         jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.focus_up)
-      }
-      
-  } 
-
-  if (focusType === 'near') {
-      jsc.obs_v5.triggerHotkeyByName(s.receiver_id, 'PTZ.FocusNear'); //envia o comando de efetuar o foco
-
-      if (s.cfg_ha_rf.Scenes) {
-         jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.focus_down)
-      }
-  } 
-
-  if (focusType != 'auto') {
-     focusType = 'manual';
-  }   
-  
-  h.log(mUID,'{%t} focusType {}', focusType);
-  h.setGlobal('focusType', focusType);
-  module.repaintPanel();
-}
-
 function setActiveScene(scene) {
-  var s = module.settings;
-
-  if (scene != 'ia_tracking_off' 
-      && h.getGlobal('iaTrackingActive')
-      && !(s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.Scenes)) {
-    h.log(mUID, '{%t} desativando autotracking'); 
-    setActiveScene('ia_tracking_off');
-  }
-
-  if (scene === 'ia_tracking_off') {
-
-    if (s.ha_id && s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.ia_tracking_off) {
-      jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.ia_tracking_off);
-    }
-
-    if (s.cfg_html && typeof s.cfg_html === 'object' && s.cfg_html.ia_tracking_off) {
-      setHtmlPTZfunction(s.cfg_html.ia_tracking_off);
-    }
-
-    var lastIAScene = module.getGlobal('lastIAScene');
-    if (lastIAScene) {
-      jsc.obs_v5.setActiveScene(s.receiver_id, lastIAScene);
-    }
-
-    h.log(mUID, '{%t} iaTrackingActive {}', false);
-    h.setGlobal('iaTrackingActive', false);
-    return;
-  }
-
-  if (scene === 'ia_tracking_on') {
-
-    module.setGlobal('lastIAScene', jsc.obs_v5.getActiveScene(s.receiver_id));
-
-    jsc.obs_v5.setActiveScene(s.receiver_id, s.ia_tracking_scene);
-
-    if (s.ha_id && s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.ia_tracking_on) {
-      jsc.ha.activateScene(s.ha_id, s.cfg_ha_rf.ia_tracking_on);
-    }
-
-    if (s.cfg_html && typeof s.cfg_html === 'object' && s.cfg_html.ia_tracking_on) {
-      setHtmlPTZfunction(s.cfg_html.ia_tracking_on);
-    }
-
-    h.log(mUID, '{%t} iaTrackingActive {}', true);
-    h.setGlobal('iaTrackingActive', true);
-  }
-
-  jsc.obs_v5.setActiveScene(s.receiver_id, scene);
-
-  if (s.cfg_ha_rf && typeof s.cfg_ha_rf === 'object' && s.cfg_ha_rf.Scenes) {
-    h.setGlobal('focusType', 'auto');
-    var ha_sceneId = 'scene.ptz_' + scene.toLowerCase().replace(/ /g, '_');
-    h.setGlobal('iaTrackingActive', false);
-    jsc.ha.activateScene(s.ha_id, ha_sceneId);
-  }
-
-  module.repaintPanel();
+  jsc.obs_v5.setActiveScene(module.settings.receiver_id, scene);
 }
-
-
-
-function getHotkeyList(receiverID) {
-    var response = jsc.obs_v5.request(receiverID, 'GetHotkeyList');
-    return response.hotkeys;
-}
-
 
 function setHtmlPTZfunction(url) {
      
@@ -472,23 +249,138 @@ function setHtmlPTZfunction(url) {
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 function actions(module) {
   var act = [];
-
-  if (module.settings.ptzFocusActions) {
-     act.push.apply(act, createPTZFocusActions());
-     act.push(actSeparator());
+  var s = module.settings;
+  
+  if (s.show_stream_controls) {
+     act.push(actLiveStatus());
   }
 
-  if (module.settings.ia_tracking) {
-      act.push(actionPTZAutoTracking());
-      act.push(actSeparator());
+  if (s.show_record_controls) {
+     act.push(actRecStatus());
   }
   
+  if (s.show_mute_controls) {
+     act.push(actionStatusChannel());
+  }
+  
+  if (s.show_mute_controls || s.show_record_controls || s.show_stream_controls) {   
+     act.push(actSeparator());
+  }   
+     
   act.push.apply(act, actionBtnScenes());
   act.push(actSeparator());
   act.push(actionScenesMenu());
 
   return act;
 }
+
+function actionStatusChannel() { 
+    var receiverID = module.settings.receiver_id;
+    var inputName = module.settings.obs_audio_input_name;
+    var mute = jsc.obs_v5.getInputMute(receiverID, inputName);    
+    
+    return {
+        id: 'toggleMute',
+        hint: mute ?  jsc.i18n('Ativar Audio OBS') : jsc.i18n('Desativar Audio OBS'),
+        icon : mute ?  'volume_off' : 'volume_up',
+        action: function(evt) {
+          var mute = jsc.obs_v5.getInputMute(receiverID, inputName); 
+          jsc.obs_v5.setInputMute(receiverID, inputName, !mute); // alterna o estado de mute
+        },
+        status: function(evt) {
+            if (!module.isEnabled()) {
+               return
+            }
+            var mute = jsc.obs_v5.getInputMute(receiverID, inputName);
+            var result = {};
+            result.icon = mute ?  'volume_off' : 'volume_up';
+            result.hint = mute ?  jsc.i18n('Ativar Audio OBS') : jsc.i18n('Desativar Audio OBS');
+            if (mute) {
+               return jsc.utils.ui.item_status.danger(result);
+            } else {
+               return result;
+            }
+            
+        }
+    };
+}
+function actRecStatus() {
+    var receiverID = module.settings.receiver_id;
+    return {
+        id: 'recordControl',
+        label: '',
+        hint: jsc.i18n('Gravação OBS'),
+        icon: 'system:fiber_manual_record',
+        action: function(evt) {
+            var recording = getRecordingStatus(receiverID);
+            if (recording && recording.active) {
+               if (h.confirm(jsc.i18n('Deseja encerrar a gravação?'), jsc.i18n('Confirmação'))) {
+                  h.log(mUID,'{%t} '+jsc.i18n('Gravação encerrada'));
+                  jsc.obs_v5.stopRecord(receiverID)
+               } 
+            } else {
+               h.log(mUID,'{%t} '+jsc.i18n('Gravação iniciada'));
+               jsc.obs_v5.startRecord(receiverID);
+            }
+        },
+        status: function(evt) {
+            if (!module.isEnabled()) {
+               return
+            }
+            var recording = getRecordingStatus(receiverID);
+             if (recording && recording.active) {
+                return jsc.utils.ui.item_status.danger();
+            } else {
+                return null;
+            }
+        }
+    };
+}
+
+function actLiveStatus() {
+    var receiverID = module.settings.receiver_id;
+    return {
+        id: 'streamingControl',
+        label: '',
+        icon: 'live_tv',
+        hint: jsc.i18n('Transmissão OBS'),
+        action: function(evt) {
+            var isConfigured = isYoutubeStreamingConfigured(receiverID);
+            if (!isConfigured) {
+               h.confirm(jsc.i18n('Você precisa configurar a transmissão no OBS primeiro!'),jsc.i18n('ATENÇÃO'));
+               return;
+            } else {
+               var streamStarted = getStreamingStatus(receiverID).active;
+               if (!streamStarted) {
+                 if (h.confirm(jsc.i18n('Deseja iniciar a transmissão?'), jsc.i18n('Confirmação'))) {
+                    jsc.obs_v5.startStream(receiverID);
+                 }
+               } else {
+                 if (h.confirm(jsc.i18n('Deseja encerrar a transmissão?'), jsc.i18n('Confirmação'))) {
+                    jsc.obs_v5.stopStream(receiverID);
+                 }
+               }
+           }
+        },
+        status: function(evt) {
+            if (!module.isEnabled()) {
+               return
+            }
+            var isConfigured = isYoutubeStreamingConfigured(receiverID);
+            if (!isConfigured) {
+                return jsc.utils.ui.item_status.warning();
+            } else {
+              var streamStarted = getStreamingStatus(receiverID).active;
+              if (streamStarted) { 
+                return jsc.utils.ui.item_status.danger()
+              } else {
+                return null;
+              }
+            }
+        }
+    };
+}
+
 
 function actionBtnScenes() {
   var scenes = jsc.obs_v5.getSceneList(module.settings.receiver_id); // array de strings
@@ -541,33 +433,6 @@ function actionBtnScenes() {
   return buttons;
 }
 
-
-
-
-function actionPTZAutoTracking() {
-return   { 
-            id: 'PTZAutoTracking',
-            label: '',
-            icon : 'auto_fix_high',
-            hint : jsc.i18n('Envia um comando de IR para ativar/desativar o modo "Auto Tracking" da Câmera PTZ'),
-            action: function(evt) {
-                 if (h.getGlobal('iaTrackingActive')) {
-                   setActiveScene('ia_tracking_off');
-                 } else {
-                   setActiveScene('ia_tracking_on');
-                 }    
-                 module.repaintPanel();         
-            },
-            status: function(evt) {
-              if (h.getGlobal('iaTrackingActive')) {              
-                 return jsc.utils.ui.item_status.danger();
-              } else {
-                return null; // default values
-              }
-           }
-         }
-}
-
 function actionScenesMenu() {
     var scenes = jsc.obs_v5.getSceneList(module.settings.receiver_id);
     var menu = {
@@ -603,49 +468,6 @@ function actionScenesMenu() {
     return menu;
 }
 
-
-function createPTZFocusActions() {
-  var focusOptions = [
-    { type: 'auto',   id: 'PTZAutoFocus',     icon: 'center_focus_strong', hint: jsc.i18n('Ativa/Desativa foco automático no plugin da PTZ') },
-    { type: 'near',   id: 'PTZNearFocus',     icon: 'video_camera_front',  hint: jsc.i18n('Em uma cena mostrando a igreja toda, foca no que estiver mais próximo.') },
-    { type: 'far',    id: 'PTZFarFocus',      icon: 'video_camera_back',   hint: jsc.i18n('Em uma cena mostrando a igreja toda, foca no que estiver mais distante.') },
-    { type: 'manual', id: 'PTZOneTouchFocus', icon: 'center_focus_weak',   hint: jsc.i18n('Envia um comando de foco manual para plugin da PTZ') }
-  ];
-
-  var actions = [];
-
-  for (var i = 0; i < focusOptions.length; i++) {
-    var fn = function(opt) {
-      actions.push({
-        id: opt.id,
-        label: '',
-        icon: opt.icon,
-        hint: jsc.i18n(opt.hint),
-        action: function(evt) {
-          setPTZfocus(opt.type);
-        },
-        status: function(evt) {
-          var atualFocus = h.getGlobal('focusType') || 'manual';
-          if (atualFocus === opt.type) {
-            return jsc.utils.ui.item_status.danger();
-          } else {
-            return null;
-          }
-        }
-      });
-    };
-    fn(focusOptions[i]);
-  }
-
-  return actions;
-}
-
-
-function actSeparator() {
-    return {icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="940" zoomAndPan="magnify" viewBox="0 0 705 591.000005" height="788" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="e4f0dd6e04"><path d="M 331.507812 0 L 373.492188 0 L 373.492188 590 L 331.507812 590 Z M 331.507812 0 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#e4f0dd6e04)"><path fill="#ffffff" d="M 331.507812 0 L 373.492188 0 L 373.492188 590.070312 L 331.507812 590.070312 Z M 331.507812 0 " fill-opacity="1" fill-rule="nonzero"/></g></svg>',
-            hint : 'separator'
-            };
-}
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 function triggers(module) {
     var arr = [];    
@@ -771,4 +593,106 @@ function isNewTitle(title, clear) {
     h.setGlobal(key, used);
     h.log(mUID, '{%t} Título novo registrado: {}', title);
     return true;
+}
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226f62735f66756e6374696f6e73227d
+function isYoutubeStreamingConfigured(receiverID) {
+    var response = jsc.obs_v5.request(receiverID, 'GetStreamServiceSettings');
+    h.log(mUID, 'GetStreamServiceSettings response: {}', response);
+
+    var settings = response && response.streamServiceSettings;
+    var stream_id = settings && settings.stream_id;
+
+    if (!stream_id) return false;
+
+    var storedList = module.restore('stream_ids') || [];
+    var i, item, isUsed = false;
+
+    for (i = 0; i < storedList.length; i++) {
+        if (storedList[i].stream_id === stream_id) {
+            item = storedList[i];
+            isUsed = item.used === true;
+            break;
+        }
+    }
+
+    h.log(mUID, 'Streaming ID configurado: {} | Já usado: {}', [stream_id, isUsed]);
+
+    return !isUsed;
+}
+
+function getStreamingStatus(receiverID) {
+    try {
+        var response = jsc.obs_v5.request(receiverID, 'GetStreamStatus');
+        h.log(mUID, 'GetStreamStatus response: {}', response);
+
+        var isActive = response && response.outputActive === true;
+
+        var streamSettings = jsc.obs_v5.request(receiverID, 'GetStreamServiceSettings');
+        var settings = streamSettings && streamSettings.streamServiceSettings;
+        var stream_id = settings && settings.stream_id;
+
+        if (stream_id) {
+            var storedList = module.restore('stream_ids') || [];
+            var i, entry, found = false;
+
+            for (i = 0; i < storedList.length; i++) {
+                if (storedList[i].stream_id === stream_id) {
+                    entry = storedList[i];
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                storedList.push({
+                    stream_id: stream_id,
+                    used: false,
+                    wasActive: isActive
+                });
+            } else {
+                if (entry.used === false) {
+                    if (entry.wasActive && !isActive) {
+                        entry.used = true;
+                    } else if (isActive) {
+                        entry.wasActive = true;
+                    }
+                }
+            }
+
+            module.store('stream_ids', storedList);
+        }
+
+        return {
+            active: isActive,
+            reconnecting: response.outputReconnecting || false,
+            timecode: response.outputTimecode || null
+        };
+    } catch (e) {
+        h.log(mUID, 'GetStreamStatus erro: {}', e);
+        return {
+            active: false,
+            reconnecting: false,
+            timecode: null
+        };
+    }
+}
+
+function getRecordingStatus(receiverID) {
+    try {
+        var response = jsc.obs_v5.request(receiverID, 'GetRecordStatus');
+        h.log('jsc.obs_v5', 'GetRecordStatus response: {}', response);
+
+        return {
+            active: response.outputActive || false,
+            paused: response.outputPaused || false,
+            timecode: response.outputTimecode || null
+        };
+    } catch (e) {
+        h.log('jsc.obs_v5', 'GetRecordStatus erro: {}', e);
+        return {
+            active: false,
+            paused: false,
+            timecode: null
+        };
+    }
 }
