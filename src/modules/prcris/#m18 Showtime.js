@@ -2,7 +2,8 @@ var mID = '@prcris#m18';
 var mUID = mID+''; 
 
 //#import modules_generic_functions
-//#import plugin_video_resources.js
+//#import plugin_video_resources
+//#import custom_jsc
 
 function startup(module) { 
 
@@ -1006,8 +1007,10 @@ function scVideosLive(s, d) {
                                 } catch (err) { h.log("",'Atenção, erro ao iniciar a live: {}',[err]) };
                              }
                              try {
-                             h.log(mUID,'{%t} Mutando som ambiente, dispositivo {}',s.obs_audio_input_name);
-                             jsc.obs_v5.setInputMute(s.streaming_id, s.obs_audio_input_name, true); // muta a entrada de áudio da mesa de som
+                             if (s.obs_audio_input_name) {
+                                h.log(mUID,'{%t} Mutando som ambiente, dispositivo {}',s.obs_audio_input_name);
+                                jsc.obs_v5.setInputMute(s.streaming_id, s.obs_audio_input_name, true); // muta a entrada de áudio da mesa de som
+                                } 
                              h.log(mUID,'{%t} iniciando o primeiro vídeo da live {}',cfg.liveVideo0);
                              playOBS(s, cfg.liveVideo0, true); // inicia o primeiro vídeo na live
                              } catch (err) { h.log("",'Erro {}',[err]) };
@@ -1016,14 +1019,17 @@ function scVideosLive(s, d) {
     setShowRunAt(function() { playOBS(s, cfg.liveVideo0, false); }, d.startLiveVideoLastRepeat, 'liveLastRepeat'); // ensures the last video run is complete
     setShowRunAt(function() { playOBS(s, cfg.liveVideo1, false); }, d.startLiveVideo1, 'liveFinal');
     setShowRunAt(function() { 
-        jsc.obs_v5.setInputSettings(s.streaming_id, s.obs_audio_input_name, false);
+               
+        if (s.obs_audio_input_name) {
+           h.log(mUID,'{%t} Liberando som ambiente, dispositivo {}',s.obs_audio_input_name);
+           jsc.obs_v5.setInputMute(s.streaming_id, s.obs_audio_input_name, false);
+        }
+        
         if (s.obs_start_recording) {
            jsc.obs_v5.startRecord(s.streaming_id);
         }
         jsc.obs_v5.setActiveScene(s.streaming_id, cfg.cam_scene); 
-        try {
-        setActiveScene(s.streaming_id, cfg.cam_scene); 
-        } catch (err) { return };
+
         }, d.endShow - (s[d.c].stop_obs_at * 1000), 'liveCAM'); 
 }
 
@@ -1145,7 +1151,7 @@ function playOBS(s, mediaName, repeat) {
    
     jsc.obs_v5.setInputMute(p1, s.obs_audio_input_name, true);
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
-    jsc.obs_v5.setInputSettings(p1, p3, {
+    custom.obs_v5.setInputSettings(p1, p3, {
         input: 'about:blank',
         input_format: "",
         close_when_inactive: true,
@@ -1154,7 +1160,7 @@ function playOBS(s, mediaName, repeat) {
     });
         
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
-    jsc.obs_v5.setInputSettings(p1, p3, {
+    custom.obs_v5.setInputSettings(p1, p3, {
         input: url,
         input_format: "",
         close_when_inactive: true,

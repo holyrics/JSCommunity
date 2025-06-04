@@ -5,6 +5,7 @@ var pause = false;
 
 //#import modules_generic_functions
 //#import plugin_video_resources
+//#import custom_jsc
 
 function startup(module) { 
 
@@ -243,6 +244,9 @@ function restorePreviousScene(module) {
       } catch (err) { h.log(mUID,'Erro {}',[err]) };
     }
     jsc.obs_v5.setActiveScene(p1, gsJump());
+    try {
+    setActiveScene(p1, gsJump());
+    } catch (err) { return };
     gsJump("");
 }
 
@@ -309,7 +313,7 @@ function obsVideo(module, show, mediaName) {
     var url = createURL(pSettings, mediaName, s.samePC);
 
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
-    jsc.obs_v5.setInputSettings(p1, p3, {
+    custom.obs_v5.setInputSettings(p1, p3, {
         input: url,
         input_format: "",
         close_when_inactive: true,
