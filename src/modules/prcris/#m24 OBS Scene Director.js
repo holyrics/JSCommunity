@@ -16,7 +16,7 @@ function info() {
         id: mID,
         name: 'OBS Scene Director',
         description: '<html>' +
-            'Module for smart and visual control of OBS scenes, with optional integration to Home Assistant and support for PTZ cameras.<br><br>' +
+            'Module for smart and visual control of OBS scenes.<br><br>' +
             '• Customizable buttons for quick scene switching<br>' +
             '• Automatic highlight of the active scene<br>' +
             '• Button to start/stop live streaming<br>' +
@@ -42,7 +42,7 @@ function info() {
             },
             description: {
                 pt: '<html>' +
-                    'Módulo para controle inteligente e visual das cenas no OBS, com integração opcional ao Home Assistant e suporte a câmeras PTZ.<br><br>' +
+                    'Módulo para controle inteligente e visual das cenas no OBS.<br><br>' +
                     '• Botões customizáveis para troca rápida de cena<br>' +
                     '• Destaque automático da cena ativa<br>' +
                     '• Botão para iniciar/encerrar a transmissão ao vivo<br>' +
@@ -52,7 +52,7 @@ function info() {
                     '• Ativa automaticamente a cena no OBS que possuir o mesmo nome do título em que a mídia está inserida<br><br>' +
                     infoVDDMM,
                 es: '<html>' +
-                    'Módulo para control inteligente y visual de escenas en OBS, con integración opcional con Home Assistant y soporte para cámaras PTZ.<br><br>' +
+                    'Módulo para control inteligente y visual de escenas en OBS.<br><br>' +
                     '• Botones personalizables para cambio rápido de escena<br>' +
                     '• Resaltado automático de la escena activa<br>' +
                     '• Botón para iniciar/detener la transmisión en vivo<br>' +
@@ -62,7 +62,7 @@ function info() {
                     '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título del medio insertado<br><br>' +
                     infoVDDMM,
                 ru: '<html>' +
-                    'Модуль для умного и наглядного управления сценами OBS, с возможной интеграцией с Home Assistant и поддержкой камер PTZ.<br><br>' +
+                    'Модуль для умного и наглядного управления сценами OBS.<br><br>' +
                     '• Настраиваемые кнопки для быстрой смены сцен<br>' +
                     '• Автоматическое выделение активной сцены<br>' +
                     '• Кнопка для начала/остановки прямой трансляции<br>' +
