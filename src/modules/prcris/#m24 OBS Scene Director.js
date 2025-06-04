@@ -23,11 +23,8 @@ function info() {
             '• Button to mute/unmute OBS audio input<br>' +
             '• Compact menu for fast access to multiple scenes<br>' +
             '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
-            '<b>== To work, you need to allow SetInputSettings and GetStreamServiceSettings in the OBS receiver blacklist</b><br><br>' +
+            //'<b>== To work, you need to allow SetInputSettings and GetStreamServiceSettings in the OBS receiver blacklist</b><br><br>' +
             infoVDDMM,
-        allowed_requests: [
-            allowedPrcrisModuleRequests
-        ],
         permissions: [
             {
                 type: 'blacklist_request',
@@ -58,7 +55,7 @@ function info() {
                     '• Botão ligar/desligar a entrada de áudio do OBS<br>' +
                     '• Menu compacto com acesso a várias cenas<br>' +
                     '• Ativa automaticamente a cena no OBS que possuir o mesmo nome do título em que a mídia está inserida<br><br>' +
-                    '<b>== Para funcionar, você precisa liberar os recursos SetInputSettings e GetStreamServiceSettings na blacklist do receptor do OBS</b><br><br>' +
+              //      '<b>== Para funcionar, você precisa liberar os recursos SetInputSettings e GetStreamServiceSettings na blacklist do receptor do OBS</b><br><br>' +
                     infoVDDMM,
                 es: '<html>' +
                     'Módulo para control inteligente y visual de escenas en OBS, con integración opcional con Home Assistant y soporte para cámaras PTZ.<br><br>' +
@@ -69,7 +66,7 @@ function info() {
                     '• Botón para activar/desactivar la entrada de audio de OBS<br>' +
                     '• Menú compacto para acceder rápidamente a múltiples escenas<br>' +
                     '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título del medio insertado<br><br>' +
-                    '<b>== Para que funcione, necesitas permitir SetInputSettings y GetStreamServiceSettings en la blacklist del receptor de OBS</b><br><br>' +
+              //      '<b>== Para que funcione, necesitas permitir SetInputSettings y GetStreamServiceSettings en la blacklist del receptor de OBS</b><br><br>' +
                     infoVDDMM,
                 ru: '<html>' +
                     'Модуль для умного и наглядного управления сценами OBS, с возможной интеграцией с Home Assistant и поддержкой камер PTZ.<br><br>' +
@@ -80,7 +77,7 @@ function info() {
                     '• Кнопка для включения/выключения аудиовхода OBS<br>' +
                     '• Компактное меню для быстрого доступа к сценам<br>' +
                     '• Автоматически активирует сцену OBS с тем же именем, что и заголовок вставленного медиа<br><br>' +
-                    '<b>== Чтобы работало, необходимо разрешить SetInputSettings и GetStreamServiceSettings в черном списке OBS-приемника</b><br><br>' +
+               //     '<b>== Чтобы работало, необходимо разрешить SetInputSettings и GetStreamServiceSettings в черном списке OBS-приемника</b><br><br>' +
                     infoVDDMM
             }
         }
