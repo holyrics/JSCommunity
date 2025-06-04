@@ -1019,9 +1019,9 @@ function scVideosLive(s, d) {
     setShowRunAt(function() { playOBS(s, cfg.liveVideo0, false); }, d.startLiveVideoLastRepeat, 'liveLastRepeat'); // ensures the last video run is complete
     setShowRunAt(function() { playOBS(s, cfg.liveVideo1, false); }, d.startLiveVideo1, 'liveFinal');
     setShowRunAt(function() { 
-        
-        h.log(mUID,'{%t} Liberando som ambiente, dispositivo {}',s.obs_audio_input_name);
+               
         if (s.obs_audio_input_name) {
+           h.log(mUID,'{%t} Liberando som ambiente, dispositivo {}',s.obs_audio_input_name);
            jsc.obs_v5.setInputMute(s.streaming_id, s.obs_audio_input_name, false);
         }
         
