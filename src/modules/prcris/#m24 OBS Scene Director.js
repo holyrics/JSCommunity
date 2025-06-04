@@ -40,6 +40,7 @@ function info() {
                 value: 'GetStreamServiceSettings'
             }
         ],
+        min_version: '2.24.0',
         i18n: {
             name: {
                 en: 'OBS Scene Director',
