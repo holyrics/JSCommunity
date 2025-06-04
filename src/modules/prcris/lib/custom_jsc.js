@@ -7,7 +7,7 @@ var custom = {
                 d.requestData = requestData;
             }
            
-            var x = h.isMinVersion("2.24.0") : module ? h;
+            var x = h.isMinVersion("2.24.0") ? module : h;
             var json = x.apiRequestEx(receiverID, { op: 6, d: d });
 
             if (json == null) {
