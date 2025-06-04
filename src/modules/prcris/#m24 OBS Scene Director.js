@@ -3,10 +3,11 @@ var mID = '@prcris#m24';
 var mUID = mID + ''; 
 
 //#import modules_generic_functions 
+//#import custom_jsc
 
 function startup(module) { 
   mUID = mID + module.id;
-  refreshTitleOverlayDatabase();
+  refreshTitleDatabase();
   logState(module.settings.log, mUID, 'startup '+ mID); 
 }
 
@@ -23,14 +24,8 @@ function info() {
             '• Button to mute/unmute OBS audio input<br>' +
             '• Compact menu for fast access to multiple scenes<br>' +
             '• Automatically activates the OBS scene that matches the title of the inserted media<br><br>' +
-            //'<b>== To work, you need to allow SetInputSettings and GetStreamServiceSettings in the OBS receiver blacklist</b><br><br>' +
             infoVDDMM,
         permissions: [
-            {
-                type: 'blacklist_request',
-                key: 'obs_v5',
-                value: 'SetInputSettings'
-            },
             {
                 type: 'blacklist_request',
                 key: 'obs_v5',
@@ -55,7 +50,6 @@ function info() {
                     '• Botão ligar/desligar a entrada de áudio do OBS<br>' +
                     '• Menu compacto com acesso a várias cenas<br>' +
                     '• Ativa automaticamente a cena no OBS que possuir o mesmo nome do título em que a mídia está inserida<br><br>' +
-              //      '<b>== Para funcionar, você precisa liberar os recursos SetInputSettings e GetStreamServiceSettings na blacklist do receptor do OBS</b><br><br>' +
                     infoVDDMM,
                 es: '<html>' +
                     'Módulo para control inteligente y visual de escenas en OBS, con integración opcional con Home Assistant y soporte para cámaras PTZ.<br><br>' +
@@ -66,7 +60,6 @@ function info() {
                     '• Botón para activar/desactivar la entrada de audio de OBS<br>' +
                     '• Menú compacto para acceder rápidamente a múltiples escenas<br>' +
                     '• Activa automáticamente la escena en OBS que tenga el mismo nombre que el título del medio insertado<br><br>' +
-              //      '<b>== Para que funcione, necesitas permitir SetInputSettings y GetStreamServiceSettings en la blacklist del receptor de OBS</b><br><br>' +
                     infoVDDMM,
                 ru: '<html>' +
                     'Модуль для умного и наглядного управления сценами OBS, с возможной интеграцией с Home Assistant и поддержкой камер PTZ.<br><br>' +
@@ -77,7 +70,6 @@ function info() {
                     '• Кнопка для включения/выключения аудиовхода OBS<br>' +
                     '• Компактное меню для быстрого доступа к сценам<br>' +
                     '• Автоматически активирует сцену OBS с тем же именем, что и заголовок вставленного медиа<br><br>' +
-               //     '<b>== Чтобы работало, необходимо разрешить SetInputSettings и GetStreamServiceSettings в черном списке OBS-приемника</b><br><br>' +
                     infoVDDMM
             }
         }
@@ -310,7 +302,7 @@ function actRecStatus() {
         hint: jsc.i18n('Gravação OBS'),
         icon: 'system:fiber_manual_record',
         action: function(evt) {
-            var recording = getRecordingStatus(receiverID);
+            var recording = custom.obs_v5.getRecordingStatus(receiverID);
             if (recording && recording.active) {
                if (h.confirm(jsc.i18n('Deseja encerrar a gravação?'), jsc.i18n('Confirmação'))) {
                   h.log(mUID,'{%t} '+jsc.i18n('Gravação encerrada'));
@@ -325,7 +317,7 @@ function actRecStatus() {
             if (!module.isEnabled()) {
                return
             }
-            var recording = getRecordingStatus(receiverID);
+            var recording = custom.obs_v5.getRecordingStatus(receiverID);
              if (recording && recording.active) {
                 return jsc.utils.ui.item_status.danger();
             } else {
@@ -343,12 +335,12 @@ function actLiveStatus() {
         icon: 'live_tv',
         hint: jsc.i18n('Transmissão OBS'),
         action: function(evt) {
-            var isConfigured = isYoutubeStreamingConfigured(receiverID);
+            var isConfigured = custom.obs_v5.isYoutubeStreamingConfigured(receiverID);
             if (!isConfigured) {
                h.confirm(jsc.i18n('Você precisa configurar a transmissão no OBS primeiro!'),jsc.i18n('ATENÇÃO'));
                return;
             } else {
-               var streamStarted = getStreamingStatus(receiverID).active;
+               var streamStarted = custom.obs_v5.getStreamingStatus(receiverID).active;
                if (!streamStarted) {
                  if (h.confirm(jsc.i18n('Deseja iniciar a transmissão?'), jsc.i18n('Confirmação'))) {
                     jsc.obs_v5.startStream(receiverID);
@@ -364,11 +356,11 @@ function actLiveStatus() {
             if (!module.isEnabled()) {
                return
             }
-            var isConfigured = isYoutubeStreamingConfigured(receiverID);
+            var isConfigured = custom.obs_v5.isYoutubeStreamingConfigured(receiverID);
             if (!isConfigured) {
                 return jsc.utils.ui.item_status.warning();
             } else {
-              var streamStarted = getStreamingStatus(receiverID).active;
+              var streamStarted = custom.obs_v5.getStreamingStatus(receiverID).active;
               if (streamStarted) { 
                 return jsc.utils.ui.item_status.danger()
               } else {
@@ -486,7 +478,7 @@ function triggers(module) {
      when: "change",
      item: "playlist",
      action: function(obj) {
-         refreshTitleOverlayDatabase();
+         refreshTitleDatabase();
      }
     });
    
@@ -512,10 +504,10 @@ function setSceneByTitle(title) {
         }
     }
 }
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e7320747269676765727469746c65227d
-function refreshTitleOverlayDatabase() {
+// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2274726967676572207469746c652066756e6374696f6e73227d
+function refreshTitleDatabase() {
  
-  h.log(mUID,'{%t} Executando refreshTitleOverlayDatabase {}');  
+  h.log(mUID,'{%t} Executando refreshTitleDatabase {}');  
   
   var runAT = module.restore('runAT')
   if (runAT) {
@@ -591,106 +583,4 @@ function isNewTitle(title, clear) {
     h.setGlobal(key, used);
     h.log(mUID, '{%t} Título novo registrado: {}', title);
     return true;
-}
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226f62735f66756e6374696f6e73227d
-function isYoutubeStreamingConfigured(receiverID) {
-    var response = jsc.obs_v5.request(receiverID, 'GetStreamServiceSettings');
-    h.log(mUID, 'GetStreamServiceSettings response: {}', response);
-
-    var settings = response && response.streamServiceSettings;
-    var stream_id = settings && settings.stream_id;
-
-    if (!stream_id) return false;
-
-    var storedList = module.restore('stream_ids') || [];
-    var i, item, isUsed = false;
-
-    for (i = 0; i < storedList.length; i++) {
-        if (storedList[i].stream_id === stream_id) {
-            item = storedList[i];
-            isUsed = item.used === true;
-            break;
-        }
-    }
-
-    h.log(mUID, 'Streaming ID configurado: {} | Já usado: {}', [stream_id, isUsed]);
-
-    return !isUsed;
-}
-
-function getStreamingStatus(receiverID) {
-    try {
-        var response = jsc.obs_v5.request(receiverID, 'GetStreamStatus');
-        h.log(mUID, 'GetStreamStatus response: {}', response);
-
-        var isActive = response && response.outputActive === true;
-
-        var streamSettings = jsc.obs_v5.request(receiverID, 'GetStreamServiceSettings');
-        var settings = streamSettings && streamSettings.streamServiceSettings;
-        var stream_id = settings && settings.stream_id;
-
-        if (stream_id) {
-            var storedList = module.restore('stream_ids') || [];
-            var i, entry, found = false;
-
-            for (i = 0; i < storedList.length; i++) {
-                if (storedList[i].stream_id === stream_id) {
-                    entry = storedList[i];
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found) {
-                storedList.push({
-                    stream_id: stream_id,
-                    used: false,
-                    wasActive: isActive
-                });
-            } else {
-                if (entry.used === false) {
-                    if (entry.wasActive && !isActive) {
-                        entry.used = true;
-                    } else if (isActive) {
-                        entry.wasActive = true;
-                    }
-                }
-            }
-
-            module.store('stream_ids', storedList);
-        }
-
-        return {
-            active: isActive,
-            reconnecting: response.outputReconnecting || false,
-            timecode: response.outputTimecode || null
-        };
-    } catch (e) {
-        h.log(mUID, 'GetStreamStatus erro: {}', e);
-        return {
-            active: false,
-            reconnecting: false,
-            timecode: null
-        };
-    }
-}
-
-function getRecordingStatus(receiverID) {
-    try {
-        var response = jsc.obs_v5.request(receiverID, 'GetRecordStatus');
-        h.log('jsc.obs_v5', 'GetRecordStatus response: {}', response);
-
-        return {
-            active: response.outputActive || false,
-            paused: response.outputPaused || false,
-            timecode: response.outputTimecode || null
-        };
-    } catch (e) {
-        h.log('jsc.obs_v5', 'GetRecordStatus erro: {}', e);
-        return {
-            active: false,
-            paused: false,
-            timecode: null
-        };
-    }
 }

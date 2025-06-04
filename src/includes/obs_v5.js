@@ -398,3 +398,36 @@ function playMedia(receiverID, mediaSourceName) {
     var response = jsc.obs_v5.request(receiverID, 'TriggerMediaInputAction', requestData);
     h.log('jsc.obs_v5', 'Resume media response: {}', response);
 }
+
+// Opens a projector (Preview, Program, or Multiview) in fullscreen or windowed mode
+function openMixProjector(receiverID, type, monitorIndex) {
+    jsc.err.safeNullOrEmpty(receiverID, 'receiverID');
+    jsc.err.safeNullOrEmpty(type, 'type');
+
+    // Maps the textual type to the expected OBS value
+    var mixTypeMap = {
+        preview: 'OBS_WEBSOCKET_VIDEO_MIX_TYPE_PREVIEW',
+        program: 'OBS_WEBSOCKET_VIDEO_MIX_TYPE_PROGRAM',
+        multiview: 'OBS_WEBSOCKET_VIDEO_MIX_TYPE_MULTIVIEW'
+    };
+
+    var videoMixType = mixTypeMap[String(type).toLowerCase()];
+    if (!videoMixType) {
+        throw 'Invalid mix type: ' + type;
+    }
+
+    var data = {
+        videoMixType: videoMixType
+    };
+
+    // Set monitorIndex if it's valid
+    if (typeof monitorIndex === 'number' && monitorIndex >= 0) {
+        data.monitorIndex = monitorIndex;
+    } else {
+        h.log('jsc.obs_v5', 'No valid monitorIndex provided. Opening in windowed mode.');
+    }
+
+    var response = jsc.obs_v5.request(receiverID, 'OpenVideoMixProjector', data);
+    h.log('jsc.obs_v5', 'openMixProjector response: {}', response);
+    return response;
+}
