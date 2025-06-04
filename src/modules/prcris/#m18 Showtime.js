@@ -1029,9 +1029,7 @@ function scVideosLive(s, d) {
            jsc.obs_v5.startRecord(s.streaming_id);
         }
         jsc.obs_v5.setActiveScene(s.streaming_id, cfg.cam_scene); 
-        try {
-        setActiveScene(s.streaming_id, cfg.cam_scene); 
-        } catch (err) { return };
+
         }, d.endShow - (s[d.c].stop_obs_at * 1000), 'liveCAM'); 
 }
 
