@@ -1151,7 +1151,7 @@ function playOBS(s, mediaName, repeat) {
    
     jsc.obs_v5.setInputMute(p1, s.obs_audio_input_name, true);
     jsc.obs_v5.setSceneItemEnabled(p1, p2, p3, true);
-    jsc.obs_v5.	setInputSettings(p1, p3, {
+    custom.obs_v5.setInputSettings(p1, p3, {
         input: 'about:blank',
         input_format: "",
         close_when_inactive: true,
