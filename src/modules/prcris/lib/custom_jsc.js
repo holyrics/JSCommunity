@@ -6,13 +6,9 @@ var custom = {
             if (requestData != null) {
                 d.requestData = requestData;
             }
-
-            var json;
-            if (h.isMinVersion("2.24.0")) {
-                json = module.apiRequestEx(receiverID, { op: 6, d: d });
-            } else {
-                json = h.apiRequestEx(receiverID, { op: 6, d: d });
-            }
+           
+            var x = h.isMinVersion("2.24.0") : module ? h;
+            var json = x.apiRequestEx(receiverID, { op: 6, d: d });
 
             if (json == null) {
                 throw 'unknown';
