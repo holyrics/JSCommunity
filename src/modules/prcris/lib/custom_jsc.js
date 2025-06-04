@@ -126,6 +126,17 @@ var custom = {
                     timecode: null
                 };
             }
-        }
+        }, 
+        setInputSettings: function(receiverID, inputName, settings) {
+           settings = settings || {};
+           if (settings.local_file) {
+               settings.local_file = settings.local_file.replace(/\\/g, '/');
+           }
+        
+           return custom.obs_v5.request(receiverID, 'SetInputSettings', {
+               inputName: inputName,
+               inputSettings: settings
+           });        
+        }    
     }
 };
