@@ -11,7 +11,7 @@ var custom = {
             if (h.isMinVersion("2.24.0")) {
                 json = module.apiRequestEx(receiverID, { op: 6, d: d });
             } else {
-                json = jsc.obs_v5.apiRequestEx(receiverID, { op: 6, d: d });
+                json = h.apiRequestEx(receiverID, { op: 6, d: d });
             }
 
             if (json == null) {
