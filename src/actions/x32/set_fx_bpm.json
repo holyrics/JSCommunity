@@ -1,0 +1,14 @@
+{  
+    "id": "set_fx_bpm",
+    "name": "Change FX BPM",
+    "description": "Change the current BPM of the FX channel",
+    "i18n": {
+        "name": {
+            "pt": "Alterar BPM do FX"
+        },
+        "description": {
+            "pt": "Altera o valor atual do BPM de um canal FX"
+        }
+    }
+}
+

@@ -300,3 +300,22 @@ function setSmoothAuxVolume(receiverID, aux, targetVolume, step) {
     h.setGlobal(currentAction, intervalID);
 }
 
+//
+function setBPM(receiverID, fxSlot, bpm) {
+    jsc.err.requireRangeNumber(bpm, 0, 1000, 'bpm');
+    jsc.err.requireRangeNumber(fxSlot, 0, 8, 'fxSlot');
+    
+    var command = "/fx/" + fxSlot + "/par/02";
+    var effectTime = Math.round(60000 / bpm);
+    var oscCommand = h.createByteBuffer()
+      .putString(command)
+      .put0(1 + (command.length -1) % 4)
+      .putStringAndFill(",i", 4)
+      .putInt(effectTime);
+    
+    oscCommand.put0(oscCommand.size() % 4);
+    
+    h.apiRequest(receiverID, {
+      data: oscCommand.toBytes()
+    });
+}
