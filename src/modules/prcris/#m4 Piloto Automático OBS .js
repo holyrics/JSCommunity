@@ -140,7 +140,7 @@ function addTriggFX(arr, module) {
     item: "f"+i,
     action: function(obj) {
       var type = typePres();
-      var allowTypes = ['verse','image'];
+      var allowTypes = ['verse','image','song'];
       if (allowTypes.indexOf(type) != -1) {
          verseOBS(true, obj, module);
       }
