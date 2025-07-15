@@ -151,14 +151,14 @@ function info() {
 
 ---
 
-### settings(module)
+### settings(moduleInfo)
 Retorna a lista de configurações do módulo.<br>Exibe na janela de configuração do módulo diversos componentes como caixa de texto, checkbox, combobox, etc.<br>O valor definido pelo usuário nas configurações do módulo estarão disponíveis em `settings` de cada objeto do tipo `module`.<br>Observação: O campo `settings` de `module.settings` não está disponível neste método, apenas as demais informações do objeto.
 
 **Parâmetros:**
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `module` | _[Module](#module)_ |  |
+| `moduleInfo` | _[Module](#module)_ |  |
 
 
 **Retorno:**
@@ -171,7 +171,7 @@ Retorna a lista de configurações do módulo.<br>Exibe na janela de configuraç
 **Exemplo:**
 
 ```javascript
-function settings(module) {
+function settings(moduleInfo) {
   var arr = [];
   arr.push({
     id: 'settings_1',
@@ -304,12 +304,136 @@ function actions(module) {
       };
     }
   });
-  
-  // bug fix v2.23.0
-  jsc.utils.module.fixActions(module, arr);
-  // arr pode ser um array ou um item action individual
-  // jsc.utils.module.fixActions(module, arr[0]);
+    
+  return arr;
+}
+```
 
+---
+
+### publicActions(module)
+Retorna a lista de ações públicas que serão disponibilizadas para execução externa por outros scripts, gatilhos ou botões na interface.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModulePublicAction](#modulepublicaction)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+function publicActions(module) {
+  var arr = [];
+
+  arr.push({
+    id: 'simple_action',
+    name: jsc.i18n('Simple Action'),
+    description: '',
+    icon: 'play_arrow',
+    action: function (evt) {
+      //TODO
+    }
+  });
+
+  arr.push({
+    id: 'simple_action_02',
+    name: jsc.i18n('Simple Action 02'),
+    description: '',
+    icon: 'message',
+    unavailable_for: 'trigger',
+    input: [
+      {
+        id: 'message',
+        type: 'string',
+        name: jsc.i18n('Message')
+      }, {
+        id: 'duration',
+        type: 'number',
+        name: jsc.i18n('Duration'),
+        min: 1,
+        max: 120,
+        default_value: 30
+      }
+    ],
+    action: function (evt) {
+      //evt.input.message
+      //evt.input.duration
+      //
+      //TODO
+    }
+  });
+  
+  arr.push({
+    id: 'simple_action_trigger',
+    name: jsc.i18n('Simple Action - Trigger'),
+    description: '',
+    icon: 'play_arrow',
+    available_for: 'trigger',
+    filter_available_for_trigger: function(evt) {
+        return evt.when === 'displaying' && evt.item === 'any_song';
+    },
+    action: function (evt) {
+      //evt.id
+      //evt.title
+      //evt.artist
+      //evt.author
+      //...
+      //TODO
+    }
+  });
+
+  return arr;
+}
+```
+
+---
+
+### objectModels(moduleInfo)
+- v2.26.0
+
+Retorna a lista de objetos modelos.<br>Um objeto modelo é útil para gerar estruturas padronizadas para que o usuário possa criar, editar e remover itens com interface nativa padrão, seguindo o comportamento típico de um `CRUD`.<br>Por exemplo, se seu módulo precisa administrar uma lista de itens que podem ser criados pelo usuário, basta criar um objeto modelo e usar o seu respectivo ID em um `input` do tipo `object_model` ou `object_model_manage_list`.<br>No próprio `input` o usuário vai ter a opção de abrir a janela de gerenciamento desse respectivo item<br>Observação: O campo `settings` de `module.settings` não está disponível neste método, apenas as demais informações do objeto.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `moduleInfo` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModuleObjectModelStruct](#moduleobjectmodelstruct)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+function objectModels(moduleInfo) {
+  var arr = [];
+  arr.push({
+    id: 'example',
+    name: 'Obj Model',
+    onchange: function() {
+      //TODO
+    },
+    struct: [{
+        id: 'name'
+      }, {
+        id: 'age',
+        type: 'number'
+    }]
+  });
   return arr;
 }
 ```
@@ -899,6 +1023,55 @@ Verifica se o módulo está ativado.<br>Retornará `false` caso a execução con
 
 ---
 
+### isEnabledByUser()
+- v2.26.0
+
+Se o módulo está ativado pelo usuário (checkbox na interface)
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### isConditionalExecution()
+- v2.26.0
+
+Se o módulo está ativado baseado nas possíveis execuções condicionais definidos a ele pelo usuário
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### getStatus()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `enabled` | _Boolean_ | Se o módulo está ativado pelo usuário (checkbox na interface) |
+| `conditional_execution` | _Boolean_ | Se o módulo está ativado baseado nas possíveis execuções condicionais definidos a ele pelo usuário |
+
+
+---
+
 ### log(msg, ...args)
 Adiciona uma mensagem no log interno do módulo.<br>Pode ser acessado pela janela de log, no botão "3 pontinhos" no respectivo módulo.<br>Também fica salvo em arquivo em `./logs/module/{module_id}.txt`.
 
@@ -938,6 +1111,17 @@ _Método sem retorno_
 
 ---
 
+### updatePublicActions()
+- v2.26.0
+
+Força a atualização da lista de ações públicas. `function publicActions() { /* ... */ }`
+
+
+
+_Método sem retorno_
+
+---
+
 ### restart()
 Força a reinicialização do módulo.
 
@@ -957,6 +1141,33 @@ Abre a janela de configuração do módulo.
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
+
+
+_Método sem retorno_
+
+---
+
+### openJSMonitor(group = 'interval')
+- v2.26.0
+
+Abre o monitor JavaScript com o filtro padrão definido para as tarefas do módulo
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `group` | _String (opcional)_ | `interval` `timeout` `run_at` `trigger` `global` `timer_and_countdown` `Padrão: interval` |
+
+
+_Método sem retorno_
+
+---
+
+### openLog()
+- v2.26.0
+
+Abre a janela de log do módulo
+
 
 
 _Método sem retorno_
@@ -1441,6 +1652,256 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 
 ---
 
+### getObjectModelCtrl(object_model_id)
+### getObjModelCtrl(object_model_id)
+- v2.26.0
+
+Retorna a classe de controle de um modelo de objeto
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `object_model_id` | _String_ | ID do modelo |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelController](#moduleobjectmodelcontroller)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+h.logp(obj);
+//obj.name
+//obj.age
+```
+
+---
+
+### searchObjectModelByID(object_id)
+### searchObjModelByID(object_id)
+- v2.26.0
+
+Retorna os dados de um objeto modelo salvo.<br>Procura em todos os modelos.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `object_id` | _String_ | ID do objeto |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var obj = module.searchObjectModelByID('object_id');
+h.logp(obj);
+//obj.name
+//obj.age
+```
+
+---
+
+### setInterval(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Number_ | Retorna o ID da tarefa. Você pode utilizar o ID para parar a execução. |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.setInterval(function() {
+    /* ... */
+}, 15000);
+```
+
+---
+
+### setTimeout(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Number_ | Retorna o ID da tarefa. Você pode utilizar o ID para cancelar a execução. |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.setTimeout(function() {
+    /* ... */
+}, 10000);
+```
+
+---
+
+### runAt(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | Retorna o ID da tarefa. Você pode utilizar o ID para cancelar a execução. `cancelRunAt(id)` |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.runAt({
+  name: '',
+  datetime: '19:25',
+  action: function() {
+    /* ... */
+  }
+});
+```
+
+---
+
+### clearInterval(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### clearTimeout(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### cancelRunAt(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### getIntervalList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _Number_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `delay` | _String_ |  |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getIntervalList();
+```
+
+---
+
+### getTimeoutList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _Number_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `timeout` | _String_ |  |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getTimeoutList();
+```
+
+---
+
+### getRunAtList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `datetime` | _String_ | YYYY-MM-DD HH:MM:SS |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getRunAtList();
+```
+
+---
+
 
 ## ModuleAction
 | Nome | Tipo  | Descrição |
@@ -1458,6 +1919,434 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
 
+## ModulePublicAction
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `description` | _String (opcional)_ | Descrição do item |
+| `icon` | _String (opcional)_ | Ícone padrão do item.<br>Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
+| `icon_color` | _String (opcional)_ | Cor do ícone no formato hexadecimal. |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de parâmetros da ação. |
+| `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva ação.<br>`evt.input` parâmetros para execução da ação. |
+| `available_for` | _Object (opcional)_ | Lista de origens em que a ação estará disponibilizada para execução.<br>Múltiplos valores separados por vírgula.<br>Se o campo estiver vazio, significa que a ação estará disponível para todas as origens.<br>Para bloquear origens específicas utilize `unavailable_for`.<br>Valores disponíveis: `ui` `trigger` `jslib_call` `jslib_open` `add_to_playlist`<br> <br>**ui:** Para uso na interface do programa, por exemplo, como um botão na barra de favoritos ou na lista de reprodução do culto/evento.<br> <br>**trigger:** Para uso em gatilhos<br> <br>**jslib_call:** Para execução via JavaScript (jslib)<br> <br>**jslib_open:** Para abrir uma janela popup via JavaScript para o usuário executar a ação (jslib)<br> <br>**add_to_playlist:** Permite adicionar na lista de reprodução via JavaScript (jslib) `h.hly('addtoplaylist', ...)`<br> |
+| `unavailable_for` | _Object (opcional)_ | Lista de origens em que a ação estará bloqueada para execução.<br>Valores baseados em `available_for` |
+| `filter_available_for_trigger` | _Object (opcional)_ | Filtro avançado para exibir a ação somente em tipos específicos de gatilho, caso a ação esteja disponível para uso em gatilhos.<br>Útil para disponibilizar a ação somente para determinados tipos de gatilho, por exemplo, somente para gatilhos de música<br> <br>`function(evt) { /* ... */ }`<br>`evt.when`<br>`evt.item` |
+| `tree` | _Array&lt;String&gt; (opcional)_ | Árvore de submenu para organização de múltiplas ações em diferentes submenus |
+
+## ModuleObjectModelStruct
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do modelo |
+| `name` | _String_ | Nome do modelo |
+| `struct` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | Estrutura |
+| `to_string` | _String (opcional)_ | ID do campo em `struct` que será utilizado como valor que representa o objeto na interface.<br>Caso o parâmetro `to_string` não seja declarado, o campo padrão que será utilizado será um dos seguintes, na ordem: `name` `label` `title` |
+| `onchange` | _Function (opcional)_ | Método executado sempre que houver alguma alteração na lista de itens.<br>Item criado, item editado ou item removido. |
+
+## ModuleObjectModelController
+Está disponível o acesso direto a todos os campos do objeto conforme disponível em `struct`.<br>
+Também é possível editar o item alterando o respectivo campo, o salvamento é automático.<br>
+ <br>
+**Exemplo:**<br>
+```javascript
+if (obj.example && obj.example.contains('abc')) {
+  obj.example = 'xyz;}
+```
+
+### length()
+Retorna a quantidade de itens
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Number_ | 
+
+
+---
+
+### isEmpty()
+
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### add(data)
+Cria um item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `data` | _Object_ | Mapa chave/valor com os dados do objeto |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.add({
+    name: 'Example',
+    age: 20
+});
+```
+
+---
+
+### newItem(initialValues = null, callback = null)
+Abre uma janela para criação de um novo item pelo usuário. Execução assíncrona.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `initialValues` | _Object (opcional)_ | Mapa chave/valor com os dados iniciais do objeto |
+| `callback` | _Function (opcional)_ | Executado após a criação do item.<br>Obs: Executado **somente** se o item for criado pelo usuário. |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var data = {
+    name: 'Example',
+    age: 20
+};
+ctrl.newItem(data, function() {
+    //callback
+});
+```
+
+---
+
+### remove(data)
+Remove um item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `data` | _Object_ | ID do objeto ou um objeto que contém o parâmetro ID com o ID do objeto |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Retorna o objeto removido ou `null` se o objeto não foi encontrado |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var removed = ctrl.remove('id');
+```
+
+---
+
+### openEditor()
+Abre a janela de edição global. Execução assíncrona.
+
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.openEditor();
+```
+
+---
+
+### itemChooser(callback)
+Abre uma janela para o usuário selecionar um item. Execução assíncrona
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `callback` | _Function_ | `function(selected) { /* ... */ }` |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.itemChooser(function(selected) {
+   //callback
+});
+```
+
+---
+
+### getAll()
+Retorna a lista de itens
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModuleObjectModelData](#moduleobjectmodeldata)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAll().forEach(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+### getAllAsMap()
+Retorna a lista de itens em um objeto mapa chave/valor, onde cada chave é o id do objeto
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllAsMap().forEach(function(id, item) {
+    h.log(item);
+});
+```
+
+---
+
+### getAllFiltered(filter)
+O mesmo que `getAll()` porém com filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllFiltered(function(item) {
+      return item.name.contains('abc');
+    }).forEach(function(item) {
+        h.log(item);
+    });
+```
+
+---
+
+### getAllFilteredAsMap(filter)
+O mesmo que `getAllAsMap()` porém com filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllFilteredAsMap(function(item) {
+      return item.name.contains('abc');
+    }).forEach(function(id, item) {
+        h.log(item);
+    });
+```
+
+---
+
+### get(id)
+Retorna um item
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+```
+
+---
+
+### getOpt(id)
+Retorna um item
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[Optional](https://github.com/holyrics/jslib/blob/main/doc/pt/Optional.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getOpt('object_id').ifPresent(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+### findFirst(filter)
+Retorna o primeiro item encontrado baseado no filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.findFirst(function(item) {
+    return item.name.contains('abc');
+});
+```
+
+---
+
+### findFirstOpt(filter)
+Retorna o primeiro item encontrado baseado no filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[Optional](https://github.com/holyrics/jslib/blob/main/doc/pt/Optional.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.findFirstOpt(function(item) {
+    return item.name.contains('abc');
+}).ifPresent(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+
+## ModuleObjectModelData
+Está disponível o acesso direto a todos os campos do objeto conforme disponível em `struct`.<br>
+Também é possível editar o item alterando o respectivo campo, o salvamento é automático.<br>
+ <br>
+**Exemplo:**<br>
+```javascript
+if (obj.example && obj.example.contains('abc')) {
+  obj.example = 'xyz;}
+```
+
+### openEditor(callback = null)
+Abre a janela de edição para editar o respectivo item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `callback` | _Function (opcional)_ | Executado após edição do item.<br>Obs: Executado **somente** se o item for editado pelo usuário. |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+obj.openEditor(function() {
+    //onchange
+});
+```
+
+---
+
+
 ## ModuleLoop
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
@@ -1470,8 +2359,8 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | ---- | :---: | ------------|
 | `id` | _String (opcional)_ | ID do item |
 | `when` | _String_ | `displaying` `closing` `change` `event` |
-| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` |
-| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
+| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle` `bible_version_1` `bible_version_2` `bible_version_3` `bible_any_version`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` `draw_lots_item_drawn` |
+| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)  [`draw_lots_item_drawn`](https://github.com/holyrics/jslib#drawlotsitemdrawninfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
 | `name` | _String (opcional)_ | Nome do item. Valor compatível para exibição no **JavaScript Monitor** `v2.23.0+` |
 | `filter` | _Object (opcional)_ | Executar ação somente se o objeto que gerou o gatilho corresponder ao objeto filter `v2.24.0+` |
 <details>
@@ -1499,7 +2388,7 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` |
+| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 | `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
 | `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
