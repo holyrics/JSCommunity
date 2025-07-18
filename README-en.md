@@ -27,6 +27,12 @@ Repository of codes used in the JavaScript ecosystem of the Holyrics program.<br
 
 ---
 
+## Rules
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/rules/README-en.md)
+
+---
+
 ## Templates for importing song lyrics via JavaScript
 
 [README](https://github.com/holyrics/JSCommunity/tree/main/src/importsongs/README-en.md)

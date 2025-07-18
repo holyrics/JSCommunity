@@ -27,6 +27,12 @@ Repositório de códigos utilizados no ecossistema JavaScript do programa Holyri
 
 ---
 
+## Regras
+
+[README](https://github.com/holyrics/JSCommunity/tree/main/src/rules/README.md)
+
+---
+
 ## Modelos para importação de letra de música via JavaScript
 
 [README](https://github.com/holyrics/JSCommunity/tree/main/src/importsongs/README.md)

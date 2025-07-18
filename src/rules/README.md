@@ -27,12 +27,12 @@ function info() {
     id: 'example',
     name: 'Example', //default name
     description: 'Example', //default description
-    "i18n": { //translation
-        "name": {
+    i18n: { //translation
+        name: {
             "pt": "Nome traduzido para o idioma correspondente",
             "??": "..."
         },
-        "description": {
+        description: {
             "pt": "Descrição traduzida para o idioma correspondente",
             "??": "..."
         }
@@ -61,7 +61,7 @@ Se `settings_type=custom` (padrão), o modelo deve implementar as configuraçõe
 
 ## ruleSettings()
 
-Deve ser declarado se `settings_type` for igual a 'custom'.<br>
+Deve ser declarado se `settings_type` for igual a `custom`.<br>
 Exibe na interface componentes de configuração onde o usário poderá definir valores para ser utilizado como parâmetros no teste da regra.<br>
 Deve retornar um array de [InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md).<br>
 O valor de cada item estará disponível em `evt.settings` recebido em `function ruleTest(evt)`, por exemplo, `evt.settings.example`.
@@ -83,7 +83,7 @@ function ruleSettings() {
 
 ## ruleTest(evt)
 
-Deve ser declarado se `settings_type` for igual a 'custom'.<br>
+Deve ser declarado se `settings_type` for igual a `custom`.<br>
 Método que deve retornar `true` ou `false`, que é o resultado do teste da regra.
 
 Exemplo:
@@ -108,7 +108,7 @@ function ruleTest(evt) {
 
 ## ruleGetValueToTest()
 
-Deve ser declarado se `settings_type` for diferente de 'custom'.<br>
+Deve ser declarado se `settings_type` for diferente de `custom`.<br>
 Deve retornar o valor base que será utilizado para teste baseado nas configurações definidas na interface pelo usuário.<br>
 
 Exemplo:

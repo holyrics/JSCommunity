@@ -27,12 +27,12 @@ function info() {
     id: 'example',
     name: 'Example', //default name
     description: 'Example', //default description
-    "i18n": { //translation
-        "name": {
+    i18n: { //translation
+        name: {
             "en": "Name translated to the corresponding language",
             "??": "..."
         },
-        "description": {
+        description: {
             "en": "Description translated to the corresponding language",
             "??": "..."
         }
@@ -61,7 +61,7 @@ If `settings_type=custom` (default), the model must implement the settings in th
 
 ## ruleSettings()
 
-It must be declared if `settings_type` is equal to 'custom'.<br>
+It must be declared if `settings_type` is equal to `custom`.<br>
 Displays configuration components in the interface where the user can define values to be used as parameters in the rule testing.<br>
 It should return an array of [InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md).<br>
 The value of each item will be available in `evt.settings` received in `function ruleTest(evt)`, for example, `evt.settings.example`.
@@ -83,7 +83,7 @@ function ruleSettings() {
 
 ## ruleTest(evt)
 
-It must be declared if `settings_type` is equal to 'custom'.<br>
+It must be declared if `settings_type` is equal to `custom`.<br>
 Method that should return `true` or `false`, which is the result of the rule test.
 
 Example:
@@ -108,7 +108,7 @@ function ruleTest(evt) {
 
 ## ruleGetValueToTest()
 
-It must be declared if `settings_type` is different from 'custom'.<br>
+It must be declared if `settings_type` is different from `custom`.<br>
 It should return the base value that will be used for testing based on the settings defined in the interface by the user.<br>
 
 Example:
