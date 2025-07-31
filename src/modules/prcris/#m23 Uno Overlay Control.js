@@ -18,6 +18,7 @@ function info() {
     return {
         id: mID,
         name: 'UNO Overlay Control',
+		min_version : '99.0.0',
         description: '<html>' +
                      '<div style="text-align: left;">' +
                      '<b>UNO Overlay Control Module for Holyrics</b><br><br>' +
