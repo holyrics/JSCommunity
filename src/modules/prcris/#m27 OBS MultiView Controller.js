@@ -24,8 +24,8 @@ function info() {
         ],
         os_required : 'windows',
         min_version : '2.26.0',
-        description:
-            '<p>' +
+        description: 
+            '<p> ' +
             'This module provides full control over fullscreen output windows in OBS Studio, ' +
             'allowing you to create, toggle, and hide multiple projections with seamless Holyrics integration.' +
             '</p>' +

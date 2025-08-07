@@ -30,7 +30,7 @@ function info() {
                      '<b>• Schedule-based interaction:</b> Automatically show the names of scheduled people according to the moment (e.g., opening, message, worship), linking each media title to its assigned person.<br><br>' +
                      'This integration brings agility and organization to the visual presentation of information, reducing errors and simplifying operation during the service.<br><br>' +
                      infoVDDMM +
-                     '</div>',
+                     ' </div>',
         i18n: {
             name: {
                 en: 'UNO Overlay Control',
