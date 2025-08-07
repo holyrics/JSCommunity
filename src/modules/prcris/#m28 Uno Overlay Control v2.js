@@ -1,11 +1,12 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22496e666f227d
-var mUID = '@prcris#m28';
-var mUID = mUID+''; 
+var mID = '@prcris#m28';
+var mUID = mID+''; 
 
 //#import modules_generic_functions 
 
 function startup(module) { 
-    
+    mUID = mID + module.id;
+    module.global.timerTimeouts = module.global.timerTimeouts || {};
     genericStartup();
     refreshTitleOverlayDatabase();
     module.store('unoOn', false);   
@@ -14,10 +15,9 @@ function startup(module) {
     }
 }
 
-function info() { 
-    
+function info() {
     return {
-        id: mUID,
+        id: mID,
         name: 'UNO Overlay Control 2.0',
         min_version : '2.26.0',
         description: '<html>' + 
@@ -1552,7 +1552,6 @@ function buildSlotOverlayKey(overlayId, slotData) {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22556e6f54696d657273227d
-module.global.timerTimeouts = module.global.timerTimeouts || {};
 
 
 /**
@@ -1887,7 +1886,7 @@ function triggers(module) {
     var arr = [];
 
     arr.push({
-        id: "overlay_titulo_item_mUIDia_" + mUID,
+        id: "overlay_titulo_item_midia_" + mUID,
         when: "displaying",
         item: "any_title_subitem",
         action: function(obj) {
@@ -1949,8 +1948,8 @@ function objectModels() {
     arr.push({
         id: 'uno_overlay',
         name: jsc.i18n('Token UNO'),
-        onchange: () => { 
-          module.updatePanel();
+        onchange: function() { 
+            module.updatePanel();
         }, 
         struct: [
             { id: 'name', name: jsc.i18n('Apelido'), type: 'string' },
@@ -1961,8 +1960,8 @@ function objectModels() {
                 button_label: jsc.i18n('Configurar'),
                 name: jsc.i18n('Conteúdo do Overlay'),
                 action: function(obj, callback) {
-                     configureOverlayForToken(obj, callback);
-                     module.repaintPanel();
+                    configureOverlayForToken(obj, callback);
+                    module.repaintPanel();
                 }
             }
         ]
