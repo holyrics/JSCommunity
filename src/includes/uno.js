@@ -5,44 +5,52 @@
 // Sends a command to the Uno API and returns the result or payload
 
 function request(apiKey, dataObj, fullReturn) {
-	var options = {
-		url_suffix: "controlapps/" + apiKey + "/api",
-		type: 'PUT',
-		headers: { 'Content-Type': 'application/json' },
-		data: JSON.stringify(dataObj),
-		timeout: 5000,
-		response_data_type: 'string;utf-8'
-	};
+  var options = {
+      url_suffix: "controlapps/" + apiKey + "/api",
+      type: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify(dataObj),
+      timeout: 5000,
+      response_data_type: 'string;utf-8'
+    };
 
-	var response;
-	try {
-		response = h.httpRequest('https://app.overlays.uno/apiv2/', options);
-	} catch (err) {
-		h.log("", 'Erro {}', [err]);
-		return null;
-	}
+    var response = '';
+    try {
+      response = h.httpRequest('https://app.overlays.uno/apiv2/', options);
+    } catch (err) {
+      
+      var error = JSON.parse(err);
+      if (!error.error) { 
+         h.log(mUID, '{%t} Erro ao enviar requisição UNO: {}', err);
+      } 
+      return error;
+    }
 
-	try {
-		var parsed = JSON.parse(response);
+    try {
+      var parsed = JSON.parse(response);
 
-		h.logp('jsc.uno', "Result of {}: {}", dataObj.command, parsed);
+      h.log(mUID, '{%t} UNO API → Requisição enviada: {}', options.data);
+      h.logp(mUID, '{%t} UNO API → Resposta bruta p: {}', parsed);
+      h.log(mUID, '{%t} UNO API → Status: {}, Resultado: {}', parsed.status, parsed.result);
 
-		if (parsed.status === 200 && parsed.result === "ok" && fullReturn) {
-			return parsed || null;
-		}
+      if (parsed.status === 200 && parsed.result === "ok" && fullReturn) {
+        return parsed || null;
+      }
 
-		if (parsed.status === 200 && parsed.result === "ok") {
-			return parsed.payload || null;
-		} else {
-			h.log('jsc.uno', "API → Erro na resposta: " + response);
-			return null;
-		}
+      if (parsed.status === 200 && parsed.result === "ok") {
+        return parsed.payload || null;
+      } else {
+        h.log(mUID, '{%t} UNO API → Erro na resposta: {}', response);
+        return null;
+      }
 
-	} catch (e) {
-		h.log('jsc.uno', "API → Erro ao interpretar JSON de resposta: " + response);
-		return null;
-	}
-}
+    } catch (e) {
+      h.log(mUID, '{%t} UNO API → Erro ao interpretar JSON: {}', response);
+      return null;
+    }
+
+};
+
 
 // Overlays Básicos
 
