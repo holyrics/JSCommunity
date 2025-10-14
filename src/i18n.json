@@ -5188,5 +5188,1355 @@
     "it": "Molti elementi trovati",
     "fr": "De nombreux éléments trouvés",
     "uk": "Знайдено багато елементів"
+  },
+  {
+    "key": "Overlay automatizado",
+    "en": "Automated overlay",
+    "pt": "Overlay automatizado",
+    "ru": "Автоматизированный оверлей",
+    "es": "Superposición automatizada",
+    "it": "Overlay automatizzato",
+    "fr": "Overlay automatisé",
+    "uk": "Автоматизований наклад"
+  },
+  {
+    "key": "No primeiro item que for exibido de cada título da programação, ativa o Overlay padrão com os dados personalizados.",
+    "en": "On the first item displayed for each title in the schedule, activate the default overlay with the custom data.",
+    "pt": "No primeiro item que for exibido de cada título da programação, ativa o Overlay padrão com os dados personalizados.",
+    "ru": "В первом элементе, который будет отображен для каждого заголовка программы, активируйте стандартный оверлей с пользовательскими данными.",
+    "es": "En el primer elemento que se muestre de cada título de la programación, activa la superposición predeterminada con los datos personalizados.",
+    "it": "Nel primo elemento che verrà visualizzato per ogni titolo della programmazione, attiva l'Overlay predefinito con i dati personalizzati.",
+    "fr": "Pour le premier élément affiché de chaque titre de la programmation, activez l'overlay par défaut avec les données personnalisées.",
+    "uk": "У першому елементі, який буде показаний для кожного заголовка програми, активуйте стандартний наклад з персоналізованими даними."
+  },
+  {
+    "key": "Exibir botão de transmissão",
+    "en": "Show broadcast button",
+    "pt": "Exibir botão de transmissão",
+    "ru": "Показать кнопку трансляции",
+    "es": "Mostrar botón de transmisión",
+    "it": "Mostra il pulsante di trasmissione",
+    "fr": "Afficher le bouton de diffusion",
+    "uk": "Показати кнопку трансляції"
+  },
+  {
+    "key": "Exibir botão de gravação",
+    "en": "Show recording button",
+    "pt": "Exibir botão de gravação",
+    "ru": "Показать кнопку записи",
+    "es": "Mostrar botón de grabación",
+    "it": "Mostra il pulsante di registrazione",
+    "fr": "Afficher le bouton d'enregistrement",
+    "uk": "Показати кнопку запису"
+  },
+  {
+    "key": "Exibir botão de mute",
+    "en": "Show mute button",
+    "pt": "Exibir botão de mudo",
+    "ru": "Показать кнопку отключения звука",
+    "es": "Mostrar botón de silencio",
+    "it": "Mostra il pulsante di silenzio",
+    "fr": "Afficher le bouton de sourdine",
+    "uk": "Показати кнопку вимкнення звуку"
+  },
+  {
+    "key": "Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene.",
+    "en": "Specifies the name of the audio input source (e.g., microphone or mixer) in the selected scene.",
+    "pt": "Especifica o nome da fonte de entrada de áudio (por exemplo, microfone ou mixer) na cena selecionada.",
+    "ru": "Указывает имя источника аудиовхода (например, микрофон или микшер) в выбранной сцене.",
+    "es": "Especifica el nombre de la fuente de entrada de audio (por ejemplo, micrófono o mezclador) en la escena seleccionada.",
+    "it": "Specifica il nome della sorgente audio (ad es. microfono o mixer) nella scena selezionata.",
+    "fr": "Spécifie le nom de la source d'entrée audio (par exemple, microphone ou mixeur) dans la scène sélectionnée.",
+    "uk": "Вказує назву джерела аудіовходу (наприклад, мікрофон або мікшер) у вибраній сцені."
+  },
+  {
+    "key": "Quantidade de Cenas a Controlar",
+    "en": "Number of Scenes to Control",
+    "pt": "Quantidade de Cenas a Controlar",
+    "ru": "Количество сцен для управления",
+    "es": "Cantidad de Escenas a Controlar",
+    "it": "Numero di Scene da Controllare",
+    "fr": "Nombre de scènes à contrôler",
+    "uk": "Кількість сцен для контролю"
+  },
+  {
+    "key": "Exibir o nome da cena no botão",
+    "en": "Show the scene name on the button",
+    "pt": "Exibir o nome da cena no botão",
+    "ru": "Показать имя сцены на кнопке",
+    "es": "Mostrar el nombre de la escena en el botón",
+    "it": "Mostra il nome della scena sul pulsante",
+    "fr": "Afficher le nom de la scène sur le bouton",
+    "uk": "Показати назву сцени на кнопці"
+  },
+  {
+    "key": "Usar o título de mídia para troca de cena",
+    "en": "Use the media title for scene switching",
+    "pt": "Usar o título de mídia para troca de cena",
+    "ru": "Использовать название медиа для смены сцены",
+    "es": "Usar el título de medios para cambiar de escena",
+    "it": "Usa il titolo dei media per il cambio scena",
+    "fr": "Utiliser le titre des médias pour changer de scène",
+    "uk": "Використовувати назву медіа для зміни сцени"
+  },
+  {
+    "key": "Quando o título acima de um item de mídia possuir o mesmo nome de uma cena, efetua a troca para a cena ao acionar o item. Exemplo: Ao projetar a imagem que está abaixo do Título \"Avisos\", aciona a cena \"Avisos\" se ela existir no OBS.",
+    "en": "When the title above a media item has the same name as a scene, it switches to that scene when the item is triggered. Example: When projecting the image below the title \"Announcements\", it triggers the scene \"Announcements\" if it exists in OBS.",
+    "pt": "Quando o título acima de um item de mídia possuir o mesmo nome de uma cena, efetua a troca para a cena ao acionar o item. Exemplo: Ao projetar a imagem que está abaixo do Título \"Avisos\", aciona a cena \"Avisos\" se ela existir no OBS.",
+    "ru": "Когда название выше элемента медиа совпадает с именем сцены, происходит переключение на сцену при активации элемента. Пример: При проекции изображения, находящегося под заголовком \"Уведомления\", активируется сцена \"Уведомления\", если она существует в OBS.",
+    "es": "Cuando el título sobre un elemento de medios tenga el mismo nombre que una escena, cambia a la escena al activar el elemento. Ejemplo: Al proyectar la imagen que está debajo del Título \"Avisos\", activa la escena \"Avisos\" si existe en OBS.",
+    "it": "Quando il titolo sopra un elemento multimediale ha lo stesso nome di una scena, cambia alla scena attivando l'elemento. Esempio: Proiettando l'immagine sotto il Titolo \"Avvisi\", attiva la scena \"Avvisi\" se esiste in OBS.",
+    "fr": "Lorsque le titre au-dessus d'un élément multimédia a le même nom qu'une scène, il effectue le changement vers la scène en activant l'élément. Exemple : En projetant l'image qui se trouve sous le titre \"Avisos\", active la scène \"Avisos\" si elle existe dans OBS.",
+    "uk": "Коли назва над елементом медіа має таку ж назву, як сцена, виконується зміна на сцену при активації елемента. Приклад: При проекції зображення, яке знаходиться під заголовком \"Оголошення\", активується сцена \"Оголошення\", якщо вона існує в OBS."
+  },
+  {
+    "key": "Botões de Cena",
+    "en": "Scene Buttons",
+    "pt": "Botões de Cena",
+    "ru": "Кнопки сцены",
+    "es": "Botones de Escena",
+    "it": "Pulsanti di Scena",
+    "fr": "Boutons de scène",
+    "uk": "Кнопки сцени"
+  },
+  {
+    "key": "Configuração de botões na interface do módulo para troca de cenas do OBS",
+    "en": "Button configuration in the module interface for switching OBS scenes",
+    "pt": "Configuração de botões na interface do módulo para troca de cenas do OBS",
+    "ru": "Настройка кнопок в интерфейсе модуля для смены сцен в OBS",
+    "es": "Configuración de botones en la interfaz del módulo para cambiar escenas en OBS",
+    "it": "Configurazione dei pulsanti nell'interfaccia del modulo per il cambio di scene in OBS",
+    "fr": "Configuration des boutons dans l'interface du module pour changer de scènes dans OBS",
+    "uk": "Налаштування кнопок в інтерфейсі модуля для зміни сцен OBS"
+  },
+  {
+    "key": "Preencha as Cenas do OBS",
+    "en": "Fill in the OBS Scenes",
+    "pt": "Preencha as Cenas do OBS",
+    "ru": "Заполните сцены OBS",
+    "es": "Rellena las Escenas de OBS",
+    "it": "Compila le Scene di OBS",
+    "fr": "Remplissez les scènes d'OBS",
+    "uk": "Заповніть сцени OBS"
+  },
+  {
+    "key": "Cena ",
+    "en": "Scene ",
+    "pt": "Cena ",
+    "ru": "Сцена ",
+    "es": "Escena ",
+    "it": "Scena ",
+    "fr": "Scène ",
+    "uk": "Сцена "
+  },
+  {
+    "key": "Quantidade de Cenas em caixa de seleção",
+    "en": "Number of Scenes in checkbox",
+    "pt": "Quantidade de Cenas em caixa de seleção",
+    "ru": "Количество сцен в выпадающем списке",
+    "es": "Cantidad de Escenas en caja de selección",
+    "it": "Numero di Scene nella casella di selezione",
+    "fr": "Nombre de scènes dans la case à cocher",
+    "uk": "Кількість сцен у вибірковому полі"
+  },
+  {
+    "key": "Define a quantidade de cenas que aparecerão em uma caixa pulldown, sempre a partir da cena 1 do OBS.",
+    "en": "Defines the number of scenes that will appear in a pulldown box, always starting from scene 1 in OBS.",
+    "pt": "Define a quantidade de cenas que aparecerão em uma caixa suspensa, sempre a partir da cena 1 do OBS.",
+    "ru": "Определяет количество сцен, которые появятся в выпадающем списке, начиная с сцены 1 в OBS.",
+    "es": "Define la cantidad de escenas que aparecerán en un menú desplegable, siempre a partir de la escena 1 de OBS.",
+    "it": "Definisce il numero di scene che appariranno in un menu a discesa, sempre a partire dalla scena 1 di OBS.",
+    "fr": "Définit le nombre de scènes qui apparaîtront dans un menu déroulant, toujours à partir de la scène 1 d'OBS.",
+    "uk": "Визначає кількість сцен, які з'являться у випадаючому списку, завжди починаючи з сцени 1 OBS."
+  },
+  {
+    "key": "Ativar Audio OBS",
+    "en": "Activate OBS Audio",
+    "pt": "Ativar Áudio OBS",
+    "ru": "Активировать звук OBS",
+    "es": "Activar Audio OBS",
+    "it": "Attiva Audio OBS",
+    "fr": "Activer l'audio OBS",
+    "uk": "Активувати аудіо OBS"
+  },
+  {
+    "key": "Desativar Audio OBS",
+    "en": "Deactivate OBS Audio",
+    "pt": "Desativar Áudio OBS",
+    "ru": "Деактивировать звук OBS",
+    "es": "Desactivar Audio OBS",
+    "it": "Disattiva Audio OBS",
+    "fr": "Désactiver l'audio OBS",
+    "uk": "Деактивувати аудіо OBS"
+  },
+  {
+    "key": "Gravação OBS",
+    "en": "OBS Recording",
+    "pt": "Gravação OBS",
+    "ru": "Запись OBS",
+    "es": "Grabación OBS",
+    "it": "Registrazione OBS",
+    "fr": "Enregistrement OBS",
+    "uk": "Запис OBS"
+  },
+  {
+    "key": "Deseja encerrar a gravação?",
+    "en": "Do you want to stop the recording?",
+    "pt": "Deseja encerrar a gravação?",
+    "ru": "Вы хотите завершить запись?",
+    "es": "¿Desea finalizar la grabación?",
+    "it": "Vuoi terminare la registrazione?",
+    "fr": "Voulez-vous arrêter l'enregistrement ?",
+    "uk": "Бажаєте завершити запис?"
+  },
+  {
+    "key": "Confirmação",
+    "en": "Confirmation",
+    "pt": "Confirmação",
+    "ru": "Подтверждение",
+    "es": "Confirmación",
+    "it": "Conferma",
+    "fr": "Confirmation",
+    "uk": "Підтвердження"
+  },
+  {
+    "key": "Gravação encerrada",
+    "en": "Recording stopped",
+    "pt": "Gravação encerrada",
+    "ru": "Запись завершена",
+    "es": "Grabación finalizada",
+    "it": "Registrazione terminata",
+    "fr": "Enregistrement terminé",
+    "uk": "Запис завершено"
+  },
+  {
+    "key": "Gravação iniciada",
+    "en": "Recording started",
+    "pt": "Gravação iniciada",
+    "ru": "Запись начата",
+    "es": "Grabación iniciada",
+    "it": "Registrazione avviata",
+    "fr": "Enregistrement commencé",
+    "uk": "Запис розпочато"
+  },
+  {
+    "key": "Transmissão OBS",
+    "en": "OBS Broadcast",
+    "pt": "Transmissão OBS",
+    "ru": "Трансляция OBS",
+    "es": "Transmisión OBS",
+    "it": "Trasmissione OBS",
+    "fr": "Diffusion OBS",
+    "uk": "Трансляція OBS"
+  },
+  {
+    "key": "Você precisa configurar a transmissão no OBS primeiro!",
+    "en": "You need to set up the broadcast in OBS first!",
+    "pt": "Você precisa configurar a transmissão no OBS primeiro!",
+    "ru": "Сначала вам нужно настроить трансляцию в OBS!",
+    "es": "¡Necesitas configurar la transmisión en OBS primero!",
+    "it": "Devi configurare la trasmissione in OBS prima!",
+    "fr": "Vous devez d'abord configurer la diffusion dans OBS !",
+    "uk": "Вам потрібно спочатку налаштувати трансляцію в OBS!"
+  },
+  {
+    "key": "ATENÇÃO",
+    "en": "ATTENTION",
+    "pt": "ATENÇÃO",
+    "ru": "ВНИМАНИЕ",
+    "es": "ATENCIÓN",
+    "it": "ATTENZIONE",
+    "fr": "ATTENTION",
+    "uk": "УВАГА"
+  },
+  {
+    "key": "Deseja iniciar a transmissão?",
+    "en": "Do you want to start the broadcast?",
+    "pt": "Deseja iniciar a transmissão?",
+    "ru": "Вы хотите начать трансляцию?",
+    "es": "¿Desea iniciar la transmisión?",
+    "it": "Vuoi avviare la trasmissione?",
+    "fr": "Voulez-vous commencer la diffusion ?",
+    "uk": "Бажаєте розпочати трансляцію?"
+  },
+  {
+    "key": "Deseja encerrar a transmissão?",
+    "en": "Do you want to stop the broadcast?",
+    "pt": "Deseja encerrar a transmissão?",
+    "ru": "Вы хотите завершить трансляцию?",
+    "es": "¿Desea finalizar la transmisión?",
+    "it": "Vuoi terminare la trasmissione?",
+    "fr": "Voulez-vous arrêter la diffusion ?",
+    "uk": "Бажаєте завершити трансляцію?"
+  },
+  {
+    "key": "Cena",
+    "en": "Scene",
+    "pt": "Cena",
+    "ru": "Сцена",
+    "es": "Escena",
+    "it": "Scena",
+    "fr": "Scène",
+    "uk": "Сцена"
+  },
+  {
+    "key": "Exibir o nome da tela no botão",
+    "en": "Show the screen name on the button",
+    "pt": "Exibir o nome da tela no botão",
+    "ru": "Показать имя экрана на кнопке",
+    "es": "Mostrar el nombre de la pantalla en el botón",
+    "it": "Mostra il nome dello schermo sul pulsante",
+    "fr": "Afficher le nom de l'écran sur le bouton",
+    "uk": "Показати назву екрана на кнопці"
+  },
+  {
+    "key": "Estado final das telas",
+    "en": "Final state of the screens",
+    "pt": "Estado final das telas",
+    "ru": "Конечное состояние экранов",
+    "es": "Estado final de las pantallas",
+    "it": "Stato finale degli schermi",
+    "fr": "État final des écrans",
+    "uk": "Кінцевий стан екранів"
+  },
+  {
+    "key": "Quando fechar o Holyrics, marque as telas que devem ser salvas como ativas para o próximo início.",
+    "en": "When closing Holyrics, mark the screens that should be saved as active for the next start.",
+    "pt": "Quando fechar o Holyrics, marque as telas que devem ser salvas como ativas para o próximo início.",
+    "ru": "При закрытии Holyrics отметьте экраны, которые должны быть сохранены как активные для следующего запуска.",
+    "es": "Al cerrar Holyrics, marca las pantallas que deben guardarse como activas para el próximo inicio.",
+    "it": "Quando chiudi il Holyrics, segna gli schermi che devono essere salvati come attivi per il prossimo avvio.",
+    "fr": "Lorsque vous fermez le Holyrics, cochez les écrans qui doivent être enregistrés comme actifs pour le prochain démarrage.",
+    "uk": "Коли закриваєте Holyrics, позначте екрани, які повинні зберігатися як активні для наступного запуску."
+  },
+  {
+    "key": "Configurar estado final das telas",
+    "en": "Configure final state of the screens",
+    "pt": "Configurar estado final das telas",
+    "ru": "Настроить конечное состояние экранов",
+    "es": "Configurar estado final de las pantallas",
+    "it": "Configura stato finale degli schermi",
+    "fr": "Configurer l'état final des écrans",
+    "uk": "Налаштувати кінцевий стан екранів"
+  },
+  {
+    "key": "Estado inicial das telas",
+    "en": "Initial state of the screens",
+    "pt": "Estado inicial das telas",
+    "ru": "Начальное состояние экранов",
+    "es": "Estado inicial de las pantallas",
+    "it": "Stato iniziale degli schermi",
+    "fr": "État initial des écrans",
+    "uk": "Початковий стан екранів"
+  },
+  {
+    "key": "Define qual ação será ativada ao iniciar o Holyrics.",
+    "en": "Defines which action will be activated when starting Holyrics.",
+    "pt": "Define qual ação será ativada ao iniciar o Holyrics.",
+    "ru": "Определяет, какое действие будет активировано при запуске Holyrics.",
+    "es": "Define qué acción se activará al iniciar Holyrics.",
+    "it": "Definisce quale azione sarà attivata all'avvio del Holyrics.",
+    "fr": "Définit quelle action sera activée au démarrage du Holyrics.",
+    "uk": "Визначає, яка дія буде активована при запуску Holyrics."
+  },
+  {
+    "key": "Selecione uma ação inicial para cada tela",
+    "en": "Select an initial action for each screen",
+    "pt": "Selecione uma ação inicial para cada tela",
+    "ru": "Выберите начальное действие для каждого экрана",
+    "es": "Selecciona una acción inicial para cada pantalla",
+    "it": "Seleziona un'azione iniziale per ogni schermo",
+    "fr": "Sélectionnez une action initiale pour chaque écran",
+    "uk": "Виберіть початкову дію для кожного екрана"
+  },
+  {
+    "key": "Holyrics",
+    "en": "Holyrics",
+    "pt": "Holyrics",
+    "ru": "Holyrics",
+    "es": "Holyrics",
+    "it": "Holyrics",
+    "fr": "Holyrics",
+    "uk": "Holyrics"
+  },
+  {
+    "key": "Inativo",
+    "en": "Inactive",
+    "pt": "Inativo",
+    "ru": "Неактивно",
+    "es": "Inactivo",
+    "it": "Inattivo",
+    "fr": "Inactif",
+    "uk": "Неактивний"
+  },
+  {
+    "key": "Output",
+    "en": "Output",
+    "pt": "Saída",
+    "ru": "Выход",
+    "es": "Salida",
+    "it": "Output",
+    "fr": "Sortie",
+    "uk": "Вихід"
+  },
+  {
+    "key": "Configuração script LUA do OBS",
+    "en": "OBS LUA script configuration",
+    "pt": "Configuração script LUA do OBS",
+    "ru": "Настройка скрипта LUA для OBS",
+    "es": "Configuración de script LUA de OBS",
+    "it": "Configurazione script LUA di OBS",
+    "fr": "Configuration du script LUA d'OBS",
+    "uk": "Налаштування скрипта LUA для OBS"
+  },
+  {
+    "key": "Gera os dados que o script lua precisa para gerar as telas para o Holyrics controlar. Copie e cole na configuração do script no OBS.",
+    "en": "Generates the data that the lua script needs to create the screens for Holyrics to control. Copy and paste into the script configuration in OBS.",
+    "pt": "Gera os dados que o script lua precisa para gerar as telas para o Holyrics controlar. Copie e cole na configuração do script no OBS.",
+    "ru": "Генерирует данные, которые скрипт lua нуждается для создания экранов, которые Holyrics будет контролировать. Скопируйте и вставьте в настройку скрипта в OBS.",
+    "es": "Genera los datos que el script lua necesita para generar las pantallas que Holyrics controlará. Copia y pega en la configuración del script en OBS.",
+    "it": "Genera i dati di cui lo script lua ha bisogno per generare gli schermi che il Holyrics deve controllare. Copia e incolla nella configurazione dello script in OBS.",
+    "fr": "Génère les données dont le script lua a besoin pour générer les écrans que Holyrics doit contrôler. Copiez et collez dans la configuration du script dans OBS.",
+    "uk": "Генерує дані, які скрипт lua потребує для створення екранів, які Holyrics контролює. Скопіюйте та вставте в налаштування скрипта в OBS."
+  },
+  {
+    "key": "Gerar Configuração",
+    "en": "Generate Configuration",
+    "pt": "Gerar Configuração",
+    "ru": "Сгенерировать настройку",
+    "es": "Generar Configuración",
+    "it": "Genera Configurazione",
+    "fr": "Générer la configuration",
+    "uk": "Генерувати налаштування"
+  },
+  {
+    "key": "Cenas nos botões de tela",
+    "en": "Scenes on screen buttons",
+    "pt": "Cenas nos botões de tela",
+    "ru": "Сцены на кнопках экрана",
+    "es": "Escenas en los botones de pantalla",
+    "it": "Scene nei pulsanti dello schermo",
+    "fr": "Scènes sur les boutons d'écran",
+    "uk": "Сцени на кнопках екрана"
+  },
+  {
+    "key": "Selecione as cenas em menus para cada tela",
+    "en": "Select scenes in menus for each screen",
+    "pt": "Selecione as cenas em menus para cada tela",
+    "ru": "Выберите сцены в меню для каждого экрана",
+    "es": "Selecciona las escenas en menús para cada pantalla",
+    "it": "Seleziona le scene nei menu per ogni schermo",
+    "fr": "Sélectionnez les scènes dans les menus pour chaque écran",
+    "uk": "Виберіть сцени в меню для кожного екрана"
+  },
+  {
+    "key": "Selecionar cenas",
+    "en": "Select scenes",
+    "pt": "Selecionar cenas",
+    "ru": "Выбрать сцены",
+    "es": "Seleccionar escenas",
+    "it": "Seleziona scene",
+    "fr": "Sélectionner des scènes",
+    "uk": "Вибрати сцени"
+  },
+  {
+    "key": "Selecione os itens para a tela:",
+    "en": "Select items for the screen:",
+    "pt": "Selecione os itens para a tela:",
+    "ru": "Выберите элементы для экрана:",
+    "es": "Selecciona los elementos para la pantalla:",
+    "it": "Seleziona gli elementi per lo schermo:",
+    "fr": "Sélectionnez les éléments pour l'écran :",
+    "uk": "Виберіть елементи для екрана:"
+  },
+  {
+    "key": "Cenas:",
+    "en": "Scenes:",
+    "pt": "Cenas:",
+    "ru": "Сцены:",
+    "es": "Escenas:",
+    "it": "Scene:",
+    "fr": "Scènes :",
+    "uk": "Сцени:"
+  },
+  {
+    "key": "Saídas:",
+    "en": "Outputs:",
+    "pt": "Saídas:",
+    "ru": "Выходы:",
+    "es": "Salidas:",
+    "it": "Uscite:",
+    "fr": "Sorties :",
+    "uk": "Виходи:"
+  },
+  {
+    "key": "Erro ao carregar telas do OBS. Verifique se o mesmo encontra-se aberto.",
+    "en": "Error loading OBS screens. Please check if it is open.",
+    "pt": "Erro ao carregar telas do OBS. Verifique se o mesmo está aberto.",
+    "ru": "Ошибка при загрузке экранов из OBS. Проверьте, открыт ли он.",
+    "es": "Error al cargar pantallas de OBS. Verifica si está abierto.",
+    "it": "Errore nel caricamento degli schermi di OBS. Controlla se è aperto.",
+    "fr": "Erreur lors du chargement des écrans d'OBS. Vérifiez s'il est ouvert.",
+    "uk": "Помилка при завантаженні екранів з OBS. Перевірте, чи він відкритий."
+  },
+  {
+    "key": "Atualizar",
+    "en": "Update",
+    "pt": "Atualizar",
+    "ru": "Обновить",
+    "es": "Actualizar",
+    "it": "Aggiorna",
+    "fr": "Mettre à jour",
+    "uk": "Оновити"
+  },
+  {
+    "key": "OBS não encontrado. Clique para atualizar.",
+    "en": "OBS not found. Click to update.",
+    "pt": "OBS não encontrado. Clique para atualizar.",
+    "ru": "OBS не найден. Нажмите, чтобы обновить.",
+    "es": "OBS no encontrado. Haz clic para actualizar.",
+    "it": "OBS non trovato. Clicca per aggiornare.",
+    "fr": "OBS non trouvé. Cliquez pour mettre à jour.",
+    "uk": "OBS не знайдено. Натисніть, щоб оновити."
+  },
+  {
+    "key": "Cenas",
+    "en": "Scenes",
+    "pt": "Cenas",
+    "ru": "Сцены",
+    "es": "Escenas",
+    "it": "Scene",
+    "fr": "Scènes",
+    "uk": "Сцени"
+  },
+  {
+    "key": "Saídas",
+    "en": "Outputs",
+    "pt": "Saídas",
+    "ru": "Выходы",
+    "es": "Salidas",
+    "it": "Uscite",
+    "fr": "Sorties",
+    "uk": "Виходи"
+  },
+  {
+    "key": "Ativar Tela",
+    "en": "Activate Screen",
+    "pt": "Ativar Tela",
+    "ru": "Активировать экран",
+    "es": "Activar Pantalla",
+    "it": "Attiva Schermo",
+    "fr": "Activer l'écran",
+    "uk": "Активувати екран"
+  },
+  {
+    "key": "Ativa uma determinada tela do OBS/Holyrics em uma saída especificada",
+    "en": "Activates a specific OBS/Holyrics screen in a specified output",
+    "pt": "Ativa uma determinada tela do OBS/Holyrics em uma saída especificada",
+    "ru": "Активирует определенный экран OBS/Holyrics на указанном выходе",
+    "es": "Activa una pantalla específica de OBS/Holyrics en una salida especificada",
+    "it": "Attiva uno schermo specifico di OBS/Holyrics in un'uscita specificata",
+    "fr": "Active un écran spécifique d'OBS/Holyrics dans une sortie spécifiée",
+    "uk": "Активує певний екран OBS/Holyrics у вказаному виході"
+  },
+  {
+    "key": "Erro ao ativar tela",
+    "en": "Error activating screen",
+    "pt": "Erro ao ativar tela",
+    "ru": "Ошибка при активации экрана",
+    "es": "Error al activar pantalla",
+    "it": "Errore nell'attivazione dello schermo",
+    "fr": "Erreur lors de l'activation de l'écran",
+    "uk": "Помилка при активації екрану"
+  },
+  {
+    "key": "Preencha todos os campos obrigatórios!",
+    "en": "Fill in all required fields!",
+    "pt": "Preencha todos os campos obrigatórios!",
+    "ru": "Заполните все обязательные поля!",
+    "es": "¡Rellena todos los campos obligatorios!",
+    "it": "Compila tutti i campi obbligatori!",
+    "fr": "Remplissez tous les champs obligatoires !",
+    "uk": "Заповніть всі обов'язкові поля!"
+  },
+  {
+    "key": "Selecione a tela de saída",
+    "en": "Select the output screen",
+    "pt": "Selecione a tela de saída",
+    "ru": "Выберите экран выхода",
+    "es": "Selecciona la pantalla de salida",
+    "it": "Seleziona lo schermo di uscita",
+    "fr": "Sélectionnez l'écran de sortie",
+    "uk": "Виберіть екран виходу"
+  },
+  {
+    "key": "Modo de exibição",
+    "en": "Display mode",
+    "pt": "Modo de exibição",
+    "ru": "Режим отображения",
+    "es": "Modo de visualización",
+    "it": "Modalità di visualizzazione",
+    "fr": "Mode d'affichage",
+    "uk": "Режим відображення"
+  },
+  {
+    "key": "Tokens UNO",
+    "en": "UNO Tokens",
+    "pt": "Tokens UNO",
+    "ru": "Токены UNO",
+    "es": "Tokens UNO",
+    "it": "Token UNO",
+    "fr": "Tokens UNO",
+    "uk": "Токени UNO"
+  },
+  {
+    "key": "Cadastre, edite ou remova os tokens UNO. Use o botão \"Configurar\" de cada item para gerenciar campos/overlays.",
+    "en": "Register, edit, or remove UNO tokens. Use the \"Configure\" button for each item to manage fields/overlays.",
+    "pt": "Cadastre, edite ou remova os tokens UNO. Use o botão \"Configurar\" de cada item para gerenciar campos/overlays.",
+    "ru": "Зарегистрируйте, отредактируйте или удалите токены UNO. Используйте кнопку \"Настроить\" для каждого элемента, чтобы управлять полями/оверлеями.",
+    "es": "Registra, edita o elimina los tokens UNO. Usa el botón \"Configurar\" de cada elemento para gestionar campos/superposiciones.",
+    "it": "Registra, modifica o rimuovi i token UNO. Usa il pulsante \"Configura\" di ogni elemento per gestire campi/overlay.",
+    "fr": "Enregistrez, modifiez ou supprimez les tokens UNO. Utilisez le bouton \"Configurer\" de chaque élément pour gérer les champs/overlays.",
+    "uk": "Зареєструйте, редагуйте або видаліть токени UNO. Використовуйте кнопку \"Налаштувати\" для кожного елемента для управління полями/накладами."
+  },
+  {
+    "key": "Overlay",
+    "en": "Overlay",
+    "pt": "Overlay",
+    "ru": "Оверлей",
+    "es": "Superposición",
+    "it": "Overlay",
+    "fr": "Overlay",
+    "uk": "Накладка"
+  },
+  {
+    "key": "Informe o Token UNO antes de configurar os overlays.",
+    "en": "Provide the UNO Token before configuring the overlays.",
+    "pt": "Informe o Token UNO antes de configurar os overlays.",
+    "ru": "Укажите токен UNO перед настройкой оверлеев.",
+    "es": "Proporciona el Token UNO antes de configurar las superposiciones.",
+    "it": "Inserisci il Token UNO prima di configurare gli overlay.",
+    "fr": "Veuillez indiquer le Token UNO avant de configurer les overlays.",
+    "uk": "Введіть токен UNO перед налаштуванням накладок."
+  },
+  {
+    "key": "Overlay não suportado",
+    "en": "Unsupported overlay",
+    "pt": "Overlay não suportado",
+    "ru": "Оверлей не поддерживается",
+    "es": "Superposición no soportada",
+    "it": "Overlay non supportato",
+    "fr": "Overlay non pris en charge",
+    "uk": "Накладка не підтримується"
+  },
+  {
+    "key": "O token inserido está vinculado a um overlay do tipo \"Countdown\" que não é compatível com este módulo.",
+    "en": "The entered token is linked to a \"Countdown\" type overlay that is not compatible with this module.",
+    "pt": "O token inserido está vinculado a um overlay do tipo \"Contagem Regressiva\" que não é compatível com este módulo.",
+    "ru": "Введенный токен связан с оверлеем типа \"Обратный отсчет\", который не совместим с этим модулем.",
+    "es": "El token ingresado está vinculado a una superposición del tipo \"Cuenta regresiva\" que no es compatible con este módulo.",
+    "it": "Il token inserito è collegato a un overlay di tipo \"Countdown\" che non è compatibile con questo modulo.",
+    "fr": "Le token saisi est lié à un overlay de type \"Countdown\" qui n'est pas compatible avec ce module.",
+    "uk": "Введений токен пов'язаний з накладкою типу \"Countdown\", яка не сумісна з цим модулем."
+  },
+  {
+    "key": "Estes overlays personalizados não possuem suporte aos comandos de contagem regressiva.",
+    "en": "These custom overlays do not support countdown commands.",
+    "pt": "Estes overlays personalizados não possuem suporte aos comandos de contagem regressiva.",
+    "ru": "Эти пользовательские оверлеи не поддерживают команды обратного отсчета.",
+    "es": "Estas superposiciones personalizadas no son compatibles con los comandos de cuenta regresiva.",
+    "it": "Questi overlay personalizzati non supportano i comandi di conto alla rovescia.",
+    "fr": "Ces overlays personnalisés ne prennent pas en charge les commandes de compte à rebours.",
+    "uk": "Ці персоналізовані накладки не підтримують команди зворотного відліку."
+  },
+  {
+    "key": "Por favor, utilize um overlay do tipo Timer oficial.",
+    "en": "Please use an official Timer type overlay.",
+    "pt": "Por favor, utilize um overlay do tipo Timer oficial.",
+    "ru": "Пожалуйста, используйте официальный оверлей типа Таймер.",
+    "es": "Por favor, utiliza una superposición del tipo Timer oficial.",
+    "it": "Si prega di utilizzare un overlay di tipo Timer ufficiale.",
+    "fr": "Veuillez utiliser un overlay de type Timer officiel.",
+    "uk": "Будь ласка, використовуйте офіційну накладку типу Таймер."
+  },
+  {
+    "key": "Configuração do Timer para o Token ",
+    "en": "Timer configuration for Token ",
+    "pt": "Configuração do Timer para o Token ",
+    "ru": "Настройка таймера для токена ",
+    "es": "Configuración del Timer para el Token ",
+    "it": "Configurazione del Timer per il Token ",
+    "fr": "Configuration du Timer pour le Token ",
+    "uk": "Налаштування таймера для токена "
+  },
+  {
+    "key": "Tempos padrão (min)",
+    "en": "Standard times (min)",
+    "pt": "Tempos padrão (min)",
+    "ru": "Стандартные времена (мин)",
+    "es": "Tiempos estándar (min)",
+    "it": "Tempi standard (min)",
+    "fr": "Temps standard (min)",
+    "uk": "Стандартні часи (хв)"
+  },
+  {
+    "key": "Coloque os tempos separados por vírgula",
+    "en": "Enter times separated by commas",
+    "pt": "Coloque os tempos separados por vírgula",
+    "ru": "Введите времена, разделенные запятыми",
+    "es": "Coloca los tiempos separados por comas",
+    "it": "Inserisci i tempi separati da virgola",
+    "fr": "Entrez les temps séparés par des virgules",
+    "uk": "Введіть часи, розділені комою"
+  },
+  {
+    "key": "Overlays do Token ",
+    "en": "Overlays for Token ",
+    "pt": "Overlays do Token ",
+    "ru": "Оверлеи токена ",
+    "es": "Superposiciones del Token ",
+    "it": "Sovrapposizioni del Token ",
+    "fr": "Superpositions du Token ",
+    "uk": "Накладки токена "
+  },
+  {
+    "key": "Configurar tempo e campos",
+    "en": "Configure time and fields",
+    "pt": "Configurar tempo e campos",
+    "ru": "Настроить время и поля",
+    "es": "Configurar tiempo y campos",
+    "it": "Configurare tempo e campi",
+    "fr": "Configurer le temps et les champs",
+    "uk": "Налаштувати час і поля"
+  },
+  {
+    "key": "Nenhum overlay disponível",
+    "en": "No overlay available",
+    "pt": "Nenhum overlay disponível",
+    "ru": "Нет доступных наложений",
+    "es": "Ningún overlay disponible",
+    "it": "Nessuna sovrapposizione disponibile",
+    "fr": "Aucune superposition disponible",
+    "uk": "Немає доступного оверлею"
+  },
+  {
+    "key": "Não foi possível localizar nenhum overlay válido/compatível para o token informado.",
+    "en": "No valid/compatible overlay could be found for the provided token.",
+    "pt": "Não foi possível localizar nenhum overlay válido/compatível para o token informado.",
+    "ru": "Не удалось найти ни одного действительного/совместимого наложения для указанного токена.",
+    "es": "No se pudo encontrar ningún overlay válido/compatible para el token informado.",
+    "it": "Impossibile trovare alcuna sovrapposizione valida/compatibile per il token fornito.",
+    "fr": "Aucune superposition valide/compatible trouvée pour le token indiqué.",
+    "uk": "Не вдалося знайти жодного дійсного/сумісного оверлею для вказаного токена."
+  },
+  {
+    "key": "Token UNO não informado. Digite o token antes de configurar.",
+    "en": "UNO token not provided. Please enter the token before configuring.",
+    "pt": "Token UNO não informado. Digite o token antes de configurar.",
+    "ru": "Токен UNO не указан. Введите токен перед настройкой.",
+    "es": "Token UNO no informado. Escriba el token antes de configurar.",
+    "it": "Token UNO non fornito. Inserisci il token prima di configurare.",
+    "fr": "Token UNO non renseigné. Veuillez saisir le token avant de configurer.",
+    "uk": "Токен UNO не вказано. Введіть токен перед налаштуванням."
+  },
+  {
+    "key": "Dados do overlay não encontrados.",
+    "en": "Overlay data not found.",
+    "pt": "Dados do overlay não encontrados.",
+    "ru": "Данные наложения не найдены.",
+    "es": "Datos del overlay no encontrados.",
+    "it": "Dati della sovrapposizione non trovati.",
+    "fr": "Données de la superposition non trouvées.",
+    "uk": "Дані оверлею не знайдено."
+  },
+  {
+    "key": "Clique em \"Configurar\" apenas após digitar o token.",
+    "en": "Click \"Configure\" only after entering the token.",
+    "pt": "Clique em \"Configurar\" apenas após digitar o token.",
+    "ru": "Нажмите \"Настроить\" только после ввода токена.",
+    "es": "Haga clic en \"Configurar\" solo después de escribir el token.",
+    "it": "Clicca su \"Configura\" solo dopo aver inserito il token.",
+    "fr": "Cliquez sur \"Configurer\" uniquement après avoir saisi le token.",
+    "uk": "Натискайте \"Налаштувати\" лише після введення токена."
+  },
+  {
+    "key": "Overlay:",
+    "en": "Overlay:",
+    "pt": "Overlay:",
+    "ru": "Наложение:",
+    "es": "Overlay:",
+    "it": "Sovrapposizione:",
+    "fr": "Superposition:",
+    "uk": "Оверлей:"
+  },
+  {
+    "key": "Itens a personalizar ao ativar",
+    "en": "Items to customize when activating",
+    "pt": "Itens a personalizar ao ativar",
+    "ru": "Элементы для настройки при активации",
+    "es": "Elementos a personalizar al activar",
+    "it": "Elementi da personalizzare all'attivazione",
+    "fr": "Éléments à personnaliser lors de l'activation",
+    "uk": "Елементи для налаштування при активації"
+  },
+  {
+    "key": "Selecione primeiro um overlay!",
+    "en": "Select an overlay first!",
+    "pt": "Selecione primeiro um overlay!",
+    "ru": "Сначала выберите наложение!",
+    "es": "¡Seleccione primero un overlay!",
+    "it": "Seleziona prima una sovrapposizione!",
+    "fr": "Sélectionnez d'abord une superposition!",
+    "uk": "Спочатку виберіть оверлей!"
+  },
+  {
+    "key": "Nenhum campo disponível para associação neste overlay.",
+    "en": "No fields available for association in this overlay.",
+    "pt": "Nenhum campo disponível para associação neste overlay.",
+    "ru": "Нет доступных полей для ассоциации в этом наложении.",
+    "es": "No hay campos disponibles para asociar en este overlay.",
+    "it": "Nessun campo disponibile per associazione in questa sovrapposizione.",
+    "fr": "Aucun champ disponible pour association dans cette superposition.",
+    "uk": "Немає доступних полів для асоціації в цьому оверлеї."
+  },
+  {
+    "key": "Associe os campos do overlay",
+    "en": "Associate the overlay fields",
+    "pt": "Associe os campos do overlay",
+    "ru": "Ассоциируйте поля наложения",
+    "es": "Asocie los campos del overlay",
+    "it": "Associa i campi della sovrapposizione",
+    "fr": "Associez les champs de la superposition",
+    "uk": "Асоціюйте поля оверлею"
+  },
+  {
+    "key": "Nome da Música",
+    "en": "Song Name",
+    "pt": "Nome da Música",
+    "ru": "Название песни",
+    "es": "Nombre de la Canción",
+    "it": "Nome della Canzone",
+    "fr": "Nom de la Chanson",
+    "uk": "Назва пісні"
+  },
+  {
+    "key": "Nome da Pessoa",
+    "en": "Person's Name",
+    "pt": "Nome da Pessoa",
+    "ru": "Имя человека",
+    "es": "Nombre de la Persona",
+    "it": "Nome della Persona",
+    "fr": "Nom de la Personne",
+    "uk": "Ім'я особи"
+  },
+  {
+    "key": "Função",
+    "en": "Role",
+    "pt": "Função",
+    "ru": "Роль",
+    "es": "Función",
+    "it": "Ruolo",
+    "fr": "Fonction",
+    "uk": "Посада"
+  },
+  {
+    "key": "Título de Mídia",
+    "en": "Media Title",
+    "pt": "Título de Mídia",
+    "ru": "Название медиа",
+    "es": "Título de Medios",
+    "it": "Titolo dei Media",
+    "fr": "Titre de Média",
+    "uk": "Назва медіа"
+  },
+  {
+    "key": "Campo extra a zerar (opcional)",
+    "en": "Extra field to reset (optional)",
+    "pt": "Campo extra a zerar (opcional)",
+    "ru": "Дополнительное поле для обнуления (необязательно)",
+    "es": "Campo extra a cero (opcional)",
+    "it": "Campo extra da azzerare (opzionale)",
+    "fr": "Champ supplémentaire à réinitialiser (optionnel)",
+    "uk": "Додаткове поле для скидання (необов'язково)"
+  },
+  {
+    "key": "Overlay Padrão",
+    "en": "Default Overlay",
+    "pt": "Overlay Padrão",
+    "ru": "Стандартное наложение",
+    "es": "Overlay Predeterminado",
+    "it": "Sovrapposizione Predefinita",
+    "fr": "Superposition par Défaut",
+    "uk": "Стандартний оверлей"
+  },
+  {
+    "key": "Atraso de exibição",
+    "en": "Display delay",
+    "pt": "Atraso de exibição",
+    "ru": "Задержка отображения",
+    "es": "Retraso de visualización",
+    "it": "Ritardo di visualizzazione",
+    "fr": "Délai d'affichage",
+    "uk": "Затримка відображення"
+  },
+  {
+    "key": "Associar Campos",
+    "en": "Associate Fields",
+    "pt": "Associar Campos",
+    "ru": "Ассоциировать поля",
+    "es": "Asociar Campos",
+    "it": "Associare Campi",
+    "fr": "Associer des Champs",
+    "uk": "Асоціювати поля"
+  },
+  {
+    "key": "Overlays Automatizados",
+    "en": "Automated Overlays",
+    "pt": "Overlays Automatizados",
+    "ru": "Автоматизированные наложения",
+    "es": "Overlays Automatizados",
+    "it": "Sovrapposizioni Automatizzate",
+    "fr": "Superpositions Automatisées",
+    "uk": "Автоматизовані оверлеї"
+  },
+  {
+    "key": "Configure overlays para título de mídia, música e escalados",
+    "en": "Configure overlays for media title, song, and escalated",
+    "pt": "Configure overlays para título de mídia, música e escalados",
+    "ru": "Настройте наложения для названия медиа, музыки и эскалаций",
+    "es": "Configure overlays para título de medios, música y escalados",
+    "it": "Configura sovrapposizioni per titolo dei media, canzone e scalati",
+    "fr": "Configurer des superpositions pour le titre de média, la musique et les escalades",
+    "uk": "Налаштуйте оверлеї для назви медіа, пісні та ескалацій"
+  },
+  {
+    "key": "Título de Música",
+    "en": "Song Title",
+    "pt": "Título de Música",
+    "ru": "Название музыки",
+    "es": "Título de Canción",
+    "it": "Titolo della Canzone",
+    "fr": "Titre de la Chanson",
+    "uk": "Назва пісні"
+  },
+  {
+    "key": "Nome da pessoa escalada",
+    "en": "Name of the escalated person",
+    "pt": "Nome da pessoa escalada",
+    "ru": "Имя эскалированного человека",
+    "es": "Nombre de la persona escalada",
+    "it": "Nome della persona scalata",
+    "fr": "Nom de la personne escaladée",
+    "uk": "Ім'я особи, що ескалюється"
+  },
+  {
+    "key": "Configuração de Overlays Automatizados",
+    "en": "Automated Overlays Configuration",
+    "pt": "Configuração de Overlays Automatizados",
+    "ru": "Настройка автоматизированных наложений",
+    "es": "Configuración de Overlays Automatizados",
+    "it": "Configurazione delle Sovrapposizioni Automatizzate",
+    "fr": "Configuration des Superpositions Automatisées",
+    "uk": "Налаштування автоматизованих оверлеїв"
+  },
+  {
+    "key": "Cancelar Exibição?",
+    "en": "Cancel Display?",
+    "pt": "Cancelar Exibição?",
+    "ru": "Отменить отображение?",
+    "es": "¿Cancelar Visualización?",
+    "it": "Annullare la Visualizzazione?",
+    "fr": "Annuler l'Affichage?",
+    "uk": "Скасувати відображення?"
+  },
+  {
+    "key": "Deseja ocultar este overlay agora e cancelar a exibição?",
+    "en": "Do you want to hide this overlay now and cancel the display?",
+    "pt": "Deseja ocultar este overlay agora e cancelar a exibição?",
+    "ru": "Хотите скрыть это наложение сейчас и отменить отображение?",
+    "es": "¿Desea ocultar este overlay ahora y cancelar la visualización?",
+    "it": "Vuoi nascondere questa sovrapposizione ora e annullare la visualizzazione?",
+    "fr": "Souhaitez-vous masquer cette superposition maintenant et annuler l'affichage?",
+    "uk": "Бажаєте приховати цей оверлей зараз і скасувати відображення?"
+  },
+  {
+    "key": "Tempo personalizado",
+    "en": "Custom time",
+    "pt": "Tempo personalizado",
+    "ru": "Пользовательское время",
+    "es": "Tiempo personalizado",
+    "it": "Tempo personalizzato",
+    "fr": "Temps personnalisé",
+    "uk": "Користувацький час"
+  },
+  {
+    "key": "Tempo (hh:mm)",
+    "en": "Time (hh:mm)",
+    "pt": "Tempo (hh:mm)",
+    "ru": "Время (чч:мм)",
+    "es": "Tiempo (hh:mm)",
+    "it": "Tempo (hh:mm)",
+    "fr": "Temps (hh:mm)",
+    "uk": "Час (гг:хх)"
+  },
+  {
+    "key": "Hora exata",
+    "en": "Exact time",
+    "pt": "Hora exata",
+    "ru": "Точное время",
+    "es": "Hora exacta",
+    "it": "Ora esatta",
+    "fr": "Heure exacte",
+    "uk": "Точний час"
+  },
+  {
+    "key": "Hora (hh:mm)",
+    "en": "Time (hh:mm)",
+    "pt": "Hora (hh:mm)",
+    "ru": "Время (чч:мм)",
+    "es": "Hora (hh:mm)",
+    "it": "Ora (hh:mm)",
+    "fr": "Heure (hh:mm)",
+    "uk": "Час (гг:хх)"
+  },
+  {
+    "key": "Editar manualmente",
+    "en": "Edit manually",
+    "pt": "Editar manualmente",
+    "ru": "Редактировать вручную",
+    "es": "Editar manualmente",
+    "it": "Modifica manualmente",
+    "fr": "Modifier manuellement",
+    "uk": "Редагувати вручну"
+  },
+  {
+    "key": "Recarregar slots",
+    "en": "Reload slots",
+    "pt": "Recarregar slots",
+    "ru": "Перезагрузить слоты",
+    "es": "Recargar slots",
+    "it": "Ricarica slot",
+    "fr": "Recharger les slots",
+    "uk": "Перезавантажити слоти"
+  },
+  {
+    "key": "Recarregando dados dos slots...",
+    "en": "Reloading slot data...",
+    "pt": "Recarregando dados dos slots...",
+    "ru": "Перезагрузка данных слотов...",
+    "es": "Recargando datos de los slots...",
+    "it": "Ricaricando dati degli slot...",
+    "fr": "Rechargement des données des slots...",
+    "uk": "Перезавантаження даних слотів..."
+  },
+  {
+    "key": "Slots atualizados com sucesso",
+    "en": "Slots updated successfully",
+    "pt": "Slots atualizados com sucesso",
+    "ru": "Слоты успешно обновлены",
+    "es": "Slots actualizados con éxito",
+    "it": "Slot aggiornati con successo",
+    "fr": "Slots mis à jour avec succès",
+    "uk": "Слоти успішно оновлено"
+  },
+  {
+    "key": "Reabra o menu para ver as alterações.",
+    "en": "Reopen the menu to see the changes.",
+    "pt": "Reabra o menu para ver as alterações.",
+    "ru": "Перезапустите меню, чтобы увидеть изменения.",
+    "es": "Reabra el menú para ver los cambios.",
+    "it": "Riapri il menu per vedere le modifiche.",
+    "fr": "Rouvrez le menu pour voir les modifications.",
+    "uk": "Перезапустіть меню, щоб побачити зміни."
+  },
+  {
+    "key": "Nenhum slot encontrado",
+    "en": "No slot found",
+    "pt": "Nenhum slot encontrado",
+    "ru": "Слоты не найдены",
+    "es": "Ningún slot encontrado",
+    "it": "Nessuno slot trovato",
+    "fr": "Aucun slot trouvé",
+    "uk": "Слоти не знайдено"
+  },
+  {
+    "key": "O overlay atual não possui slots válidos.",
+    "en": "The current overlay has no valid slots.",
+    "pt": "O overlay atual não possui slots válidos.",
+    "ru": "Текущее наложение не имеет действительных слотов.",
+    "es": "El overlay actual no tiene slots válidos.",
+    "it": "La sovrapposizione attuale non ha slot validi.",
+    "fr": "La superposition actuelle n'a pas de slots valides.",
+    "uk": "Поточний оверлей не має дійсних слотів."
+  },
+  {
+    "key": "Erro ao recarregar slots",
+    "en": "Error reloading slots",
+    "pt": "Erro ao recarregar slots",
+    "ru": "Ошибка при перезагрузке слотов",
+    "es": "Error al recargar slots",
+    "it": "Errore durante il ricaricamento degli slot",
+    "fr": "Erreur lors du rechargement des slots",
+    "uk": "Помилка при перезавантаженні слотів"
+  },
+  {
+    "key": "Ocorreu um erro durante a atualização.",
+    "en": "An error occurred during the update.",
+    "pt": "Ocorreu um erro durante a atualização.",
+    "ru": "Произошла ошибка во время обновления.",
+    "es": "Ocurrió un error durante la actualización.",
+    "it": "Si è verificato un errore durante l'aggiornamento.",
+    "fr": "Une erreur est survenue lors de la mise à jour.",
+    "uk": "Сталася помилка під час оновлення."
+  },
+  {
+    "key": "Agendamentos Periódicos",
+    "en": "Periodic Schedules",
+    "pt": "Agendamentos Periódicos",
+    "ru": "Периодические расписания",
+    "es": "Programaciones Periódicas",
+    "it": "Programmazioni Periodiche",
+    "fr": "Programmations Périodiques",
+    "uk": "Періодичні розклади"
+  },
+  {
+    "key": "Parar Todos os Agendamentos",
+    "en": "Stop All Schedules",
+    "pt": "Parar Todos os Agendamentos",
+    "ru": "Остановить все расписания",
+    "es": "Detener Todas las Programaciones",
+    "it": "Fermare Tutte le Programmazioni",
+    "fr": "Arrêter Toutes les Programmations",
+    "uk": "Зупинити всі розклади"
+  },
+  {
+    "key": "Existem overlays agendados. Deseja realmente cancelar todos?",
+    "en": "There are scheduled overlays. Do you really want to cancel all?",
+    "pt": "Existem overlays agendados. Deseja realmente cancelar todos?",
+    "ru": "Существуют запланированные наложения. Вы действительно хотите отменить все?",
+    "es": "Existen overlays programados. ¿Realmente desea cancelar todos?",
+    "it": "Ci sono sovrapposizioni programmate. Vuoi davvero annullare tutte?",
+    "fr": "Il y a des superpositions programmées. Voulez-vous vraiment annuler toutes?",
+    "uk": "Є заплановані оверлеї. Ви дійсно хочете скасувати всі?"
+  },
+  {
+    "key": "Parar Todos os Agendamentos?",
+    "en": "Stop All Schedules?",
+    "pt": "Parar Todos os Agendamentos?",
+    "ru": "Остановить все расписания?",
+    "es": "¿Detener Todas las Programaciones?",
+    "it": "Fermare Tutte le Programmazioni?",
+    "fr": "Arrêter Toutes les Programmations?",
+    "uk": "Зупинити всі розклади?"
+  },
+  {
+    "key": "Deseja interromper a exibição automática deste overlay?",
+    "en": "Do you want to stop the automatic display of this overlay?",
+    "pt": "Deseja interromper a exibição automática deste overlay?",
+    "ru": "Хотите остановить автоматическое отображение этого наложения?",
+    "es": "¿Desea interrumpir la visualización automática de este overlay?",
+    "it": "Vuoi interrompere la visualizzazione automatica di questa sovrapposizione?",
+    "fr": "Souhaitez-vous interrompre l'affichage automatique de cette superposition?",
+    "uk": "Бажаєте зупинити автоматичне відображення цього оверлею?"
+  },
+  {
+    "key": "Parar Exibição Automática?",
+    "en": "Stop Automatic Display?",
+    "pt": "Parar Exibição Automática?",
+    "ru": "Остановить автоматическое отображение?",
+    "es": "¿Detener Visualización Automática?",
+    "it": "Fermare la Visualizzazione Automatica?",
+    "fr": "Arrêter l'Affichage Automatique?",
+    "uk": "Зупинити автоматичне відображення?"
+  },
+  {
+    "key": "Exibição automática interrompida",
+    "en": "Automatic display stopped",
+    "pt": "Exibição automática interrompida",
+    "ru": "Автоматическое отображение остановлено",
+    "es": "Visualización automática interrumpida",
+    "it": "Visualizzazione automatica interrotta",
+    "fr": "Affichage automatique interrompu",
+    "uk": "Автоматичне відображення зупинено"
+  },
+  {
+    "key": "Agendar Overlay",
+    "en": "Schedule Overlay",
+    "pt": "Agendar Overlay",
+    "ru": "Запланировать наложение",
+    "es": "Programar Overlay",
+    "it": "Programma Sovrapposizione",
+    "fr": "Programmer la Superposition",
+    "uk": "Запланувати оверлей"
+  },
+  {
+    "key": "Intervalo entre exibições (minutos)",
+    "en": "Interval between displays (minutes)",
+    "pt": "Intervalo entre exibições (minutos)",
+    "ru": "Интервал между показами (минуты)",
+    "es": "Intervalo entre visualizaciones (minutos)",
+    "it": "Intervallo tra le visualizzazioni (minuti)",
+    "fr": "Intervalle entre les affichages (minutes)",
+    "uk": "Інтервал між відображеннями (хвилини)"
+  },
+  {
+    "key": "Conteúdo a exibir",
+    "en": "Content to display",
+    "pt": "Conteúdo a exibir",
+    "ru": "Содержимое для отображения",
+    "es": "Contenido a mostrar",
+    "it": "Contenuto da visualizzare",
+    "fr": "Contenu à afficher",
+    "uk": "Контент для відображення"
+  },
+  {
+    "key": "Exibição automática iniciada",
+    "en": "Automatic display started",
+    "pt": "Exibição automática iniciada",
+    "ru": "Автоматическое отображение начато",
+    "es": "Visualización automática iniciada",
+    "it": "Visualizzazione automatica avviata",
+    "fr": "Affichage automatique démarré",
+    "uk": "Автоматичне відображення розпочато"
+  },
+  {
+    "key": "{} agendamentos interrompidos.",
+    "en": "{} schedules stopped.",
+    "pt": "{} agendamentos interrompidos.",
+    "ru": "{} расписаний остановлено.",
+    "es": "{} programaciones interrumpidas.",
+    "it": "{} programmazioni interrotte.",
+    "fr": "{} programmations interrompues.",
+    "uk": "{} розкладів зупинено."
+  },
+  {
+    "key": "Token UNO",
+    "en": "UNO Token",
+    "pt": "Token UNO",
+    "ru": "Токен UNO",
+    "es": "Token UNO",
+    "it": "Token UNO",
+    "fr": "Token UNO",
+    "uk": "Токен UNO"
+  },
+  {
+    "key": "Conteúdo do Overlay",
+    "en": "Overlay Content",
+    "pt": "Conteúdo do Overlay",
+    "ru": "Содержимое наложения",
+    "es": "Contenido del Overlay",
+    "it": "Contenuto della Sovrapposizione",
+    "fr": "Contenu de la Superposition",
+    "uk": "Контент оверлею"
+  },
+  {
+    "key": "Diagnosticar overlays UNO",
+    "en": "Diagnose UNO overlays",
+    "pt": "Diagnosticar overlays UNO",
+    "ru": "Диагностика наложений UNO",
+    "es": "Diagnosticar overlays UNO",
+    "it": "Diagnostica sovrapposizioni UNO",
+    "fr": "Diagnostiquer les superpositions UNO",
+    "uk": "Діагностика оверлеїв UNO"
+  },
+  {
+    "key": "Desbilitar exibição de título da música no OBS",
+    "en": "Disable song title display in OBS",
+    "pt": "Desabilitar exibição de título da música no OBS",
+    "ru": "Отключить отображение названия песни в OBS",
+    "es": "Deshabilitar visualización del título de la canción en OBS",
+    "it": "Disabilitare la visualizzazione del titolo della canzone su OBS",
+    "fr": "Désactiver l'affichage du titre de la chanson dans OBS",
+    "uk": "Вимкнути відображення назви пісні в OBS"
+  },
+  {
+    "key": "Start Player",
+    "en": "Start Player",
+    "pt": "Iniciar Player",
+    "ru": "Запустить плеер",
+    "es": "Iniciar Reproductor",
+    "it": "Avvia Player",
+    "fr": "Démarrer le Lecteur",
+    "uk": "Запустити плеєр"
+  },
+  {
+    "key": "Activate metronome",
+    "en": "Activate metronome",
+    "pt": "Ativar metrônomo",
+    "ru": "Активировать метроном",
+    "es": "Activar metrónomo",
+    "it": "Attiva metronomo",
+    "fr": "Activer le métronome",
+    "uk": "Активувати метроном"
+  },
+  {
+    "key": "Double the tempo if the BPM is less than or equal to",
+    "en": "Double the tempo if the BPM is less than or equal to",
+    "pt": "Dobrar o tempo se o BPM for menor ou igual a",
+    "ru": "Удвоить темп, если BPM меньше или равно",
+    "es": "Doblar el tempo si el BPM es menor o igual a",
+    "it": "Raddoppia il tempo se il BPM è minore o uguale a",
+    "fr": "Doubler le tempo si le BPM est inférieur ou égal à",
+    "uk": "Подвоїти темп, якщо BPM менше або дорівнює"
+  },
+  {
+    "key": "Double the tempo if the time signature is 6/8, 9/8, or 12/8",
+    "en": "Double the tempo if the time signature is 6/8, 9/8, or 12/8",
+    "pt": "Dobrar o tempo se o compasso for 6/8, 9/8 ou 12/8",
+    "ru": "Удвоить темп, если размер такта 6/8, 9/8 или 12/8",
+    "es": "Doblar el tempo si el compás es 6/8, 9/8 o 12/8",
+    "it": "Raddoppia il tempo se il tempo è 6/8, 9/8 o 12/8",
+    "fr": "Doubler le tempo si la mesure est 6/8, 9/8 ou 12/8",
+    "uk": "Подвоїти темп, якщо розмір такту 6/8, 9/8 або 12/8"
+  },
+  {
+    "key": "Start player",
+    "en": "Start player",
+    "pt": "Iniciar player",
+    "ru": "Запустить плеер",
+    "es": "Iniciar reproductor",
+    "it": "Avvia player",
+    "fr": "Démarrer le lecteur",
+    "uk": "Запустити плеєр"
+  },
+  {
+    "key": "Pause",
+    "en": "Pause",
+    "pt": "Pausar",
+    "ru": "Пауза",
+    "es": "Pausar",
+    "it": "Pausa",
+    "fr": "Pause",
+    "uk": "Пауза"
+  },
+  {
+    "key": "Stop",
+    "en": "Stop",
+    "pt": "Parar",
+    "ru": "Остановить",
+    "es": "Detener",
+    "it": "Stop",
+    "fr": "Arrêter",
+    "uk": "Зупинити"
+  },
+  {
+    "key": "-1 to use the program's current BPM value",
+    "en": "-1 to use the program's current BPM value",
+    "pt": "-1 para usar o valor atual de BPM do programa",
+    "ru": "-1 для использования текущего значения BPM программы",
+    "es": "-1 para usar el valor BPM actual del programa",
+    "it": "-1 per utilizzare il valore BPM attuale del programma",
+    "fr": "-1 pour utiliser la valeur BPM actuelle du programme",
+    "uk": "-1 для використання поточного значення BPM програми"
+  },
+  {
+    "key": "FX Slot",
+    "en": "FX Slot",
+    "pt": "Slot FX",
+    "ru": "FX слот",
+    "es": "FX Slot",
+    "it": "FX Slot",
+    "fr": "FX Slot",
+    "uk": "FX слот"
   }
 ]

@@ -1,0 +1,13 @@
+{
+    "id": "reaper_set_metronome_state",
+    "name": "Change Metronome State",
+    "description": "Change Metronome State",
+    "i18n": {
+        "name": {
+            "pt": "Alterar Estado do Metrônomo"
+        },
+        "description": {
+            "pt": "Alterar Estado do Metrônomo"
+        }
+    }
+}

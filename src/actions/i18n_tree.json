@@ -24,5 +24,8 @@
     }, {
         "key": "midi",
         "": "MIDI"
+    }, {
+        "key": "reaper",
+        "": "Reaper (OSC Protocol)"
     }
 ]
