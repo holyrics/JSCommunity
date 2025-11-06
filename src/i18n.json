@@ -6538,5 +6538,35 @@
     "it": "FX Slot",
     "fr": "FX Slot",
     "uk": "FX слот"
+  },
+  {
+    "key": "Enter the Page and Scene associated with each Tag.",
+    "en": "Enter the Page and Scene associated with each Tag.",
+    "pt": "Insira a Página e a Cena associadas a cada Tag.",
+    "ru": "Введите страницу и сцену, связанные с каждым тегом.",
+    "es": "Ingrese la página y la escena asociadas con cada etiqueta.",
+    "it": "Inserisci la pagina e la scena associate a ciascun tag.",
+    "fr": "Entrez la page et la scène associées à chaque étiquette.",
+    "uk": "Введіть сторінку та сцену, пов'язані з кожним тегом."
+  },
+  {
+    "key": "If only the scene is provided, page 1 will be used by default.",
+    "en": "If only the scene is provided, page 1 will be used by default.",
+    "pt": "Se apenas a cena for fornecida, a página 1 será usada por padrão.",
+    "ru": "Если указана только сцена, по умолчанию будет использоваться страница 1.",
+    "es": "Si solo se proporciona la escena, se utilizará la página 1 por defecto.",
+    "it": "Se viene fornita solo la scena, verrà utilizzata la pagina 1 per impostazione predefinita.",
+    "fr": "Si seule la scène est fournie, la page 1 sera utilisée par défaut.",
+    "uk": "Якщо надана лише сцена, за замовчуванням буде використано сторінку 1."
+  },
+  {
+    "key": "Scenes",
+    "en": "Scenes",
+    "pt": "Cenas",
+    "ru": "Сцены",
+    "es": "Escenas",
+    "it": "Scene",
+    "fr": "Scènes",
+    "uk": "Сцени"
   }
 ]

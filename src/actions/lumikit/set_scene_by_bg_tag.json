@@ -1,0 +1,14 @@
+{
+    "id": "set_scene_by_bg_tag",
+    "name": "Change Scene by Tag",
+    "description": "Change Scene by Tag",
+    "i18n": {
+        "name": {
+            "pt": "Alterar cena a partir de uma Tag"
+        },
+        "description": {
+            "pt": "Alterar cena a partir de uma Tag"
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'any_theme' || obj.item == 'any_background') "
+}
