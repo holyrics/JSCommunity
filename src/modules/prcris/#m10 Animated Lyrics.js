@@ -1,5 +1,4 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
-// __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22696e666f227d
 var mID = '@prcris#m10'
 var mUID = mID + ''; 
 
@@ -19,7 +18,7 @@ function info() {
                      '• Use video animations as background automatically based on the song name<br><br>' +
                      'Create an animation folder named exactly as the song name anywhere in the Videos library.<br>' +
                      'Inside it, add numbered files like <u>1.mp4</u>, <u>2.mp4</u> matching slide indexes.<br>' +
-                     'Optionally, the legacy path <u>backmusic/SONG_NAME/N.ext</u> is still recognized.<br>' +
+                     'Optionally, the legacy path <u>backmusic/SONG_NAME/N.ext</u> is still recognized, and it also accepts the legacy variable <u>alias_background</u> to point to the folder.<br>' +
                      'The module hides main-screen lyrics, replacing them with the video; return screen keeps Holyrics lyrics.<br>' +
                      infoVDDMM,
         allowed_requests: [
@@ -36,25 +35,25 @@ function info() {
                 en: '<html>' +
                     '• Use video animations as background automatically based on the song name<br><br>' +
                     'Create a folder named exactly like the song anywhere in the Videos library, with files <u>1.mp4</u>, <u>2.mp4</u>, ...<br>' +
-                    'Legacy path <u>backmusic/SONG_NAME/N.ext</u> is still supported.<br>' +
+                    'Legacy path <u>backmusic/SONG_NAME/N.ext</u> is still supported. It also accepts the legacy variable <u>alias_background</u> to point to the folder.<br>' +
                     'Main screen lyrics are hidden and replaced by the video; return screen keeps Holyrics lyrics.<br>' +
                     infoVDDMM,
                 pt: '<html>' +
                     '• Usa animações em vídeo como fundo automaticamente com base no nome da música<br><br>' +
                     'Crie uma pasta com exatamente o nome da música em qualquer lugar da biblioteca de Vídeos, com arquivos <u>1.mp4</u>, <u>2.mp4</u>, ...<br>' +
-                    'O caminho legado <u>backmusic/NOME_DA_MUSICA/N.ext</u> continua suportado.<br>' +
+                    'O caminho legado <u>backmusic/NOME_DA_MUSICA/N.ext</u> continua suportado. Também aceita a variável legada <u>alias_background</u> para indicar a pasta.<br>' +
                     'A tela principal fica sem letra (vídeo no fundo) e a tela de retorno continua com a letra do Holyrics.<br>' +
                     infoVDDMM,
                 es: '<html>' +
                     '• Usa animaciones de video como fondo automáticamente basadas en el nombre de la canción<br><br>' +
                     'Crea una carpeta con el mismo nombre de la canción en cualquier lugar de la biblioteca de Videos, con archivos <u>1.mp4</u>, <u>2.mp4</u>, ...<br>' +
-                    'La ruta heredada <u>backmusic/NOMBRE_DE_LA_CANCION/N.ext</u> sigue siendo compatible.<br>' +
+                    'La ruta heredada <u>backmusic/NOMBRE_DE_LA_CANCION/N.ext</u> sigue siendo compatible. También acepta la variable heredada <u>alias_background</u> para indicar la carpeta.<br>' +
                     'La pantalla principal oculta la letra y muestra el video; la pantalla de retorno mantiene la letra de Holyrics.<br>' +
                     infoVDDMM,
                 ru: '<html>' +
                     '• Использует видео-анимации как фон автоматически на основе названия песни<br><br>' +
                     'Создайте папку с точным названием песни в любом месте библиотеки Видео, с файлами <u>1.mp4</u>, <u>2.mp4</u>, ...<br>' +
-                    'Поддерживается устаревший путь <u>backmusic/НАЗВАНИЕ_ПЕСНИ/N.ext</u>.<br>' +
+                    'Поддерживается устаревший путь <u>backmusic/НАЗВАНИЕ_ПЕСНИ/N.ext</u>. Также принимается устаревшая переменная <u>alias_background</u>, указывающая на папку.<br>' +
                     'На главном экране текст скрывается и заменяется видео; экран возврата продолжает показывать текст Holyrics.<br>' +
                     infoVDDMM
             }
@@ -102,6 +101,93 @@ function removeAccents(str) {
 
 /** Extensões de vídeo aceitas */
 var VIDEO_EXTS = ['mp4', 'mov', 'mkv', 'avi', 'webm', 'm4v'];
+/** Tenta ler variável legada (global, dentro do objeto, ou via GetLyrics) */
+function getLegacyAlias(module, obj) {
+    // Sem configurações: aceitar automaticamente a variável legada "alias_background"
+    var key1 = 'alias_background';
+    var key2 = 'aliasbackground'; // tolerância mínima sem underscore
+    try {
+        // 1) Propriedade direta no objeto, como no código antigo: obj.alias_background
+        if (obj && typeof obj === 'object') {
+            if (typeof obj[key1] === 'string' && String(obj[key1]).trim()) {
+                return String(obj[key1]).trim();
+            }
+            if (typeof obj[key2] === 'string' && String(obj[key2]).trim()) {
+                return String(obj[key2]).trim();
+            }
+        }
+
+        // 2) Propriedades com nome equivalente (varredura rasa, case-insensitive)
+        try {
+            if (obj && typeof obj === 'object') {
+                for (var k in obj) {
+                    if (!Object.prototype.hasOwnProperty.call(obj, k)) continue;
+                    var kLower = String(k).toLowerCase();
+                    if (kLower === key1 || kLower === key2) {
+                        var v = obj[k];
+                        if (typeof v === 'string' && String(v).trim()) {
+                            return String(v).trim();
+                        }
+                    }
+                }
+            }
+        } catch (e) {}
+
+        // 3) Busca em um nível aninhado (ex.: obj.extra.alias_background)
+        try {
+            if (obj && typeof obj === 'object') {
+                for (var k2 in obj) {
+                    if (!Object.prototype.hasOwnProperty.call(obj, k2)) continue;
+                    var val = obj[k2];
+                    if (val && typeof val === 'object') {
+                        var cand = null;
+                        if (typeof val[key1] === 'string' && String(val[key1]).trim()) {
+                            cand = String(val[key1]).trim();
+                        } else if (typeof val[key2] === 'string' && String(val[key2]).trim()) {
+                            cand = String(val[key2]).trim();
+                        } else {
+                            for (var k3 in val) {
+                                if (!Object.prototype.hasOwnProperty.call(val, k3)) continue;
+                                var k3Lower = String(k3).toLowerCase();
+                                if (k3Lower === key1 || k3Lower === key2) {
+                                    var vv2 = val[k3];
+                                    if (typeof vv2 === 'string' && String(vv2).trim()) {
+                                        cand = String(vv2).trim();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (cand) { return cand; }
+                    }
+                }
+            }
+        } catch (e) {}
+
+        // 4) Via GetLyrics (somente no primeiro slide para performance)
+        try {
+            if (obj && obj.id && obj.slide_show_index == 1) {
+                var lyr = h.hly('GetLyrics', { id: obj.id });
+                var data = (lyr && lyr.data) ? lyr.data : lyr;
+                if (data && typeof data === 'object') {
+                    for (var kk in data) {
+                        if (!Object.prototype.hasOwnProperty.call(data, kk)) continue;
+                        var kkLower = String(kk).toLowerCase();
+                        if (kkLower === key1 || kkLower === key2) {
+                            var vv = data[kk];
+                            if (typeof vv === 'string' && String(vv).trim()) {
+                                return String(vv).trim();
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (e) {}
+
+    } catch (e) {}
+    return '';
+}
+
 
 /** Log helper com timestamp e mUID */
 
@@ -167,7 +253,18 @@ function buscarVideoParaAlias(module, alias, index) {
 
     h.log(mUID, '{%t} {}', 'BUSCA GLOBAL VÍDEO: procurando pasta alias "' + alias + '" (normalizado: ' + aliasNorm + ')');
 
-    // 2) Busca global em todas as pastas de vídeos
+    // 2) Se o alias contiver um caminho direto (ex.: "Pasta/Subpasta"), tenta diretamente
+    var aliasHasPath = (String(alias).indexOf('/') >= 0 || String(alias).indexOf('\\') >= 0);
+    if (aliasHasPath) {
+        var directFolder = String(alias).replace(/\\/g, '/');
+        var direct = encontrarArquivoIndex(directFolder, index);
+        if (direct) {
+            h.log(mUID, '{%t} {}', 'VÍDEO ENCONTRADO (caminho direto): ' + direct);
+            return direct;
+        }
+    }
+
+    // 3) Busca global em todas as pastas de vídeos
     try {
         var root = h.hly('GetVideos');
         if (!root || !root.data || root.data.length === 0) {
@@ -257,20 +354,21 @@ function customTheme(module) {
     return {
         
         song: function(obj) {
-           // Usar somente o nome da música como pasta de animação
-           var aliasPrimary = getPreferredAliasFromSong(obj);
-           var chosenAlias = aliasPrimary || '';
+              // Resolver alias: 1) variável legada (se habilitada); 2) nome da música
+              var legacyAlias = getLegacyAlias(module, obj);
+              var aliasPrimary = getPreferredAliasFromSong(obj);
+              var chosenAlias = (legacyAlias && String(legacyAlias).trim()) ? String(legacyAlias).trim() : (aliasPrimary || '');
 
            var loop_disabled = !!chosenAlias;
 
            // log início
-           h.log(mUID, '{%t} {}', 'Animated Lyrics: slide ' + obj.slide_show_index + ' | musica=' + (aliasPrimary || '(desconhecida)'));
+              h.log(mUID, '{%t} {}', 'Animated Lyrics: slide ' + obj.slide_show_index + ' | musica=' + (aliasPrimary || '(desconhecida)') + (legacyAlias ? (' | legacyVar=' + legacyAlias) : ''));
 
            if (obj.slide_show_index == 1) {
               h.log(mUID, '{%t} {}', 'disable_background_loop? ' + loop_disabled);
               h.setRuntimeSettings('disable_background_loop', loop_disabled);
               h.setRuntimeSettings('disable_extend_single_video', loop_disabled);
-              // alias_background removido. Somente nome da música é utilizado.
+                  // Compat: se variável legada existir, ela terá precedência
            }
 
            if (!chosenAlias) {
