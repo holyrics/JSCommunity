@@ -985,6 +985,39 @@ function style() {
 
 ---
 
+### requiredValuesAndSettings(module)
+- v2.27.0
+
+Returns required presets in some features and mechanics of the program.<br>For example, display a field in the 'extra' section in the music editing window, even if it was not created by the user.
+
+**Parameters:**
+
+| Name | Type  | Description |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Return:**
+
+| Type  | Description |
+| :---: | ------------|
+| _Object_ | Key/value map.<br> <br>`song_extras` List of 'extra' fields required for a song<br>`text_extras` List of 'extra' fields required for a text<br>`background_tags` List of required tags for theme and background |
+
+
+**Example:**
+
+```javascript
+function requiredValuesAndSettings(module) {
+  return {
+    song_extras: ['example 1', 'example 2', 'example 3'],
+    text_extras: ['example 1', 'example 2', 'example 3'],
+    background_tags: ['example 1', 'example 2', 'example 3']
+  };
+}
+```
+
+---
+
 # Classes 
 ## Module
 | Name | Type  | Description |
@@ -1928,6 +1961,7 @@ var list = module.getRunAtList();
 | `icon` | _String (optional)_ | Default item icon.<br>Uses the syntax of [Icon](https://github.com/holyrics/Scripts/blob/main/i18n/en/Icon.md). |
 | `icon_color` | _String (optional)_ | Icon color in hexadecimal format. |
 | `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/i18n/en/InputParam.md)&gt; (optional)_ | List of action parameters. |
+| `status` | _Object (optional)_ | Return the current display state of the item.<br>Define the display settings of the item at runtime, such as icon, color, etc.<br>Uses the syntax of [StatusView](https://github.com/holyrics/Scripts/blob/main/i18n/en/StatusView.md). `v2.27.0+` |
 | `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contains the id of the respective action.<br>`evt.input` parameters for executing the action. |
 | `available_for` | _Object (optional)_ | List of sources where the action will be available for execution.<br>Multiple values separated by commas.<br>If the field is empty, it means that the action will be available for all sources.<br>To block specific origins use `unavailable_for`.<br>Available values: `ui` `trigger` `jslib_call` `jslib_open` `add_to_playlist`<br> <br>**ui:** For use in the program interface, for example, as a button in the favorites bar or in the worship/event playlist.<br> <br>**trigger:** For use in triggers<br> <br>**jslib_call:** For execution via JavaScript (jslib)<br> <br>**jslib_open:** To open a popup window via JavaScript for the user to perform the action (jslib)<br> <br>**add_to_playlist:** Allows adding to the playlist via JavaScript (jslib) `h.hly('addtoplaylist', ...)`<br> |
 | `unavailable_for` | _Object (optional)_ | List of sources where the action will be blocked from execution.<br>Values based on `available_for` |
@@ -2388,7 +2422,7 @@ obj.openEditor(function() {
 | ---- | :---: | ------------|
 | `name` | _String_ | Item name.<br>Value that will be displayed in the context menu of the respective item. |
 | `icon` | _String (optional)_ | Uses the syntax of [Icon](https://github.com/holyrics/Scripts/blob/main/i18n/en/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | List of item types that will receive the context action.<br>Accepted values: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` |
+| `types` | _Array&lt;String&gt;_ | List of item types that will receive the context action.<br>Accepted values: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` `bible_verse` |
 | `action` | _Function_ | Action to be executed.<br>`function(evt) { /*   */ }`<br>`evt.type` contains the type of the item that triggered the context action.<br>`evt.item` contains the information of the item that triggered the action.<br>[Learn more](https://github.com/holyrics/Scripts/blob/main/i18n/en/ContextAction.md) |
 | `filter` | _Object (optional)_ | Displays the action only for the object that matches the filter object `v2.24.0+` |
 | `checked` | _Object (optional)_ | If this parameter is different from `null`, the item in the context menu will be displayed as a `type=radio`<br>Can be: `boolean` `function` `Default: null` `v2.24.0+` |
