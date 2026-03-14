@@ -1,14 +1,14 @@
 {
     "id": "lumikit_set_bpm_by_trigger",
     "name": "Lumikit - Change Master BPM by trigger",
-    "description": "Change Master BPM by trigger, using BPM value of the lyric",
+    "description": "Change Master BPM by trigger, using the BPM value from the trigger source",
     "i18n": {
         "name": {
-            "pt": "Lumikit - Alterar o BPM Master por trigger"
+            "pt": "Lumikit - Alterar o BPM Master por gatilho"
         },
         "description": {
-            "pt": "Altera o BPM Master por trigger usando o valor BPM da música"
+            "pt": "Altera o BPM Master por trigger usando o valor BPM da origem do gatilho"
         }
     },
-    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && obj.item == 'any_song' "
+    "script_filter": " obj.type == 'trigger' && ((obj.when == 'displaying' && obj.item == 'any_song') || (obj.when == 'change' && obj.item == 'bpm')) "
 }
