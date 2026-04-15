@@ -1685,6 +1685,31 @@ Check if the permission to edit important program data (song lyrics, theme, etc.
 
 ---
 
+### requireAllowedEditImportantData(onGranted, onDenied = null)
+- v2.28.0
+
+Utility method that checks if the permission to edit important data is enabled for the module. If it is not, it opens a popup requesting permission.
+
+**Parameters:**
+
+| Name | Type  | Description |
+| ---- | :---: | ------------|
+| `onGranted` | _Function_ | `callback` that will be executed if the permission is granted or after the permission has been given in the interface |
+| `onDenied` | _Function (optional)_ | `callback` that will be executed if the permission is denied |
+
+
+_Method does not return value_
+
+**Example:**
+
+```javascript
+h.requireAllowedEditImportantData(function() {
+    //implementation
+});
+```
+
+---
+
 ### getObjectModelCtrl(object_model_id)
 ### getObjModelCtrl(object_model_id)
 - v2.26.0
@@ -2466,6 +2491,7 @@ Defines the values that will be used to add or replace the text of the slide in 
 | `add_end` | _String (optional)_ | Value that will be added at the end of the current slide text |
 | `line_break` | _Boolean (optional)_ | Adds the text with a line break `Default: true` |
 | `replace` | _String (optional)_ | Value to replace the text of the current slide |
+| `cache_delay` | _Number (optional)_ | Time in milliseconds to use a cached value instead of making a new request. `100 ~ 60000` `Default: 30000` `v2.28.0+` |
 
 ## ModuleCustomThemeSongInfo
 Request origin data

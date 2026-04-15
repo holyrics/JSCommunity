@@ -1,0 +1,13 @@
+{
+    "id": "companion_down",
+    "name": "Press button and hold",
+    "description": "Press the button (run down actions and hold)",
+    "i18n": {
+        "name": {
+            "pt": "Pressionar um botão e segurar"
+        },
+        "description": {
+            "pt": "Pressionar um botão e segurar (executar a ação DOWN e segurar)"
+        }
+    }
+}

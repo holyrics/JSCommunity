@@ -1,0 +1,13 @@
+{
+    "id": "companion_long_press",
+    "name": "Pressing a button for a long time",
+    "description": "Performing the DOWN action and waiting a while before performing the UP action",
+    "i18n": {
+        "name": {
+            "pt": "Pressionar um botão por longo tempo"
+        },
+        "description": {
+            "pt": "Executar a ação DOWN e esperar um pouco antes de executar a ação UP"
+        }
+    }
+}

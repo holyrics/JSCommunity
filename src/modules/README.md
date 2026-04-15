@@ -1685,6 +1685,31 @@ Verifica se a permissão para editar dados importantes do programa (letra de mú
 
 ---
 
+### requireAllowedEditImportantData(onGranted, onDenied = null)
+- v2.28.0
+
+Método utilitário que verifica se a permissão para editar dados importantes está ativada para o módulo. E caso não esteja, abre um popup solicitando a permissão.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `onGranted` | _Function_ | `callback` que será executado se a permissão estiver ativada ou após a permissão ter sido dada na interface |
+| `onDenied` | _Function (opcional)_ | `callback` que será executado se a permissão for negada |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+h.requireAllowedEditImportantData(function() {
+    //implementation
+});
+```
+
+---
+
 ### getObjectModelCtrl(object_model_id)
 ### getObjModelCtrl(object_model_id)
 - v2.26.0
@@ -2466,6 +2491,7 @@ Define os valores que serão utilizados para adicionar ou substituir o texto do 
 | `add_end` | _String (opcional)_ | Valor que será adicionado no final do texto do slide atual |
 | `line_break` | _Boolean (opcional)_ | Adiciona o texto com uma quebra de linha `Padrão: true` |
 | `replace` | _String (opcional)_ | Valor para substituir o texto do slide atual |
+| `cache_delay` | _Number (opcional)_ | Tempo em milissegundos para usar um valor em cache em vez de realizar nova requisição. `100 ~ 60000` `Padrão: 30000` `v2.28.0+` |
 
 ## ModuleCustomThemeSongInfo
 Dados da origem da requisição
