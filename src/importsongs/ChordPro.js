@@ -1,10 +1,13 @@
 function info() {
     return {
+        id: 'chordpro',
         name: 'ChordPro Native Compiler',
+        description: 'ChordPro Native Compiler',
         file_filter: {
             description: 'ChordPro Files',
             extensions: ['cho', 'crd', 'chopro', 'txt']
-        }
+        },
+        minVersion: '2.24.0'
     };
 }
 
