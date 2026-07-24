@@ -66,11 +66,12 @@ function info() {
 
 É possível utilizar o botão `include` no programa Holyrics como forma de administrar esses códigos externos.<br>
 Ao criar e testar seus módulos no programa Holyrics, na janela `include` crie uma nova aba para cada possível arquivo diferente e mantenha os códigos dentro dessas abas em `include`, em vez de deixar no código do próprio módulo.<br>
-**Bug na `v2.23.0`** - foi identificado que ao editar o include, os módulos não utilizam o include atualizado, então é necessário editar qualquer coisa mínima no código do módulo (um simples espaço) pra forçar a reinicialização do módulo e utilizar o include atualizado.<br>
-Corrigido na `v2.24.0`
 
 Na versão `2.24.0` foi adicionada uma variável global chamada `module` que estará disponível por padrão no contexto do código JavaScript de um módulo.<br>
 Evitando a necessidade de repassar o objeto `module` recebido na declaração da function original, por exemplo, `function actions(module) {`
+
+Na versão `2.29.0` foi adicionada a opção **Modo de desenvolvimento** que armazena o código javascript em uma pasta do computador, permitindo a edição do código por um editor externo e o código atualizado automaticamente dentro do programa.<br>
+Obs: Requer uma assinatura Holyrics Plan ativa.
 
 ### Internationalization (I18N)
 Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas. [(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)<br>
@@ -928,6 +929,10 @@ Captura a ação de um item executado.<br>Se declarado, ao executar o tipo de it
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `file` | _Function (opcional)_ | Ação originada da aba **Arquivo** da biblioteca do programa.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandleItemActionInfo](#modulehandleitemactioninfo) |
+| `f8` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `f9` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `f10` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `esc` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
 
 
 **Exemplo:**
@@ -941,6 +946,13 @@ function handleItemAction() {
         return true;
       }
       return false;
+    },
+    f8: function(evt) {
+        if (evt.origin === 'keyboard') {
+            //custom action
+            return true;
+        }
+        return false;
     }
   };
 }
@@ -1013,6 +1025,42 @@ function requiredValuesAndSettings(module) {
     text_extras: ['example 1', 'example 2', 'example 3'],
     background_tags: ['example 1', 'example 2', 'example 3']
   };
+}
+```
+
+---
+
+### receiverMidi(module)
+- v2.29.0
+
+Método que recebe comandos midi de um dispositivo definido pelo usuário nas configurações do módulo.<br>É necessário o uso da permissão 'receiver_midi' na declaração do módulo.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Function_ | Método que será executado para consumir a mensagem midi.<br>`function (device_name, midi) { /* ... */ }`<br> <br>`device_name` Nome do disppositivo midi que originou a mensagem.<br>`midi` Mensagem midi do tipo: [MidiMessage](#midi-message) |
+
+
+**Exemplo:**
+
+```javascript
+function receiverMidi(module) {
+    return function(deviceName, midi) {
+        if (midi.note_on && midi.code === 1) {
+            switch(midi.velocity) {
+                case 1:
+                    break;
+            }
+        }
+    };
 }
 ```
 
@@ -1538,6 +1586,28 @@ module.updateAction('id1', 'id2');
 
 ---
 
+### getSecretID()
+- v2.29.0
+
+ID permanente que não é acessível fora desse método do objeto `module`.<br>Útil para ter um ID secreto que possa ser vinculado ao módulo mas protegido de acesso por outros códigos javascript (exceto se o objeto `module` for disponibilizado voluntariamente para execução em contexto desprotegido)
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 12 |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.getSecretID();
+```
+
+---
+
 ### getRuntimeID()
 - v2.24.0
 
@@ -1547,9 +1617,9 @@ ID temporário que é válido somente durante a execução atual do programa
 
 **Resposta:**
 
-| Tipo  |
-| :---: |
-| _String_ | 
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 16 |
 
 
 ---
@@ -2418,8 +2488,8 @@ obj.openEditor(function() {
 | ---- | :---: | ------------|
 | `id` | _String (opcional)_ | ID do item |
 | `when` | _String_ | `displaying` `closing` `change` `event` |
-| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle` `bible_version_1` `bible_version_2` `bible_version_3` `bible_any_version`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` `draw_lots_item_drawn` |
-| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)  [`draw_lots_item_drawn`](https://github.com/holyrics/jslib#drawlotsitemdrawninfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
+| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_music_tag` `any_text_tag` `any_audio_tag` `any_video_tag` `any_image_tag` `any_playback_tag` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_music_tag` `any_text_tag` `any_audio_tag` `any_video_tag` `any_image_tag` `any_playback_tag` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle` `bible_version_1` `bible_version_2` `bible_version_3` `bible_any_version`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` `draw_lots_item_drawn` |
+| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_music_tag`](https://github.com/holyrics/jslib#songinfo)  [`any_text_tag`](https://github.com/holyrics/jslib#textinfo)  [`any_audio_tag`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_tag`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_tag`](https://github.com/holyrics/jslib#imageinfo)  [`any_playback_tag`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)  [`draw_lots_item_drawn`](https://github.com/holyrics/jslib#drawlotsitemdrawninfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
 | `name` | _String (opcional)_ | Nome do item. Valor compatível para exibição no **JavaScript Monitor** `v2.23.0+` |
 | `filter` | _Object (opcional)_ | Executar ação somente se o objeto que gerou o gatilho corresponder ao objeto filter `v2.24.0+` |
 <details>
@@ -2447,7 +2517,7 @@ obj.openEditor(function() {
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` `bible_verse` |
+| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` `bible_verse` `background` `background_tag` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 | `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
 | `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
@@ -2589,6 +2659,40 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 | `item` | _String_ | **file:** [FileInfo](https://github.com/holyrics/jslib#fileinfo) |
 | `consumed` | _Boolean_ | Será `true` se a ação tiver sido capturada por qualquer outro módulo |
 
+## ModuleHandlePresentationActionInfo
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `action` | _String_ | `f8` `f9` `f10` `esc` |
+| `origin` | _String_ | `default_action` `keyboard` `presentation_footer` `holyrics_action` `midi` `jslib` |
+| `current_state` | _Boolean_ |  |
+| `consumed` | _Boolean_ | Será `true` se a ação tiver sido capturada por qualquer outro módulo |
+
+## Midi Message
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `code` | _Number_ | `0 ~ 127` |
+| `velocity` | _Number_ | `0 ~ 127` |
+| `command` | _Number_ | `0 ~ 255` |
+| `channel` | _Number_ | `0 ~ 15` |
+| `note_on` | _Boolean_ |  |
+| `note_off` | _Boolean_ |  |
+| `command_id` | _String_ | `note_on` `control_change` `program_change` `polyphonic_key_pressure` `channel_pressure` `pitch_bend_change` `midi_time_code` `song_position_pointer` `song_select` `tune_request` `timing_clock` `start` `continue` `stop` `active_sensing` `system_reset` |
+<details>
+  <summary>Ver exemplo</summary>
+
+```json
+{
+  "code": 0,
+  "velocity": 0,
+  "command": 0,
+  "channel": 0,
+  "note_on": false,
+  "note_off": false,
+  "command_id": ""
+}
+```
+</details>
+
 
 
 ## Permission
@@ -2609,7 +2713,8 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 ```
 
 Valores disponíveis para `key`:
-`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`  `edit_important_data`
+`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`  `edit_important_data`  `receiver_midi`
+
 
 # Exemplo
 
