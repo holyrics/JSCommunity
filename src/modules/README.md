@@ -1597,7 +1597,7 @@ ID permanente que não é acessível fora desse método do objeto `module`.<br>�
 
 | Tipo  | Descrição |
 | :---: | ------------|
-| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 12 |
+| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 20 |
 
 
 **Exemplo:**
