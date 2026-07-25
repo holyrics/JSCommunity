@@ -1,0 +1,13 @@
+{
+    "id": "companion_press",
+    "name": "Press Button",
+    "description": "Press and release a button (run both down and up actions)",
+    "i18n": {
+        "name": {
+            "pt": "Pressionar um botão"
+        },
+        "description": {
+            "pt": "Pressionar e soltar um botão (executar as ações DOWN e UP)"
+        }
+    }
+}

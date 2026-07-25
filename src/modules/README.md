@@ -1,10 +1,15 @@
 # Módulos
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 Disponível a partir da versão `2.23.0` do programa Holyrics.
 
-A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
+A funcionalidade **Módulos** permite a criação de soluções utilizando JavaScript [(jslib)](https://github.com/holyrics/jslib/tree/main/README.md) que interagem com vários recursos do programa, permitindo alterar e/ou adaptar o funcionamento do programa, criar botões que executam ações personalizadas, gatilhos em tempo real, dentre outras possibilidades, tudo em um só lugar.
 
-Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib) aumentou.<br>
+Desde agosto de 2022 `v2.18.0`, diversas funcionalidades relacionadas com JavaScript foram adicionadas ao programa e a quantidade de recursos e possibilidades disponíveis na bibliteca [jslib](https://github.com/holyrics/jslib/tree/main/README.md) aumentou.<br>
 Com isso, algumas soluções criadas necessitavam interagir com diferentes recursos do programa, sendo necessário acessar e adicionar/editar códigos JavaScript em vários locais diferentes do programa.<br>
 A funcionalidade **Módulos** resolve isso permitindo interagir com diversas funcionalidades e recursos diferentes do programa em um único código JavaScript.<br>
 Podendo até criar botões de ação na janela do programa, sem que o usuário precise ficar criando e administrando diversos botões e códigos JavaScript diferentes.
@@ -22,7 +27,7 @@ O módulo será considerado "desativado" se a execução condicional atual for `
 
 Reservamo-nos o direito de negar a aprovação de qualquer módulo por qualquer motivo, a nosso exclusivo critério.
 
-Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.MD)
+Mais detalhes sobre o licenciamento dos códigos disponibilizados na funcionalidade **Módulos**, acesse: [LICENSE](https://github.com/holyrics/JSCommunity/tree/main/src/modules/LICENSE.md)
 
 # Tutorial
 
@@ -61,14 +66,15 @@ function info() {
 
 É possível utilizar o botão `include` no programa Holyrics como forma de administrar esses códigos externos.<br>
 Ao criar e testar seus módulos no programa Holyrics, na janela `include` crie uma nova aba para cada possível arquivo diferente e mantenha os códigos dentro dessas abas em `include`, em vez de deixar no código do próprio módulo.<br>
-**Bug na `v2.23.0`** - foi identificado que ao editar o include, os módulos não utilizam o include atualizado, então é necessário editar qualquer coisa mínima no código do módulo (um simples espaço) pra forçar a reinicialização do módulo e utilizar o include atualizado.<br>
-Corrigido na `v2.24.0`
 
 Na versão `2.24.0` foi adicionada uma variável global chamada `module` que estará disponível por padrão no contexto do código JavaScript de um módulo.<br>
 Evitando a necessidade de repassar o objeto `module` recebido na declaração da function original, por exemplo, `function actions(module) {`
 
+Na versão `2.29.0` foi adicionada a opção **Modo de desenvolvimento** que armazena o código javascript em uma pasta do computador, permitindo a edição do código por um editor externo e o código atualizado automaticamente dentro do programa.<br>
+Obs: Requer uma assinatura Holyrics Plan ativa.
+
 ### Internationalization (I18N)
-Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas [Saiba mais](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md).<br>
+Utilize `jsc.i18n(...)` para que o módulo seja internacionalizado para diferentes idiomas. [(Saiba mais)](https://github.com/holyrics/JSCommunity/blob/main/README_I18N.md)<br>
 Exemplo:<br>
 ```javascript
 function actions(module) {
@@ -102,10 +108,10 @@ Retorna as informações do módulo.
 | `min_version` | _String (opcional)_ | Versão mínima requerida do programa |
 | `max_version` | _String (opcional)_ | Versão máxima requerida do programa `v2.24.0+` |
 | `i18n` | _Object (opcional)_ | Tradução para nome e descrição do módulo `v2.24.0+` |
-| `permissions` | _String (opcional)_ | Permissões avançadas requeridas para o módulo ([Permissões](#permission)) `v2.24.0+` |
+| `permissions` | _Array&lt;[Permission](#permission)&gt; (opcional)_ | Permissões avançadas requeridas para o módulo `v2.24.0+` |
 | `os_required` | _String (opcional)_ | Se declarado, o módulo estará disponível apenas para o sistema operacional informado. Separe múltiplos valores com vírgula.<br>Pode ser: `windows` `unix` `osx` `v2.24.0+` |
-| `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
-| `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
+| `available_in_main_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela principal `Padrão: true` `v2.24.0+` |
+| `available_in_bible_window` | _Boolean (opcional)_ | Exibir o módulo na barra de módulos da janela da Bíblia `Padrão: true` `v2.24.0+` |
 
 
 **Exemplo:**
@@ -146,14 +152,14 @@ function info() {
 
 ---
 
-### settings(module)
+### settings(moduleInfo)
 Retorna a lista de configurações do módulo.<br>Exibe na janela de configuração do módulo diversos componentes como caixa de texto, checkbox, combobox, etc.<br>O valor definido pelo usuário nas configurações do módulo estarão disponíveis em `settings` de cada objeto do tipo `module`.<br>Observação: O campo `settings` de `module.settings` não está disponível neste método, apenas as demais informações do objeto.
 
 **Parâmetros:**
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `module` | _[Module](#module)_ |  |
+| `moduleInfo` | _[Module](#module)_ |  |
 
 
 **Retorno:**
@@ -166,7 +172,7 @@ Retorna a lista de configurações do módulo.<br>Exibe na janela de configuraç
 **Exemplo:**
 
 ```javascript
-function settings(module) {
+function settings(moduleInfo) {
   var arr = [];
   arr.push({
     id: 'settings_1',
@@ -299,12 +305,136 @@ function actions(module) {
       };
     }
   });
-  
-  // bug fix v2.23.0
-  jsc.utils.module.fixActions(module, arr);
-  // arr pode ser um array ou um item action individual
-  // jsc.utils.module.fixActions(module, arr[0]);
+    
+  return arr;
+}
+```
 
+---
+
+### publicActions(module)
+Retorna a lista de ações públicas que serão disponibilizadas para execução externa por outros scripts, gatilhos ou botões na interface.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModulePublicAction](#modulepublicaction)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+function publicActions(module) {
+  var arr = [];
+
+  arr.push({
+    id: 'simple_action',
+    name: jsc.i18n('Simple Action'),
+    description: '',
+    icon: 'play_arrow',
+    action: function (evt) {
+      //TODO
+    }
+  });
+
+  arr.push({
+    id: 'simple_action_02',
+    name: jsc.i18n('Simple Action 02'),
+    description: '',
+    icon: 'message',
+    unavailable_for: 'trigger',
+    input: [
+      {
+        id: 'message',
+        type: 'string',
+        name: jsc.i18n('Message')
+      }, {
+        id: 'duration',
+        type: 'number',
+        name: jsc.i18n('Duration'),
+        min: 1,
+        max: 120,
+        default_value: 30
+      }
+    ],
+    action: function (evt) {
+      //evt.input.message
+      //evt.input.duration
+      //
+      //TODO
+    }
+  });
+  
+  arr.push({
+    id: 'simple_action_trigger',
+    name: jsc.i18n('Simple Action - Trigger'),
+    description: '',
+    icon: 'play_arrow',
+    available_for: 'trigger',
+    filter_available_for_trigger: function(evt) {
+        return evt.when === 'displaying' && evt.item === 'any_song';
+    },
+    action: function (evt) {
+      //evt.id
+      //evt.title
+      //evt.artist
+      //evt.author
+      //...
+      //TODO
+    }
+  });
+
+  return arr;
+}
+```
+
+---
+
+### objectModels(moduleInfo)
+- v2.26.0
+
+Retorna a lista de objetos modelos.<br>Um objeto modelo é útil para gerar estruturas padronizadas para que o usuário possa criar, editar e remover itens com interface nativa padrão, seguindo o comportamento típico de um `CRUD`.<br>Por exemplo, se seu módulo precisa administrar uma lista de itens que podem ser criados pelo usuário, basta criar um objeto modelo e usar o seu respectivo ID em um `input` do tipo `object_model` ou `object_model_manage_list`.<br>No próprio `input` o usuário vai ter a opção de abrir a janela de gerenciamento desse respectivo item<br>Observação: O campo `settings` de `module.settings` não está disponível neste método, apenas as demais informações do objeto.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `moduleInfo` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModuleObjectModelStruct](#moduleobjectmodelstruct)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+function objectModels(moduleInfo) {
+  var arr = [];
+  arr.push({
+    id: 'example',
+    name: 'Obj Model',
+    onchange: function() {
+      //TODO
+    },
+    struct: [{
+        id: 'name'
+      }, {
+        id: 'age',
+        type: 'number'
+    }]
+  });
   return arr;
 }
 ```
@@ -444,7 +574,7 @@ function triggers(module) {
 ---
 
 ### systemVariables(module)
-Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br>Observação: há um cachê de 1 segundo para reutilizar o último valor retornado pela `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 @js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=@js{sum(3,4)}` será exibido como `3+4=7`.<br>
+Este é o método correspondente do `menu arquivo > configurações > avançado > javascript > variáveis do sistema`.<br>Permite criar métodos que poderão ser utilizados dentro de textos que serão exibidos na projeção, painel de controle, alerta, etc.<br>A variável definida no texto será substituída em tempo real pelo valor retornado na respectiva `function`.<br><br>Por exemplo:<br>`test: function() { return 'abc'; }`<br>O texto digitado `123 @js{test} xyz` será exibido como `123 abc xyz`.<br><br>Também é possível utilizar `function` com parâmetros:<br>`sum: function(a, b) { return a + b; }`<br>O texto digitado `3+4=@js{sum(3,4)}` será exibido como `3+4=7`.<br>
 
 **Parâmetros:**
 
@@ -457,7 +587,7 @@ Este é o método correspondente do `menu arquivo > configurações > avan�
 
 | Tipo  | Descrição |
 | :---: | ------------|
-| _Object_ | Mapa chave/valor onde cada chave é o nome da variável do sistema criada e o valor é uma `function` que retorna o valor correspondente da variável do sistema |
+| _Object_ | Mapa chave/valor<br>Cada chave é o nome da variável do sistema criada<br> <br> Cada valor é uma `function` que retorna o valor correspondente da variável do sistema, ou um objeto do tipo: [ModuleSystemVariableAction](#modulesystemvariableaction) |
 
 
 **Exemplo:**
@@ -709,14 +839,11 @@ function lineBreakRules(module) {
       // e for uma apresentação de letra de música
       // e não houver palavras restantes além da palavra atual
       // 
-      // retorna -1 para que a última palavra da linha atual
-      // seja movida para a próxima linha
+      // retorna -1 para que a última palavra da linha atual seja movida para a próxima linha
       // 
-      // isso evita com que uma quebra de linha
-      // seja criada com apenas uma palavra sozinha
+      // isso evita com que uma quebra de linha seja criada com apenas uma palavra sozinha
       //
-      // caso fosse retornado 1, a palavra atual ficaria na linha atual
-      // evitando a quebra de linha
+      // caso fosse retornado 1, a palavra atual ficaria na linha atual, evitando a quebra de linha
       // porém nesse caso o tamanho da fonte do slide é reduzido
       return -1;
     }
@@ -802,6 +929,10 @@ Captura a ação de um item executado.<br>Se declarado, ao executar o tipo de it
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `file` | _Function (opcional)_ | Ação originada da aba **Arquivo** da biblioteca do programa.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandleItemActionInfo](#modulehandleitemactioninfo) |
+| `f8` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `f9` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `f10` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
+| `esc` | _Function (opcional)_ | Captura a respectiva ação do atalho, tanto se foi originado de uma tecla de atalho do teclado quanto clique na interface.<br>`function(evt) { /* */ }`<br>`evt` é do tipo: [ModuleHandlePresentationActionInfo](#modulehandlepresentationactioninfo) `v2.29.0+` |
 
 
 **Exemplo:**
@@ -815,8 +946,121 @@ function handleItemAction() {
         return true;
       }
       return false;
+    },
+    f8: function(evt) {
+        if (evt.origin === 'keyboard') {
+            //custom action
+            return true;
+        }
+        return false;
     }
   };
+}
+```
+
+---
+
+### style(module)
+- v2.25.0
+
+Retorna uma lista de estilos que poderão ser utilizados nas formatações baseadas em [Styled Text](https://github.com/holyrics/Scripts/blob/main/StyledText.md).<br> <br>Se o retorno desse método for um valor dinãmico (volátil), é necessário chamar `module.fireStyleChanged()` para forçar a atualização dos dados.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Mapa chave/valor onde cada chave é o nome do estilo e o valor um mapa chave/valor com as respectivas propriedades do estilo |
+
+
+**Exemplo:**
+
+```javascript
+function style() {
+  var obj = {};
+  
+  obj.example = {
+    i: true,
+    font: 'Arial',
+    size: 70
+  };
+  
+  return obj;
+}
+```
+
+---
+
+### requiredValuesAndSettings(module)
+- v2.27.0
+
+Retorna predefinições requeridas em algumas funcionalidades e mecânicas do programa.<br>Por exemplo, exibir um campo na parte 'extra' na janela de edição de música, mesmo que ele não tenha sido criado pelo usuário.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Object_ | Mapa chave/valor.<br> <br>`song_extras` Lista de campos 'extras' requeridos para uma música<br>`text_extras` Lista de campos 'extras' requeridos para um texto<br>`background_tags` Lista de Tags requeridas para tema e plano de fundo |
+
+
+**Exemplo:**
+
+```javascript
+function requiredValuesAndSettings(module) {
+  return {
+    song_extras: ['example 1', 'example 2', 'example 3'],
+    text_extras: ['example 1', 'example 2', 'example 3'],
+    background_tags: ['example 1', 'example 2', 'example 3']
+  };
+}
+```
+
+---
+
+### receiverMidi(module)
+- v2.29.0
+
+Método que recebe comandos midi de um dispositivo definido pelo usuário nas configurações do módulo.<br>É necessário o uso da permissão 'receiver_midi' na declaração do módulo.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Function_ | Método que será executado para consumir a mensagem midi.<br>`function (device_name, midi) { /* ... */ }`<br> <br>`device_name` Nome do disppositivo midi que originou a mensagem.<br>`midi` Mensagem midi do tipo: [MidiMessage](#midi-message) |
+
+
+**Exemplo:**
+
+```javascript
+function receiverMidi(module) {
+    return function(deviceName, midi) {
+        if (midi.note_on && midi.code === 1) {
+            switch(midi.velocity) {
+                case 1:
+                    break;
+            }
+        }
+    };
 }
 ```
 
@@ -831,7 +1075,7 @@ function handleItemAction() {
 | `global` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.setGlobal()<br>Exemplo<br>`var n = module.global.abc;`<br>`var n = module.getGlobal('abc');`<br>...<br>`module.global.abc = 'xyz';`<br>`module.setGlobal('abc', 'xyz');` `v2.24.0+` |
 | `store` | _Object_ | Objeto para manipulação dinâmica dos valores armazenados em: module.store()<br>Exemplo<br>`var n = module.store.abc;`<br>`var n = module.restore('abc');`<br>...<br>`module.store.abc = 'xyz';`<br>`module.store('abc', 'xyz');` `v2.24.0+` |
 | `device` | _Object_ | Salva e recupera um objeto salvo em disco, que pode ser recuperado mesmo após reiniciar o programa<br>Funciona como `h.store()` e `h.restore()`, porém o valor salvo não é compartilhado na sincronização em nuvem, ou seja, os dados são salvos apenas para o dispositivo local. `v2.24.0+` |
-| `files` | _[FileUtils](https://github.com/holyrics/jslib/blob/main/doc/null/FileUtils.md)_ | Classe utilitária para alguns métodos de manipulação de arquivos. `v2.24.0+` |
+| `files` | _[FileUtils](https://github.com/holyrics/jslib/blob/main/doc/pt/FileUtils.md)_ | Classe utilitária para alguns métodos de manipulação de arquivos. `v2.24.0+` |
 ### getName()
 Retorna o nome do módulo.
 
@@ -856,6 +1100,55 @@ Verifica se o módulo está ativado.<br>Retornará `false` caso a execução con
 | Tipo  |
 | :---: |
 | _Boolean_ | 
+
+
+---
+
+### isEnabledByUser()
+- v2.26.0
+
+Se o módulo está ativado pelo usuário (checkbox na interface)
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### isConditionalExecution()
+- v2.26.0
+
+Se o módulo está ativado baseado nas possíveis execuções condicionais definidos a ele pelo usuário
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### getStatus()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `enabled` | _Boolean_ | Se o módulo está ativado pelo usuário (checkbox na interface) |
+| `conditional_execution` | _Boolean_ | Se o módulo está ativado baseado nas possíveis execuções condicionais definidos a ele pelo usuário |
 
 
 ---
@@ -899,6 +1192,17 @@ _Método sem retorno_
 
 ---
 
+### updatePublicActions()
+- v2.26.0
+
+Força a atualização da lista de ações públicas. `function publicActions() { /* ... */ }`
+
+
+
+_Método sem retorno_
+
+---
+
 ### restart()
 Força a reinicialização do módulo.
 
@@ -917,7 +1221,34 @@ Abre a janela de configuração do módulo.
 
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
-| `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
+| `id` | _String (opcional)_ | Pode ser: `settings` `advanced_permissions` `allowed_files` `Padrão: settings` |
+
+
+_Método sem retorno_
+
+---
+
+### openJSMonitor(group = 'interval')
+- v2.26.0
+
+Abre o monitor JavaScript com o filtro padrão definido para as tarefas do módulo
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `group` | _String (opcional)_ | `interval` `timeout` `run_at` `trigger` `global` `timer_and_countdown` `Padrão: interval` |
+
+
+_Método sem retorno_
+
+---
+
+### openLog()
+- v2.26.0
+
+Abre a janela de log do módulo
+
 
 
 _Método sem retorno_
@@ -1130,7 +1461,7 @@ Mesma sintaxe de: [jslib.tcp(receiver, cacheID, modelToCreate)](https://github.c
 
 | Tipo  |
 | :---: |
-| _[TCPClient](https://github.com/holyrics/jslib/blob/main/doc/null/TCPClient.md)_ | 
+| _[TCPClient](https://github.com/holyrics/jslib/blob/main/doc/pt/TCPClient.md)_ | 
 
 
 **Exemplo:**
@@ -1154,7 +1485,7 @@ Mesma sintaxe de: [jslib.ws(receiver, cacheID, modelToCreate)](https://github.co
 
 | Tipo  |
 | :---: |
-| _[WebSocketClient](https://github.com/holyrics/jslib/blob/main/doc/null/WebSocketClient.md)_ | 
+| _[WebSocketClient](https://github.com/holyrics/jslib/blob/main/doc/pt/WebSocketClient.md)_ | 
 
 
 **Exemplo:**
@@ -1176,7 +1507,7 @@ Mesma sintaxe de: [jslib.process(file, input = null)](https://github.com/holyric
 
 | Tipo  |
 | :---: |
-| _[Process](https://github.com/holyrics/jslib/blob/main/doc/null/Process.md)_ | 
+| _[Process](https://github.com/holyrics/jslib/blob/main/doc/pt/Process.md)_ | 
 
 
 **Exemplo:**
@@ -1255,6 +1586,28 @@ module.updateAction('id1', 'id2');
 
 ---
 
+### getSecretID()
+- v2.29.0
+
+ID permanente que não é acessível fora desse método do objeto `module`.<br>Útil para ter um ID secreto que possa ser vinculado ao módulo mas protegido de acesso por outros códigos javascript (exceto se o objeto `module` for disponibilizado voluntariamente para execução em contexto desprotegido)
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 20 |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.getSecretID();
+```
+
+---
+
 ### getRuntimeID()
 - v2.24.0
 
@@ -1264,9 +1617,9 @@ ID temporário que é válido somente durante a execução atual do programa
 
 **Resposta:**
 
-| Tipo  |
-| :---: |
-| _String_ | 
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | `[a-zA-Z0-9]` Quantidade de caracteres: 16 |
 
 
 ---
@@ -1329,6 +1682,354 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
 
 ---
 
+### hly(action, input)
+### hly(action)
+- v2.25.0
+
+Mesma sintaxe de: `jslib.hly(...)`
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var r = h.hly('GetSong', { id: '123' });
+```
+
+---
+
+### hlyOrThrow(action, input)
+### hlyOrThrow(action)
+- v2.25.0
+
+Mesma sintaxe de: `jslib.hlyOrThrow(...)`
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var r = h.hlyOrThrow('GetSong', { id: '123' });
+```
+
+---
+
+### fireStyleChanged()
+- v2.25.0
+
+Força a limpeza de cache das propriedades `style`.<br>Necessário chamar quando o conteúdo retornado por `function style()` for alterado.
+
+
+
+_Método sem retorno_
+
+---
+
+### isAllowedEditImportantData()
+- v2.25.0
+
+Verifica se a permissão para editar dados importantes do programa (letra de música, tema, etc) está liberada.
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### requireAllowedEditImportantData(onGranted, onDenied = null)
+- v2.28.0
+
+Método utilitário que verifica se a permissão para editar dados importantes está ativada para o módulo. E caso não esteja, abre um popup solicitando a permissão.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `onGranted` | _Function_ | `callback` que será executado se a permissão estiver ativada ou após a permissão ter sido dada na interface |
+| `onDenied` | _Function (opcional)_ | `callback` que será executado se a permissão for negada |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+h.requireAllowedEditImportantData(function() {
+    //implementation
+});
+```
+
+---
+
+### getObjectModelCtrl(object_model_id)
+### getObjModelCtrl(object_model_id)
+- v2.26.0
+
+Retorna a classe de controle de um modelo de objeto
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `object_model_id` | _String_ | ID do modelo |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelController](#moduleobjectmodelcontroller)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+h.logp(obj);
+//obj.name
+//obj.age
+```
+
+---
+
+### searchObjectModelByID(object_id)
+### searchObjModelByID(object_id)
+- v2.26.0
+
+Retorna os dados de um objeto modelo salvo.<br>Procura em todos os modelos.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `object_id` | _String_ | ID do objeto |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var obj = module.searchObjectModelByID('object_id');
+h.logp(obj);
+//obj.name
+//obj.age
+```
+
+---
+
+### setInterval(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Number_ | Retorna o ID da tarefa. Você pode utilizar o ID para parar a execução. |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.setInterval(function() {
+    /* ... */
+}, 15000);
+```
+
+---
+
+### setTimeout(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _Number_ | Retorna o ID da tarefa. Você pode utilizar o ID para cancelar a execução. |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.setTimeout(function() {
+    /* ... */
+}, 10000);
+```
+
+---
+
+### runAt(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _String_ | Retorna o ID da tarefa. Você pode utilizar o ID para cancelar a execução. `cancelRunAt(id)` |
+
+
+**Exemplo:**
+
+```javascript
+var id = module.runAt({
+  name: '',
+  datetime: '19:25',
+  action: function() {
+    /* ... */
+  }
+});
+```
+
+---
+
+### clearInterval(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### clearTimeout(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### cancelRunAt(...)
+- v2.26.0
+
+Método relativo com o mesmo funcionamento do método original **JSLib**.<br>Porém os itens adicionados por aqui serão vinculados e filtrados pelo respectivo módulo na janela do **Monitor JavaScript**.
+
+
+
+_Método sem retorno_
+
+---
+
+### getIntervalList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _Number_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `delay` | _String_ |  |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getIntervalList();
+```
+
+---
+
+### getTimeoutList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _Number_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `timeout` | _String_ |  |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getTimeoutList();
+```
+
+---
+
+### getRunAtList()
+- v2.26.0
+
+
+
+
+
+**Resposta:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `creation_time` | _Number_ | (timestamp) |
+| `remaining` | _Number_ | Tempo restante em milissegundos para execução |
+| `datetime` | _String_ | YYYY-MM-DD HH:MM:SS |
+
+
+**Exemplo:**
+
+```javascript
+var list = module.getRunAtList();
+```
+
+---
+
 
 ## ModuleAction
 | Nome | Tipo  | Descrição |
@@ -1343,8 +2044,437 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
 | `action` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar e soltar o item. |
 | `mouse_pressed` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao clicar no item. |
 | `mouse_released` | _Function (opcional)_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`.<br>Executado ao soltar o item.<br>**Atenção:** mouse_pressed na `v2.23.0` está sendo executado ao clicar com o botão direito do mouse no item.<br>Corrigido na `v2.24.0` |
-| `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
+| `available_in_app` | _Boolean (opcional)_ | Indica se o item de ação estará disponível e listado no app Holyrics para celular.<br>Itens definidos como `true` serão exibidos na aba `Favoritos` do app.<br>O celular também precisa estar com a permissão `Módulo` ativada nas configurações do Holyrics, no botão `gerenciar acesso remoto sem senha` `Padrão: false` |
 | `popup_menu` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Itens exibidos no menu de contexto ao clicar com o botão direito do mouse no item.<br>Pode ser uma `function` que retorna Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt;.<br>`function(evt) { return []; }`<br>`evt.source` contém o objeto `ModuleAction` atual. |
+
+## ModulePublicAction
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do item |
+| `name` | _String_ | Nome do item |
+| `description` | _String (opcional)_ | Descrição do item |
+| `icon` | _String (opcional)_ | Ícone padrão do item.<br>Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
+| `icon_color` | _String (opcional)_ | Cor do ícone no formato hexadecimal. |
+| `input` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt; (opcional)_ | Lista de parâmetros da ação. |
+| `status` | _Object (opcional)_ | Retornar o estado atual de exibição do item.<br>Define as configurações de visualização do item em tempo de execução, como ícone, cor, etc.<br>Utiliza a sintaxe de [StatusView](https://github.com/holyrics/Scripts/blob/main/StatusView.md). `v2.27.0+` |
+| `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva ação.<br>`evt.input` parâmetros para execução da ação. |
+| `available_for` | _Object (opcional)_ | Lista de origens em que a ação estará disponibilizada para execução.<br>Múltiplos valores separados por vírgula.<br>Se o campo estiver vazio, significa que a ação estará disponível para todas as origens.<br>Para bloquear origens específicas utilize `unavailable_for`.<br>Valores disponíveis: `ui` `trigger` `jslib_call` `jslib_open` `add_to_playlist`<br> <br>**ui:** Para uso na interface do programa, por exemplo, como um botão na barra de favoritos ou na lista de reprodução do culto/evento.<br> <br>**trigger:** Para uso em gatilhos<br> <br>**jslib_call:** Para execução via JavaScript (jslib)<br> <br>**jslib_open:** Para abrir uma janela popup via JavaScript para o usuário executar a ação (jslib)<br> <br>**add_to_playlist:** Permite adicionar na lista de reprodução via JavaScript (jslib) `h.hly('addtoplaylist', ...)`<br> |
+| `unavailable_for` | _Object (opcional)_ | Lista de origens em que a ação estará bloqueada para execução.<br>Valores baseados em `available_for` |
+| `filter_available_for_trigger` | _Object (opcional)_ | Filtro avançado para exibir a ação somente em tipos específicos de gatilho, caso a ação esteja disponível para uso em gatilhos.<br>Útil para disponibilizar a ação somente para determinados tipos de gatilho, por exemplo, somente para gatilhos de música<br> <br>`function(evt) { /* ... */ }`<br>`evt.when`<br>`evt.item` |
+| `tree` | _Array&lt;String&gt; (opcional)_ | Árvore de submenu para organização de múltiplas ações em diferentes submenus |
+
+## ModuleObjectModelStruct
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `id` | _String_ | ID do modelo |
+| `name` | _String_ | Nome do modelo |
+| `struct` | _Array&lt;[InputParam](https://github.com/holyrics/Scripts/blob/main/InputParam.md)&gt;_ | Estrutura |
+| `to_string` | _String (opcional)_ | ID do campo em `struct` que será utilizado como valor que representa o objeto na interface.<br>Caso o parâmetro `to_string` não seja declarado, o campo padrão que será utilizado será um dos seguintes, na ordem: `name` `label` `title` |
+| `onchange` | _Function (opcional)_ | Método executado sempre que houver alguma alteração na lista de itens.<br>Item criado, item editado ou item removido. |
+
+## ModuleObjectModelController
+Está disponível o acesso direto a todos os campos do objeto conforme disponível em `struct`.<br>
+Também é possível editar o item alterando o respectivo campo, o salvamento é automático.<br>
+ <br>
+**Exemplo:**<br>
+```javascript
+if (obj.example && obj.example.contains('abc')) {
+  obj.example = 'xyz;}
+```
+
+### length()
+Retorna a quantidade de itens
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Number_ | 
+
+
+---
+
+### isEmpty()
+
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Boolean_ | 
+
+
+---
+
+### add(data)
+Cria um item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `data` | _Object_ | Mapa chave/valor com os dados do objeto |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.add({
+    name: 'Example',
+    age: 20
+});
+```
+
+---
+
+### newItem(initialValues = null, callback = null)
+Abre uma janela para criação de um novo item pelo usuário. Execução assíncrona.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `initialValues` | _Object (opcional)_ | Mapa chave/valor com os dados iniciais do objeto |
+| `callback` | _Function (opcional)_ | Executado após a criação do item.<br>Obs: Executado **somente** se o item for criado pelo usuário. |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var data = {
+    name: 'Example',
+    age: 20
+};
+ctrl.newItem(data, function() {
+    //callback
+});
+```
+
+---
+
+### remove(data)
+Remove um item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `data` | _Object_ | ID do objeto ou um objeto que contém o parâmetro ID com o ID do objeto |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Retorna o objeto removido ou `null` se o objeto não foi encontrado |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var removed = ctrl.remove('id');
+```
+
+---
+
+### openEditor()
+Abre a janela de edição global. Execução assíncrona.
+
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.openEditor();
+```
+
+---
+
+### itemChooser(callback)
+Abre uma janela para o usuário selecionar um item. Execução assíncrona
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `callback` | _Function_ | `function(selected) { /* ... */ }` |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.itemChooser(function(selected) {
+   //callback
+});
+```
+
+---
+
+### getAll()
+Retorna a lista de itens
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Array&lt;[ModuleObjectModelData](#moduleobjectmodeldata)&gt;_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAll().forEach(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+### getAllAsMap()
+Retorna a lista de itens em um objeto mapa chave/valor, onde cada chave é o id do objeto
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllAsMap().forEach(function(id, item) {
+    h.log(item);
+});
+```
+
+---
+
+### getAllFiltered(filter)
+O mesmo que `getAll()` porém com filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllFiltered(function(item) {
+      return item.name.contains('abc');
+    }).forEach(function(item) {
+        h.log(item);
+    });
+```
+
+---
+
+### getAllFilteredAsMap(filter)
+O mesmo que `getAllAsMap()` porém com filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _Object_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getAllFilteredAsMap(function(item) {
+      return item.name.contains('abc');
+    }).forEach(function(id, item) {
+        h.log(item);
+    });
+```
+
+---
+
+### get(id)
+Retorna um item
+
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+```
+
+---
+
+### getOpt(id)
+Retorna um item
+
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[Optional](https://github.com/holyrics/jslib/blob/main/doc/pt/Optional.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.getOpt('object_id').ifPresent(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+### findFirst(filter)
+Retorna o primeiro item encontrado baseado no filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  | Descrição |
+| :---: | ------------|
+| _[ModuleObjectModelData](#moduleobjectmodeldata)_ | Pode ser `null` |
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.findFirst(function(item) {
+    return item.name.contains('abc');
+});
+```
+
+---
+
+### findFirstOpt(filter)
+Retorna o primeiro item encontrado baseado no filtro aplicado
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `filter` | _Object_ | Uma função que recebe o objeto e retorna verdadeiro ou falso |
+
+
+**Resposta:**
+
+| Tipo  |
+| :---: |
+| _[Optional](https://github.com/holyrics/jslib/blob/main/doc/pt/Optional.md)_ | 
+
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+ctrl.findFirstOpt(function(item) {
+    return item.name.contains('abc');
+}).ifPresent(function(item) {
+    h.log(item);
+});
+```
+
+---
+
+
+## ModuleObjectModelData
+Está disponível o acesso direto a todos os campos do objeto conforme disponível em `struct`.<br>
+Também é possível editar o item alterando o respectivo campo, o salvamento é automático.<br>
+ <br>
+**Exemplo:**<br>
+```javascript
+if (obj.example && obj.example.contains('abc')) {
+  obj.example = 'xyz;}
+```
+
+### openEditor(callback = null)
+Abre a janela de edição para editar o respectivo item
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `callback` | _Function (opcional)_ | Executado após edição do item.<br>Obs: Executado **somente** se o item for editado pelo usuário. |
+
+
+_Método sem retorno_
+
+**Exemplo:**
+
+```javascript
+var ctrl = module.getObjectModelCtrl('example');
+var obj = ctrl.get('object_id');
+obj.openEditor(function() {
+    //onchange
+});
+```
+
+---
+
 
 ## ModuleLoop
 | Nome | Tipo  | Descrição |
@@ -1358,8 +2488,8 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
 | ---- | :---: | ------------|
 | `id` | _String (opcional)_ | ID do item |
 | `when` | _String_ | `displaying` `closing` `change` `event` |
-| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` |
-| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
+| `item` | _String_ | Tipo do item. Pode ser:<br>**when=displaying**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_song_slide` `any_text_slide` `any_ppt_slide` `any_theme` `any_background` `any_title_subitem` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_music_tag` `any_text_tag` `any_audio_tag` `any_video_tag` `any_image_tag` `any_playback_tag` `any_countdown` `any_automatic_presentation_slide` `f8` `f9` `f10`<br><br>**when=closing**: `any_song` `any_text` `any_verse` `any_announcement` `any_audio` `any_video` `any_image` `any_automatic_presentation` `any_webcam` `any_audio_folder` `any_video_folder` `any_image_folder` `any_ppt` `any_music_tag` `any_text_tag` `any_audio_tag` `any_video_tag` `any_image_tag` `any_playback_tag` `f8` `f9` `f10`<br><br>**when=change**: `countdown_seconds_public` `countdown_seconds_communication_panel` `timer_seconds_communication_panel` `wallpaper` `wallpaper_service` `stage` `playlist` `bpm` `hue` `player_volume` `player_mute` `player_pause` `player_repeat` `player_list_or_single` `player_shuffle` `bible_version_1` `bible_version_2` `bible_version_3` `bible_any_version`<br><br>**when=event**: `new_message_chat` `verse_presentation_changed` `playlist_changed` `file_modified` `player_progress` `draw_lots_item_drawn` |
+| `action` | _Function_ | Ação que será executada.<br>`function(obj) { /*  */ }`<br>Conteúdo de `obj` de acordo com o tipo do item:<br>[`any_song`](https://github.com/holyrics/jslib#songinfo)  [`any_text`](https://github.com/holyrics/jslib#textinfo)  [`any_verse`](https://github.com/holyrics/jslib#verseinfo)  [`any_announcement`](https://github.com/holyrics/jslib#announcementinfo)  [`any_audio`](https://github.com/holyrics/jslib#audioinfo)  [`any_video`](https://github.com/holyrics/jslib#videoinfo)  [`any_image`](https://github.com/holyrics/jslib#imageinfo)  [`any_automatic_presentation`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_song_slide`](https://github.com/holyrics/jslib#songslideinfo)  [`any_text_slide`](https://github.com/holyrics/jslib#textslideinfo)  [`any_ppt_slide`](https://github.com/holyrics/jslib#pptslideinfo)  [`any_theme`](https://github.com/holyrics/jslib#themeinfo)  [`any_background`](https://github.com/holyrics/jslib#backgroundinfo)  [`any_title_subitem`](https://github.com/holyrics/jslib#titleinfo)  [`any_webcam`](https://github.com/holyrics/jslib#webcaminfo)  [`any_audio_folder`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_folder`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_folder`](https://github.com/holyrics/jslib#imageinfo)  [`any_ppt`](https://github.com/holyrics/jslib#pptinfo)  [`any_music_tag`](https://github.com/holyrics/jslib#songinfo)  [`any_text_tag`](https://github.com/holyrics/jslib#textinfo)  [`any_audio_tag`](https://github.com/holyrics/jslib#audioinfo)  [`any_video_tag`](https://github.com/holyrics/jslib#videoinfo)  [`any_image_tag`](https://github.com/holyrics/jslib#imageinfo)  [`any_playback_tag`](https://github.com/holyrics/jslib#automaticpresentationinfo)  [`any_countdown`](https://github.com/holyrics/jslib#countdowninfo)  [`any_automatic_presentation_slide`](https://github.com/holyrics/jslib#automaticpresentationslideinfo)  [`f8`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f9`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`f10`](https://github.com/holyrics/jslib#presentationmodifierinfoinfo)  [`new_message_chat`](https://github.com/holyrics/jslib#newchatmessageinfo)  [`verse_presentation_changed`](https://github.com/holyrics/jslib#versepresentationchangedinfo)  [`playlist_changed`](https://github.com/holyrics/jslib#playlistchangedinfo)  [`file_modified`](https://github.com/holyrics/jslib#filemodifiedinfo)  [`player_progress`](https://github.com/holyrics/jslib#playerprogressinfo)  [`draw_lots_item_drawn`](https://github.com/holyrics/jslib#drawlotsitemdrawninfo)<br><br>Todos os itens de **when=change** contém: `obj.id` `obj.name` `obj.old_value` `obj.new_value` |
 | `name` | _String (opcional)_ | Nome do item. Valor compatível para exibição no **JavaScript Monitor** `v2.23.0+` |
 | `filter` | _Object (opcional)_ | Executar ação somente se o objeto que gerou o gatilho corresponder ao objeto filter `v2.24.0+` |
 <details>
@@ -1371,22 +2501,27 @@ Verifica se um arquivo da aba de arquivos está na lista de permissão para exec
   "when": "displaying",
   "item": "any_song",
   "action": function(obj) { /* TODO */ },
-  "name": "name",
-  "filter": {}
+  "name": "name"
 }
 ```
 </details>
+
+## ModuleSystemVariableAction
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `action` | _Function_ | Função que será executada |
+| `cache_delay` | _Number (opcional)_ | A duração (em milissegundos) que o valor retornado ficará em cache para reutilização sem invocar a `function` novamente.<br>`500 ~ 60000` `Padrão: 1000` |
 
 ## ModuleContextAction
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `name` | _String_ | Nome do item.<br>Valor que será exibido no menu de contexto do respectivo item. |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). |
-| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` |
+| `types` | _Array&lt;String&gt;_ | Lista com os tipos de item que receberão a ação de contexto.<br>Valores aceitos: `audio` `audio_folder` `video` `video_folder` `image` `image_folder` `file` `song` `text` `announcement` `automatic_presentation` `plain_text` `cp_text` `favorite` `paragraph_preview` `song_history` `theme` `presentation_theme_footer` `playlist_item` `song_playlist_item` `chat_message` `service` `event` `song_group` `bible_verse` `background` `background_tag` |
 | `action` | _Function_ | Ação que será executada.<br>`function(evt) { /*   */ }`<br>`evt.type` contém o tipo do item que gerou a ação de contexto.<br>`evt.item` contém as informações do item que gerou a ação.<br>[Saiba mais](https://github.com/holyrics/Scripts/blob/main/ContextAction.md) |
 | `filter` | _Object (opcional)_ | Exibe a ação somente para o objeto que corresponder ao objeto filter `v2.24.0+` |
-| `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
-| `allow_multiple_items` | _Boolean (opcional)_ | Permitir seleção múltipla de itens `Padrão: false` `v2.24.0+` |
+| `checked` | _Object (opcional)_ | Se este parâmetro for diferente de `null`, o item no menu de contexto será exibido como um `type=radio`<br>Pode ser: `boolean` `function` `Padrão: null` `v2.24.0+` |
+| `allow_multiple_items` | _Boolean (opcional)_ | Permitir seleção múltipla de itens `Padrão: false` `v2.24.0+` |
 
 ## ModuleTextTransformInfo
 Contém as informações da origem da requisição
@@ -1424,8 +2559,9 @@ Define os valores que serão utilizados para adicionar ou substituir o texto do 
 | ---- | :---: | ------------|
 | `add_start` | _String (opcional)_ | Valor que será adicionado no início do texto do slide atual |
 | `add_end` | _String (opcional)_ | Valor que será adicionado no final do texto do slide atual |
-| `line_break` | _Boolean (opcional)_ | Adiciona o texto com uma quebra de linha `Padrão: true` |
+| `line_break` | _Boolean (opcional)_ | Adiciona o texto com uma quebra de linha `Padrão: true` |
 | `replace` | _String (opcional)_ | Valor para substituir o texto do slide atual |
+| `cache_delay` | _Number (opcional)_ | Tempo em milissegundos para usar um valor em cache em vez de realizar nova requisição. `100 ~ 60000` `Padrão: 30000` `v2.28.0+` |
 
 ## ModuleCustomThemeSongInfo
 Dados da origem da requisição
@@ -1512,16 +2648,50 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 | `id` | _String_ | ID do item |
 | `label` | _String_ | Nome do item |
 | `icon` | _String (opcional)_ | Utiliza a sintaxe de [Icon](https://github.com/holyrics/Scripts/blob/main/Icon.md). `v2.24.0+` |
-| `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
+| `type` | _String (opcional)_ | Tipo do item.<br>Pode ser: `item` `menu` `separator` `title` `checkbox` `radio` `Padrão: item` |
 | `action` | _Function_ | `function(evt) { /*   */ }`<br>`evt.action_id` contém o id da respectiva `action`<br>`evt.input` contém os valores salvos obtidos do campo `input` da respectiva `action`<br>`evt.popup_menu_id` contém o id do respectivo `PopupMenuItem`. |
 | `items` | _Array&lt;[ModulePopupMenuItem](#modulepopupmenuitem)&gt; (opcional)_ | Disponível se `type = menu` |
-| `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
+| `checked` | _Boolean (opcional)_ | Disponível se `type = checkbox` ou `type = radio` `Padrão: false` |
 
 ## ModuleHandleItemActionInfo
 | Nome | Tipo  | Descrição |
 | ---- | :---: | ------------|
 | `item` | _String_ | **file:** [FileInfo](https://github.com/holyrics/jslib#fileinfo) |
 | `consumed` | _Boolean_ | Será `true` se a ação tiver sido capturada por qualquer outro módulo |
+
+## ModuleHandlePresentationActionInfo
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `action` | _String_ | `f8` `f9` `f10` `esc` |
+| `origin` | _String_ | `default_action` `keyboard` `presentation_footer` `holyrics_action` `midi` `jslib` |
+| `current_state` | _Boolean_ |  |
+| `consumed` | _Boolean_ | Será `true` se a ação tiver sido capturada por qualquer outro módulo |
+
+## Midi Message
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `code` | _Number_ | `0 ~ 127` |
+| `velocity` | _Number_ | `0 ~ 127` |
+| `command` | _Number_ | `0 ~ 255` |
+| `channel` | _Number_ | `0 ~ 15` |
+| `note_on` | _Boolean_ |  |
+| `note_off` | _Boolean_ |  |
+| `command_id` | _String_ | `note_on` `control_change` `program_change` `polyphonic_key_pressure` `channel_pressure` `pitch_bend_change` `midi_time_code` `song_position_pointer` `song_select` `tune_request` `timing_clock` `start` `continue` `stop` `active_sensing` `system_reset` |
+<details>
+  <summary>Ver exemplo</summary>
+
+```json
+{
+  "code": 0,
+  "velocity": 0,
+  "command": 0,
+  "channel": 0,
+  "note_on": false,
+  "note_off": false,
+  "command_id": ""
+}
+```
+</details>
 
 
 
@@ -1543,7 +2713,8 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
 ```
 
 Valores disponíveis para `key`:
-`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`
+`allowed_files`  `files_mkdir`  `files_rename`  `files_copy`  `files_delete`  `edit_important_data`  `receiver_midi`
+
 
 # Exemplo
 

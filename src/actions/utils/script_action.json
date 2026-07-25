@@ -1,0 +1,15 @@
+{
+    "id": "utils_script_action",
+    "name": "Run Script",
+    "description": "Run an Available Script Item",
+    "i18n": {
+        "name": {
+            "pt": "Executar Script",
+            "ru": "Запустить скрипт"
+        },
+        "description": {
+            "pt": "Executar um item Script disponível",
+            "ru": "Запустить доступный элемент скрипта"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "id": "reaper_set_player_state",
+    "name": "Change Player State",
+    "description": "Change Player State",
+    "i18n": {
+        "name": {
+            "pt": "Alterar Estado do Player"
+        },
+        "description": {
+            "pt": "Alterar Estado do Player"
+        }
+    }
+}

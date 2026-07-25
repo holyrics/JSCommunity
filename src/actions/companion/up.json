@@ -1,0 +1,13 @@
+{
+    "id": "companion_up",
+    "name": "Release the button",
+    "description": "Release the button (run up actions)",
+    "i18n": {
+        "name": {
+            "pt": "Soltar um botão"
+        },
+        "description": {
+            "pt": "Soltar um botão (executar a ação UP)"
+        }
+    }
+}

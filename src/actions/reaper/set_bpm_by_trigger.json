@@ -1,0 +1,14 @@
+{
+    "id": "reaper_set_bpm_by_trigger",
+    "name": "Change BPM",
+    "description": "Change BPM",
+    "i18n": {
+        "name": {
+            "pt": "Alterar BPM"
+        },
+        "description": {
+            "pt": "Alterar BPM"
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && ((obj.when == 'displaying' && obj.item == 'any_song') || (obj.when == 'change' && obj.item == 'bpm')) "
+}

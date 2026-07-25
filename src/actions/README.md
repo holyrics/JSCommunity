@@ -1,5 +1,10 @@
 # Modelos de código
 
+**PT** | [EN](README-en.md)
+
+---
+
+
 Para criar novos modelos de código, adicione os arquivos em uma subpasta daqui (actions).<br>
 Selecione uma subpasta existente que se encaixe melhor no objetivo do modelo ou, se necessário, crie novas subpastas.
 
@@ -15,15 +20,15 @@ O arquivo `*.json` contém as informações do modelo:<br>
 {
     "id": "id_único_do_item",
     "name": "Nome do item",
-    "description": "Descrição do que o item faz. Pode conter tags HTML para melhor formatação. <b>bold</b>, <i>italic</i>, etc...",
+    "description": "Descrição do que o item faz. Pode conter tags HTML para melhor formatação. <b>bold</b>, <i>italic</i>, ...",
     "i18n": {
         "name": {
             "pt": "Nome traduzido para o idioma correspondente",
-            "es": "..."
+            "??": "..."
         },
         "description": {
             "pt": "Descrição traduzida para o idioma correspondente",
-            "es": "..."
+            "??": "..."
         }
     },
     "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && obj.item == 'image' "
@@ -43,7 +48,7 @@ se `obj.type == 'trigger'`:<br>
 
 O arquivo `*_functions.js` contém o script que fica na parte direita da janela de edição de script (métodos opcionais).<br>
 Para criar/organizar os métodos mais complexos necessários para execução do script principal.<br>
-É possível implementar os recursos de [Function Input](https://github.com/holyrics/Scripts/blob/main/FunctionInput.md) e [Item Status](https://github.com/holyrics/Scripts/blob/main/ItemStatus.md) neste arquivo.<br>
+É possível implementar os recursos de [Function Input](https://github.com/holyrics/Scripts/blob/main/FunctionInput.md) e [Item Status](https://github.com/holyrics/Scripts/blob/main/StatusView.md) neste arquivo.<br>
 Exemplo:
 ```javascript
 function hGetItemInputParams() {

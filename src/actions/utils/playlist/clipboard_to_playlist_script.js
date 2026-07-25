@@ -39,6 +39,11 @@ for (var k in arr) {
         addSongToPlaylist(json.data[0].id, lyricsPlaylist, mediaPlaylist);
         continue;
     }
+    if (json.data.length > 10 && text.replaceAll("[^\\p{L}0-9 ]", "").length <= 4) {
+        log(jsc.i18n('Many items found') + ": " + text);
+        continue;
+    }
+    
     //If found more than one result
     //will display a window for the user to choose an item by creating the 'label' property
     //because it will be displayed in the list as the item name
