@@ -1,6 +1,7 @@
 function hGetItemStatusData(obj) {
-    var muted = jsc.x32.isChannelMute(obj.input.receiver_id, obj.input.channel);
-    var description = (jsc.x32.getChannelVolume(obj.input.receiver_id, obj.input.channel) * 100).toFixed(0) + "%";
+    var mixer = hGetBehringerMixer(obj);
+    var muted = mixer.isChannelMute(obj.input.receiver_id, obj.input.channel);
+    var description = (mixer.getChannelVolume(obj.input.receiver_id, obj.input.channel) * 100).toFixed(0) + "%";
     return {
           active: muted,     
           description: description
@@ -14,7 +15,16 @@ function hGetItemInputParams() {
             name: jsc.i18n('OSC Receiver'),
             description: '',
             type: 'receiver',
-            receiver: 'OSC'
+            receiver: 'OSC,wing'
+        }, {
+            id: 'mixer_model',
+            name: jsc.i18n('Behringer Mixer'),
+            type: 'string',
+            allowed_values: [
+                {value: 'x32', label: 'X32 / M32'},
+                {value: 'wing', label: 'WING'}
+            ],
+            default_value: 'x32'
         }, {
             id: 'channel',
             name: jsc.i18n('Channel Number'),
@@ -62,4 +72,10 @@ function hGetItemInputParams() {
             default_value : true
         }
    ]; 
+}
+
+function hGetBehringerMixer(obj) {
+    var info = h.getReceiverInfo(obj.input.receiver_id);
+    var receiverType = info ? String(info.type || '').toLowerCase() : '';
+    return receiverType === 'wing' || obj.input.mixer_model === 'wing' ? jsc.wing : jsc.x32;
 }

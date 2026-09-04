@@ -1,13 +1,13 @@
 { 
     "id": "osc_up_down_channel_volume",
     "name": "Inc/Dec volume step by step",
-    "description": "Increase/decrease the volume of a specific channel on the Behringer Digital Mixer.",
+    "description": "Increases or decreases a channel volume on a Behringer X32/M32 or WING.",
     "i18n": {
         "name": {
             "pt": "+/- o volume do canal"
         },
         "description": {
-            "pt": "Aumenta/Diminui o volume de um canal específico da Digital Mixer Behringer."
+            "pt": "Aumenta ou diminui o volume de um canal em uma Behringer X32/M32 ou WING."
         }
     }
 }

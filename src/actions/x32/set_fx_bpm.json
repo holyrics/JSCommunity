@@ -1,13 +1,13 @@
 {  
     "id": "set_fx_bpm",
     "name": "Change FX BPM",
-    "description": "Change the current BPM of the FX channel",
+    "description": "Changes the FX BPM on a Behringer X32/M32 or WING.",
     "i18n": {
         "name": {
             "pt": "Alterar BPM do FX"
         },
         "description": {
-            "pt": "Altera o valor atual do BPM de um canal FX"
+            "pt": "Altera o BPM do FX em uma Behringer X32/M32 ou WING."
         }
     }
 }

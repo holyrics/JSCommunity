@@ -1,13 +1,13 @@
 { 
     "id": "osc_set_channel_volume",
     "name": "Change Channel Volume",
-    "description": "Changes the volume of a specific channel on the Behringer Digital Mixer to the desired value.",
+    "description": "Changes a channel volume on a Behringer X32/M32 or WING with a smooth transition.",
     "i18n": {
         "name": {
             "pt": "Alterar o volume do canal"
         },
         "description": {
-            "pt": "Altera o volume de um canal específico da Digital Mixer Behringer para o valor desejado."
+            "pt": "Altera gradualmente o volume de um canal em uma Behringer X32/M32 ou WING."
         }
     }
 }

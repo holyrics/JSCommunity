@@ -1,13 +1,13 @@
 {  
     "id": "osc_set_channel_mute",
     "name": "Change Channel Mute",
-    "description": "Change the current state of the channel mute button.",
+    "description": "Changes a channel mute state on a Behringer X32/M32 or WING.",
     "i18n": {
         "name": {
             "pt": "Alterar o mute do canal"
         },
         "description": {
-            "pt": "Altera o estado do botão mute de um canal específico da Digital Mixer Behringer"
+            "pt": "Altera o mute de um canal em uma Behringer X32/M32 ou WING."
         }
     }
 }

@@ -1,13 +1,13 @@
 {   
     "id": "osc_set_group_mute",
     "name": "Set Group Mute",
-    "description": "Changes the mute state of a group of channels on the Behringer Digital Mixer to on/off.",
+    "description": "Changes a mute group state on a Behringer X32/M32 or WING.",
     "i18n": {
         "name": {
             "pt": "Alterar o mute do grupo"
         },
         "description": {
-            "pt": "Altera o estado de mute de um grupo de canais na Digital Mixer Behringer para ligado/desligado."
+            "pt": "Altera um grupo de mute em uma Behringer X32/M32 ou WING."
         }
     }
 }

@@ -1,13 +1,13 @@
 {  
     "id": "osc_set_aux_mute",
     "name": "Change Aux Mute",
-    "description": "Change the current state of the aux mute button.",
+    "description": "Changes the aux mute state on a Behringer X32/M32 or WING.",
     "i18n": {
         "name": {
             "pt": "Alterar o mute do auxiliar"
         },
         "description": {
-            "pt": "Altera o estado do botão mute de um auxiliar específico da Digital Mixer Behringer"
+            "pt": "Altera o mute de um auxiliar em uma Behringer X32/M32 ou WING."
         }
     }
 }

@@ -1,8 +1,9 @@
 function hGetItemStatusData(obj) {
-    var muted = jsc.x32.isAuxMute(obj.input.receiver_id, obj.input.aux);
+    var mixer = hGetBehringerMixer(obj);
+    var muted = mixer.isAuxMute(obj.input.receiver_id, obj.input.aux);
     return {
           active: muted,
-          description: (jsc.x32.getAuxVolume(obj.input.receiver_id, obj.input.aux) * 100).toFixed(0) + "%"
+          description: (mixer.getAuxVolume(obj.input.receiver_id, obj.input.aux) * 100).toFixed(0) + "%"
     };
 }
 
@@ -13,7 +14,16 @@ function hGetItemInputParams() {
             name: jsc.i18n('OSC Receiver'),
             description: '',
             type: 'receiver',
-            receiver: 'OSC'
+            receiver: 'OSC,wing'
+        }, {
+            id: 'mixer_model',
+            name: jsc.i18n('Behringer Mixer'),
+            type: 'string',
+            allowed_values: [
+                {value: 'x32', label: 'X32 / M32'},
+                {value: 'wing', label: 'WING'}
+            ],
+            default_value: 'x32'
         }, {
             id: 'aux',
             name: jsc.i18n('Auxiliary Channel'),
@@ -53,4 +63,10 @@ function hGetItemInputParams() {
             default_value: true
         }
    ]; 
+}
+
+function hGetBehringerMixer(obj) {
+    var info = h.getReceiverInfo(obj.input.receiver_id);
+    var receiverType = info ? String(info.type || '').toLowerCase() : '';
+    return receiverType === 'wing' || obj.input.mixer_model === 'wing' ? jsc.wing : jsc.x32;
 }

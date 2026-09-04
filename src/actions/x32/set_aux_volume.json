@@ -1,13 +1,13 @@
 {
     "id": "osc_set_aux_volume",
     "name": "Change Aux Volume",
-    "description": "Changes the volume of a specific aux input on the Behringer Digital Mixer to the desired value.",
+    "description": "Changes an aux volume on a Behringer X32/M32 or WING with a smooth transition.",
     "i18n": {
         "name": {
             "pt": "Alterar o volume do Aux"
         },
         "description": {
-            "pt": "Altera o volume de uma entrada auxiliar específica na Behringer Digital Mixer para o valor desejado."
+            "pt": "Altera gradualmente o volume de um auxiliar em uma Behringer X32/M32 ou WING."
         }
     }
 }
