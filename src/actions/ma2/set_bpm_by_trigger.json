@@ -1,0 +1,14 @@
+{
+    "id": "ma2_set_bpm_by_trigger",
+    "name": "grandMA2 - Change SpeedMaster BPM by trigger",
+    "description": "Change SpeedMaster 1 BPM using the BPM value from the trigger source",
+    "i18n": {
+        "name": {
+            "pt": "grandMA2 - Alterar BPM do SpeedMaster por gatilho"
+        },
+        "description": {
+            "pt": "Altera o BPM do SpeedMaster 1 usando o valor da origem do gatilho"
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && ((obj.when == 'displaying' && obj.item == 'any_song') || (obj.when == 'change' && obj.item == 'bpm')) && h.isMinimumVersion('2.29.0') "
+}

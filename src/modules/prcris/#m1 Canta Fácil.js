@@ -3,6 +3,7 @@ var mID = '@prcris#m1'
 var mUID = mID+''; 
 
 //#import modules_generic_functions
+//#import wing
 
 function startup(module) { 
 
@@ -25,6 +26,7 @@ function info() {
         allowed_requests: [
             allowedPrcrisModuleRequests
         ],
+        min_version: '2.29.0',
         i18n: {
             name: {
                 en: 'Easy Sing',
@@ -121,7 +123,18 @@ function settings(module) {
             name: jsc.i18n('Receptor'),
             description: '<html><hr>' + jsc.i18n('Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute'),
             type: 'receiver',
-            receiver: 'osc,soundcraft'
+            receiver: 'osc,soundcraft,wing'
+        },
+        {
+            id: 'mixer_model',
+            name: jsc.i18n('Modelo da mesa OSC'),
+            description: jsc.i18n('Escolha explicitamente X32/M32 ou WING. A opção não interfere em receptores Soundcraft.'),
+            type: 'string',
+            allowed_values: [
+                {value: 'x32', label: 'X32 / M32'},
+                {value: 'wing', label: 'WING'}
+            ],
+            default_value: 'x32'
         },
         {
             id: 'vocalname',
@@ -1134,8 +1147,8 @@ function getVolume(channel, module) {
   var id = module.settings.digital_mixer;
   var type = h.getReceiverInfo(id).type;    
   try {
-    if (type == 'osc') {
-        return jsc.x32.getChannelVolume(id, channel);
+    if (type == 'osc' || type == 'wing') {
+        return getCantaFacilOscMixer(module, type).getChannelVolume(id, channel);
     }
     if (type == 'soundcraft') {
         return jsc.soundcraft.conn(id).input(channel).getVolume();
@@ -1147,8 +1160,8 @@ function setVolume(channel, volume, module) {
   var id = module.settings.digital_mixer;
   var type = h.getReceiverInfo(id).type;
   try {
-    if (type == 'osc') {
-        jsc.x32.setChannelVolume(id, channel, volume);
+    if (type == 'osc' || type == 'wing') {
+        getCantaFacilOscMixer(module, type).setChannelVolume(id, channel, volume);
     }
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).setVolume(volume);
@@ -1160,13 +1173,17 @@ function unMute(channel, module) {
   var id = module.settings.digital_mixer;
   var type = h.getReceiverInfo(id).type;
   try { 
-    if (type == 'osc') {
-        jsc.x32.setChannelMute(id, channel, false);
+    if (type == 'osc' || type == 'wing') {
+        getCantaFacilOscMixer(module, type).setChannelMute(id, channel, false);
     }
     if (type == 'soundcraft') {
         jsc.soundcraft.conn(id).input(channel).unmute();
     }
   } catch (e) { h.log(mUID,'Erro {}',[e]) };
+}
+
+function getCantaFacilOscMixer(module, receiverType) {
+  return receiverType === 'wing' || module.settings.mixer_model === 'wing' ? jsc.wing : jsc.x32;
 }
 
 

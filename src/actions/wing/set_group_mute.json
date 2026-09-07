@@ -1,0 +1,14 @@
+{
+    "id": "wing_set_group_mute",
+    "name": "Set Group Mute",
+    "description": "Changes the mute state of a group of channels on the Behringer WING to on/off.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o mute do grupo"
+        },
+        "description": {
+            "pt": "Altera o estado de mute de um grupo de canais na Behringer WING para ligado/desligado."
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.29.0') "
+}

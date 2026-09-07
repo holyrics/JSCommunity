@@ -1,0 +1,14 @@
+{
+    "id": "ma2_random_executor",
+    "name": "grandMA2 - Random Executor by slide",
+    "description": "Select a random static or movement Executor according to the displayed song slide",
+    "i18n": {
+        "name": {
+            "pt": "grandMA2 - Executor aleatório por slide"
+        },
+        "description": {
+            "pt": "Seleciona um Executor estático ou de movimento conforme o slide exibido da música"
+        }
+    },
+    "script_filter": " obj.type == 'trigger' && obj.item == 'any_song_slide' && h.isMinimumVersion('2.29.0') "
+}

@@ -24,7 +24,7 @@ function hGetItemInputParams() {
       id: 'receiver_id',
       name: jsc.i18n('Destination'),
       type: 'receiver',
-      receiver: 'tcp,grandma2'
+      receiver: 'grandma2'
     }, {
       id: 'tag_map',
       name: jsc.i18n('Executor codes'),
@@ -36,7 +36,15 @@ function hGetItemInputParams() {
 }
 
 function stringToExecutorAction(str) {
-  str = str.replaceAll("[^0-9.]", "");
-  if (str.isEmpty()) return null;  
-  return str;
+  var text = String(str || '').trim();
+  if (!text) return null;
+
+  text = text.replace(/^\s*(on|off|toggle)\s+executor\s+/i, '');
+  text = text.replace(/^\s*executor\s+/i, '');
+  text = text.replace(/\s+/g, '');
+
+  if (/^\d+$/.test(text)) {
+    text = '1.' + text;
+  }
+  return /^\d+\.\d+$/.test(text) ? text : null;
 }

@@ -1,0 +1,14 @@
+{
+    "id": "wing_set_channel_volume",
+    "name": "Change Channel Volume",
+    "description": "Changes the volume of a specific channel on the Behringer WING to the desired value.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o volume do canal"
+        },
+        "description": {
+            "pt": "Altera o volume de um canal específico da Behringer WING para o valor desejado."
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.29.0') "
+}

@@ -1,0 +1,14 @@
+{
+    "id": "wing_set_aux_mute",
+    "name": "Change Aux Mute",
+    "description": "Change the current state of the aux mute button.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o mute do auxiliar"
+        },
+        "description": {
+            "pt": "Altera o estado do botão mute de um auxiliar específico da Behringer WING"
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.29.0') "
+}

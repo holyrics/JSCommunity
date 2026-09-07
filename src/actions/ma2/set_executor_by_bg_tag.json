@@ -1,14 +1,14 @@
 {
     "id": "set_executor_by_bg_tag",
-    "name": "Set Executor from a Tag",
-    "description": "Set Executor from a Tag",
+    "name": "grandMA2 - Set Executor from a Tag",
+    "description": "Set a grandMA2 Executor from a background or theme tag",
     "i18n": {
         "name": {
-            "pt": "Alterar Executor a partir de uma Tag"
+            "pt": "grandMA2 - Alterar Executor a partir de uma Tag"
         },
         "description": {
-            "pt": "Alterar Executor a partir de uma Tag"
+            "pt": "Desliga o Executor anteriormente acionado e liga o Executor associado à Tag"
         }
     },
-    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'any_theme' || obj.item == 'any_background') "
+    "script_filter": " obj.type == 'trigger' && obj.when == 'displaying' && (obj.item == 'any_theme' || obj.item == 'any_background') && h.isMinimumVersion('2.29.0') "
 }
