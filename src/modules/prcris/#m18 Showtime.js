@@ -4,7 +4,6 @@ var mUID = mID+'';
 //#import modules_generic_functions
 //#import plugin_video_resources
 //#import custom_jsc
-//#import wing
 
 function startup(module) { 
 
@@ -48,7 +47,7 @@ function info() {
                 value: 'SetInputSettings'
             }
         ],
-        min_version: '2.29.0',
+        min_version: '2.24.0',
         i18n: {
             name: {
                 en: 'Showtime',
@@ -302,18 +301,7 @@ function settings() {
             name: jsc.i18n('Digital Mixer'),
             description: '<html><hr>' + jsc.i18n('Associate with the Behringer/Soundcraft receiver'),
             type: 'receiver',
-            receiver: 'osc,soundcraft,wing'
-        },
-        {
-            id: 'mixer_model',
-            name: jsc.i18n('OSC mixer model'),
-            description: jsc.i18n('Explicitly select X32/M32 or WING. This setting does not affect Soundcraft receivers.'),
-            type: 'string',
-            allowed_values: [
-                {value: 'x32', label: 'X32 / M32'},
-                {value: 'wing', label: 'WING'}
-            ],
-            default_value: 'x32'
+            receiver: 'osc,soundcraft'
         }, 
         {
             id: 'dmx_id',
@@ -1085,7 +1073,7 @@ function makeItHappen(s, i, n, cfg, key) {
     }
     case 'mixer': {
       h.log(mUID, "{%t} setMixer('{}', '{}', {});", receiverID, cfg['channel' + n], cfg['volume' + n]);
-      setMixer(s.mixer_id, cfg['channel' + n], cfg['volume' + n], s.mixer_model);
+      setMixer(s.mixer_id, cfg['channel' + n], cfg['volume' + n]);
       break;
     }
     case 'ha': {
@@ -1136,10 +1124,10 @@ function setHA(receiverID, deviceID, state) {
   jsc.ha.setSwitch(receiverID, deviceID, st);
 }
 
-function setMixer(receiverID, channel, volume, mixerModel) {
+function setMixer(receiverID, channel, volume) {
   var ch = channel.split(' ');
-  setVolume(receiverID, ch[1], volume / 100, ch[0], mixerModel);
-  mute(receiverID, ch[1], ch[0], volume == 0, mixerModel);
+  setVolume(receiverID, ch[1], volume / 100, ch[0]);
+  mute(receiverID, ch[1], ch[0],volume == 0);
 }
 
 
@@ -1185,7 +1173,7 @@ function playOBS(s, mediaName, repeat) {
 
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226d6978657273227d
-function getMixerDetails(receiverID, channel_type, mixerModel) {
+function getMixerDetails(receiverID, channel_type) {
   if (!receiverID) {
     h.log(mUID, '{%t} : ' + jsc.i18n('Mixer not configured!'));
     return null;
@@ -1194,26 +1182,22 @@ function getMixerDetails(receiverID, channel_type, mixerModel) {
   var type = h.getReceiverInfo(receiverID).type || "nenhum"; 
 
   var channelAction = null; 
-  if (type === 'osc' || type === 'wing') {
+  if (type === 'osc') {
     channelAction = channel_type == 'Input' ? 'Channel' : 'Aux'; 
   } else if (type === 'soundcraft') {
     channelAction = channel_type == 'Input' ? 'input' : channel_type == 'Aux' ? 'aux' : channel_type == 'Line' ? 'line' : null; 
   }
 
-  return {
-    type: type,
-    channelAction: channelAction,
-    mixer: type === 'wing' || (type === 'osc' && mixerModel === 'wing') ? jsc.wing : jsc.x32
-  };
+  return { type: type, channelAction: channelAction }; 
 }
 
-function mute(receiverID, channel, channel_type, state, mixerModel) {
-  var m = getMixerDetails(receiverID, channel_type, mixerModel);
+function mute(receiverID, channel, channel_type, state) {
+  var m = getMixerDetails(receiverID, channel_type);
   if (!m || !m.channelAction) return; 
 
   try {
-    if (m.type == 'osc' || m.type == 'wing') {
-      m.mixer['set' + m.channelAction + 'Mute'](receiverID, channel, state);
+    if (m.type == 'osc') {
+      jsc.x32['set' + m.channelAction + 'Mute'](receiverID, channel, state); 
     } else if (m.type == 'soundcraft') {
       var mute = state ? 'mute' : 'unmute';
       jsc.soundcraft.conn(receiverID)[m.channelAction](channel)[mute]();
@@ -1224,13 +1208,13 @@ function mute(receiverID, channel, channel_type, state, mixerModel) {
   }
 }
 
-function setVolume(receiverID, channel, volume, channel_type, mixerModel) {
-  var m = getMixerDetails(receiverID, channel_type, mixerModel);
+function setVolume(receiverID, channel, volume, channel_type) {
+  var m = getMixerDetails(receiverID, channel_type);
   //h.log(mUID,"{%t} channel:{} type: {} m:{}",channel,channel_type,m); 
   if (!m) return;
   try {
-    if (m.type == 'osc' || m.type == 'wing') {
-      m.mixer['set' + m.channelAction + 'Volume'](receiverID, channel, volume);
+    if (m.type == 'osc') {
+      jsc.x32['set' + m.channelAction + 'Volume'](receiverID, channel, volume); 
     } else if (m.type == 'soundcraft') {
        jsc.soundcraft.conn(receiverID)[m.channelAction](channel).setVolume(volume); 
     }

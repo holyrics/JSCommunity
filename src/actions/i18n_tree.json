@@ -17,10 +17,7 @@
         "": "Lumikit"
     }, {
         "key": "x32",
-        "": "Behringer X32/M32 (OSC Protocol)"
-    }, {
-        "key": "wing",
-        "": "Behringer WING"
+        "": "Behringer (OSC Protocol)"
     }, {
         "key": "soundcraft",
         "": "Soundcraft Ui Series"

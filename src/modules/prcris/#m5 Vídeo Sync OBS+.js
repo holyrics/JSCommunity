@@ -5,7 +5,6 @@ var pause = false;
 
 //#import modules_generic_functions
 //#import plugin_video_resources
-//#import wing
 
 function startup(module) { 
 
@@ -29,7 +28,7 @@ function info() {
          allowed_requests: [
                      allowedPrcrisModuleRequests
          ],
-        min_version: '2.29.0'
+        min_version: '99.0.0'
     };
 }
 
@@ -52,8 +51,8 @@ function triggers(module) {
 
       h.log(mID, "Liberando mesa de som, receiver: {} , channel: {}, volume: {}", [m1, m2, m3]);
       // Seta volume e libera o canal.
-      unMute(m1, m2, 0, s.mixer_model);
-      setVolume(m1, m2, m3 / 100, 0, s.mixer_model);
+      unMute(m1, m2);
+      setVolume(m1, m2, m3 / 100);
 
       obsVideo(module, true, obj.file_fullname);
       module.updatePanel();
@@ -127,18 +126,7 @@ function settings() {
             name: jsc.i18n('Receptor'),
             description: '<html><hr>Associe ao receptor da Behinger/Soundcraft caso você possua um, para que funcionem as rotinas de alteração de volume/mute',
             type: 'receiver',
-            receiver: 'osc,soundcraft,wing'
-        },
-        {
-            id: 'mixer_model',
-            name: jsc.i18n('Modelo da mesa OSC'),
-            description: jsc.i18n('Escolha explicitamente X32/M32 ou WING. A opção não interfere em receptores Soundcraft.'),
-            type: 'string',
-            allowed_values: [
-                {value: 'x32', label: 'X32 / M32'},
-                {value: 'wing', label: 'WING'}
-            ],
-            default_value: 'x32'
+            receiver: 'osc,soundcraft'
         }, 
         {
             id: 'mixer_channel',
@@ -378,7 +366,7 @@ return {
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a226469676974616c5f6d6978227d
-function getMixerDetails(receiverID, channel_type, mixerModel) {
+function getMixerDetails(receiverID, channel_type) {
   if (!receiverID) {
     h.log(mUID, ': Mixer não configurado!');
     return null;
@@ -387,26 +375,22 @@ function getMixerDetails(receiverID, channel_type, mixerModel) {
   var type = h.getReceiverInfo(receiverID).type || "nenhum"; 
 
   var channelAction = null; 
-  if (type === 'osc' || type === 'wing') {
+  if (type === 'osc') {
     channelAction = channel_type == 0 ? 'Channel' : 'Aux'; 
   } else if (type === 'soundcraft') {
     channelAction = channel_type == 0 ? 'input' : channel_type == 1 ? 'aux' : channel_type == 2 ? 'line' : null; 
   }
 
-  return {
-    type: type,
-    channelAction: channelAction,
-    mixer: type === 'wing' || (type === 'osc' && mixerModel === 'wing') ? jsc.wing : jsc.x32
-  };
+  return { type: type, channelAction: channelAction }; 
 }
 
-function unMute(receiverID, channel, channel_type, mixerModel) {
-  var m = getMixerDetails(receiverID, channel_type, mixerModel);
+function unMute(receiverID, channel, channel_type) {
+  var m = getMixerDetails(receiverID, channel_type);
   if (!m || !m.channelAction) return; 
 
   try {
-    if (m.type == 'osc' || m.type == 'wing') {
-      m.mixer['set' + m.channelAction + 'Mute'](receiverID, channel, false);
+    if (m.type == 'osc') {
+      jsc.x32['set' + m.channelAction + 'Mute'](receiverID, channel, false); 
     } else if (m.type == 'soundcraft') {
       jsc.soundcraft.conn(receiverID)[m.channelAction](channel).unmute();
     }
@@ -415,13 +399,13 @@ function unMute(receiverID, channel, channel_type, mixerModel) {
   }
 }
 
-function setVolume(receiverID, channel, volume, channel_type, mixerModel) {
-  var m = getMixerDetails(receiverID, channel_type, mixerModel);
+function setVolume(receiverID, channel, volume, channel_type) {
+  var m = getMixerDetails(receiverID, channel_type);
   if (!m) return;
 
   try {
-    if (m.type == 'osc' || m.type == 'wing') {
-      m.mixer['set' + m.channelAction + 'Volume'](receiverID, channel, volume);
+    if (m.type == 'osc') {
+      jsc.x32['set' + m.channelAction + 'Volume'](receiverID, channel, volume); 
     } else if (m.type == 'soundcraft') {
       jsc.soundcraft.conn(receiverID)[m.channelAction](channel).setVolume(volume); 
     }
