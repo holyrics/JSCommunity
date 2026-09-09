@@ -1,4 +1,4 @@
-// v1.1.0 | 2026-09-09
+// v1.1.1 | 2026-09-09
 var mID = '@prcris#m42';
 var mUID = mID + '';
 var currentModule = null;
@@ -216,7 +216,7 @@ function renderAutomaticPresentationVolumeBadge(evt) {
     return {
         type: 'text',
         value: 'AP ' + volume + '%',
-        position: 'right'
+        position: 'left'
     };
 }
 
