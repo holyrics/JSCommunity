@@ -1,11 +1,11 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
-// v2.16.0 | 2026-09-09
+// v2.16.1 | 2026-09-09
 //#import modules_generic_functions
 //#import wing
 var mID = '@prcris#m13'; 
 var mUID = mID + ''; 
 var pause = false;
-var moduleVersion = '2.16.0';
+var moduleVersion = '2.16.1';
 var currentModule = null;
 
 function formatModuleLog(message, values) {
@@ -876,7 +876,7 @@ function setVolumeGradually(module, receiverID, channel, targetVolume, channelTy
 }
 
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e74657874416374696f6e73227d
-// v2.16.0 | 2026-09-09
+// v2.16.1 | 2026-09-09
 // Volume individual do canal da mesa por vídeo, áudio ou apresentação automática.
 
 function mediaVolumeStorageKey() {
@@ -1245,7 +1245,7 @@ function createMediaVolumeBadgeRenderer(preferredType) {
         return {
             type: 'text',
             value: String(data.volume) + '%',
-            position: 'right'
+            position: 'left'
         };
     };
 }
