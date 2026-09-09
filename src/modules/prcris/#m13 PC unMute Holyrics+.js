@@ -1,11 +1,11 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
-// v2.15.4 | 2026-09-09
+// v2.16.0 | 2026-09-09
 //#import modules_generic_functions
 //#import wing
 var mID = '@prcris#m13'; 
 var mUID = mID + ''; 
 var pause = false;
-var moduleVersion = '2.15.4';
+var moduleVersion = '2.16.0';
 var currentModule = null;
 
 function formatModuleLog(message, values) {
@@ -279,6 +279,7 @@ function settings() {
         }
     ];
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a2266756e6374696f6e73227d
 // v2.15.1 | 2026-09-08
 var mixerLastErrors = {};
@@ -873,8 +874,9 @@ function setVolumeGradually(module, receiverID, channel, targetVolume, channelTy
     }, expectedDurationMs);
     return true;
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22636f6e74657874416374696f6e73227d
-// v2.15.1 | 2026-09-08
+// v2.16.0 | 2026-09-09
 // Volume individual do canal da mesa por vídeo, áudio ou apresentação automática.
 
 function mediaVolumeStorageKey() {
@@ -1217,6 +1219,45 @@ function contextActions(module) {
 
     return arr;
 }
+
+// Badge opcional do Holyrics 2.30+: exibe o volume individual diretamente
+// nas bibliotecas de mídia e nos itens da playlist principal.
+function getMediaVolumeBadgeData(item, preferredType) {
+    var types = preferredType ?
+        [preferredType] :
+        ['video', 'audio', 'automatic_presentation'];
+
+    for (var i = 0; i < types.length; i++) {
+        var data = getSavedMediaVolumeData(types[i], item || {});
+        if (data) {
+            return data;
+        }
+    }
+    return null;
+}
+
+function createMediaVolumeBadgeRenderer(preferredType) {
+    return function(evt) {
+        var data = getMediaVolumeBadgeData(evt && evt.source, preferredType);
+        if (!data) {
+            return null;
+        }
+        return {
+            type: 'text',
+            value: String(data.volume) + '%',
+            position: 'right'
+        };
+    };
+}
+
+function listCellRendererBadges() {
+    return {
+        audio_library: createMediaVolumeBadgeRenderer('audio'),
+        video_library: createMediaVolumeBadgeRenderer('video'),
+        media_playlist: createMediaVolumeBadgeRenderer(null)
+    };
+}
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a227472696767657273227d
 // v2.15.1 | 2026-09-08
 // Controla entrada e saída do canal para vídeo, áudio e apresentação automática.
@@ -1412,6 +1453,7 @@ function triggers(module) {
 
     return arr;
 }
+
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22616374696f6e73227d
 // v2.15.1 | 2026-09-08
 function actions(module) {
