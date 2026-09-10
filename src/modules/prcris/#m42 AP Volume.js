@@ -1,5 +1,7 @@
+// v1.1.1 | 2026-09-09
 var mID = '@prcris#m42';
 var mUID = mID + '';
+var currentModule = null;
 
 //#import modules_generic_functions
 
@@ -7,6 +9,7 @@ var mUID = mID + '';
 // Startup
 // =====================================================================
 function startup(module) {
+    currentModule = module;
     mUID = mID + module.id;
     logState(module.settings.log, mUID, 'startup ' + mID);
 }
@@ -27,7 +30,8 @@ function info() {
             '• Volume slider (0–100%) per Automatic Presentation via right-click context menu<br>' +
             '• Volume applied automatically when the Automatic Presentation starts playing<br>' +
             '• Volume persisted between sessions<br>' +
-            '• Action button to open the full volume map manager<br><br>' +
+            '• Action button to open the full volume map manager<br>' +
+            '• Holyrics 2.30+: configured items display an AP volume badge in the media playlist<br><br>' +
             infoVDDMM +
             '</div>',
         allowed_requests: [
@@ -50,7 +54,8 @@ function info() {
                     '• Volume slider (0–100%) per Automatic Presentation via right-click context menu<br>' +
                     '• Volume applied automatically when the Automatic Presentation starts playing<br>' +
                     '• Volume persisted between sessions<br>' +
-                    '• Action button to open the full volume map manager<br><br>' +
+                    '• Action button to open the full volume map manager<br>' +
+                    '• Holyrics 2.30+: configured items display an AP volume badge in the media playlist<br><br>' +
                     infoVDDMM +
                     '</div>',
                 pt: '<html>' +
@@ -62,7 +67,8 @@ function info() {
                     '• Controle deslizante de volume (0–100%) por Apresentação Automática via menu de contexto<br>' +
                     '• Volume aplicado automaticamente ao iniciar a Apresentação Automática<br>' +
                     '• Volume persistido entre sessões<br>' +
-                    '• Botão de ação para abrir o gerenciador completo de volumes<br><br>' +
+                    '• Botão de ação para abrir o gerenciador completo de volumes<br>' +
+                    '• Holyrics 2.30+: itens configurados exibem o volume AP na lista de mídias<br><br>' +
                     infoVDDMM +
                     '</div>',
                 es: '<html>' +
@@ -74,7 +80,8 @@ function info() {
                     '• Control deslizante de volumen (0–100%) por Presentación Automática mediante menú contextual<br>' +
                     '• Volumen aplicado automáticamente al iniciar la Presentación Automática<br>' +
                     '• Volumen persistido entre sesiones<br>' +
-                    '• Botón de acción para abrir el administrador completo de volúmenes<br><br>' +
+                    '• Botón de acción para abrir el administrador completo de volúmenes<br>' +
+                    '• Holyrics 2.30+: los elementos configurados muestran el volumen AP en la lista de medios<br><br>' +
                     infoVDDMM +
                     '</div>',
                 ru: '<html>' +
@@ -86,7 +93,8 @@ function info() {
                     '• Ползунок громкости (0–100%) для каждой автоматической презентации через контекстное меню<br>' +
                     '• Громкость применяется автоматически при запуске автоматической презентации<br>' +
                     '• Громкость сохраняется между сессиями<br>' +
-                    '• Кнопка действия для открытия менеджера громкостей<br><br>' +
+                    '• Кнопка действия для открытия менеджера громкостей<br>' +
+                    '• Holyrics 2.30+: настроенные элементы показывают громкость AP в списке медиа<br><br>' +
                     infoVDDMM +
                     '</div>'
             }
@@ -189,6 +197,35 @@ function contextActions(module) {
     return arr;
 }
 
+// Badge opcional do Holyrics 2.30+. O prefixo AP diferencia este volume,
+// aplicado ao player da apresentação, do volume da mesa exibido pelo m13.
+function getAutomaticPresentationBadgeName(item) {
+    item = item || {};
+    return item.name || item.file_name || item.title || item.id || '';
+}
+
+function renderAutomaticPresentationVolumeBadge(evt) {
+    var apName = getAutomaticPresentationBadgeName(evt && evt.source);
+    if (!apName) {
+        return null;
+    }
+    var volume = getVolumeForAP(String(apName));
+    if (volume < 0) {
+        return null;
+    }
+    return {
+        type: 'text',
+        value: 'AP ' + volume + '%',
+        position: 'left'
+    };
+}
+
+function listCellRendererBadges() {
+    return {
+        media_playlist: renderAutomaticPresentationVolumeBadge
+    };
+}
+
 // =====================================================================
 // Actions (module bar button)
 // =====================================================================
@@ -288,7 +325,10 @@ function triggers(module) {
  * Returns -1 if not configured.
  */
 function getVolumeForAP(apName) {
-    var map = module.restore('volume_map') || {};
+    if (!currentModule || typeof currentModule.restore !== 'function') {
+        return -1;
+    }
+    var map = currentModule.restore('volume_map') || {};
     if (typeof map[apName] === 'number') {
         return map[apName];
     }
@@ -299,18 +339,26 @@ function getVolumeForAP(apName) {
  * Saves the volume for an Automatic Presentation by name.
  */
 function saveVolumeForAP(apName, volume) {
-    var map = module.restore('volume_map') || {};
+    if (!currentModule || typeof currentModule.restore !== 'function' ||
+        typeof currentModule.store !== 'function') {
+        throw jsc.i18n('O armazenamento do módulo não está disponível.');
+    }
+    var map = currentModule.restore('volume_map') || {};
     map[apName] = volume;
-    module.store('volume_map', map);
+    currentModule.store('volume_map', map);
 }
 
 /**
  * Removes the saved volume for an Automatic Presentation by name.
  */
 function removeVolumeForAP(apName) {
-    var map = module.restore('volume_map') || {};
+    if (!currentModule || typeof currentModule.restore !== 'function' ||
+        typeof currentModule.store !== 'function') {
+        return;
+    }
+    var map = currentModule.restore('volume_map') || {};
     delete map[apName];
-    module.store('volume_map', map);
+    currentModule.store('volume_map', map);
 }
 
 // =====================================================================
@@ -322,6 +370,11 @@ function removeVolumeForAP(apName) {
  * saved volumes, allowing bulk editing via sliders.
  */
 function showVolumeManager() {
+    var module = currentModule;
+    if (!module) {
+        h.notificationError(jsc.i18n('O módulo ainda não foi inicializado'), 3);
+        return;
+    }
     var aps = [];
     try {
         var result = h.hly('GetAutomaticPresentations');
