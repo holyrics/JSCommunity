@@ -1,0 +1,14 @@
+{
+    "id": "wing_set_aux_volume",
+    "name": "Change Aux Volume",
+    "description": "Changes the volume of a specific aux input on the Behringer WING to the desired value.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar o volume do Aux"
+        },
+        "description": {
+            "pt": "Altera o volume de uma entrada auxiliar específica na Behringer WING para o valor desejado."
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.29.0') "
+}

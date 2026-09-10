@@ -1,0 +1,14 @@
+{
+    "id": "wing_set_fx_bpm",
+    "name": "Change FX BPM",
+    "description": "Changes the current BPM of a WING FX channel.",
+    "i18n": {
+        "name": {
+            "pt": "Alterar BPM do FX"
+        },
+        "description": {
+            "pt": "Altera o BPM de um canal FX da WING."
+        }
+    },
+    "script_filter": " h.isMinimumVersion('2.29.0') "
+}
