@@ -1066,6 +1066,59 @@ function receiverMidi(module) {
 
 ---
 
+### listCellRendererBadges(module)
+- v2.30.0
+
+Permite exibir ícones ou textos para um respectivo item nas listas da janela principal do programa.
+
+**Parâmetros:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Retorno:**
+
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+|  | _Function (opcional)_ | `function(obj) { /* return BadgeItem; */ }`<br>`obj` contém informações do objeto de origem<br><br>Deve retornar um objeto: [BadgeItem](#badge-item) |
+|  |  |  |
+| `song_library` | _Function (opcional)_ |  |
+| `text_library` | _Function (opcional)_ |  |
+| `audio_library` | _Function (opcional)_ |  |
+| `video_library` | _Function (opcional)_ |  |
+| `image_library` | _Function (opcional)_ |  |
+| `file_library` | _Function (opcional)_ |  |
+| `automatic_presentation_library` | _Function (opcional)_ |  |
+| `song_playlist` | _Function (opcional)_ |  |
+| `media_playlist` | _Function (opcional)_ |  |
+
+
+**Exemplo:**
+
+```javascript
+function listCellRendererBadges() {
+  var fn = function(evt) {
+    var enabled = evt.source.title.startsWith("A");
+    var styleName = enabled ? 'primary': 'light';
+    var color = jsc.data.style.colors[styleName];
+    if (!enabled) color += '40';
+    return {
+      type: 'icon',
+      value: 'check',
+      icon_color: color
+    };
+  };
+  return {
+    song_library: fn,
+    song_playlist: fn
+  };
+}
+```
+
+---
+
 # Classes 
 ## Module
 | Nome | Tipo  | Descrição |
@@ -2689,6 +2742,26 @@ Representa um parâmetro (input) utilizado por `ModuleCustomMessageInApp`
   "note_on": false,
   "note_off": false,
   "command_id": ""
+}
+```
+</details>
+
+## Badge Item
+| Nome | Tipo  | Descrição |
+| ---- | :---: | ------------|
+| `type` | _String_ | Valores aceitos: `icon` `text` |
+| `value` | _String_ |  |
+| `icon_color` | _String_ | Cor no formato hexadecimal |
+| `position` | _String_ | Valores aceitos: `left` `right` |
+<details>
+  <summary>Ver exemplo</summary>
+
+```json
+{
+  "type": "",
+  "value": "",
+  "icon_color": "",
+  "position": ""
 }
 ```
 </details>

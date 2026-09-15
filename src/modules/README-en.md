@@ -1066,6 +1066,59 @@ function receiverMidi(module) {
 
 ---
 
+### listCellRendererBadges(module)
+- v2.30.0
+
+Allows displaying icons or texts for a respective item in the lists of the main program window.
+
+**Parameters:**
+
+| Name | Type  | Description |
+| ---- | :---: | ------------|
+| `module` | _[Module](#module)_ |  |
+
+
+**Return:**
+
+| Name | Type  | Description |
+| ---- | :---: | ------------|
+|  | _Function (optional)_ | `function(obj) { /* return BadgeItem; */ }`<br>`obj` contains information about the source object<br><br>It should return an object: [BadgeItem](#badge-item) |
+|  |  |  |
+| `song_library` | _Function (optional)_ |  |
+| `text_library` | _Function (optional)_ |  |
+| `audio_library` | _Function (optional)_ |  |
+| `video_library` | _Function (optional)_ |  |
+| `image_library` | _Function (optional)_ |  |
+| `file_library` | _Function (optional)_ |  |
+| `automatic_presentation_library` | _Function (optional)_ |  |
+| `song_playlist` | _Function (optional)_ |  |
+| `media_playlist` | _Function (optional)_ |  |
+
+
+**Example:**
+
+```javascript
+function listCellRendererBadges() {
+  var fn = function(evt) {
+    var enabled = evt.source.title.startsWith("A");
+    var styleName = enabled ? 'primary': 'light';
+    var color = jsc.data.style.colors[styleName];
+    if (!enabled) color += '40';
+    return {
+      type: 'icon',
+      value: 'check',
+      icon_color: color
+    };
+  };
+  return {
+    song_library: fn,
+    song_playlist: fn
+  };
+}
+```
+
+---
+
 # Classes 
 ## Module
 | Name | Type  | Description |
@@ -2689,6 +2742,26 @@ Represents a parameter (input) used by `ModuleCustomMessageInApp`
   "note_on": false,
   "note_off": false,
   "command_id": ""
+}
+```
+</details>
+
+## Badge Item
+| Name | Type  | Description |
+| ---- | :---: | ------------|
+| `type` | _String_ | Accepted values: `icon` `text` |
+| `value` | _String_ |  |
+| `icon_color` | _String_ | Color in hexadecimal format |
+| `position` | _String_ | Accepted values: `left` `right` |
+<details>
+  <summary>See example</summary>
+
+```json
+{
+  "type": "",
+  "value": "",
+  "icon_color": "",
+  "position": ""
 }
 ```
 </details>

@@ -1,7 +1,6 @@
 // __SCRIPT_SEPARATOR__ - info:7b226e616d65223a22737461727475705c7530303236696e666f227d
 // v2.16.2 | 2026-09-09
 //#import modules_generic_functions
-//#import wing
 var mID = '@prcris#m13'; 
 var mUID = mID + ''; 
 var pause = false;
